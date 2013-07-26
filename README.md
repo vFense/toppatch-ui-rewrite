@@ -26,6 +26,6 @@ For more information on SemVer, please visit [http://semver.org/](http://semver.
 
 ## Authors
 
-**Luis Aleman**
-**Sergio Polo**
-**Ankit Khatri**
+- Luis Aleman
+- Sergio Polo
+- Ankit Khatri
