@@ -1,16 +1,35 @@
 {
     "name": "Remediation Vault Web UI",
     "version": "2.0.0",
+    "ignore": [
+        ".jshintrc",
+        "**/*.txt",
+        "**/.*",
+        "node_modules/*",
+        "bower_components/*",
+        "test",
+        "tests",
+        "docs",
+        "examples",
+        "todos"
+    ],
     "dependencies": {
         "almond": "latest",
-        "backbone": "latest",
-        "highcharts.com": "latest",
-        "jquery": "1.10.2",
+        "backbone-amd": "latest",
+        "jquery": ">=1.10.0 <2.0.0",
         "jquery-migrate": "latest",
         "jquery-ui": "latest",
+        "livestampjs": "latest",
+        "modernizr": "latest",
+        "moment": "latest",
+        "qunit": "latest",
+        "respond": "latest",
         "requirejs": "latest",
         "requirejs-text": "latest",
         "requirejs-plugins": "latest",
-        "underscore": "latest"
+        "select2": "latest",
+        "underscore-amd": "latest",
+        "highcharts-components": "latest",
+        "backbone.localStorage": "latest"
     }
 }
