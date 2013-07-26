@@ -1,5 +1,5 @@
 {
-    "name": "Remediation Vault Web UI",
+    "name": "Remediation Vault's Web UI",
     "version": "2.0.0-alpha",
     "ignore": [
         ".jshintrc",
