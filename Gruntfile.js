@@ -17,4 +17,7 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-requirejs');
     grunt.loadNpmTasks('grunt-recess');
+
+
+    grunt.registerTask('dist', ['clean']);
 };
