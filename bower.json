@@ -1,5 +1,5 @@
 {
-    "name": "Remediation Vault's Web UI",
+    "name": "rvwebui",
     "ignore": [
         ".jshintrc",
         "**/*.txt",
