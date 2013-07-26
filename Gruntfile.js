@@ -27,6 +27,12 @@ module.exports = function(grunt) {
                 }
             }
         },
+        watch: {
+            recess: {
+                files: 'app/less/*.less',
+                tasks: ['recess:dev']
+            }
+        },
         requirejs: {
             compile: {
                 options: {
