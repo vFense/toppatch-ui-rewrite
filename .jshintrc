@@ -21,10 +21,4 @@
     "quotmark": "single",
 
     "browser": true,
-
-    "predef": {
-	    "require": false,
-        "define": false,
-        "Modernizr": false
-    }
 }
