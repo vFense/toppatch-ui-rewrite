@@ -12,6 +12,11 @@ module.exports = function(grunt) {
             options: {
                 compile: true
             },
+            dev: {
+                files: {
+                    'app/css/application.css': ['app/less/application.less']
+                }
+            },
             dist: {
                 options: {
                     compress: true
