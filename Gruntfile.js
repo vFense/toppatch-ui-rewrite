@@ -14,6 +14,7 @@ module.exports = function(grunt) {
             },
             dev: {
                 files: {
+                    'app/css/bootstrap.css'  : ['app/bootstrap/less/bootstrap.less'],
                     'app/css/application.css': ['app/less/application.less']
                 }
             },
@@ -22,14 +23,14 @@ module.exports = function(grunt) {
                     compress: true
                 },
                 files: {
-                    'dist/css/bootstrap.min.css': ['app/vendor/bootstrap/less/bootstrap.less'],
+                    'dist/css/bootstrap.min.css'  : ['app/bootstrap/less/bootstrap.less'],
                     'dist/css/application.min.css': ['app/less/application.less']
                 }
             }
         },
         watch: {
             recess: {
-                files: 'app/less/*.less',
+                files: ['app/less/*.less', 'app/bootstrap/less/*.less'],
                 tasks: ['recess:dev']
             }
         },
