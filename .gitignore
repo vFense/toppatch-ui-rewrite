@@ -1,5 +1,5 @@
 .DS_Store
 .idea/workspace.xml
 .idea/tasks.xml
-app/js/vendor
+app/vendor
 dist
