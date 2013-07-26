@@ -23,3 +23,9 @@ And constructed with the following guidelines:
 * Bug fixes and misc changes bumps the patch
 
 For more information on SemVer, please visit [http://semver.org/](http://semver.org/).
+
+## Authors
+
+**Luis Aleman**
+**Sergio Polo**
+**Ankit Khatri**
