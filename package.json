@@ -1,6 +1,12 @@
 {
     "name": "Remediation Vault's Web UI",
     "version": "2.0.0-alpha",
+    "author": "TopPatch Inc.",
+    "contributors": [
+        { "name": "Luis Aleman" },
+        { "name": "Sergio Polo" },
+        { "name": "Ankit Kahtri" }
+    ],
     "repository": {
         "type": "git",
         "url": "https://github.com/toppatch/toppatch-ui-rewrite"
