@@ -10,4 +10,12 @@ module.exports = function(grunt) {
             bowerDeps: ['app/js/vendor']
         }
     });
+
+    // These plugins provide necessary tasks.
+    grunt.loadNpmTasks('bower');
+    grunt.loadNpmTasks('grunt-contrib-clean');
+    grunt.loadNpmTasks('grunt-contrib-qunit');
+    grunt.loadNpmTasks('grunt-contrib-watch');
+    grunt.loadNpmTasks('grunt-contrib-requirejs');
+    grunt.loadNpmTasks('grunt-recess');
 };
