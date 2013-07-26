@@ -8,6 +8,19 @@ module.exports = function(grunt) {
         clean: {
             dist: ['dist']
         },
+        recess: {
+            options: {
+                compile: true
+            },
+            dist: {
+                options: {
+                    compress: true
+                },
+                files: {
+                    'dist/css/bootstrap.min.css': ['app/vendor/bootstrap/less/bootstrap.less']
+                }
+            }
+        },
         requirejs: {
             compile: {
                 options: {
@@ -27,5 +40,6 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-recess');
 
 
-    grunt.registerTask('dist', ['clean']);
+    grunt.registerTask('dist-css', ['recess']);
+    grunt.registerTask('dist', ['clean', 'dist-css']);
 };
