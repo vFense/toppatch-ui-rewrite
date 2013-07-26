@@ -1,0 +1,17 @@
+{
+    "name": "Remediation Vault",
+    "version": "2.0.0-alpha",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/toppatch/toppatch-ui"
+    },
+    "devDependencies": {
+        "grunt": "~0.4.1",
+        "grunt-contrib-watch": "~0.5.1",
+        "grunt-contrib-qunit": "~0.2.2",
+        "grunt-contrib-clean": "~0.5.0",
+        "grunt-contrib-requirejs": "~0.4.1",
+        "grunt-bower-requirejs": "~0.6.0",
+        "grunt-recess": "~0.3.3"
+    }
+}
