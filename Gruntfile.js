@@ -40,6 +40,6 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-recess');
 
 
-    grunt.registerTask('dist-css', ['recess']);
+    grunt.registerTask('dist-css', ['recess:dist']);
     grunt.registerTask('dist', ['clean', 'dist-css']);
 };
