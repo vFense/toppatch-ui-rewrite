@@ -1,16 +1,16 @@
 {
-  "name": "Remediation Vault Web UI",
-  "version": "2.0.0",
-  "dependencies": {
-    "almond": "latest",
-    "highcharts.com": "latest",
-    "jquery": "1.10.2",
-    "jquery-migrate": "latest",
-    "jquery-ui": "latest",
-    "backbone": "latest",
-    "underscore": "latest",
-    "requirejs": "latest",
-    "requirejs-text": "latest",
-    "requirejs-plugins": "latest"
-  }
+    "name": "Remediation Vault Web UI",
+    "version": "2.0.0",
+    "dependencies": {
+        "almond": "latest",
+        "backbone": "latest",
+        "highcharts.com": "latest",
+        "jquery": "1.10.2",
+        "jquery-migrate": "latest",
+        "jquery-ui": "latest",
+        "requirejs": "latest",
+        "requirejs-text": "latest",
+        "requirejs-plugins": "latest",
+        "underscore": "latest"
+    }
 }
