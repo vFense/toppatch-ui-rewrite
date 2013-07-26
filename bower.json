@@ -16,7 +16,6 @@
         "almond": "~0.2.5",
         "backbone-amd": "~1.0.0",
         "backbone.localStorage": "~1.1.6",
-        "bootstrap": "~2.3.2",
         "highcharts-components": "~3.0.2",
         "jquery": "~1.10.2",
         "jquery-migrate": "latest",
@@ -31,8 +30,5 @@
         "respond": "~1.1.0",
         "select2": "~3.4.1",
         "underscore-amd": "~1.5.1"
-    },
-    "resolutions": {
-        "jquery": "~1.10.2"
     }
 }
