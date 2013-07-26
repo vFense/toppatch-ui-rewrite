@@ -6,8 +6,7 @@ module.exports = function(grunt) {
                 '* Copyright <%= grunt.template.today("yyyy") %> <%= pkg.author %>\n' +
                 '*/\n',
         clean: {
-            dist: ['dist'],
-            bowerDeps: ['app/js/vendor']
+            dist: ['dist']
         }
     });
 
