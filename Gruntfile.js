@@ -7,6 +7,15 @@ module.exports = function(grunt) {
                 '*/\n',
         clean: {
             dist: ['dist']
+        },
+        requirejs: {
+            compile: {
+                options: {
+                    baseUrl: 'app',
+                    mainConfigFile: 'app/js/config.js',
+                    out: 'dist/js/application.min.js'
+                }
+            }
         }
     });
 
