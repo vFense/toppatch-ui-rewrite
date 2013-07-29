@@ -94,6 +94,31 @@ requirejs.config({
         'bootstrap-tooltip'     : { exports: 'jQuery.fn.tooltip',         deps: ['jquery'] },
         'bootstrap-transition'  : { exports: 'jQuery.support.transition', deps: ['jquery'] },
         'bootstrap-typeahead'   : { exports: 'jQuery.fn.typeahead',       deps: ['jquery'] },
+
+        // jQuery UI Core Shims
+        'jquery.ui.core'        : {exports: 'jQuery.ui',       deps: ['jquery']},
+        'jquery.ui.widget'      : {exports: 'jQuery.widget',   deps: ['jquery']},
+        'jquery.ui.mouse'       : {exports: 'jQuery.ui.mouse', deps: ['jquery', 'jquery.ui.core', 'jquery.ui.widget']},
+        'jquery.ui.position'    : {exports: 'jQuery.position', deps: ['jquery']},
+
+        // jQuery UI Interaction Shims
+        'jquery.ui.draggable'   : {exports: 'jQuery.ui.draggable',  deps: ['jquery.ui.core', 'jquery.ui.widget', 'jquery.ui.mouse']},
+        'jquery.ui.droppable'   : {exports: 'jQuery.ui.droppable',  deps: ['jquery.ui.core', 'jquery.ui.widget', 'jquery.ui.mouse', 'jquery.ui.draggable']},
+        'jquery.ui.resizable'   : {exports: 'jQuery.ui.resizable',  deps: ['jquery.ui.core', 'jquery.ui.widget', 'jquery.ui.mouse']},
+        'jquery.ui.selectable'  : {exports: 'jQuery.ui.selectable', deps: ['jquery.ui.core', 'jquery.ui.widget', 'jquery.ui.mouse']},
+        'jquery.ui.sortable'    : {exports: 'jQuery.ui.sortable',   deps: ['jquery.ui.core', 'jquery.ui.widget', 'jquery.ui.mouse']},
+
+        // jQuery UI Widget Shims
+        'jquery.ui.accordion'   : {exports: 'jQuery.ui.accordion',    deps: ['jquery.ui.core', 'jquery.ui.widget']},
+        'jquery.ui.autocomplete': {exports: 'jQuery.ui.autocomplete', deps: ['jquery.ui.core', 'jquery.ui.widget', 'jquery.ui.position', 'jquery.ui.menu']},
+        'jquery.ui.button'      : {exports: 'jQuery.ui.button',       deps: ['jquery.ui.core', 'jquery.ui.widget']},
+        'jquery.ui.datepicker'  : {exports: 'jQuery.ui.datepicker',   deps: ['jquery.ui.core']},
+        'jquery.ui.dialog'      : {exports: 'jQuery.ui.dialog',       deps: ['jquery.ui.core', 'jquery.ui.widget', 'jquery.ui.mouse', 'jquery.ui.position', 'jquery.ui.draggable', 'jquery.ui.resizable', 'jquery.ui.button']},
+        'jquery.ui.menu'        : {exports: 'jQuery.ui.menu',         deps: ['jquery.ui.core', 'jquery.ui.widget', 'jquery.ui.position']},
+        'jquery.ui.progressbar' : {exports: 'jQuery.ui.progressbar',  deps: ['jquery.ui.core', 'jquery.ui.widget']},
+        'jquery.ui.slider'      : {exports: 'jQuery.ui.slider',       deps: ['jquery.ui.core', 'jquery.ui.widget', 'jquery.ui.mouse']},
+        'jquery.ui.spinner'     : {exports: 'jQuery.ui.spinner',      deps: ['jquery.ui.core', 'jquery.ui.widget', 'jquery.ui.button']},
+        'jquery.ui.tabs'        : {exports: 'jQuery.ui.tabs',         deps: ['jquery.ui.core', 'jquery.ui.widget']}
     },
 
     // deps: An array of dependencies to load as soon as require() is defined.
