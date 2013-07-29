@@ -362,9 +362,15 @@ p {
 
 .lead {
   margin-bottom: 20px;
-  font-size: 21px;
+  font-size: 16.099999999999998px;
   font-weight: 200;
   line-height: 1.4;
+}
+
+@media (min-width: 768px) {
+  .lead {
+    font-size: 21px;
+  }
 }
 
 small {
@@ -1432,44 +1438,14 @@ textarea.form-control {
   margin-left: 10px;
 }
 
-select.input-large,
-textarea.input-large,
-input[type="text"].input-large,
-input[type="password"].input-large,
-input[type="datetime"].input-large,
-input[type="datetime-local"].input-large,
-input[type="date"].input-large,
-input[type="month"].input-large,
-input[type="time"].input-large,
-input[type="week"].input-large,
-input[type="number"].input-large,
-input[type="email"].input-large,
-input[type="url"].input-large,
-input[type="search"].input-large,
-input[type="tel"].input-large,
-input[type="color"].input-large {
+.form-control.input-large {
   height: 56px;
   padding: 14px 16px;
   font-size: 18px;
   border-radius: 6px;
 }
 
-select.input-small,
-textarea.input-small,
-input[type="text"].input-small,
-input[type="password"].input-small,
-input[type="datetime"].input-small,
-input[type="datetime-local"].input-small,
-input[type="date"].input-small,
-input[type="month"].input-small,
-input[type="time"].input-small,
-input[type="week"].input-small,
-input[type="number"].input-small,
-input[type="email"].input-small,
-input[type="url"].input-small,
-input[type="search"].input-small,
-input[type="tel"].input-small,
-input[type="color"].input-small {
+.form-control.input-small {
   height: 30px;
   padding: 5px 10px;
   font-size: 12px;
@@ -1670,9 +1646,7 @@ select.input-small {
   z-index: 2;
 }
 
-.form-inline input,
-.form-inline select,
-.form-inline textarea,
+.form-inline .form-control,
 .form-inline .radio,
 .form-inline .checkbox {
   display: inline-block;
@@ -1686,6 +1660,38 @@ select.input-small {
 
 .form-horizontal .control-label {
   padding-top: 6px;
+}
+
+.form-horizontal .form-group:before,
+.form-horizontal .form-group:after {
+  display: table;
+  content: " ";
+}
+
+.form-horizontal .form-group:after {
+  clear: both;
+}
+
+.form-horizontal .form-group:before,
+.form-horizontal .form-group:after {
+  display: table;
+  content: " ";
+}
+
+.form-horizontal .form-group:after {
+  clear: both;
+}
+
+@media (min-width: 768px) {
+  .form-horizontal .form-group {
+    margin-right: -15px;
+    margin-left: -15px;
+  }
+}
+
+.form-horizontal .form-group .row {
+  margin-right: -15px;
+  margin-left: -15px;
 }
 
 @media (min-width: 768px) {
@@ -2016,15 +2022,19 @@ input[type="button"].btn-block {
 }
 
 .collapse {
+  display: none;
+}
+
+.collapse.in {
+  display: block;
+}
+
+.collapsing {
   position: relative;
   height: 0;
   overflow: hidden;
   -webkit-transition: height 0.35s ease;
           transition: height 0.35s ease;
-}
-
-.collapse.in {
-  height: auto;
 }
 
 .caret {
@@ -2509,7 +2519,6 @@ button.close {
 }
 
 .nav-tabs.nav-justified {
-  display: table;
   width: 100%;
   border-bottom: 0;
 }
@@ -2517,7 +2526,7 @@ button.close {
 .nav-tabs.nav-justified > li {
   display: table-cell;
   float: none;
-  width: auto;
+  width: 1%;
 }
 
 .nav-tabs.nav-justified > li > a {
@@ -2541,7 +2550,7 @@ button.close {
   border-radius: 5px;
 }
 
-.nav-pills > li + li > a {
+.nav-pills > li + li {
   margin-left: 2px;
 }
 
@@ -2562,14 +2571,13 @@ button.close {
 }
 
 .nav-justified {
-  display: table;
   width: 100%;
 }
 
 .nav-justified > li {
   display: table-cell;
   float: none;
-  width: auto;
+  width: 1%;
 }
 
 .nav-justified > li > a {
@@ -2778,9 +2786,7 @@ button.close {
   margin-bottom: 6px;
 }
 
-.navbar-form input,
-.navbar-form select,
-.navbar-form textarea,
+.navbar-form .form-control,
 .navbar-form .radio,
 .navbar-form .checkbox {
   display: inline-block;
@@ -2941,6 +2947,7 @@ button.close {
     display: none;
   }
   .nav-collapse.collapse {
+    display: block !important;
     height: auto !important;
     overflow: visible !important;
   }
@@ -3341,14 +3348,20 @@ button.close {
   overflow-y: scroll;
 }
 
-.modal.fade {
-  top: -25%;
-  -webkit-transition: opacity 0.3s linear, top 0.3s ease-out;
-          transition: opacity 0.3s linear, top 0.3s ease-out;
+.modal.fade .modal-dialog {
+  -webkit-transform: translate(0, -25%);
+      -ms-transform: translate(0, -25%);
+          transform: translate(0, -25%);
+  -webkit-transition: -webkit-transform 0.3s ease-out;
+     -moz-transition: -moz-transform 0.3s ease-out;
+       -o-transition: -o-transform 0.3s ease-out;
+          transition: transform 0.3s ease-out;
 }
 
-.modal.fade.in {
-  top: 0;
+.modal.fade.in .modal-dialog {
+  -webkit-transform: translate(0, 0);
+      -ms-transform: translate(0, 0);
+          transform: translate(0, 0);
 }
 
 .modal-dialog {
@@ -4259,6 +4272,7 @@ a.list-group-item.active > .badge,
   height: 20px;
   margin-top: -10px;
   margin-left: -10px;
+  font-family: serif;
 }
 
 .carousel-control .icon-prev:before {
