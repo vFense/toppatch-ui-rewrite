@@ -39,7 +39,11 @@ module.exports = function(grunt) {
         requirejs: {
             compile: {
                 options: {
-                    baseUrl: 'app',
+                    findNestedDependencies: true,
+                    pragmasOnSave: { excludeTpl: true},
+                    preserveLicenseComments: false,
+                    baseUrl: 'app/js',
+                    name: '../vendor/almond/almond',
                     mainConfigFile: 'app/js/config.js',
                     out: 'dist/js/application.min.js'
                 }
@@ -56,5 +60,5 @@ module.exports = function(grunt) {
 
 
     grunt.registerTask('dist-css', ['recess:dist']);
-    grunt.registerTask('dist', ['clean', 'dist-css']);
+    grunt.registerTask('dist', ['clean', 'dist-css', 'requirejs']);
 };
