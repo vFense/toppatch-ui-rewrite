@@ -46,14 +46,19 @@ module.exports = function(grunt) {
             }
         },
         requirejs: {
+            options: {
+                findNestedDependencies: true,
+                pragmasOnSave: { excludeTpl: true },
+                preserveLicenseComments: false,
+                wrap: true,
+                mainConfigFile: 'app/js/config.js',
+                baseUrl: 'app/',
+                name: 'vendor/almond/almond',
+                include: ['js/main'],
+                insertRequire: ['js/main']
+            },
             compile: {
                 options: {
-                    findNestedDependencies: true,
-                    pragmasOnSave: { excludeTpl: true},
-                    preserveLicenseComments: false,
-                    name: 'vendor/almond/almond',
-                    baseUrl: 'app/',
-                    mainConfigFile: 'app/js/config.js',
                     out: 'dist/js/application.min.js'
                 }
             }
