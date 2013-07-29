@@ -51,7 +51,7 @@ module.exports = function(grunt) {
                     findNestedDependencies: true,
                     pragmasOnSave: { excludeTpl: true},
                     preserveLicenseComments: false,
-                    name: '../vendor/almond/almond',
+                    name: 'vendor/almond/almond',
                     baseUrl: 'app/',
                     mainConfigFile: 'app/js/config.js',
                     out: 'dist/js/application.min.js'
