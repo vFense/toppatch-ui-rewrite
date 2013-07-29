@@ -35,6 +35,21 @@ requirejs.config({
         'respond'               : 'vendorPath/respond/respond.src',
         'select2'               : 'vendorPath/select2/select2',
         'underscore'            : 'vendorPath/underscore-amd/underscore',
+
+        // Bootstrap Paths
+        'bootstrapPath'         : 'vendorPath/bootstrap/js',
+        'bootstrap.affix'       : 'bootstrapPath/affix',
+        'bootstrap.alert'       : 'bootstrapPath/alert',
+        'bootstrap.button'      : 'bootstrapPath/button',
+        'bootstrap.carousel'    : 'bootstrapPath/carousel',
+        'bootstrap.collapse'    : 'bootstrapPath/collapse',
+        'bootstrap.dropdown'    : 'bootstrapPath/dropdown',
+        'bootstrap.modal'       : 'bootstrapPath/modal',
+        'bootstrap.popover'     : 'bootstrapPath/popover',
+        'bootstrap.scrollspy'   : 'bootstrapPath/scrollspy',
+        'bootstrap.tab'         : 'bootstrapPath/tab',
+        'bootstrap.tooltip'     : 'bootstrapPath/tooltip',
+        'bootstrap.transition'  : 'bootstrapPath/transition',
     },
 
     // shim: Configure dependencies, exports, and custom initialization for non-AMD scripts.
