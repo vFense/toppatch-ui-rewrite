@@ -12,6 +12,13 @@ module.exports = function(grunt) {
         clean: {
             dist: ['dist']
         },
+        uglify: {
+            modernizr: {
+                files: {
+                    'dist/js/modernizr.js': ['app/vendor/modernizr/modernizr.js']
+                }
+            }
+        },
         recess: {
             options: {
                 compile: true
@@ -56,11 +63,13 @@ module.exports = function(grunt) {
     // These plugins provide necessary tasks.
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-contrib-qunit');
+    grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-requirejs');
     grunt.loadNpmTasks('grunt-recess');
 
 
     grunt.registerTask('dist-css', ['recess:dist']);
-    grunt.registerTask('dist', ['clean', 'dist-css', 'requirejs']);
+    grunt.registerTask('dist-js', ['uglify', 'requirejs']);
+    grunt.registerTask('dist', ['clean', 'dist-css', 'dist-js']);
 };
