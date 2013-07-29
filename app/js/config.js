@@ -48,7 +48,6 @@ requirejs.config({
         'bootstrap.transition'  : '../vendor/bootstrap/js/transition',
 
         // jQuery UI Paths
-        'jQueryUIPath'          : '../vendor/jquery-ui/ui',
         'jquery.ui.core'        : '../vendor/jquery-ui/ui/jquery.ui.core',
         'jquery.ui.widget'      : '../vendor/jquery-ui/ui/jquery.ui.widget',
         'jquery.ui.mouse'       : '../vendor/jquery-ui/ui/jquery.ui.mouse',
