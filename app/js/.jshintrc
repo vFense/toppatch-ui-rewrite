@@ -1,0 +1,8 @@
+{
+    "predef": {
+        "requirejs": false,
+        "require": false,
+        "define": false,
+        "Modernizr": false
+    }
+}
