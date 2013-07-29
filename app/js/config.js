@@ -50,6 +50,29 @@ requirejs.config({
         'bootstrap.tab'         : 'bootstrapPath/tab',
         'bootstrap.tooltip'     : 'bootstrapPath/tooltip',
         'bootstrap.transition'  : 'bootstrapPath/transition',
+
+        // jQuery UI Paths
+        'jQueryUIPath'          : 'vendorPath/jquery-ui/ui',
+        'jquery.ui.core'        : 'jQueryUIPath/jquery.ui.core',
+        'jquery.ui.widget'      : 'jQueryUIPath/jquery.ui.widget',
+        'jquery.ui.mouse'       : 'jQueryUIPath/jquery.ui.mouse',
+        'jquery.ui.position'    : 'jQueryUIPath/jquery.ui.position',
+        'jquery.ui.draggable'   : 'jQueryUIPath/jquery.ui.draggable',
+        'jquery.ui.droppable'   : 'jQueryUIPath/jquery.ui.droppable',
+        'jquery.ui.resizable'   : 'jQueryUIPath/jquery.ui.resizable',
+        'jquery.ui.selectable'  : 'jQueryUIPath/jquery.ui.selectable',
+        'jquery.ui.sortable'    : 'jQueryUIPath/jquery.ui.sortable',
+        'jquery.ui.accordion'   : 'jQueryUIPath/jquery.ui.accordion',
+        'jquery.ui.autocomplete': 'jQueryUIPath/jquery.ui.autocomplete',
+        'jquery.ui.button'      : 'jQueryUIPath/jquery.ui.button',
+        'jquery.ui.datepicker'  : 'jQueryUIPath/jquery.ui.datepicker',
+        'jquery.ui.dialog'      : 'jQueryUIPath/jquery.ui.dialog',
+        'jquery.ui.menu'        : 'jQueryUIPath/jquery.ui.menu',
+        'jquery.ui.progressbar' : 'jQueryUIPath/jquery.ui.progressbar',
+        'jquery.ui.slider'      : 'jQueryUIPath/jquery.ui.slider',
+        'jquery.ui.spinner'     : 'jQueryUIPath/jquery.ui.spinner',
+        'jquery.ui.tabs'        : 'jQueryUIPath/jquery.ui.tabs',
+        'jquery.ui.tooltip'     : 'jQueryUIPath/jquery.ui.tooltip'
     },
 
     // shim: Configure dependencies, exports, and custom initialization for non-AMD scripts.
