@@ -18,7 +18,7 @@
     "trailing": true,
 
     "indent": 4,
-    "quotmark": "single",
+    "quotmark": true,
 
     "browser": true
 }
