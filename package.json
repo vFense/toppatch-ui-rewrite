@@ -18,6 +18,7 @@
         "grunt-contrib-clean": "~0.5.0",
         "grunt-contrib-uglify": "~0.2.2",
         "grunt-contrib-requirejs": "~0.4.1",
-        "grunt-recess": "~0.3.3"
+        "grunt-recess": "~0.3.3",
+        "grunt-usemin": "~0.1.12"
     }
 }
