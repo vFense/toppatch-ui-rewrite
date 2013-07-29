@@ -123,7 +123,7 @@ requirejs.config({
 
     // deps: An array of dependencies to load as soon as require() is defined.
     // See: http://requirejs.org/docs/api.html#config-deps
-    deps: (function() {}()),
+    deps: [],
 
     // callback: A function to execute after deps have been loaded.
     // See: http://requirejs.org/docs/api.html#config-callback
