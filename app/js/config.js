@@ -9,7 +9,7 @@ requirejs.config({
         'vendorPath' : '../vendor',
         
         // RequireJS Plugins
-        'rjsPlugin'     : 'vendorPath/requirejs-plugins/src',
+        'rjsPluginPath' : 'vendorPath/requirejs-plugins/src',
         'async'         : 'rjsPlugin/async',
         'depend'        : 'rjsPlugin/depend',
         'font'          : 'rjsPlugin/font',
