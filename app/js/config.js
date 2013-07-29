@@ -5,7 +5,9 @@ requirejs.config({
 
     // paths: Path mappings for module names not found directly under baseUrl.
     // See: http://requirejs.org/docs/api.html#config-paths
-    paths: {},
+    paths: {
+        'vendorPath' : '../vendor',
+    },
 
     // shim: Configure dependencies, exports, and custom initialization for non-AMD scripts.
     // See: http://requirejs.org/docs/api.html#config-shim
