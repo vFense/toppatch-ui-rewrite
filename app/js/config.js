@@ -7,6 +7,19 @@ requirejs.config({
     // See: http://requirejs.org/docs/api.html#config-paths
     paths: {
         'vendorPath' : '../vendor',
+        
+        // RequireJS Plugins
+        'rjsPlugin'     : 'vendorPath/requirejs-plugins/src',
+        'async'         : 'rjsPlugin/async',
+        'depend'        : 'rjsPlugin/depend',
+        'font'          : 'rjsPlugin/font',
+        'goog'          : 'rjsPlugin/goog',
+        'image'         : 'rjsPlugin/image',
+        'json'          : 'rjsPlugin/json',
+        'mdown'         : 'rjsPlugin/mdown',
+        'noext'         : 'rjsPlugin/noext',
+        'propertyParser': 'rjsPlugin/propertyParser',
+        'text'          : 'vendorPath/requirejs-text/text',
     },
 
     // shim: Configure dependencies, exports, and custom initialization for non-AMD scripts.
