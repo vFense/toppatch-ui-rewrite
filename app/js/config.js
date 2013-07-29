@@ -79,6 +79,21 @@ requirejs.config({
         'highcharts'      : { exports: 'Highcharts' },
         'highcharts-more' : { exports: 'Highcharts.seriesTypes.bubble', deps: ['highcharts'] },
         'livestamp'       : { exports: '$.livestamp', deps: ['jquery', 'moment'] },
+
+        // Bootstrap Shims
+        'bootstrap-affix'       : { exports: 'jQuery.fn.affix',           deps: ['jquery'] },
+        'bootstrap-alert'       : { exports: 'jQuery.fn.alert',           deps: ['jquery'] },
+        'bootstrap-button'      : { exports: 'jQuery.fn.button',          deps: ['jquery'] },
+        'bootstrap-carousel'    : { exports: 'jQuery.fn.carousel',        deps: ['jquery'] },
+        'bootstrap-collapse'    : { exports: 'jQuery.fn.collapse',        deps: ['jquery'] },
+        'bootstrap-dropdown'    : { exports: 'jQuery.fn.dropdown',        deps: ['jquery'] },
+        'bootstrap-modal'       : { exports: 'jQuery.fn.modal',           deps: ['jquery'] },
+        'bootstrap-popover'     : { exports: 'jQuery.fn.popover',         deps: ['jquery', 'bootstrap-tooltip'] },
+        'bootstrap-scrollspy'   : { exports: 'jQuery.fn.scrollspy',       deps: ['jquery'] },
+        'bootstrap-tab'         : { exports: 'jQuery.fn.tab',             deps: ['jquery'] },
+        'bootstrap-tooltip'     : { exports: 'jQuery.fn.tooltip',         deps: ['jquery'] },
+        'bootstrap-transition'  : { exports: 'jQuery.support.transition', deps: ['jquery'] },
+        'bootstrap-typeahead'   : { exports: 'jQuery.fn.typeahead',       deps: ['jquery'] },
     },
 
     // deps: An array of dependencies to load as soon as require() is defined.
