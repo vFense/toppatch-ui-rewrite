@@ -1,6 +1,6 @@
 {
     "predef": {
-        "requirejs": false,
+        "requirejs": true,
         "require": false,
         "define": false,
         "Modernizr": false

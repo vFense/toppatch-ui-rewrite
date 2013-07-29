@@ -1,4 +1,4 @@
-require.config({
+var requirejs = {
     // baseURL: The root path to use for all module lookups.
     // See: http://requirejs.org/docs/api.html#config-baseUrl
     baseUrl: './',
@@ -128,4 +128,4 @@ require.config({
     // callback: A function to execute after deps have been loaded.
     // See: http://requirejs.org/docs/api.html#config-callback
     callback: function () { 'use strict'; return this; }
-});
+};
