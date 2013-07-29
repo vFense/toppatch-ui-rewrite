@@ -1,4 +1,4 @@
-requirejs.config({
+require.config({
     // baseURL: The root path to use for all module lookups.
     // See: http://requirejs.org/docs/api.html#config-baseUrl
     baseUrl: './',
