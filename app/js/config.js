@@ -20,11 +20,10 @@ requirejs.config({
 
         // Vendor Library Paths
         'almond'                : '../vendor/almond/almond',
-        'backbone.localStorage' : '../vendor/backbone.localStorage/backbone.localStorage',
         'backbone'              : '../vendor/backbone-amd/backbone',
+        'backbone.localStorage' : '../vendor/backbone.localStorage/backbone.localStorage',
         'highcharts'            : '../vendor/highcharts-components/highcharts.src',
         'highcharts-more'       : '../vendor/highcharts-components/highcharts-more.src',
-        'jquery-core'           : '../vendor/jquery/jquery',
         'jquery'                : '../vendor/jquery/jquery-migrate',
         'livestamp'             : '../vendor/livestampjs/livestamp',
         'moment'                : '../vendor/moment/moment',
