@@ -59,6 +59,7 @@ module.exports = function(grunt) {
             },
             compile: {
                 options: {
+                    optimize: 'uglify2',
                     out: 'dist/js/application.min.js'
                 }
             }
