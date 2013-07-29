@@ -71,7 +71,10 @@ requirejs.config({
 
     // shim: Configure dependencies, exports, and custom initialization for non-AMD scripts.
     // See: http://requirejs.org/docs/api.html#config-shim
-    shim: {},
+    shim: {
+        // Note: 'jquery' = jquery-migrate
+        'jquery'          : { exports: 'jQuery', deps: ['../vendor/jquery/jquery'] },
+    },
 
     // deps: An array of dependencies to load as soon as require() is defined.
     // See: http://requirejs.org/docs/api.html#config-deps
