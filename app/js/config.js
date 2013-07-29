@@ -74,6 +74,11 @@ requirejs.config({
     shim: {
         // Note: 'jquery' = jquery-migrate
         'jquery'          : { exports: 'jQuery', deps: ['../vendor/jquery/jquery'] },
+
+        // Vendor Library Shims
+        'highcharts'      : { exports: 'Highcharts' },
+        'highcharts-more' : { exports: 'Highcharts.seriesTypes.bubble', deps: ['highcharts'] },
+        'livestamp'       : { exports: '$.livestamp', deps: ['jquery', 'moment'] },
     },
 
     // deps: An array of dependencies to load as soon as require() is defined.
