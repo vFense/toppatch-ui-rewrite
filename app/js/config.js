@@ -20,6 +20,21 @@ requirejs.config({
         'noext'         : 'rjsPlugin/noext',
         'propertyParser': 'rjsPlugin/propertyParser',
         'text'          : 'vendorPath/requirejs-text/text',
+
+        // Vendor Library Paths
+        'almond'                : 'vendorPath/almond/almond',
+        'backbone.localStorage' : 'vendorPath/backbone.localStorage/backbone.localStorage',
+        'backbone'              : 'vendorPath/backbone-amd/backbone',
+        'highcharts'            : 'vendorPath/highcharts-components/highcharts.src',
+        'highcharts-more'       : 'vendorPath/highcharts-components/highcharts-more.src',
+        'jquery-core'           : 'vendorPath/jquery/jquery',
+        'jquery'                : 'vendorPath/jquery/jquery-migrate',
+        'livestamp'             : 'vendorPath/livestampjs/livestamp',
+        'moment'                : 'vendorPath/moment/moment',
+        'qunit'                 : 'vendorPath/qunit/qunit/qunit',
+        'respond'               : 'vendorPath/respond/respond.src',
+        'select2'               : 'vendorPath/select2/select2',
+        'underscore'            : 'vendorPath/underscore-amd/underscore',
     },
 
     // shim: Configure dependencies, exports, and custom initialization for non-AMD scripts.
