@@ -79,6 +79,7 @@ var requirejs = {
         'highcharts'      : { exports: 'Highcharts' },
         'highcharts-more' : { exports: 'Highcharts.seriesTypes.bubble', deps: ['highcharts'] },
         'livestamp'       : { exports: '$.livestamp', deps: ['jquery', 'moment'] },
+        'select2'         : {exports: 'Select2', deps: ['jquery']},
 
         // Bootstrap Shims
         'bootstrap-affix'       : { exports: 'jQuery.fn.affix',           deps: ['jquery'] },
