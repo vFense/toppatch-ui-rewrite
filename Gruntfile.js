@@ -21,7 +21,7 @@ module.exports = function(grunt) {
             dist: ['dist']
         },
         uglify: {
-            modernizr: {
+            dist: {
                 files: {
                     '<%= rv.dist %>/js/modernizr.js': ['<%= rv.app %>/vendor/modernizr/modernizr.js']
                 }
@@ -65,7 +65,7 @@ module.exports = function(grunt) {
                 include: ['js/main'],
                 insertRequire: ['js/main']
             },
-            compile: {
+            dist: {
                 options: {
                     optimize: 'uglify2',
                     out: '<%= rv.dist %>/js/application.min.js'
@@ -75,8 +75,8 @@ module.exports = function(grunt) {
         concurrent: {
             dist: [
                 'recess:dist',
-                'uglify',
-                'requirejs'
+                'uglify:dist',
+                'requirejs:dist'
             ]
         }
     });
