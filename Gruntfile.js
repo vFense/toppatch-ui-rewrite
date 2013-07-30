@@ -31,6 +31,9 @@ module.exports = function(grunt) {
             },
             javascript: {
                 files: ['<%= rv.app %>/js/**/*.js']
+            },
+            html: {
+                files: ['<%= rv.app %>/*.html', '<%= rv.app %>/templates/**/*.html']
             }
         },
         connect: {
