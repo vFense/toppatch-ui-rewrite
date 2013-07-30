@@ -65,10 +65,15 @@ module.exports = function(grunt) {
                     out: 'dist/js/application.min.js'
                 }
             }
+        },
+        concurrent: {
+            dist: [
+                'recess:dist',
+                'uglify',
+                'requirejs'
+            ]
         }
     });
 
-    grunt.registerTask('dist-css', ['recess:dist']);
-    grunt.registerTask('dist-js', ['uglify', 'requirejs']);
-    grunt.registerTask('dist', ['clean', 'dist-css', 'dist-js']);
+    grunt.registerTask('dist', ['clean', 'concurrent:dist']);
 };
