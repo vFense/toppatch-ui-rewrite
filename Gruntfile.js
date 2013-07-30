@@ -18,6 +18,9 @@ module.exports = function(grunt) {
             ' * Copyright (c) <%= grunt.template.today("yyyy") %> <%= pkg.author %>\n' +
             ' */\n',
         watch: {
+            options: {
+                livereload: true
+            },
             application: {
                 files: ['<%= rv.app %>/less/*.less'],
                 tasks: ['recess:application']
@@ -25,6 +28,16 @@ module.exports = function(grunt) {
             bootstrap: {
                 files: ['<%= rv.app %>/vendor/bootstrap/less/*.less'],
                 tasks: ['recess:bootstrap']
+            },
+            javascript: {
+                files: ['<%= rv.app %>/js/**/*.js']
+            }
+        },
+        connect: {
+            server: {
+                options: {
+                    base: 'app/'
+                }
             }
         },
         clean: {
@@ -91,6 +104,10 @@ module.exports = function(grunt) {
             }
         },
         concurrent: {
+            dev: [
+                'recess:application',
+                'recess:bootstrap'
+            ],
             dist: [
                 'recess:dist',
                 'imagemin:dist',
@@ -101,4 +118,5 @@ module.exports = function(grunt) {
     });
 
     grunt.registerTask('dist', ['clean:dist', 'concurrent:dist']);
+    grunt.registerTask('dev', ['concurrent:dev', 'connect', 'watch']);
 };
