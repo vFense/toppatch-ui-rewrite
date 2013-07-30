@@ -81,11 +81,11 @@ var requirejs = {
         'jquery'          : { exports: 'jQuery', deps: ['vendor/jquery/jquery'] },
 
         // Vendor Library Shims
-        'highcharts'      : { exports: 'Highcharts' },
-        'highcharts-more' : { exports: 'Highcharts.seriesTypes.bubble', deps: ['highcharts'] },
-        'livestamp'       : { exports: '$.livestamp', deps: ['jquery', 'moment'] },
-        'crel'            : { exports: 'crel' },
-        'select2'         : {exports: 'Select2', deps: ['jquery']},
+        'highcharts'            : { exports: 'Highcharts' },
+        'highcharts-more'       : { exports: 'Highcharts.seriesTypes.bubble', deps: ['highcharts'] },
+        'livestamp'             : { exports: '$.livestamp', deps: ['jquery', 'moment'] },
+        'crel'                  : { exports: 'crel' },
+        'select2'               : { exports: 'Select2', deps: ['jquery']},
         'backbone.validation'   : { exports: 'Backbone.Validation', deps: ['underscore', 'backbone']},
 
         // Bootstrap Shims
