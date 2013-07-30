@@ -18,9 +18,13 @@ module.exports = function(grunt) {
             ' * Copyright (c) <%= grunt.template.today("yyyy") %> <%= pkg.author %>\n' +
             ' */\n',
         watch: {
-            recess: {
-                files: ['<%= rv.app %>/less/*.less', '<%= rv.app %>/bootstrap/less/*.less'],
-                tasks: ['recess:dev']
+            application: {
+                files: ['<%= rv.app %>/less/*.less'],
+                tasks: ['recess:application']
+            },
+            bootstrap: {
+                files: ['<%= rv.app %>/vendor/bootstrap/less/*.less'],
+                tasks: ['recess:bootstrap']
             }
         },
         clean: {
@@ -47,10 +51,14 @@ module.exports = function(grunt) {
             options: {
                 compile: true
             },
-            dev: {
+            application: {
                 files: {
-                    '<%= rv.app %>/css/bootstrap.css'  : ['<%= rv.app %>/vendor/bootstrap/less/bootstrap.less'],
                     '<%= rv.app %>/css/application.css': ['<%= rv.app %>/less/application.less']
+                }
+            },
+            bootstrap: {
+                files: {
+                    '<%= rv.app %>/css/bootstrap.css'  : ['<%= rv.app %>/vendor/bootstrap/less/bootstrap.less']
                 }
             },
             dist: {
