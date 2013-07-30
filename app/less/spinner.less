@@ -1,0 +1,80 @@
+// Styles for the loading indicator (pinwheel)
+
+@pinwheelFontSize: 16px;
+@pinwheelSize:     64px;
+@pinwheelBorder:    5px;
+@pinwheelPadding:   2px;
+@pinwheelColor: #001678;
+.spinner {
+    font-size: @pinwheelFontSize;
+
+    text-align: center;
+
+    background-color: transparent;
+    border-width: @pinwheelBorder;
+    border-style: solid;
+    border-color: transparent @pinwheelColor;
+    border-radius: @pinwheelSize/2;
+
+    padding: @pinwheelPadding;
+    margin:0 auto;
+
+    .box-sizing(border-box);
+
+    position: relative;
+    height: @pinwheelSize;
+    width:  @pinwheelSize;
+
+    >.spinner {
+        width:100%;
+        height:100%;
+    }
+}
+
+// Animation styles
+.cssanimations {
+    // Restrict animation styles to browsers that support it
+    // cssanimations class is appended to the <html> element by Modernizr.js
+    @animationTime:      1s;
+    .animated {
+        .animation-fill-mode(both);
+        .animation-duration(@animationTime);
+    }
+    .infinite {
+        .animation-iteration-count(infinite);
+    }
+    .linear {
+        .animation-timing-function(linear);
+    }
+    // http://en.wikipedia.org/wiki/Double-time
+    .doubleTime {
+        .animation-duration(@animationTime/2);
+    }
+    // http://en.wikipedia.org/wiki/Half_time_(music)
+    .halfTime {
+        .animation-duration(@animationTime*2);
+    }
+    .reverse {
+        .animation-direction(reverse);
+    }
+    .spin {
+        .animation-name(spin);
+    }
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+@-moz-keyframes spin { /* Firefox */
+    0% {-moz-transform: rotate(0deg);}
+    100% {-moz-transform: rotate(360deg);}
+}
+@-webkit-keyframes spin { /* Safari, Chrome */
+    0% { -webkit-transform: rotate(0deg); }
+    100% { -webkit-transform: rotate(360deg); }
+}
+@-o-keyframes spin { /* Opera */
+    0% { -o-transform: rotate(0deg); }
+    100% {  -o-transform: rotate(360deg); }
+}
