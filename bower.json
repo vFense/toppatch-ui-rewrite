@@ -17,6 +17,7 @@
         "backbone-amd": "~1.0.0",
         "backbone.localStorage": "~1.1.6",
         "bootstrap": "~3.0.0",
+        "es5-shim": "~2.1.0",
         "font-awesome": "~3.2.1",
         "highcharts-components": "~3.0.2",
         "jquery": "~1.10.2",

@@ -22,6 +22,7 @@ var requirejs = {
         'almond'                : 'vendor/almond/almond',
         'backbone'              : 'vendor/backbone-amd/backbone',
         'backbone.localStorage' : 'vendor/backbone.localStorage/backbone.localStorage',
+        'es5-shim'              : 'vendor/es5-shim/es5-shim',
         'highcharts'            : 'vendor/highcharts-components/highcharts.src',
         'highcharts-more'       : 'vendor/highcharts-components/highcharts-more.src',
         'jquery'                : 'vendor/jquery/jquery-migrate',
