@@ -17,6 +17,12 @@ module.exports = function(grunt) {
             ' * www.toppatch.com\n *\n' +
             ' * Copyright (c) <%= grunt.template.today("yyyy") %> <%= pkg.author %>\n' +
             ' */\n',
+        watch: {
+            recess: {
+                files: ['<%= rv.app %>/less/*.less', '<%= rv.app %>/bootstrap/less/*.less'],
+                tasks: ['recess:dev']
+            }
+        },
         clean: {
             dist: ['dist']
         },
@@ -45,12 +51,6 @@ module.exports = function(grunt) {
                     '<%= rv.dist %>/css/bootstrap.min.css'  : ['<%= rv.app %>/vendor/bootstrap/less/bootstrap.less'],
                     '<%= rv.dist %>/css/application.min.css': ['<%= rv.app %>/less/application.less']
                 }
-            }
-        },
-        watch: {
-            recess: {
-                files: ['<%= rv.app %>/less/*.less', '<%= rv.app %>/bootstrap/less/*.less'],
-                tasks: ['recess:dev']
             }
         },
         requirejs: {
