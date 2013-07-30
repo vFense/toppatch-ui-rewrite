@@ -1,5 +1,6 @@
 {
     "predef": {
+        "GLOBALS": false,
         "requirejs": true,
         "require": false,
         "define": false,
