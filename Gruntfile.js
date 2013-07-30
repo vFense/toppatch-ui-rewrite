@@ -33,6 +33,16 @@ module.exports = function(grunt) {
                 }
             }
         },
+        imagemin: {
+            dist: {
+                files: [{
+                    expand: true,
+                    cwd: '<%= rv.app %>/images',
+                    src: '{,*/}*.{png,jpg,jpeg}',
+                    dest: '<%= rv.dist %>/images'
+                }]
+            }
+        },
         recess: {
             options: {
                 compile: true
@@ -75,6 +85,7 @@ module.exports = function(grunt) {
         concurrent: {
             dist: [
                 'recess:dist',
+                'imagemin:dist',
                 'uglify:dist',
                 'requirejs:dist'
             ]
