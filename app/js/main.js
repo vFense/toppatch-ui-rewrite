@@ -1,7 +1,7 @@
 require(
-    ['jquery'],
-    function ($) {
-        'use strict';
-        $('body').append('Hello world!');
+    ['js/base_deps'],
+    function(globals) {
+        "use strict";
+        $('body').append('Hello World!');
     }
 );
