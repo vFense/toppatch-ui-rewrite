@@ -3,7 +3,13 @@
 module.exports = function(grunt) {
     require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
 
+    var rvConfig = {
+        app: 'app',
+        dist: 'dist'
+    };
+
     grunt.initConfig({
+        rv: rvConfig,
         pkg: grunt.file.readJSON('package.json'),
         banner:
             '/**\n' +
@@ -17,7 +23,7 @@ module.exports = function(grunt) {
         uglify: {
             modernizr: {
                 files: {
-                    'dist/js/modernizr.js': ['app/vendor/modernizr/modernizr.js']
+                    '<%= rv.dist %>/js/modernizr.js': ['<%= rv.app %>/vendor/modernizr/modernizr.js']
                 }
             }
         },
@@ -27,8 +33,8 @@ module.exports = function(grunt) {
             },
             dev: {
                 files: {
-                    'app/css/bootstrap.css'  : ['app/vendor/bootstrap/less/bootstrap.less'],
-                    'app/css/application.css': ['app/less/application.less']
+                    '<%= rv.app %>/css/bootstrap.css'  : ['<%= rv.app %>/vendor/bootstrap/less/bootstrap.less'],
+                    '<%= rv.app %>/css/application.css': ['<%= rv.app %>/less/application.less']
                 }
             },
             dist: {
@@ -36,14 +42,14 @@ module.exports = function(grunt) {
                     compress: true
                 },
                 files: {
-                    'dist/css/bootstrap.min.css'  : ['app/vendor/bootstrap/less/bootstrap.less'],
-                    'dist/css/application.min.css': ['app/less/application.less']
+                    '<%= rv.dist %>/css/bootstrap.min.css'  : ['<%= rv.app %>/vendor/bootstrap/less/bootstrap.less'],
+                    '<%= rv.dist %>/css/application.min.css': ['<%= rv.app %>/less/application.less']
                 }
             }
         },
         watch: {
             recess: {
-                files: ['app/less/*.less', 'app/bootstrap/less/*.less'],
+                files: ['<%= rv.app %>/less/*.less', '<%= rv.app %>/bootstrap/less/*.less'],
                 tasks: ['recess:dev']
             }
         },
@@ -53,8 +59,8 @@ module.exports = function(grunt) {
                 pragmasOnSave: { excludeTpl: true },
                 preserveLicenseComments: false,
                 wrap: true,
-                mainConfigFile: 'app/js/config.js',
-                baseUrl: 'app/',
+                mainConfigFile: '<%= rv.app %>/js/config.js',
+                baseUrl: '<%= rv.app %>/',
                 name: 'vendor/almond/almond',
                 include: ['js/main'],
                 insertRequire: ['js/main']
@@ -62,7 +68,7 @@ module.exports = function(grunt) {
             compile: {
                 options: {
                     optimize: 'uglify2',
-                    out: 'dist/js/application.min.js'
+                    out: '<%= rv.dist %>/js/application.min.js'
                 }
             }
         },
