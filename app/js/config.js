@@ -20,8 +20,6 @@ var requirejs = {
 
         // Vendor Library Paths
         'almond'                : 'vendor/almond/almond',
-        'backbone'              : 'vendor/backbone-amd/backbone',
-        'backbone.localStorage' : 'vendor/backbone.localStorage/backbone.localStorage',
         'es5-shim'              : 'vendor/es5-shim/es5-shim',
         'highcharts'            : 'vendor/highcharts-components/highcharts.src',
         'highcharts-more'       : 'vendor/highcharts-components/highcharts-more.src',
@@ -32,6 +30,12 @@ var requirejs = {
         'respond'               : 'vendor/respond/respond.src',
         'select2'               : 'vendor/select2/select2',
         'underscore'            : 'vendor/underscore-amd/underscore',
+
+        // Backbone Paths
+        'backbone'              : 'vendor/backbone-amd/backbone',
+        'backbone.localStorage' : 'vendor/backbone.localstorage/backbone.localStorage',
+        'backbone.modelBinder'  : 'vendor/backbone.modelbinder/Backbone.ModelBinder',
+        'backbone.validation'   : 'vendor/backbone-validation/src/backbone-validation',
 
         // Bootstrap Paths
         'bootstrap.affix'       : 'vendor/bootstrap/js/affix',
