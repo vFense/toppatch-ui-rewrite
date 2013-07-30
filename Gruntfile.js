@@ -75,5 +75,5 @@ module.exports = function(grunt) {
         }
     });
 
-    grunt.registerTask('dist', ['clean', 'concurrent:dist']);
+    grunt.registerTask('dist', ['clean:dist', 'concurrent:dist']);
 };
