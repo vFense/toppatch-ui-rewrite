@@ -86,6 +86,7 @@ var requirejs = {
         'livestamp'       : { exports: '$.livestamp', deps: ['jquery', 'moment'] },
         'crel'            : { exports: 'crel' },
         'select2'         : {exports: 'Select2', deps: ['jquery']},
+        'backbone.validation'   : { exports: 'Backbone.Validation', deps: ['underscore', 'backbone']},
 
         // Bootstrap Shims
         'bootstrap-affix'       : { exports: 'jQuery.fn.affix',           deps: ['jquery'] },
