@@ -8,6 +8,7 @@ define(
         'backbone.modelBinder',
         'backbone.validation',
         'js/base_view',
+        'js/base_router',
         'es5-shim'
     ],
     function() {
