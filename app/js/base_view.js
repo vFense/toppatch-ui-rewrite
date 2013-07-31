@@ -11,7 +11,7 @@
  *  Loading indicator
  */
 define(
-    ['backbone', 'js/loading_indicator'],
+    ['js/loading_indicator'],
     function (loading_indicator) {
         "use strict";
         var __super__ = Backbone.View.prototype;
