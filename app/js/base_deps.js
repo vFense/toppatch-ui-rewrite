@@ -1,5 +1,7 @@
 define(function(require) {
     "use strict";
+    GLOBALS.App = {};
+
     // Load global dependencies
     require('respond');
     require('jquery');
