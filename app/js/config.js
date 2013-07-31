@@ -26,7 +26,6 @@ var requirejs = {
         'jquery'                : 'vendor/jquery/jquery-migrate',
         'livestamp'             : 'vendor/livestampjs/livestamp',
         'moment'                : 'vendor/moment/moment',
-        'qunit'                 : 'vendor/qunit/qunit/qunit',
         'respond'               : 'vendor/respond/respond.src',
         'select2'               : 'vendor/select2/select2',
         'underscore'            : 'vendor/underscore-amd/underscore',
