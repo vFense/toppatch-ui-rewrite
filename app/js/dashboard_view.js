@@ -1,5 +1,10 @@
 define(
-    ['js/loading_indicator', 'text!templates/dashboard_layout.html', 'js/base_view', 'bootstrap.collapse', 'bootstrap.dropdown'],
+    [
+        'js/loading_indicator',
+        'text!templates/dashboard_layout.html',
+        'bootstrap.collapse',
+        'bootstrap.dropdown'
+    ],
     function (loading_indicator, template) {
         "use strict";
         return Backbone.View.extend({
