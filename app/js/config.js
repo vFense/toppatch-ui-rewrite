@@ -19,6 +19,7 @@ var requirejs = {
         'text'          : 'vendor/requirejs-text/text',
 
         // Vendor Library Paths
+        'crel'                  : 'vendor/crel/crel',
         'es5-shim'              : 'vendor/es5-shim/es5-shim',
         'highcharts'            : 'vendor/highcharts-components/highcharts.src',
         'highcharts-more'       : 'vendor/highcharts-components/highcharts-more.src',
