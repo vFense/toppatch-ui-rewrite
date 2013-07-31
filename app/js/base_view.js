@@ -7,6 +7,7 @@
  *  Zombie Prevention
  *      Close method
  *      addSubViews
+ *      closeChildViews
  *  Loading indicator
  */
 define(
@@ -25,15 +26,9 @@ define(
                     this.beforeClose();
                 }
                 this.isClosing = true;
-                if (_.isArray(this.childViews)) {
-                    _.each(this.childViews, function (childView) {
-                        if (_.isFunction(childView.close)) {
-                            childView.close();
-                        }
-                    });
-                }
-                this.remove();
-                this.unbind();
+                this.closeChildViews()
+                    .remove()
+                    .unbind();
                 this.isClosing = false;
                 return this;
             },
@@ -43,6 +38,17 @@ define(
                     this.childViews = [];
                 }
                 Array.prototype.push.apply(this.childViews, arguments);
+                return this;
+            },
+
+            closeChildViews: function () {
+                if (_.isArray(this.childViews)) {
+                    _.each(this.childViews, function (childView) {
+                        if (_.isFunction(childView.close)) {
+                            childView.close();
+                        }
+                    });
+                }
                 return this;
             },
 
