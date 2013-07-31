@@ -11,5 +11,8 @@ define(
     [],
     function (loading_indicator) {
         "use strict";
+        var __super__ = Backbone.View.prototype;
+        _.extend(__super__, {
+        });
     }
 );
