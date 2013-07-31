@@ -35,6 +35,14 @@ define(
                 this.isClosing = false;
                 return this;
             },
+
+            addChildView: function () {
+                if (!_.isArray(this.childViews)) {
+                    this.childViews = [];
+                }
+                Array.prototype.push.apply(this.childViews, arguments);
+                return this;
+            },
         });
     }
 );
