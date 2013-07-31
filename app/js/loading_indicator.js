@@ -6,31 +6,21 @@ define(
         exports.View = Backbone.View.extend({
             className: 'loading_indicator',
             _template: _.template(template),
-            initialize: function () {
-                this.render();
-            },
+            initialize: function () { this.render(); },
             render: function () {
-                if (!this.$spinner) {
-                    this.$spinner = this._template();
-                }
+                if (!this.$spinner) { this.$spinner = this._template(); }
                 this.$el.html(this.$spinner);
                 return this;
             },
             setLoadingText: function (text) {
+                var $element = this.$('[data-name="loading-text"]');
                 if (text) {
-                    this.$('[data-name="loading-text"]').html(text);
+                    $element.html(text);
                 } else {
-                    this.$('[data-name="loading-text"]').empty();
+                    $element.empty();
                 }
             }
         });
-        exports.spinner = function(text) {
-            if (_.isUndefined(App.LoadingIndicator)) {
-                App.LoadingIndicator = new exports.View();
-                App.LoadingIndicator.setLoadingText(text);
-            }
-            return App.LoadingIndicator;
-        };
         return exports;
     }
 );

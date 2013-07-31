@@ -1,11 +1,10 @@
 define(
     [
-        'js/loading_indicator',
         'text!templates/dashboard_layout.html',
         'bootstrap.collapse',
         'bootstrap.dropdown'
     ],
-    function (loading_indicator, template) {
+    function (template) {
         "use strict";
         return Backbone.View.extend({
             el: '#dashboard',
@@ -43,12 +42,15 @@ define(
                 this.$el.html(this._template({
                     username: 'John Doe'
                 }));
-                this.$contentArea = this.$('>#main');
                 return this;
             },
             showLoading: function () {
-                this.loadingIndicator = loading_indicator.spinner();
-                return this.$('>#main').html(this.loadingIndicator.el);
+                this.setContentView(_.result(this, 'getLoadingIndicator'));
+            },
+            hideLoading: function () {
+                if (_.result(this, 'getLoadingIndicator') === this._contentView) {
+                    this.closeContentView();
+                }
             }
         });
     }

@@ -52,14 +52,20 @@ define(
                 return this;
             },
 
+            _loadingIndicator: undefined,
+            getLoadingIndicator: function () {
+                if (_.isUndefined(this._loadingIndicator)) {
+                    this._loadingIndicator = new loading_indicator.View();
+                }
+                return this._loadingIndicator;
+            },
             showLoading: function () {
-                this.loadingIndicator = loading_indicator.spinner();
-                return this.$el.html(this.loadingIndicator.el);
+                return this.$el.html(_.result(this, 'getLoadingIndicator').el);
             },
 
             hideLoading: function () {
-                if (this.loadingIndicator) {
-                    this.loadingIndicator.remove();
+                if (_.result(this, 'getLoadingIndicator')) {
+                    _.result(this, 'getLoadingIndicator').close();
                 }
                 return this;
             }
