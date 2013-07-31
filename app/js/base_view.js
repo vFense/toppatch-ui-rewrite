@@ -5,7 +5,9 @@
  *
  * Includes:
  *  Zombie Prevention
- *  Close method
+ *      Close method
+ *      addSubViews
+ *  Loading indicator
  */
 define(
     ['js/loading_indicator'],
