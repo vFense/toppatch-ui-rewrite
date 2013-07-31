@@ -7,6 +7,9 @@
  *  Zombie Prevention
  *  Close method
  */
-define(function () {
-    "use strict";
-});
+define(
+    [],
+    function (loading_indicator) {
+        "use strict";
+    }
+);
