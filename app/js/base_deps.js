@@ -8,5 +8,7 @@ define(function(require) {
     require('backbone.localStorage');
     require('backbone.modelBinder');
     require('backbone.validation');
+    require('js/base_view');
+    require('js/base_router');
     require('es5-shim');
 });
