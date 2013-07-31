@@ -8,7 +8,7 @@
  *  Close method
  */
 define(
-    [],
+    ['js/loading_indicator'],
     function (loading_indicator) {
         "use strict";
         var __super__ = Backbone.View.prototype;
@@ -43,6 +43,18 @@ define(
                 Array.prototype.push.apply(this.childViews, arguments);
                 return this;
             },
+
+            showLoading: function () {
+                this.loadingIndicator = loading_indicator.spinner();
+                return this.$el.html(this.loadingIndicator.el);
+            },
+
+            hideLoading: function () {
+                if (this.loadingIndicator) {
+                    this.loadingIndicator.remove();
+                }
+                return this;
+            }
         });
     }
 );
