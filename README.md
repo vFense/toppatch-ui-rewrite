@@ -10,12 +10,13 @@ Anyone and everyone is welcome to contribute. Please take a moment to review the
 
 ## Loading Javascript dependencies
 
-Remediation Vault's Web UI uses [Bower](http://bower.io) to manage all third party dependencies, with the temporary exception of Bootstrap 3.0.0.
+Remediation Vault's Web UI uses [Bower](http://bower.io) to manage all third party dependencies.
 
 ### Install Bower
 
 From the command line:
 
+0. `cd` into the repo's root directory.
 1. Install `bower` globally with `npm install -g bower`.
 2. Install the [necessary local dependencies](bower.json) via `bower install`
 
@@ -27,6 +28,7 @@ Remediation Vault's Web UI uses [Grunt](http://gruntjs.com/) to manage compilati
 
 From the command line:
 
+0. `cd` into the repo's root directory.
 1. Install `grunt-cli` globally with `npm install -g grunt-cli`.
 2. Install the [necessary local dependencies](package.json) via `npm install`
 
