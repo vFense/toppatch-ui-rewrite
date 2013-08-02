@@ -52,6 +52,14 @@ module.exports = function(grunt) {
         clean: {
             dist: ['dist']
         },
+        copy: {
+            dist: {
+                files: [
+                    { cwd: 'app/', src: '404.html', dest: 'dist/', expand: true },
+                    { cwd: 'app/', src: 'robots.txt', dest: 'dist/', expand: true }
+                ]
+            }
+        },
         uglify: {
             dist: {
                 files: {
@@ -118,6 +126,7 @@ module.exports = function(grunt) {
                 'recess:bootstrap'
             ],
             dist: [
+                'copy:dist',
                 'recess:dist',
                 'imagemin:dist',
                 'uglify:dist',
