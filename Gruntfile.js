@@ -44,6 +44,11 @@ module.exports = function(grunt) {
                 }
             }
         },
+        open: {
+            dev: {
+                url: 'http://localhost:8000/'
+            }
+        },
         clean: {
             dist: ['dist']
         },
@@ -122,5 +127,5 @@ module.exports = function(grunt) {
     });
 
     grunt.registerTask('dist', ['clean:dist', 'concurrent:dist']);
-    grunt.registerTask('dev', ['concurrent:dev', 'connect', 'watch']);
+    grunt.registerTask('dev', ['concurrent:dev', 'connect', 'open:dev', 'watch']);
 };
