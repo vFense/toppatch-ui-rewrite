@@ -1,7 +1,7 @@
 define(['js/base_deps'], function() {
     "use strict";
     require(['js/dashboard_view'], function (Dashboard) {
-        var $dash = new Dashboard();
-        return $dash.render().showLoading();
+        App.dashboard_view = new Dashboard();
+        return App.dashboard_view.render().showLoading();
     });
 });
