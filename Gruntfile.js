@@ -63,7 +63,7 @@ module.exports = function(grunt) {
         uglify: {
             dist: {
                 files: {
-                    '<%= rv.dist %>/js/modernizr.js': ['<%= rv.app %>/vendor/modernizr/modernizr.js']
+                    '<%= rv.dist %>/js/modernizr.min.js': ['<%= rv.app %>/vendor/modernizr/modernizr.js']
                 }
             }
         },
@@ -120,6 +120,13 @@ module.exports = function(grunt) {
                 }
             }
         },
+        targethtml: {
+            dist: {
+                files: {
+                    'dist/index.html': 'app/index.html'
+                }
+            }
+        },
         concurrent: {
             dev: [
                 'recess:application',
@@ -130,7 +137,8 @@ module.exports = function(grunt) {
                 'recess:dist',
                 'imagemin:dist',
                 'uglify:dist',
-                'requirejs:dist'
+                'requirejs:dist',
+                'targethtml:dist'
             ]
         }
     });

@@ -17,7 +17,10 @@
     <script charset="utf-8">
         GLOBALS = window;
     </script>
+    <!--(if target dev)><!-->
     <script src="vendor/modernizr/modernizr.js"></script>
+    <!--<!(endif)-->
+    <!--(if target dist)><script src="js/modernizr.min.js"></script><!(endif)-->
 </head>
 <body>
 <!--[if lte IE 7]
@@ -42,7 +45,10 @@
         </a>
     </div>
 </noscript>
+<!--(if target dev)><!-->
 <script src="js/config.js"></script>
 <script data-main="js/main" src="vendor/requirejs/require.js"></script>
+<!--<!(endif)-->
+<!--(if target dist)><script src="js/application.min.js"></script><!(endif)-->
 </body>
 </html>
