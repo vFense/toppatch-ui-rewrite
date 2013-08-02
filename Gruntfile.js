@@ -39,7 +39,8 @@ module.exports = function(grunt) {
         connect: {
             server: {
                 options: {
-                    base: 'app/'
+                    base: 'app/',
+                    hostname: '*'
                 }
             }
         },
