@@ -14,7 +14,7 @@
     ],
     "dependencies": {
         "almond": "~0.2.5",
-        "backbone-amd": "~1.0.0",
+        "backbone": "~1.0.0",
         "backbone.localStorage": "~1.1.6",
         "Backbone.ModelBinder": "~1.0.2",
         "backbone-validation": "~0.8.0",
@@ -34,6 +34,6 @@
         "requirejs-text": "~2.0.9",
         "respond": "~1.1.0",
         "select2": "~3.4.1",
-        "underscore-amd": "~1.5.1"
+        "underscore": "~1.5.1"
     }
 }

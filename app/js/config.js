@@ -28,10 +28,10 @@ var requirejs = {
         'moment'                : 'vendor/moment/moment',
         'respond'               : 'vendor/respond/respond.src',
         'select2'               : 'vendor/select2/select2',
-        'underscore'            : 'vendor/underscore-amd/underscore',
+        'underscore'            : 'vendor/underscore/underscore',
 
         // Backbone Paths
-        'backbone'              : 'vendor/backbone-amd/backbone',
+        'backbone'              : 'vendor/backbone/backbone',
         'backbone.localStorage' : 'vendor/backbone.localstorage/backbone.localStorage',
         'backbone.modelBinder'  : 'vendor/backbone.modelbinder/Backbone.ModelBinder',
         'backbone.validation'   : 'vendor/backbone-validation/src/backbone-validation',
@@ -80,12 +80,15 @@ var requirejs = {
         'jquery'          : { exports: 'jQuery', deps: ['vendor/jquery/jquery'] },
 
         // Vendor Library Shims
+        'underscore'            : { exports: '_' },
+        'backbone'              : { exports: 'Backbone', deps: ['underscore', 'jquery'] },
+        'backbone.validation'   : { exports: 'Backbone.Validation', deps: ['backbone']},
+
         'highcharts'            : { exports: 'Highcharts' },
         'highcharts-more'       : { exports: 'Highcharts.seriesTypes.bubble', deps: ['highcharts'] },
         'livestamp'             : { exports: '$.livestamp', deps: ['jquery', 'moment'] },
         'crel'                  : { exports: 'crel' },
         'select2'               : { exports: 'Select2', deps: ['jquery']},
-        'backbone.validation'   : { exports: 'Backbone.Validation', deps: ['underscore', 'backbone']},
 
         // Bootstrap Shims
         'bootstrap.affix'       : { exports: 'jQuery.fn.affix',           deps: ['jquery'] },
