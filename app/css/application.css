@@ -146,3 +146,21 @@ NOSCRIPT .subtitle {
 NOSCRIPT IMG.brand {
   height: 36px;
 }
+
+#dashboard > FOOTER ARTICLE {
+  text-align: center;
+}
+
+#dashboard > FOOTER .brand-logo {
+  height: 14px;
+  margin-bottom: 6px;
+}
+
+@media (min-width: 768px) {
+  #dashboard > FOOTER .legal {
+    text-align: left;
+  }
+  #dashboard > FOOTER .brand {
+    text-align: right;
+  }
+}
