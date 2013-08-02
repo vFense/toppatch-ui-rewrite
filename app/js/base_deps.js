@@ -13,6 +13,8 @@ define(
     ],
     function() {
         "use strict";
-        GLOBALS.App = {};
+        GLOBALS.App = {
+            vent: _.extend({}, Backbone.Events)
+        };
     }
 );
