@@ -96,8 +96,8 @@ module.exports = function(grunt) {
                     compress: true
                 },
                 files: {
-                    '<%= rv.dist %>/css/bootstrap.min.css'  : ['<%= rv.app %>/vendor/bootstrap/less/bootstrap.less'],
-                    '<%= rv.dist %>/css/application.min.css': ['<%= rv.app %>/less/application.less']
+                    '<%= rv.dist %>/css/bootstrap.css'  : ['<%= rv.app %>/vendor/bootstrap/less/bootstrap.less'],
+                    '<%= rv.dist %>/css/application.css': ['<%= rv.app %>/less/application.less']
                 }
             }
         },
