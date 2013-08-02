@@ -39,8 +39,8 @@ From the command line:
 #### Compile for distribution - `grunt dist`
 `grunt dist` creates the `/dist` directory with compiled files. **Requires recess.**
 
-#### Watch - `grunt watch`
-This is a convenience method for watching the **LESS** files and automatically building them to `/app/css` whenever you save. **Requires recess.**
+#### Watch - `grunt dev`
+This is a convenience method for watching the **LESS, JS, and HTML** files, compiling if necessary, and hosting them at `localhost:8000`
 
 ### Troubleshooting dependencies
 
