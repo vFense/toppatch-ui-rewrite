@@ -104,8 +104,10 @@ module.exports = function(grunt) {
         requirejs: {
             options: {
                 findNestedDependencies: true,
+                inlineText: true,
                 pragmasOnSave: { excludeTpl: true },
                 preserveLicenseComments: false,
+                stubModules: ['text', 'json'],
                 wrap: true,
                 mainConfigFile: '<%= rv.app %>/js/config.js',
                 baseUrl: '<%= rv.app %>/'
