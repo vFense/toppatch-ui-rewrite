@@ -1,16 +1,8 @@
 {
     "name": "rvwebui",
     "ignore": [
-        ".jshintrc",
-        "**/*.txt",
         "**/.*",
         "node_modules",
-        "bower_components",
-        "test",
-        "tests",
-        "docs",
-        "examples",
-        "todos"
     ],
     "dependencies": {
         "almond": "~0.2.5",
