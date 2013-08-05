@@ -108,13 +108,13 @@ module.exports = function(grunt) {
                 preserveLicenseComments: false,
                 wrap: true,
                 mainConfigFile: '<%= rv.app %>/js/config.js',
-                baseUrl: '<%= rv.app %>/',
-                name: 'vendor/almond/almond',
-                include: ['js/main'],
-                insertRequire: ['js/main']
+                baseUrl: '<%= rv.app %>/'
             },
             dist: {
                 options: {
+                    include: ['js/main'],
+                    insertRequire: ['js/main'],
+                    name: 'vendor/requirejs/require',
                     optimize: 'uglify2',
                     out: '<%= rv.dist %>/js/application.min.js'
                 }
