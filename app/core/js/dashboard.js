@@ -6,7 +6,8 @@ define(
     ],
     function (template) {
         "use strict";
-        return Backbone.View.extend({
+        var exports = {};
+        exports.View = Backbone.View.extend({
             el: '#dashboard',
             _template: _.template(template),
             setContentView: function (view) {
@@ -53,5 +54,7 @@ define(
                 }
             }
         });
+
+        return exports;
     }
 );
