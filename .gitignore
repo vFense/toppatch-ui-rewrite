@@ -4,4 +4,5 @@ node_modules
 npm-debug.log
 app/vendor
 app/css
+app/api
 dist
