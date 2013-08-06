@@ -6,7 +6,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <span class="navbar-brand dropdown">
+            <span class="navbar-brand dropdown" id="pluginNav">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         R<small>emediation</small>V<small>ault</small>
                         <b class="caret"></b>
@@ -19,10 +19,8 @@
                     </ul>
             </span>
             <div class="nav-collapse collapse navbar-responsive-collapse">
-                <ul class="nav navbar-nav">
-                    <li><a href="#dashboard">Dashboard</a></li>
-                </ul>
-                <ul class="nav navbar-nav pull-right">
+                <ul class="nav navbar-nav" id="primaryNav"></ul>
+                <ul class="nav navbar-nav pull-right" id="secondaryNav">
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             <%= username%>
