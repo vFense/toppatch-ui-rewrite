@@ -3,13 +3,11 @@
 module.exports = function(grunt) {
     require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
 
-    var rvConfig = {
-        app: 'app',
-        dist: 'dist'
-    };
-
     grunt.initConfig({
-        rv: rvConfig,
+        rv: {
+            app: 'app',
+            dist: 'dist'
+        },
         pkg: grunt.file.readJSON('package.json'),
         banner:
             '/**\n' +
