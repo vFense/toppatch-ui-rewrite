@@ -109,16 +109,16 @@ module.exports = function(grunt) {
                 preserveLicenseComments: false,
                 stubModules: ['text', 'json'],
                 wrap: true,
-                mainConfigFile: '<%= rv.app %>/js/config.js',
+                mainConfigFile: '<%= rv.app %>/core/js/config.js',
                 baseUrl: '<%= rv.app %>/'
             },
             dist: {
                 options: {
-                    include: ['js/main'],
-                    insertRequire: ['js/main'],
+                    include: ['core/js/main'],
+                    insertRequire: ['core/js/main'],
                     name: 'vendor/requirejs/require',
                     optimize: 'uglify2',
-                    out: '<%= rv.dist %>/js/application.min.js'
+                    out: '<%= rv.dist %>/js/core.min.js'
                 }
             }
         },
