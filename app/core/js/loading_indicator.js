@@ -1,5 +1,5 @@
 define(
-    ['text!templates/loading_indicator.html'],
+    ['text!core/templates/loading_indicator.html'],
     function (template) {
         "use strict";
         var exports = {};

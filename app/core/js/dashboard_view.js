@@ -1,6 +1,6 @@
 define(
     [
-        'text!templates/dashboard_layout.html',
+        'text!core/templates/dashboard_layout.html',
         'bootstrap.collapse',
         'bootstrap.dropdown'
     ],

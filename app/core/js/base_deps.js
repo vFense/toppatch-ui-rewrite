@@ -1,14 +1,14 @@
 define(
     [
         'respond',
-        '../.',
+        'jquery',
         'underscore',
         'backbone',
         'backbone.localStorage',
         'backbone.modelBinder',
         'backbone.validation',
-        'js/base_view',
-        'js/base_router',
+        'core/js/base_view',
+        'core/js/base_router',
         'es5-shim'
     ],
     function() {
