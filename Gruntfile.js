@@ -54,7 +54,8 @@ module.exports = function(grunt) {
             dist: {
                 files: [
                     { cwd: 'app/', src: '404.html', dest: 'dist/', expand: true },
-                    { cwd: 'app/', src: 'robots.txt', dest: 'dist/', expand: true }
+                    { cwd: 'app/', src: 'robots.txt', dest: 'dist/', expand: true },
+                    { cwd: 'app/', src: 'images/*', dest: 'dist/', expand: true}
                 ]
             }
         },
@@ -69,7 +70,7 @@ module.exports = function(grunt) {
             dist: {
                 files: [{
                     expand: true,
-                    cwd: '<%= rv.app %>/images',
+                    cwd: '<%= rv.dist %>/images',
                     src: '{,*/}*.{png,jpg,jpeg}',
                     dest: '<%= rv.dist %>/images'
                 }]
@@ -133,7 +134,6 @@ module.exports = function(grunt) {
                 'recess:bootstrap'
             ],
             dist: [
-                'copy:dist',
                 'recess:dist',
                 'imagemin:dist',
                 'uglify:dist',
@@ -143,6 +143,6 @@ module.exports = function(grunt) {
         }
     });
 
-    grunt.registerTask('dist', ['clean:dist', 'concurrent:dist']);
+    grunt.registerTask('default', ['clean:dist', 'copy:dist', 'concurrent:dist']);
     grunt.registerTask('dev', ['concurrent:dev', 'connect', 'open:dev', 'watch']);
 };
