@@ -30,10 +30,10 @@ module.exports = function(grunt) {
                 tasks: ['recess:bootstrap']
             },
             javascript: {
-                files: ['<%= rv.app %>/js/**/*.js']
+                files: ['<%= rv.app %>/core/js/*.js']
             },
             html: {
-                files: ['<%= rv.app %>/*.html', '<%= rv.app %>/templates/**/*.html']
+                files: ['<%= rv.app %>/*.html', '<%= rv.app %>/core/templates/**/*.html']
             }
         },
         connect: {
