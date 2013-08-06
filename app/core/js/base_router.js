@@ -5,7 +5,7 @@
  *
  * Includes:
  */
-define(['backbone'], function () {
+define(['../.'], function () {
     "use strict";
     var __super__ = Backbone.Router.prototype;
     _.extend(__super__, {

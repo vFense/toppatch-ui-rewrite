@@ -1,7 +1,7 @@
 define(
     [
         'respond',
-        'jquery',
+        '../.',
         'underscore',
         'backbone',
         'backbone.localStorage',
