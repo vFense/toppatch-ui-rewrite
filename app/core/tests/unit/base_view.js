@@ -93,7 +93,6 @@ $(document).ready(function () {
         });
     });
     asyncTest("base_view.registerChildView() [reference to itself]", function () {
-        var that = this;
         require(['base_view'], function(View) {
             var base_view = new View(),
                 result;
