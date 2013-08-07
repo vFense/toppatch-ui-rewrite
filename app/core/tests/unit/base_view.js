@@ -85,6 +85,19 @@ $(document).ready(function () {
             start();
         });
     });
+    asyncTest("base_view.registerChildView() [reference to itself]", function () {
+        var that = this;
+        require(['base_view'], function(View) {
+            var base_view = new View(),
+                result = base_view.registerChildView(base_view);
+
+            ok(true, 'Attempt to add reference to base_view, ran without exception');
+            ok(result === base_view, 'Returned this');
+            ok(_.isUndefined(base_view.children), 'Successfully filtered reference to itself');
+
+            start();
+        });
+    });
     asyncTest("base_view.registerChildView() [new Backbone.View and new base_view]", function () {
         require(['base_view'], function(View) {
             var base_view = new View(),
