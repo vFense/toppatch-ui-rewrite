@@ -21,10 +21,10 @@ $(document).ready(function () {
     });
     asyncTest("new base_view()", function () {
         require(['base_view'], function(View) {
+            ok(true, 'Attempt new base_view()');
             var base_view = new View();
-
-            ok(true, 'new base_view ran without error');
             ok(base_view.__super__ === Backbone.View.prototype, 'base_view.__super__ points to Backbone.View.prototype');
+            ok(true, 'Ran without exception');
             ok(_.isUndefined(base_view.children), 'base_view.children is undefined');
 
             start();
@@ -35,6 +35,7 @@ $(document).ready(function () {
             var base_view = new View(),
                 result;
 
+            ok(true, 'Attempt _initChildServices()');
             result = base_view._initChildServices();
             ok(true, 'Ran without exception');
             ok(result === base_view, 'Returned this');
@@ -49,6 +50,7 @@ $(document).ready(function () {
                 result;
 
             // registerChildView with no args
+            ok(true, 'Attempt registerChildView() with no args');
             result = base_view.registerChildView();
             ok(true, 'Ran without exception');
             ok(result === base_view, 'Returned this');
@@ -64,10 +66,11 @@ $(document).ready(function () {
                 invalidTypes = that.invalidTypes();
 
             _.each(invalidTypes, function (value, key) {
+                ok(true, 'attempt registerChildView(' + key + ')');
                 var result = base_view.registerChildView(value);
-                ok(true, 'registerChildView(' + key + ') ran without exception');
                 ok(result === base_view, 'Returned this');
                 ok(_.isUndefined(base_view.children), 'Successfully filtered ' + key + 'type');
+                ok(true, 'Ran without exception');
             });
 
             start();
@@ -78,10 +81,12 @@ $(document).ready(function () {
         require(['base_view'], function(View) {
             var base_view = new View(),
                 invalidTypes = that.invalidTypes(),
-                result = base_view.registerChildView.apply(base_view, _.values(invalidTypes));
+                result;
 
-            ok(true, 'Attempt to add multiple invalid types at once, ran without exception');
             ok(result === base_view, 'Returned this');
+            ok(true, 'Attempt to add multiple invalid types at once');
+            result = base_view.registerChildView.apply(base_view, _.values(invalidTypes));
+            ok(true, 'Ran without exception');
             ok(_.isUndefined(base_view.children), 'Successfully filtered all invalid arguments');
 
             start();
@@ -91,10 +96,12 @@ $(document).ready(function () {
         var that = this;
         require(['base_view'], function(View) {
             var base_view = new View(),
-                result = base_view.registerChildView(base_view);
+                result;
 
-            ok(true, 'Attempt to add reference to base_view, ran without exception');
             ok(result === base_view, 'Returned this');
+            ok(true, 'Attempt to add reference to base_view');
+            result = base_view.registerChildView(base_view);
+            ok(true, 'Ran without exception');
             ok(_.isUndefined(base_view.children), 'Successfully filtered reference to itself');
 
             start();
@@ -108,15 +115,18 @@ $(document).ready(function () {
                 result;
 
             // registerChild test
+            ok(true, 'Attempt to add newBackboneView');
             result = base_view.registerChildView(newBackboneView);
-            ok(true, 'Attempt to add newBackboneView, ran without exception');
+            ok(true, 'Ran without exception');
             ok(!_.isUndefined(base_view.children), 'base_view.children is defined');
             strictEqual(base_view.children.length, 1, 'base_view has 1 child');
             ok(base_view.children.findByCid(newBackboneView.cid) === newBackboneView, 'newBackboneView is in base_view.children');
             result = undefined;
 
+
+            ok(true, 'Attempt to add newBaseView');
             result = base_view.registerChildView(newBaseView);
-            ok(true, 'Attempt to add newBaseView, ran without exception');
+            ok(true, 'Ran without exception');
             strictEqual(base_view.children.length, 2, 'base_view has 2 children');
             ok(base_view.children.findByCid(newBaseView.cid) === newBaseView, 'newBaseView is in base_view.children');
             start();
@@ -126,8 +136,10 @@ $(document).ready(function () {
         require(['base_view'], function(View) {
             var base_view = new View(),
                 result;
+
+            ok(true, 'Attempt to add 3 new Backbone.View');
             result = base_view.registerChildView(new Backbone.View(), new Backbone.View(), new Backbone.View());
-            ok(true, 'Attempt to add 3 new Backbone.View, ran without exception');
+            ok(true, 'Ran without exception');
             ok(!_.isUndefined(base_view.children), 'base_view.children is defined');
             strictEqual(base_view.children.length, 3, 'base_view has 3 children');
             strictEqual(_.uniq(base_view.children._views).length, 3, 'Each child is unique');
@@ -144,8 +156,10 @@ $(document).ready(function () {
             ok(_.uniq(base_view.children._views).length === 3, 'Start with a base_view that has 3 unique children');
 
             _.each(invalidTypes, function (value, key) {
+
+                ok(true, 'Attempt closeChildView(' + key + ')');
                 var result = base_view.closeChildView(value);
-                ok(true, 'closeChildView(' + key + ') ran without exception');
+                ok(true, 'Ran without exception');
                 strictEqual(base_view.children.length, 3, 'base_view still has 3 children');
             });
 
@@ -170,7 +184,7 @@ $(document).ready(function () {
 
             ok(true, 'Attempt to remove a childView');
             result = base_view.closeChildView(childView2);
-            ok(true, 'Rran without exception');
+            ok(true, 'Ran without exception');
             strictEqual(base_view.children.length, 1, 'base_view has 1 child');
 
             ok(true, 'Attempt to remove a childView');
@@ -194,7 +208,7 @@ $(document).ready(function () {
 
             ok(true, 'Attempt to close all child views');
             result = base_view.closeChildViews();
-            ok(true, 'ran without exception');
+            ok(true, 'Ran without exception');
             strictEqual(base_view.children.length, 0, 'base_view has 0 children');
 
             start();
