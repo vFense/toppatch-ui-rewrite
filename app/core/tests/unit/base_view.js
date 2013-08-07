@@ -66,7 +66,7 @@ $(document).ready(function () {
                 var result = base_view.registerChildView(value);
                 ok(true, 'registerChildView(' + key + ') ran without exception');
                 ok(result === base_view, 'Returned this');
-                ok(_.isUndefined(base_view.children), 'base_view.children remains undefined');
+                ok(_.isUndefined(base_view.children), 'Successfully filtered ' + key + 'type');
             });
 
             start();
@@ -80,7 +80,7 @@ $(document).ready(function () {
 
             ok(true, 'Attempt to add multiple invalid types at once, ran without exception');
             ok(result === base_view, 'Returned this');
-            ok(_.isUndefined(base_view.children), 'base_view.children remains undefined');
+            ok(_.isUndefined(base_view.children), 'Successfully filtered all invalid arguments');
 
             start();
         });
