@@ -85,20 +85,25 @@ $(document).ready(function () {
             start();
         });
     });
-    asyncTest("base_view.registerChildView(Backbone.View)", function () {
+    asyncTest("base_view.registerChildView() [new Backbone.View and new base_view]", function () {
         require(['base_view'], function(View) {
             var base_view = new View(),
-                childView1 = new Backbone.View();
+                newBackboneView = new Backbone.View(),
+                newBaseView = new View(),
+                result;
 
             // registerChild test
-            ok(base_view.registerChildView(childView1) === base_view,
-                'Attempt to add 1 instance of Backbone.View, ran without exception, returned this'
-            );
+            result = base_view.registerChildView(newBackboneView);
+            ok(true, 'Attempt to add newBackboneView, ran without exception');
             ok(!_.isUndefined(base_view.children), 'base_view.children is defined');
-
             ok(base_view.children.length === 1, 'base_view has 1 child');
-            ok(base_view.children.findByCid(childView1.cid) === childView1, '');
+            ok(base_view.children.findByCid(newBackboneView.cid) === newBackboneView, 'newBackboneView is in base_view.children');
+            result = undefined;
 
+            result = base_view.registerChildView(newBaseView);
+            ok(true, 'Attempt to add newBaseView, ran without exception');
+            ok(base_view.children.length === 2, 'base_view has 2 children');
+            ok(base_view.children.findByCid(newBaseView.cid) === newBaseView, 'newBaseView is in base_view.children');
             start();
         });
     });
