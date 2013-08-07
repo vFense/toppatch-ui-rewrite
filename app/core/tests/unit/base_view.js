@@ -120,21 +120,16 @@ $(document).ready(function () {
             start();
         });
     });
-    asyncTest("base_view tests", function () {
+    asyncTest("base_view.registerChildView() [multiple Backbone.Views at once]", function () {
         require(['base_view'], function(View) {
-            var $body = $('body'),
-                base_view = new View();
-
-            base_view.$el.appendTo($body);
-            ok(base_view.$el.parent()[0] === $body[0], 'base_view appended to body');
-
-            // Close parent with no children test
-            base_view.close();
-            ok(true, 'base_view.close executed without error');
-            ok(base_view.$el.parent().length === 0, 'base_view.close removed base_view from the body');
-
+            var base_view = new View(),
+                result;
+            result = base_view.registerChildView(new Backbone.View(), new Backbone.View(), new Backbone.View());
+            ok(true, 'Attempt to add 3 new Backbone.View, ran without exception');
+            ok(!_.isUndefined(base_view.children), 'base_view.children is defined');
+            ok(base_view.children.length === 3, 'base_view has 3 children');
+            ok(_.uniq(base_view.children._views).length === 3, 'Each child is unique');
             start();
         });
     });
-
 });
