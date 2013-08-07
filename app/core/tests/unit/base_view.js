@@ -134,4 +134,22 @@ $(document).ready(function () {
             start();
         });
     });
+    asyncTest("base_view.closeChildView() [invalid arguments]", function () {
+        var that = this;
+        require(['base_view'], function(View) {
+            var base_view = new View(),
+                invalidTypes = that.invalidTypes();
+
+            base_view.registerChildView(new Backbone.View(), new Backbone.View(), new Backbone.View());
+            ok(_.uniq(base_view.children._views).length === 3, 'Start with a base_view that has 3 unique children');
+
+            _.each(invalidTypes, function (value, key) {
+                var result = base_view.closeChildView(value);
+                ok(true, 'closeChildView(' + key + ') ran without exception');
+                strictEqual(base_view.children.length, 3, 'base_view still has 3 children');
+            });
+
+            start();
+        });
+    });
 });
