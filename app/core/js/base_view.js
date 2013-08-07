@@ -81,6 +81,9 @@ define(
                 return this;
             },
 
+            /*
+            // Loading indicator services
+            // ------------------------------------------------------------------------
             _loadingIndicator: undefined,
             getLoadingIndicator: function () {
                 if (_.isUndefined(this._loadingIndicator)) {
@@ -98,6 +101,7 @@ define(
                 }
                 return this;
             }
+            */
         });
     }
 );
