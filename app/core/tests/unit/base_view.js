@@ -23,8 +23,8 @@ $(document).ready(function () {
         require(['base_view'], function(View) {
             ok(true, 'Attempt new base_view()');
             var base_view = new View();
-            ok(base_view.__super__ === Backbone.View.prototype, 'base_view.__super__ points to Backbone.View.prototype');
             ok(true, 'Ran without exception');
+            strictEqual(base_view.__super__, Backbone.View.prototype, 'base_view.__super__ points to Backbone.View.prototype');
             ok(_.isUndefined(base_view.children), 'base_view.children is undefined');
 
             start();
@@ -38,7 +38,7 @@ $(document).ready(function () {
             ok(true, 'Attempt _initChildServices()');
             result = base_view._initChildServices();
             ok(true, 'Ran without exception');
-            ok(result === base_view, 'Returned this');
+            strictEqual(result, base_view, 'Returned this');
             ok(base_view.children instanceof Backbone.ChildViewContainer, 'Set base_view.children to instance of Backbone.ChildViewContainer');
 
             start();
@@ -53,7 +53,7 @@ $(document).ready(function () {
             ok(true, 'Attempt registerChildView() with no args');
             result = base_view.registerChildView();
             ok(true, 'Ran without exception');
-            ok(result === base_view, 'Returned this');
+            strictEqual(result, base_view, 'Returned this');
             ok(_.isUndefined(base_view.children), 'base_view.children remains undefined');
 
             start();
@@ -68,9 +68,9 @@ $(document).ready(function () {
             _.each(invalidTypes, function (value, key) {
                 ok(true, 'attempt registerChildView(' + key + ')');
                 var result = base_view.registerChildView(value);
-                ok(result === base_view, 'Returned this');
                 ok(_.isUndefined(base_view.children), 'Successfully filtered ' + key + 'type');
                 ok(true, 'Ran without exception');
+                strictEqual(result, base_view, 'Returned this');
             });
 
             start();
@@ -83,10 +83,10 @@ $(document).ready(function () {
                 invalidTypes = that.invalidTypes(),
                 result;
 
-            ok(result === base_view, 'Returned this');
             ok(true, 'Attempt to add multiple invalid types at once');
             result = base_view.registerChildView.apply(base_view, _.values(invalidTypes));
             ok(true, 'Ran without exception');
+            strictEqual(result, base_view, 'Returned this');
             ok(_.isUndefined(base_view.children), 'Successfully filtered all invalid arguments');
 
             start();
@@ -98,10 +98,10 @@ $(document).ready(function () {
             var base_view = new View(),
                 result;
 
-            ok(result === base_view, 'Returned this');
             ok(true, 'Attempt to add reference to base_view');
             result = base_view.registerChildView(base_view);
             ok(true, 'Ran without exception');
+            strictEqual(result, base_view, 'Returned this');
             ok(_.isUndefined(base_view.children), 'Successfully filtered reference to itself');
 
             start();
@@ -120,7 +120,7 @@ $(document).ready(function () {
             ok(true, 'Ran without exception');
             ok(!_.isUndefined(base_view.children), 'base_view.children is defined');
             strictEqual(base_view.children.length, 1, 'base_view has 1 child');
-            ok(base_view.children.findByCid(newBackboneView.cid) === newBackboneView, 'newBackboneView is in base_view.children');
+            strictEqual(base_view.children.findByCid(newBackboneView.cid), newBackboneView, 'newBackboneView is in base_view.children');
             result = undefined;
 
 
@@ -128,7 +128,7 @@ $(document).ready(function () {
             result = base_view.registerChildView(newBaseView);
             ok(true, 'Ran without exception');
             strictEqual(base_view.children.length, 2, 'base_view has 2 children');
-            ok(base_view.children.findByCid(newBaseView.cid) === newBaseView, 'newBaseView is in base_view.children');
+            strictEqual(base_view.children.findByCid(newBaseView.cid), newBaseView, 'newBaseView is in base_view.children');
             start();
         });
     });
@@ -153,7 +153,7 @@ $(document).ready(function () {
                 invalidTypes = that.invalidTypes();
 
             base_view.registerChildView(new Backbone.View(), new Backbone.View(), new Backbone.View());
-            ok(_.uniq(base_view.children._views).length === 3, 'Start with a base_view that has 3 unique children');
+            strictEqual(_.uniq(base_view.children._views).length, 3, 'Start with a base_view that has 3 unique children');
 
             _.each(invalidTypes, function (value, key) {
 
