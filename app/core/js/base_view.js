@@ -6,12 +6,14 @@
  * Includes:
  *  Zombie Prevention
  *      Close method
- *      addSubViews
- *      closeChildViews
+ *  Child Services
+ *      Register Child View
+ *      Close Child View
+ *      Close Child Views
  *  Loading indicator
  */
 define(
-    ['core/js/loading_indicator', 'jquery', 'backbone'],
+    ['core/js/loading_indicator', 'jquery', 'backbone', 'backbone.babysitter'],
     function (loading_indicator) {
         "use strict";
         var __super__ = Backbone.View.prototype;
@@ -36,6 +38,13 @@ define(
                 return this;
             },
 
+            // Child sitting services
+            // Heavily inspired by Backbone.Marionette.collectionView
+            // ------------------------------------------------------------------------
+            _initChildServices: function () {
+                this.children = new Backbone.ChildViewContainer();
+                return this;
+            },
             registerChildView: function () {
                 if (!_.isArray(this.childViews)) {
                     this.childViews = [];
