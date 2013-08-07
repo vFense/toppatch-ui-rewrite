@@ -1,7 +1,7 @@
 /**
  * base_view.js
  * ------------------------------------------------------------------------
- * Backbone.View function overrides
+ * Supplemental Backbone.View functions
  *
  * Includes:
  *  __super__ reference to Backbone.View.prototype
