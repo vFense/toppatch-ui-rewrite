@@ -63,7 +63,7 @@ define(
             },
 
             closeChildView: function (view) {
-                if (view) {
+                if (view instanceof Backbone.View) {
                     if (_.isFunction(view.close)) {
                         view.close();
                     } else if (_.isFunction(view.remove)) {
