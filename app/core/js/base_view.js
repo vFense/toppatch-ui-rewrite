@@ -23,15 +23,16 @@ define(
             // Inspired by: Derick Bailey
             // See: http://bit.ly/odAfKo
             close: function () {
-                if (this.isClosing) { return this; }
-                if (this.beforeClose && _.isFunction(this.beforeClose)) {
-                    this.beforeClose();
+                if (!this.isClosing) {
+                    if (this.beforeClose && _.isFunction(this.beforeClose)) {
+                        this.beforeClose();
+                    }
+                    this.isClosing = true;
+                    this.closeChildViews()
+                        .remove()
+                        .unbind();
+                    this.isClosing = false;
                 }
-                this.isClosing = true;
-                this.closeChildViews()
-                    .remove()
-                    .unbind();
-                this.isClosing = false;
                 return this;
             },
 
