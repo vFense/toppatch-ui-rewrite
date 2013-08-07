@@ -36,7 +36,7 @@ var requirejs = {
 
         // Backbone Paths
         'backbone'              : 'vendor/backbone/backbone',
-        'backbone.babysitter'   : 'vendor/backbone.babysitter/src/childviewcontainer',
+        'backbone.babysitter'   : 'vendor/backbone.babysitter/lib/amd/backbone.babysitter',
         'backbone.localStorage' : 'vendor/backbone.localstorage/backbone.localStorage',
         'backbone.modelBinder'  : 'vendor/backbone.modelbinder/Backbone.ModelBinder',
         'backbone.validation'   : 'vendor/backbone-validation/src/backbone-validation',
@@ -87,7 +87,6 @@ var requirejs = {
         // Vendor Library Shims
         'underscore'            : { exports: '_' },
         'backbone'              : { exports: 'Backbone', deps: ['underscore', 'jquery'] },
-        'backbone.babysitter'   : { exports: 'Backbone.ChildViewContainer', deps: ['backbone']},
         'backbone.validation'   : { exports: 'Backbone.Validation', deps: ['backbone']},
 
         'highcharts'            : { exports: 'Highcharts' },
