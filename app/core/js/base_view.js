@@ -4,6 +4,7 @@
  * Backbone.View function overrides
  *
  * Includes:
+ *  __super__ reference to Backbone.View.prototype
  *  Zombie Prevention
  *      Close method
  *  Child Services
