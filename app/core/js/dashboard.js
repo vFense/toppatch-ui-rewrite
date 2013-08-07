@@ -1,13 +1,15 @@
 define(
     [
         'text!core/templates/dashboard_layout.html',
+        'base_view',
         'bootstrap.collapse',
         'bootstrap.dropdown'
     ],
-    function (template) {
+    function (template, base_view) {
         "use strict";
         var exports = {};
-        exports.View = Backbone.View.extend({
+        exports.View = base_view.extend({
+            __super__: base_view.prototype,
             el: '#dashboard',
             _template: _.template(template),
             setContentView: function (view) {
