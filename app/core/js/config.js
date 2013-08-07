@@ -6,6 +6,10 @@ var requirejs = {
     // paths: Path mappings for module names not found directly under baseUrl.
     // See: http://requirejs.org/docs/api.html#config-paths
     paths: {
+        // Core Javascript
+        'base_router'   : 'core/js/base_router',
+        'base_view'     : 'core/js/base_view',
+
         // RequireJS Plugins
         'async'         : 'vendor/requirejs-plugins/src/async',
         'depend'        : 'vendor/requirejs-plugins/src/depend',
