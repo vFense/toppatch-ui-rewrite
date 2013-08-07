@@ -80,7 +80,7 @@ define(
                     }, this);
                 }
                 return this;
-            },
+            }
 
             /*
             // Loading indicator services
