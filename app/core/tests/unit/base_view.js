@@ -111,13 +111,13 @@ $(document).ready(function () {
             result = base_view.registerChildView(newBackboneView);
             ok(true, 'Attempt to add newBackboneView, ran without exception');
             ok(!_.isUndefined(base_view.children), 'base_view.children is defined');
-            ok(base_view.children.length === 1, 'base_view has 1 child');
+            strictEqual(base_view.children.length, 1, 'base_view has 1 child');
             ok(base_view.children.findByCid(newBackboneView.cid) === newBackboneView, 'newBackboneView is in base_view.children');
             result = undefined;
 
             result = base_view.registerChildView(newBaseView);
             ok(true, 'Attempt to add newBaseView, ran without exception');
-            ok(base_view.children.length === 2, 'base_view has 2 children');
+            strictEqual(base_view.children.length, 2, 'base_view has 2 children');
             ok(base_view.children.findByCid(newBaseView.cid) === newBaseView, 'newBaseView is in base_view.children');
             start();
         });
@@ -129,8 +129,8 @@ $(document).ready(function () {
             result = base_view.registerChildView(new Backbone.View(), new Backbone.View(), new Backbone.View());
             ok(true, 'Attempt to add 3 new Backbone.View, ran without exception');
             ok(!_.isUndefined(base_view.children), 'base_view.children is defined');
-            ok(base_view.children.length === 3, 'base_view has 3 children');
-            ok(_.uniq(base_view.children._views).length === 3, 'Each child is unique');
+            strictEqual(base_view.children.length, 3, 'base_view has 3 children');
+            strictEqual(_.uniq(base_view.children._views).length, 3, 'Each child is unique');
             start();
         });
     });
