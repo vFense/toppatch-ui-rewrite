@@ -19,13 +19,6 @@ $(document).ready(function () {
             };
         }
     });
-    /*
-    asyncTest("base_view tests", function () {
-        require(['base_view'], function(View) {
-            start();
-        });
-    });
-    */
     asyncTest("new base_view()", function () {
         require(['base_view'], function(View) {
             var base_view = new View();
