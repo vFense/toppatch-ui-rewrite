@@ -159,6 +159,7 @@ $(document).ready(function () {
                 ok(true, 'Attempt closeChildView(' + key + ')');
                 var result = base_view.closeChildView(value);
                 ok(true, 'Ran without exception');
+                strictEqual(result, base_view, 'Returned this');
                 strictEqual(base_view.children.length, 3, 'base_view still has 3 children');
             });
 
