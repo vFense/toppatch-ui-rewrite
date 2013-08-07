@@ -33,7 +33,7 @@ define(
                 return this;
             },
 
-            addChildView: function () {
+            registerChildView: function () {
                 if (!_.isArray(this.childViews)) {
                     this.childViews = [];
                 }
