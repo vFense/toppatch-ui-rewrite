@@ -60,9 +60,10 @@ $(document).ready(function () {
     asyncTest("base_view.registerChildView() [invalid type]", function () {
         var that = this;
         require(['base_view'], function(View) {
-            var base_view = new View();
+            var base_view = new View(),
+                invalidTypes = that.invalidTypes();
 
-            _.each(that.invalidTypes(), function (value, key) {
+            _.each(invalidTypes, function (value, key) {
                 var result = base_view.registerChildView(value);
                 ok(true, 'registerChildView(' + key + ') ran without exception');
                 ok(result === base_view, 'Returned this');
@@ -76,7 +77,8 @@ $(document).ready(function () {
         var that = this;
         require(['base_view'], function(View) {
             var base_view = new View(),
-                result = base_view.registerChildView.apply(base_view, _.values(that.invalidTypes()));
+                invalidTypes = that.invalidTypes(),
+                result = base_view.registerChildView.apply(base_view, _.values(invalidTypes));
 
             ok(true, 'Attempt to add multiple invalid types at once, ran without exception');
             ok(result === base_view, 'Returned this');
