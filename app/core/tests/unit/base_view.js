@@ -68,9 +68,9 @@ $(document).ready(function () {
             _.each(invalidTypes, function (value, key) {
                 ok(true, 'attempt registerChildView(' + key + ')');
                 var result = base_view.registerChildView(value);
-                ok(_.isUndefined(base_view.children), 'Successfully filtered ' + key + 'type');
                 ok(true, 'Ran without exception');
                 strictEqual(result, base_view, 'Returned this');
+                ok(_.isUndefined(base_view.children), 'Successfully filtered ' + key + ' type');
             });
 
             start();
