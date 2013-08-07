@@ -8,7 +8,8 @@
 define(['backbone'], function () {
     "use strict";
     var __super__ = Backbone.Router.prototype;
-    _.extend(__super__, {
+    return Backbone.Router.extend({
+        __super__: __super__,
         _navigate: __super__.navigate,
         navigate: function (fragment, options) {
             // Override
