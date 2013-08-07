@@ -117,15 +117,15 @@ $(document).ready(function () {
             ok(true, 'Attempt to add newBackboneView');
             result = base_view.registerChildView(newBackboneView);
             ok(true, 'Ran without exception');
+            strictEqual(result, base_view, 'Returned this');
             ok(!_.isUndefined(base_view.children), 'base_view.children is defined');
             strictEqual(base_view.children.length, 1, 'base_view has 1 child');
             strictEqual(base_view.children.findByCid(newBackboneView.cid), newBackboneView, 'newBackboneView is in base_view.children');
-            result = undefined;
-
 
             ok(true, 'Attempt to add newBaseView');
             result = base_view.registerChildView(newBaseView);
             ok(true, 'Ran without exception');
+            strictEqual(result, base_view, 'Returned this');
             strictEqual(base_view.children.length, 2, 'base_view has 2 children');
             strictEqual(base_view.children.findByCid(newBaseView.cid), newBaseView, 'newBaseView is in base_view.children');
             start();
@@ -139,6 +139,7 @@ $(document).ready(function () {
             ok(true, 'Attempt to add 3 new Backbone.View');
             result = base_view.registerChildView(new Backbone.View(), new Backbone.View(), new Backbone.View());
             ok(true, 'Ran without exception');
+            strictEqual(result, base_view, 'Returned this');
             ok(!_.isUndefined(base_view.children), 'base_view.children is defined');
             strictEqual(base_view.children.length, 3, 'base_view has 3 children');
             strictEqual(_.uniq(base_view.children._views).length, 3, 'Each child is unique');
@@ -180,16 +181,19 @@ $(document).ready(function () {
             ok(true, 'Attempt to remove a childView');
             result = base_view.closeChildView(childView1);
             ok(true, 'Ran without exception');
+            strictEqual(result, base_view, 'Returned this');
             strictEqual(base_view.children.length, 2, 'base_view has 2 children');
 
             ok(true, 'Attempt to remove a childView');
             result = base_view.closeChildView(childView2);
             ok(true, 'Ran without exception');
+            strictEqual(result, base_view, 'Returned this');
             strictEqual(base_view.children.length, 1, 'base_view has 1 child');
 
             ok(true, 'Attempt to remove a childView');
             result = base_view.closeChildView(childView3);
             ok(true, 'Ran without exception');
+            strictEqual(result, base_view, 'Returned this');
             strictEqual(base_view.children.length, 0, 'base_view has 0 children');
 
             start();
@@ -209,6 +213,7 @@ $(document).ready(function () {
             ok(true, 'Attempt to close all child views');
             result = base_view.closeChildViews();
             ok(true, 'Ran without exception');
+            strictEqual(result, base_view, 'Returned this');
             strictEqual(base_view.children.length, 0, 'base_view has 0 children');
 
             start();
