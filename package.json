@@ -2,6 +2,7 @@
     "name": "rvwebui",
     "version": "2.0.0-alpha",
     "author": "TopPatch Inc.",
+    "private": true,
     "contributors": [
         { "name": "Luis Aleman" },
         { "name": "Sergio Polo" },
