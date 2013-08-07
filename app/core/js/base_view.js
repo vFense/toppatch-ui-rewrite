@@ -47,10 +47,17 @@ define(
                 return this;
             },
             registerChildView: function () {
-                if (!_.isArray(this.childViews)) {
-                    this.childViews = [];
+                var args = _.filter(_.toArray(arguments), function(arg) { return arg instanceof Backbone.View; });
+                if (args.length > 0) {
+                    if (!(this.children instanceof Backbone.ChildViewContainer)) {
+                        this._initChildServices();
+                    }
+                    _.each(args, function (child) {
+                        if (child instanceof Backbone.View) {
+                            this.children.add(child);
+                        }
+                    }, this);
                 }
-                Array.prototype.push.apply(this.childViews, arguments);
                 return this;
             },
 
