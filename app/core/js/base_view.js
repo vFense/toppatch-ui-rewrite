@@ -73,12 +73,10 @@ define(
                 return this;
             },
             closeChildViews: function () {
-                if (_.isArray(this.childViews)) {
-                    _.each(this.childViews, function (childView) {
-                        if (_.isFunction(childView.close)) {
-                            childView.close();
-                        }
-                    });
+                if (this.children instanceof Backbone.ChildViewContainer) {
+                    this.children.each(function(child){
+                        this.closeChildView(child);
+                    }, this);
                 }
                 return this;
             },
