@@ -181,4 +181,23 @@ $(document).ready(function () {
             start();
         });
     });
+    asyncTest("base_view.closeChildViews()", function () {
+        require(['base_view'], function(View) {
+            var base_view = new View(),
+                childView1 = new Backbone.View(),
+                childView2 = new Backbone.View(),
+                childView3 = new Backbone.View(),
+                result;
+
+            base_view.registerChildView(childView1, childView2, childView3);
+            strictEqual(base_view.children.length, 3, 'Start with a base_view that has 3 children');
+
+            ok(true, 'Attempt to close all child views');
+            result = base_view.closeChildViews();
+            ok(true, 'ran without exception');
+            strictEqual(base_view.children.length, 0, 'base_view has 0 children');
+
+            start();
+        });
+    });
 });
