@@ -61,6 +61,17 @@ define(
                 return this;
             },
 
+            closeChildView: function (view) {
+                if (view) {
+                    if (_.isFunction(view.close)) {
+                        view.close();
+                    } else if (_.isFunction(view.remove)) {
+                        view.remove();
+                    }
+                    this.children.remove(view);
+                }
+                return this;
+            },
             closeChildViews: function () {
                 if (_.isArray(this.childViews)) {
                     _.each(this.childViews, function (childView) {
