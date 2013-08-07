@@ -1,9 +1,8 @@
 define(
-    ['text!core/templates/loading_indicator.html'],
+    ['text!core/templates/loading_indicator.html', 'backbone'],
     function (template) {
         "use strict";
-        var exports = {};
-        exports.View = Backbone.View.extend({
+        return Backbone.View.extend({
             className: 'loading_indicator',
             _template: _.template(template),
             initialize: function () { this.render(); },
@@ -21,6 +20,5 @@ define(
                 }
             }
         });
-        return exports;
     }
 );

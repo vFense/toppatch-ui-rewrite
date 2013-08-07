@@ -15,7 +15,9 @@ define(
     function (loading_indicator) {
         "use strict";
         var __super__ = Backbone.View.prototype;
-        _.extend(__super__, {
+        return Backbone.View.extend({
+            __super__: __super__,
+
             // Zombie Prevention Part 1
             // Add close function to Backbone.View to prevent "Zombies"
             // Inspired by: Derick Bailey
