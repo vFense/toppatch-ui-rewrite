@@ -47,7 +47,8 @@ define(
                 return this;
             },
             registerChildView: function () {
-                var args = _.filter(_.toArray(arguments), function(arg) { return arg instanceof Backbone.View; });
+                var that = this,
+                    args = _.filter(_.toArray(arguments), function(arg) { return arg !== that && arg instanceof Backbone.View; });
                 if (args.length > 0) {
                     if (!(this.children instanceof Backbone.ChildViewContainer)) {
                         this._initChildServices();
