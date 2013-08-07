@@ -14,8 +14,8 @@
  *  Loading indicator
  */
 define(
-    ['core/js/loading_indicator', 'jquery', 'backbone', 'backbone.babysitter'],
-    function (loading_indicator) {
+    ['jquery', 'backbone', 'backbone.babysitter'],
+    function () {
         "use strict";
         var __super__ = Backbone.View.prototype;
         return Backbone.View.extend({
@@ -81,28 +81,6 @@ define(
                 }
                 return this;
             }
-
-            /*
-            // Loading indicator services
-            // ------------------------------------------------------------------------
-            _loadingIndicator: undefined,
-            getLoadingIndicator: function () {
-                if (_.isUndefined(this._loadingIndicator)) {
-                    this._loadingIndicator = new loading_indicator.View();
-                }
-                return this._loadingIndicator;
-            },
-            showLoading: function () {
-                return this.$el.html(_.result(this, 'getLoadingIndicator').el);
-            },
-
-            hideLoading: function () {
-                if (_.result(this, 'getLoadingIndicator')) {
-                    _.result(this, 'getLoadingIndicator').close();
-                }
-                return this;
-            }
-            */
         });
     }
 );
