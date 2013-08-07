@@ -49,11 +49,13 @@ define(
             },
             showLoading: function () {
                 this.setContentView(_.result(this, 'getLoadingIndicator'));
+                return this;
             },
             hideLoading: function () {
                 if (_.result(this, 'getLoadingIndicator') === this._contentView) {
                     this.closeContentView();
                 }
+                return this;
             }
         });
 
