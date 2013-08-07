@@ -14,12 +14,12 @@ define(
             _template: _.template(template),
             setContentView: function (view) {
                 var that = this,
-                    $content = this.$('>#main');
+                    $target = this.$('>#main');
                 this.closeContentView();
 
                 if (view instanceof Backbone.View) {
                     this._contentView = view;
-                    $content
+                    $target
                         .empty()
                         .html(this._contentView.render().delegateEvents().el);
                 } else {
