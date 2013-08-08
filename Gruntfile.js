@@ -40,7 +40,14 @@ module.exports = function(grunt) {
             server: {
                 options: {
                     base: 'app/',
-                    hostname: '*'
+                    hostname: '*',
+                    middleware: function (connect, options) {
+                        return [
+                            require('connect-livereload')(),
+                            connect.static(options.base),
+                            connect.directory(options.base)
+                        ];
+                    }
                 }
             }
         },
