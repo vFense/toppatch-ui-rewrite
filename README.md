@@ -62,7 +62,7 @@ grunt
 
 The built version of Remediation Vault's Web UI will be put in the `/dist` subdirectory.
 
-## Grunt commands for developers
+## Available Grunt commands
 
 Command | Description
 :---|:---
