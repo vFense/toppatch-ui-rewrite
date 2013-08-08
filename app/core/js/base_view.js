@@ -27,10 +27,10 @@ define(
             // See: http://bit.ly/odAfKo
             close: function () {
                 if (!this.isClosing) {
+                    this.isClosing = true;
                     if (this.beforeClose && _.isFunction(this.beforeClose)) {
                         this.beforeClose();
                     }
-                    this.isClosing = true;
                     this.closeChildViews()
                         .remove()
                         .unbind();
