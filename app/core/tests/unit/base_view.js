@@ -219,4 +219,30 @@ $(document).ready(function () {
             start();
         });
     });
+    asyncTest("base_view.close() [No child views]", function () {
+        require(['base_view'], function(View) {
+            var beforeCloseCalled = false,
+                $body = $('body');
+
+            View = View.extend({
+                beforeClose: function () {
+                    beforeCloseCalled = true;
+                }
+            });
+
+            var view = new View();
+            ok(true, 'New view has been created');
+
+            view.$el.appendTo($body);
+            strictEqual(view.$el.parent()[0], $body[0], 'view appended to body');
+
+            ok(true, 'Attempting view.close()');
+            var result = view.close();
+            ok(beforeCloseCalled, 'view.close() called this.beforeClose');
+            strictEqual(view.$el.parent()[0], undefined, 'view has been removed from the body');
+            strictEqual(result, view, 'view.close returned view');
+
+            start();
+        });
+    });
 });
