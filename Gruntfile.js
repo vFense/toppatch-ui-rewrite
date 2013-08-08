@@ -68,6 +68,16 @@ module.exports = function(grunt) {
                 url: 'http://localhost:8000/'
             }
         },
+        qunit: {
+            all: {
+                options: {
+                    urls: [
+                        'http://localhost:8000/core/tests/config.html',
+                        'http://localhost:8000/core/tests/index.html'
+                    ]
+                }
+            }
+        },
         recess: {
             options: {
                 compile: true
@@ -150,4 +160,5 @@ module.exports = function(grunt) {
 
     grunt.registerTask('default', ['clean:dist', 'copy:dist', 'concurrent:dist']);
     grunt.registerTask('dev', ['concurrent:dev', 'connect', 'open:dev', 'watch']);
+    grunt.registerTask('test', ['connect', 'qunit']);
 };
