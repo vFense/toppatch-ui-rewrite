@@ -51,11 +51,14 @@ From the command line:
 
 ### Available Grunt commands
 
-#### Compile for distribution - `grunt dist`
-`grunt dist` creates the `/dist` directory with compiled files. **Requires recess.**
+#### Build - `grunt`
+Run `grunt` to run tests locally and compile the CSS and JavaScript into `/dist`.
 
-#### Watch - `grunt dev`
-This is a convenience method for watching the **LESS, JS, and HTML** files, compiling if necessary, and hosting them at `localhost:8000`
+#### Test - `grunt test`
+Runs JSHint and QUnit tests headlessly in [phantomjs](https://github.com/ariya/phantomjs/).
+
+#### Develop - `grunt dev`
+This is a convenience method for watching the **LESS, JS, and HTML** files, compiling if necessary, and hosting them at `localhost:8000`. This server will host the files under the `/app` directory
 
 ### Troubleshooting dependencies
 
