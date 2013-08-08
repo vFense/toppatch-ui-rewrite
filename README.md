@@ -50,17 +50,6 @@ Enter the Remediation Vault directory and install the Node and Bower dependencie
 cd jquery && npm install
 ```
 
-## Bower: front-end package manager
-
-Remediation Vault's Web UI uses [Bower](http://bower.io) to manage all third party packages.
-
-### Install Bower
-
-From the command line:
-
-0. `cd` into the repo's root directory.
-1. Install `bower` globally with `npm install -g bower` (sudo may be required).
-2. Install the [necessary local dependencies](bower.json) via `bower install`
 
 ## Grunt: The javascript task runner
 
