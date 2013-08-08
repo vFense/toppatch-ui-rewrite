@@ -12,7 +12,7 @@ If your pull request contains JavaScript patches or features, you must include r
 
 Editor preferences are available in the [editor config](.editorconfig) for easy use in common text editors. Read more and download plugins at [http://editorconfig.org](http://editorconfig.org).
 
-## Loading Javascript dependencies
+## Bower: front-end package manager
 
 Remediation Vault's Web UI uses [Bower](http://bower.io) to manage all third party dependencies.
 
