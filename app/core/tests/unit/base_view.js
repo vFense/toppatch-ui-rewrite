@@ -208,10 +208,12 @@ $(document).ready(function () {
     asyncTest("base_view.close() [No child views]", function () {
         require(['base_view'], function() {
             var beforeCloseCalled = false,
+                isClosingSet = false,
                 $body = $('body'),
                 View = require('base_view').extend({
                     beforeClose: function () {
                         beforeCloseCalled = true;
+                        isClosingSet = this.isClosing;
                     }
                 }),
                 view = new View();
@@ -225,6 +227,8 @@ $(document).ready(function () {
             var result = view.close();
             ok(beforeCloseCalled, 'view.close() called this.beforeClose');
             strictEqual(view.$el.parent()[0], undefined, 'view has been removed from the body');
+            strictEqual(isClosingSet, true, 'view.isClosing was set to true during the view.close process');
+            strictEqual(view.isClosing, false, 'view.isClosing was set to false upon view.close completion');
             strictEqual(result, view, 'view.close returned view');
 
             start();
