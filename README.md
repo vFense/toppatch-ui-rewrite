@@ -12,7 +12,7 @@ If your pull request contains JavaScript patches or features, you must include r
 
 Editor preferences are available in the [editor config](.editorconfig) for easy use in common text editors. Read more and download plugins at [http://editorconfig.org](http://editorconfig.org).
 
-## What you need to develop, or compile, Remediation Vault
+## What you need to develop/compile this project
 
 In order to develop, and compile, Remediation Vault, you need to have Node.js/npm latest, and git 1.8 or later. (Earlier versions might work OK, but are not tested.)
 
