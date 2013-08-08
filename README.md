@@ -25,7 +25,7 @@ Linux/BSD users should use their appropriate package managers to install git and
 
 ## Bower: front-end package manager
 
-Remediation Vault's Web UI uses [Bower](http://bower.io) to manage all third party dependencies.
+Remediation Vault's Web UI uses [Bower](http://bower.io) to manage all third party packages.
 
 ### Install Bower
 
