@@ -86,11 +86,7 @@ Runs JSHint and QUnit tests headlessly in [phantomjs](https://github.com/ariya/p
 grunt dev
 ```
 
-This is a convenience method that will `watch` **LESS**, **JS**, and **HTML** files in the `/app` directory, and host them at `localhost:8000`.
-
-Notes:
-
-> LESS files will be compiled to `/app/css`.
+This is a convenience method that will `watch` **LESS**, **JS**, and **HTML** files in the `/app` directory, and host them at `localhost:8000`. Note: LESS files will be compiled to `/app/css`, a git ignored directory.
 
 ### Troubleshooting dependencies
 
