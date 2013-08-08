@@ -21,40 +21,40 @@ $(document).ready(function () {
     });
     asyncTest("new base_view()", function () {
         require(['base_view'], function(View) {
-            ok(true, 'Attempt new base_view()');
-            var base_view = new View();
+            ok(true, 'Attempt new view()');
+            var view = new View();
             ok(true, 'Ran without exception');
-            strictEqual(base_view.__super__, Backbone.View.prototype, 'base_view.__super__ points to Backbone.View.prototype');
-            ok(_.isUndefined(base_view.children), 'base_view.children is undefined');
+            strictEqual(view.__super__, Backbone.View.prototype, 'view.__super__ points to Backbone.View.prototype');
+            ok(_.isUndefined(view.children), 'view.children is undefined');
 
             start();
         });
     });
     asyncTest("base_view._initChildServices", function () {
         require(['base_view'], function(View) {
-            var base_view = new View(),
+            var view = new View(),
                 result;
 
             ok(true, 'Attempt _initChildServices()');
-            result = base_view._initChildServices();
+            result = view._initChildServices();
             ok(true, 'Ran without exception');
-            strictEqual(result, base_view, 'Returned this');
-            ok(base_view.children instanceof Backbone.ChildViewContainer, 'Set base_view.children to instance of Backbone.ChildViewContainer');
+            strictEqual(result, view, 'Returned this');
+            ok(view.children instanceof Backbone.ChildViewContainer, 'Set view.children to instance of Backbone.ChildViewContainer');
 
             start();
         });
     });
     asyncTest("base_view.registerChildView() [no arguments]", function () {
         require(['base_view'], function(View) {
-            var base_view = new View(),
+            var view = new View(),
                 result;
 
             // registerChildView with no args
             ok(true, 'Attempt registerChildView() with no args');
-            result = base_view.registerChildView();
+            result = view.registerChildView();
             ok(true, 'Ran without exception');
-            strictEqual(result, base_view, 'Returned this');
-            ok(_.isUndefined(base_view.children), 'base_view.children remains undefined');
+            strictEqual(result, view, 'Returned this');
+            ok(_.isUndefined(view.children), 'view.children remains undefined');
 
             start();
         });
@@ -62,15 +62,15 @@ $(document).ready(function () {
     asyncTest("base_view.registerChildView() [invalid type]", function () {
         var that = this;
         require(['base_view'], function(View) {
-            var base_view = new View(),
+            var view = new View(),
                 invalidTypes = that.invalidTypes();
 
             _.each(invalidTypes, function (value, key) {
                 ok(true, 'attempt registerChildView(' + key + ')');
-                var result = base_view.registerChildView(value);
+                var result = view.registerChildView(value);
                 ok(true, 'Ran without exception');
-                strictEqual(result, base_view, 'Returned this');
-                ok(_.isUndefined(base_view.children), 'Successfully filtered ' + key + ' type');
+                strictEqual(result, view, 'Returned this');
+                ok(_.isUndefined(view.children), 'Successfully filtered ' + key + ' type');
             });
 
             start();
@@ -79,89 +79,89 @@ $(document).ready(function () {
     asyncTest("base_view.registerChildView() [multiple invalid types at once]", function () {
         var that = this;
         require(['base_view'], function(View) {
-            var base_view = new View(),
+            var view = new View(),
                 invalidTypes = that.invalidTypes(),
                 result;
 
             ok(true, 'Attempt to add multiple invalid types at once');
-            result = base_view.registerChildView.apply(base_view, _.values(invalidTypes));
+            result = view.registerChildView.apply(view, _.values(invalidTypes));
             ok(true, 'Ran without exception');
-            strictEqual(result, base_view, 'Returned this');
-            ok(_.isUndefined(base_view.children), 'Successfully filtered all invalid arguments');
+            strictEqual(result, view, 'Returned this');
+            ok(_.isUndefined(view.children), 'Successfully filtered all invalid arguments');
 
             start();
         });
     });
     asyncTest("base_view.registerChildView() [reference to itself]", function () {
         require(['base_view'], function(View) {
-            var base_view = new View(),
+            var view = new View(),
                 result;
 
-            ok(true, 'Attempt to add reference to base_view');
-            result = base_view.registerChildView(base_view);
+            ok(true, 'Attempt to add reference to view');
+            result = view.registerChildView(view);
             ok(true, 'Ran without exception');
-            strictEqual(result, base_view, 'Returned this');
-            ok(_.isUndefined(base_view.children), 'Successfully filtered reference to itself');
+            strictEqual(result, view, 'Returned this');
+            ok(_.isUndefined(view.children), 'Successfully filtered reference to itself');
 
             start();
         });
     });
     asyncTest("base_view.registerChildView() [new Backbone.View and new base_view]", function () {
         require(['base_view'], function(View) {
-            var base_view = new View(),
+            var view = new View(),
                 newBackboneView = new Backbone.View(),
                 newBaseView = new View(),
                 result;
 
             // registerChild test
             ok(true, 'Attempt to add newBackboneView');
-            result = base_view.registerChildView(newBackboneView);
+            result = view.registerChildView(newBackboneView);
             ok(true, 'Ran without exception');
-            strictEqual(result, base_view, 'Returned this');
-            ok(!_.isUndefined(base_view.children), 'base_view.children is defined');
-            strictEqual(base_view.children.length, 1, 'base_view has 1 child');
-            strictEqual(base_view.children.findByCid(newBackboneView.cid), newBackboneView, 'newBackboneView is in base_view.children');
+            strictEqual(result, view, 'Returned this');
+            ok(!_.isUndefined(view.children), 'view.children is defined');
+            strictEqual(view.children.length, 1, 'view has 1 child');
+            strictEqual(view.children.findByCid(newBackboneView.cid), newBackboneView, 'newBackboneView is in view.children');
 
             ok(true, 'Attempt to add newBaseView');
-            result = base_view.registerChildView(newBaseView);
+            result = view.registerChildView(newBaseView);
             ok(true, 'Ran without exception');
-            strictEqual(result, base_view, 'Returned this');
-            strictEqual(base_view.children.length, 2, 'base_view has 2 children');
-            strictEqual(base_view.children.findByCid(newBaseView.cid), newBaseView, 'newBaseView is in base_view.children');
+            strictEqual(result, view, 'Returned this');
+            strictEqual(view.children.length, 2, 'view has 2 children');
+            strictEqual(view.children.findByCid(newBaseView.cid), newBaseView, 'newBaseView is in view.children');
             start();
         });
     });
     asyncTest("base_view.registerChildView() [multiple Backbone.Views at once]", function () {
         require(['base_view'], function(View) {
-            var base_view = new View(),
+            var view = new View(),
                 result;
 
             ok(true, 'Attempt to add 3 new Backbone.View');
-            result = base_view.registerChildView(new Backbone.View(), new Backbone.View(), new Backbone.View());
+            result = view.registerChildView(new Backbone.View(), new Backbone.View(), new Backbone.View());
             ok(true, 'Ran without exception');
-            strictEqual(result, base_view, 'Returned this');
-            ok(!_.isUndefined(base_view.children), 'base_view.children is defined');
-            strictEqual(base_view.children.length, 3, 'base_view has 3 children');
-            strictEqual(_.uniq(base_view.children._views).length, 3, 'Each child is unique');
+            strictEqual(result, view, 'Returned this');
+            ok(!_.isUndefined(view.children), 'view.children is defined');
+            strictEqual(view.children.length, 3, 'view has 3 children');
+            strictEqual(_.uniq(view.children._views).length, 3, 'Each child is unique');
             start();
         });
     });
     asyncTest("base_view.closeChildView() [invalid arguments]", function () {
         var that = this;
         require(['base_view'], function(View) {
-            var base_view = new View(),
+            var view = new View(),
                 invalidTypes = that.invalidTypes();
 
-            base_view.registerChildView(new Backbone.View(), new Backbone.View(), new Backbone.View());
-            strictEqual(_.uniq(base_view.children._views).length, 3, 'Start with a base_view that has 3 unique children');
+            view.registerChildView(new Backbone.View(), new Backbone.View(), new Backbone.View());
+            strictEqual(_.uniq(view.children._views).length, 3, 'Start with a view that has 3 unique children');
 
             _.each(invalidTypes, function (value, key) {
 
                 ok(true, 'Attempt closeChildView(' + key + ')');
-                var result = base_view.closeChildView(value);
+                var result = view.closeChildView(value);
                 ok(true, 'Ran without exception');
-                strictEqual(result, base_view, 'Returned this');
-                strictEqual(base_view.children.length, 3, 'base_view still has 3 children');
+                strictEqual(result, view, 'Returned this');
+                strictEqual(view.children.length, 3, 'view still has 3 children');
             });
 
             start();
@@ -169,52 +169,52 @@ $(document).ready(function () {
     });
     asyncTest("base_view.closeChildView()", function () {
         require(['base_view'], function(View) {
-            var base_view = new View(),
+            var view = new View(),
                 childView1 = new Backbone.View(),
                 childView2 = new Backbone.View(),
                 childView3 = new Backbone.View(),
                 result;
 
-            base_view.registerChildView(childView1, childView2, childView3);
-            strictEqual(base_view.children.length, 3, 'Start with a base_view that has 3 children');
+            view.registerChildView(childView1, childView2, childView3);
+            strictEqual(view.children.length, 3, 'Start with a view that has 3 children');
 
             ok(true, 'Attempt to remove a childView');
-            result = base_view.closeChildView(childView1);
+            result = view.closeChildView(childView1);
             ok(true, 'Ran without exception');
-            strictEqual(result, base_view, 'Returned this');
-            strictEqual(base_view.children.length, 2, 'base_view has 2 children');
+            strictEqual(result, view, 'Returned this');
+            strictEqual(view.children.length, 2, 'view has 2 children');
 
             ok(true, 'Attempt to remove a childView');
-            result = base_view.closeChildView(childView2);
+            result = view.closeChildView(childView2);
             ok(true, 'Ran without exception');
-            strictEqual(result, base_view, 'Returned this');
-            strictEqual(base_view.children.length, 1, 'base_view has 1 child');
+            strictEqual(result, view, 'Returned this');
+            strictEqual(view.children.length, 1, 'view has 1 child');
 
             ok(true, 'Attempt to remove a childView');
-            result = base_view.closeChildView(childView3);
+            result = view.closeChildView(childView3);
             ok(true, 'Ran without exception');
-            strictEqual(result, base_view, 'Returned this');
-            strictEqual(base_view.children.length, 0, 'base_view has 0 children');
+            strictEqual(result, view, 'Returned this');
+            strictEqual(view.children.length, 0, 'view has 0 children');
 
             start();
         });
     });
     asyncTest("base_view.closeChildViews()", function () {
         require(['base_view'], function(View) {
-            var base_view = new View(),
+            var view = new View(),
                 childView1 = new Backbone.View(),
                 childView2 = new Backbone.View(),
                 childView3 = new Backbone.View(),
                 result;
 
-            base_view.registerChildView(childView1, childView2, childView3);
-            strictEqual(base_view.children.length, 3, 'Start with a base_view that has 3 children');
+            view.registerChildView(childView1, childView2, childView3);
+            strictEqual(view.children.length, 3, 'Start with a view that has 3 children');
 
             ok(true, 'Attempt to close all child views');
-            result = base_view.closeChildViews();
+            result = view.closeChildViews();
             ok(true, 'Ran without exception');
-            strictEqual(result, base_view, 'Returned this');
-            strictEqual(base_view.children.length, 0, 'base_view has 0 children');
+            strictEqual(result, view, 'Returned this');
+            strictEqual(view.children.length, 0, 'view has 0 children');
 
             start();
         });
