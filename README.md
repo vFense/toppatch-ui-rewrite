@@ -62,30 +62,35 @@ grunt
 
 The built version of Remediation Vault's Web UI will be put in the `/dist` subdirectory.
 
-## Grunt: The javascript task runner
+## Grunt commands for developers
 
-Remediation Vault's Web UI uses [Grunt](http://gruntjs.com/) to automate certain development and distribution tasks. It's how we compile our code, run tests, and more. To use it, install the required dependencies as directed and then run some Grunt commands.
+### Compile
 
-### Install Grunt
+```bash
+grunt
+```
 
-From the command line:
+Runs tests locally and then compiles the CSS and JavaScript into `/dist`.
 
-0. `cd` into the repo's root directory.
-1. Install `grunt-cli` globally with `npm install -g grunt-cli`  (sudo may be required).
-2. Install the [necessary local dependencies](package.json) via `npm install`
+### Test
 
-**Unfamiliar with `npm`? Don't have node installed?** npm stands for [node packaged modules](http://npmjs.org/) and is a way to manage development dependencies through node.js. [Download and install node.js](http://nodejs.org/download/) before proceeding.
+```bash
+grunt test
+```
 
-### Available Grunt commands
-
-#### Build - `grunt`
-Run `grunt` to run tests locally and compile the CSS and JavaScript into `/dist`.
-
-#### Test - `grunt test`
 Runs JSHint and QUnit tests headlessly in [phantomjs](https://github.com/ariya/phantomjs/).
 
-#### Develop - `grunt dev`
-This is a convenience method for watching the **LESS, JS, and HTML** files, compiling if necessary, and hosting them at `localhost:8000`. This server will host the files under the `/app` directory
+### Dev
+
+```bash
+grunt dev
+```
+
+This is a convenience method that will `watch` **LESS**, **JS**, and **HTML** files in the `/app` directory, and host them at `localhost:8000`.
+
+Notes:
+
+> LESS files will be compiled to `/app/css`.
 
 ### Troubleshooting dependencies
 
