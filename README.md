@@ -23,6 +23,33 @@ and `brew install node` to install Node.js.
 
 Linux/BSD users should use their appropriate package managers to install git and Node.js, or build from source.
 
+## Setting up the project environment
+
+First, clone a copy of the main Remediation Vault git repo by running:
+
+```bash
+git clone git://github.com/toppatch/toppatch-ui-rewrite.git
+```
+
+Install the [grunt-cli](http://gruntjs.com/getting-started#installing-the-cli) and [bower](http://bower.io/) packages if you haven't before. These should be done as global installs:
+
+```bash
+npm install -g grunt-cli bower
+```
+
+Make sure you have `grunt` and `bower` installed by testing:
+
+```bash
+grunt -version
+bower -version
+```
+
+Enter the Remediation Vault directory and install the Node and Bower dependencies, this time *without* specifying a global(-g) install:
+
+```bash
+cd jquery && npm install
+```
+
 ## Bower: front-end package manager
 
 Remediation Vault's Web UI uses [Bower](http://bower.io) to manage all third party packages.
