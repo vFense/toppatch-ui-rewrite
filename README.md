@@ -64,29 +64,13 @@ The built version of Remediation Vault's Web UI will be put in the `/dist` subdi
 
 ## Grunt commands for developers
 
-### Compile
+Command | Description
+:---|:---
+`grunt` | Runs tests locally and then compiles the CSS and JavaScript into `/dist`.
+`grunt test` | Runs JSHint and QUnit tests headlessly in [phantomjs](https://github.com/ariya/phantomjs/).
+`grunt dev` | A convenience method that will **watch** LESS, JS, and HTML files in the `/app` directory, and host them at `localhost:8000`.
 
-```bash
-grunt
-```
-
-Runs tests locally and then compiles the CSS and JavaScript into `/dist`.
-
-### Test
-
-```bash
-grunt test
-```
-
-Runs JSHint and QUnit tests headlessly in [phantomjs](https://github.com/ariya/phantomjs/).
-
-### Dev
-
-```bash
-grunt dev
-```
-
-This is a convenience method that will `watch` **LESS**, **JS**, and **HTML** files in the `/app` directory, and host them at `localhost:8000`. Note: LESS files will be compiled to `/app/css`, a git ignored directory.
+*Note: While running `grunt dev` LESS files will be compiled to `/app/css`, a git ignored directory.*
 
 ### Troubleshooting dependencies
 
