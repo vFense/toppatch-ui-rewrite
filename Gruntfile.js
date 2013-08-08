@@ -161,7 +161,7 @@ module.exports = function(grunt) {
         }
     });
 
-    grunt.registerTask('default', ['clean:dist', 'copy:dist', 'concurrent:dist']);
+    grunt.registerTask('default', ['test', 'clean:dist', 'copy:dist', 'concurrent:dist']);
     grunt.registerTask('dev', ['concurrent:dev', 'connect', 'open:dev', 'watch']);
     grunt.registerTask('test', ['jshint', 'connect', 'qunit']);
 };
