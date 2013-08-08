@@ -37,7 +37,7 @@ From the command line:
 
 ## Grunt: The javascript task runner
 
-Remediation Vault's Web UI uses [Grunt](http://gruntjs.com/) to manage compilation for development and distribution.
+Remediation Vault's Web UI uses [Grunt](http://gruntjs.com/) to automate certain development and distribution tasks. It's how we compile our code, run tests, and more. To use it, install the required dependencies as directed and then run some Grunt commands.
 
 ### Install Grunt
 
