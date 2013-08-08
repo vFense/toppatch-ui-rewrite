@@ -14,7 +14,7 @@ Editor preferences are available in the [editor config](.editorconfig) for easy 
 
 ## What you need to develop/compile this project
 
-In order to develop, and compile, Remediation Vault, you need to have Node.js/npm latest, and git 1.8 or later. (Earlier versions might work OK, but are not tested.)
+In order to develop and/or compile Remediation Vault, you need to have Node.js/npm latest, and git 1.8 or later. (Earlier versions might work OK, but are not tested.)
 
 For Windows you have to download and install [git](http://git-scm.com/downloads) and [Node.js](http://nodejs.org/download/).
 
