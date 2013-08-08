@@ -72,7 +72,7 @@ Command | Description
 
 *Note: While running `grunt dev` LESS files will be compiled to `/app/css`, a git ignored directory.*
 
-### Troubleshooting dependencies
+## Troubleshooting dependencies
 
 Should you encounter problems with installing dependencies or running Grunt commands, uninstall all previous dependency versions (global and local). Then, rerun `npm install`.
 
