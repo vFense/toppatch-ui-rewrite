@@ -66,7 +66,7 @@ The built version of Remediation Vault's Web UI will be put in the `/dist` subdi
 
 Command | Description
 :---|:---
-`grunt` | Run JSHint and QUnit tests and then compile CSS and JavaScript into `/dist`.
+`grunt` | Run JSHint and QUnit tests and then compile CSS and JavaScript into the `/dist` directory.
 `grunt test` | Run JSHint and QUnit tests in [phantomjs](https://github.com/ariya/phantomjs/).
 `grunt dev` | A convenience method that will **watch** LESS, JS, and HTML files in the `/app` directory, and host them at `localhost:8000`.
 
