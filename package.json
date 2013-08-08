@@ -1,7 +1,10 @@
 {
     "name": "rvwebui",
     "version": "2.0.0-alpha",
-    "author": "TopPatch Inc.",
+    "author": {
+        "name": "TopPatch Inc.",
+        "url": "https://github.com/toppatch/toppatch-ui-rewrite/blob/master/AUTHORS.txt"
+    },
     "private": true,
     "repository": {
         "type": "git",
