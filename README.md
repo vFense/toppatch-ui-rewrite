@@ -47,7 +47,7 @@ bower -version
 Enter the Remediation Vault directory and install the Node and Bower dependencies, this time *without* specifying a global(-g) install:
 
 ```bash
-cd jquery && npm install
+cd toppatch-ui-rewrite && npm install
 ```
 
 ## Compiling this project for deployment
