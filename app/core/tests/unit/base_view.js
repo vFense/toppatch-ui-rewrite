@@ -34,7 +34,7 @@ $(document).ready(function () {
             var view = new View(),
                 result;
 
-            ok(true, 'Attempt _initChildServices()');
+            ok(true, 'Attempt view._initChildServices()');
             result = view._initChildServices();
             strictEqual(result, view, 'Returned this');
             ok(view.children instanceof Backbone.ChildViewContainer, 'Set view.children to instance of Backbone.ChildViewContainer');
@@ -48,7 +48,7 @@ $(document).ready(function () {
                 result;
 
             // registerChildView with no args
-            ok(true, 'Attempt registerChildView() with no args');
+            ok(true, 'Attempt view.registerChildView() with no args');
             result = view.registerChildView();
             strictEqual(result, view, 'Returned this');
             ok(_.isUndefined(view.children), 'view.children remains undefined');
@@ -63,7 +63,7 @@ $(document).ready(function () {
                 invalidTypes = that.invalidTypes();
 
             _.each(invalidTypes, function (value, key) {
-                ok(true, 'attempt registerChildView(' + key + ')');
+                ok(true, 'attempt view.registerChildView(' + key + ')');
                 var result = view.registerChildView(value);
                 strictEqual(result, view, 'Returned this');
                 ok(_.isUndefined(view.children), 'Successfully filtered ' + key + ' type');
@@ -79,7 +79,7 @@ $(document).ready(function () {
                 invalidTypes = that.invalidTypes(),
                 result;
 
-            ok(true, 'Attempt to add multiple invalid types at once');
+            ok(true, 'Attempt view.registerChildView() with multiple arguments');
             result = view.registerChildView.apply(view, _.values(invalidTypes));
             strictEqual(result, view, 'Returned this');
             ok(_.isUndefined(view.children), 'Successfully filtered all invalid arguments');
@@ -92,7 +92,7 @@ $(document).ready(function () {
             var view = new View(),
                 result;
 
-            ok(true, 'Attempt to add reference to view');
+            ok(true, 'Attempt view.registerChildView() with view as an argument');
             result = view.registerChildView(view);
             strictEqual(result, view, 'Returned this');
             ok(_.isUndefined(view.children), 'Successfully filtered reference to itself');
@@ -108,14 +108,14 @@ $(document).ready(function () {
                 result;
 
             // registerChild test
-            ok(true, 'Attempt to add newBackboneView');
+            ok(true, 'Attempt view.registerChildView() with a new Backbone.View');
             result = view.registerChildView(newBackboneView);
             strictEqual(result, view, 'Returned this');
             ok(!_.isUndefined(view.children), 'view.children is defined');
             strictEqual(view.children.length, 1, 'view has 1 child');
             strictEqual(view.children.findByCid(newBackboneView.cid), newBackboneView, 'newBackboneView is in view.children');
 
-            ok(true, 'Attempt to add newBaseView');
+            ok(true, 'Attempt view.registerChildView() with a new base_view');
             result = view.registerChildView(newBaseView);
             strictEqual(result, view, 'Returned this');
             strictEqual(view.children.length, 2, 'view has 2 children');
@@ -128,7 +128,7 @@ $(document).ready(function () {
             var view = new View(),
                 result;
 
-            ok(true, 'Attempt to add 3 new Backbone.View');
+            ok(true, 'Attempt view.registerChildView() with multiple new Backbone.View');
             result = view.registerChildView(new Backbone.View(), new Backbone.View(), new Backbone.View());
             strictEqual(result, view, 'Returned this');
             ok(!_.isUndefined(view.children), 'view.children is defined');
@@ -148,7 +148,7 @@ $(document).ready(function () {
 
             _.each(invalidTypes, function (value, key) {
 
-                ok(true, 'Attempt closeChildView(' + key + ')');
+                ok(true, 'Attempt view.closeChildView(' + key + ')');
                 var result = view.closeChildView(value);
                 strictEqual(result, view, 'Returned this');
                 strictEqual(view.children.length, 3, 'view still has 3 children');
@@ -168,17 +168,17 @@ $(document).ready(function () {
             view.registerChildView(childView1, childView2, childView3);
             strictEqual(view.children.length, 3, 'Start with a view that has 3 children');
 
-            ok(true, 'Attempt to remove a childView');
+            ok(true, 'Attempt view.closeChildView() with childView1 refrence');
             result = view.closeChildView(childView1);
             strictEqual(result, view, 'Returned this');
             strictEqual(view.children.length, 2, 'view has 2 children');
 
-            ok(true, 'Attempt to remove a childView');
+            ok(true, 'Attempt view.closeChildView() with childView2 refrence');
             result = view.closeChildView(childView2);
             strictEqual(result, view, 'Returned this');
             strictEqual(view.children.length, 1, 'view has 1 child');
 
-            ok(true, 'Attempt to remove a childView');
+            ok(true, 'Attempt view.closeChildView() with childView3 refrence');
             result = view.closeChildView(childView3);
             strictEqual(result, view, 'Returned this');
             strictEqual(view.children.length, 0, 'view has 0 children');
@@ -197,7 +197,7 @@ $(document).ready(function () {
             view.registerChildView(childView1, childView2, childView3);
             strictEqual(view.children.length, 3, 'Start with a view that has 3 children');
 
-            ok(true, 'Attempt to close all child views');
+            ok(true, 'Attempt view.closeChildViews()');
             result = view.closeChildViews();
             strictEqual(result, view, 'Returned this');
             strictEqual(view.children.length, 0, 'view has 0 children');
