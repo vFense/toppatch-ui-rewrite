@@ -63,6 +63,9 @@ module.exports = function(grunt) {
                 }]
             }
         },
+        jshint: {
+            all: ['Gruntfile.js', 'app/core/**/*.js']
+        },
         open: {
             dev: {
                 url: 'http://localhost:8000/'
@@ -160,5 +163,5 @@ module.exports = function(grunt) {
 
     grunt.registerTask('default', ['clean:dist', 'copy:dist', 'concurrent:dist']);
     grunt.registerTask('dev', ['concurrent:dev', 'connect', 'open:dev', 'watch']);
-    grunt.registerTask('test', ['connect', 'qunit']);
+    grunt.registerTask('test', ['jshint', 'connect', 'qunit']);
 };
