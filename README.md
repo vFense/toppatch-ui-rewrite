@@ -35,7 +35,7 @@ From the command line:
 1. Install `bower` globally with `npm install -g bower` (sudo may be required).
 2. Install the [necessary local dependencies](bower.json) via `bower install`
 
-## Compiling CSS and Javascript
+## Grunt: The javascript task runner
 
 Remediation Vault's Web UI uses [Grunt](http://gruntjs.com/) to manage compilation for development and distribution.
 
