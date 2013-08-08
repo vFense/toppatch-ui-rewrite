@@ -50,6 +50,17 @@ Enter the Remediation Vault directory and install the Node and Bower dependencie
 cd jquery && npm install
 ```
 
+## Compiling this project for deployment
+
+Make sure you have followed the instructions in [Setting up the project environment](#setting-up-the-project-environment)
+
+Then, to get a complete, minified, and linted version of Remediation Vault's Web UI, type the following:
+
+```bash
+grunt
+```
+
+The built version of Remediation Vault's Web UI will be put in the `/dist` subdirectory.
 
 ## Grunt: The javascript task runner
 
