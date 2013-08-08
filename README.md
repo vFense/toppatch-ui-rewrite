@@ -12,6 +12,17 @@ If your pull request contains JavaScript patches or features, you must include r
 
 Editor preferences are available in the [editor config](.editorconfig) for easy use in common text editors. Read more and download plugins at [http://editorconfig.org](http://editorconfig.org).
 
+## What you need to develop, or compile, Remediation Vault
+
+In order to develop, and compile, Remediation Vault, you need to have Node.js/npm latest, and git 1.8 or later. (Earlier versions might work OK, but are not tested.)
+
+For Windows you have to download and install [git](http://git-scm.com/downloads) and [Node.js](http://nodejs.org/download/).
+
+Mac OS users should install [Homebrew](http://mxcl.github.com/homebrew/). Once Homebrew is installed, run `brew install git` to install git,
+and `brew install node` to install Node.js.
+
+Linux/BSD users should use their appropriate package managers to install git and Node.js, or build from source.
+
 ## Bower: front-end package manager
 
 Remediation Vault's Web UI uses [Bower](http://bower.io) to manage all third party dependencies.
