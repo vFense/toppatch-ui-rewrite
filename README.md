@@ -32,7 +32,7 @@ Remediation Vault's Web UI uses [Bower](http://bower.io) to manage all third par
 From the command line:
 
 0. `cd` into the repo's root directory.
-1. Install `bower` globally with `npm install -g bower`.
+1. Install `bower` globally with `npm install -g bower` (sudo may be required).
 2. Install the [necessary local dependencies](bower.json) via `bower install`
 
 ## Compiling CSS and Javascript
@@ -44,7 +44,7 @@ Remediation Vault's Web UI uses [Grunt](http://gruntjs.com/) to manage compilati
 From the command line:
 
 0. `cd` into the repo's root directory.
-1. Install `grunt-cli` globally with `npm install -g grunt-cli`.
+1. Install `grunt-cli` globally with `npm install -g grunt-cli`  (sudo may be required).
 2. Install the [necessary local dependencies](package.json) via `npm install`
 
 **Unfamiliar with `npm`? Don't have node installed?** npm stands for [node packaged modules](http://npmjs.org/) and is a way to manage development dependencies through node.js. [Download and install node.js](http://nodejs.org/download/) before proceeding.
