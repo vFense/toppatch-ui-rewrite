@@ -5,7 +5,7 @@
     "private": true,
     "repository": {
         "type": "git",
-        "url": "https://github.com/toppatch/toppatch-ui-rewrite"
+        "url": "https://github.com/toppatch/toppatch-ui-rewrite.git"
     },
     "devDependencies": {
         "grunt": "~0.4.1",
