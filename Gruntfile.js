@@ -21,7 +21,7 @@ module.exports = function(grunt) {
          **********************/
 
         clean: {
-            dist: ['dist']
+            dist: ['<%= rv.dist %>/']
         },
         concurrent: {
             dev: [
@@ -39,7 +39,7 @@ module.exports = function(grunt) {
         connect: {
             server: {
                 options: {
-                    base: 'app/',
+                    base: '<%= rv.app %>/',
                     hostname: '*',
                     middleware: function (connect, options) {
                         return [
@@ -54,9 +54,9 @@ module.exports = function(grunt) {
         copy: {
             dist: {
                 files: [
-                    { cwd: 'app/', src: '404.html', dest: 'dist/', expand: true },
-                    { cwd: 'app/', src: 'robots.txt', dest: 'dist/', expand: true },
-                    { cwd: 'app/', src: 'images/*', dest: 'dist/', expand: true}
+                    { cwd: '<%= rv.app %>/', src: '404.html', dest: '<%= rv.dist %>/', expand: true },
+                    { cwd: '<%= rv.app %>/', src: 'robots.txt', dest: '<%= rv.dist %>/', expand: true },
+                    { cwd: '<%= rv.app %>/', src: 'images/*', dest: '<%= rv.dist %>/', expand: true}
                 ]
             }
         },
@@ -71,7 +71,7 @@ module.exports = function(grunt) {
             }
         },
         jshint: {
-            all: ['Gruntfile.js', 'app/core/**/*.js']
+            all: ['Gruntfile.js', '<%= rv.app %>/core/**/*.js']
         },
         open: {
             dev: {
@@ -129,14 +129,14 @@ module.exports = function(grunt) {
                     insertRequire: ['core/js/main'],
                     name: 'vendor/requirejs/require',
                     optimize: 'uglify2',
-                    out: '<%= rv.dist %>/js/core.min.js'
+                    out: '<%= rv.dist %>/js/toppatch-ui.js'
                 }
             }
         },
         targethtml: {
             dist: {
                 files: {
-                    'dist/index.html': 'app/index.html'
+                    '<%= rv.dist %>/index.html': '<%= rv.app %>/index.html'
                 }
             }
         },
