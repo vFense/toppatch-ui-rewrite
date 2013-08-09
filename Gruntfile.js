@@ -13,7 +13,7 @@ module.exports = function(grunt) {
             '/**\n' +
             ' * <%= pkg.name %> v<%= pkg.version %>\n' +
             ' * www.toppatch.com\n *\n' +
-            ' * Copyright (c) <%= grunt.template.today("yyyy") %> <%= pkg.author %>\n' +
+            ' * Copyright (c) 2012, <%= grunt.template.today("yyyy") %> <%= pkg.author %>\n' +
             ' */\n',
 
         /**********************
