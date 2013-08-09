@@ -23,6 +23,16 @@ module.exports = function(grunt) {
         clean: {
             dist: ['<%= rv.dist %>/']
         },
+        concat: {
+            options: {
+                stripBanners: true,
+                banner: '<%= banner %>'
+            },
+            dist: {
+                src: '<%= rv.dist %>/js/toppatch-ui.js',
+                dest: '<%= rv.dist %>/js/toppatch-ui.js'
+            }
+        },
         concurrent: {
             dev: [
                 'recess:application',
@@ -168,7 +178,7 @@ module.exports = function(grunt) {
         }
     });
 
-    grunt.registerTask('default', ['test', 'clean:dist', 'copy:dist', 'concurrent:dist']);
+    grunt.registerTask('default', ['test', 'clean:dist', 'copy:dist', 'concurrent:dist', 'concat']);
     grunt.registerTask('dev', ['concurrent:dev', 'connect', 'open:dev', 'watch']);
     grunt.registerTask('test', ['jshint', 'connect', 'qunit']);
 };
