@@ -19,6 +19,7 @@ define(
 
                 if (view instanceof Backbone.View) {
                     this._contentView = view;
+                    this.registerChildView(this._contentView);
                     $target
                         .empty()
                         .html(this._contentView.render().delegateEvents().el);
@@ -30,7 +31,7 @@ define(
             },
             closeContentView: function () {
                 if (!_.isUndefined(this._contentView)) {
-                    this._contentView.close();
+                    this.closeChildView(this._contentView);
                     this._contentView = undefined;
                 }
                 return this;
