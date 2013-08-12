@@ -8,10 +8,6 @@ var requirejs = {
     // paths: Path mappings for module names not found directly under baseUrl.
     // See: http://requirejs.org/docs/api.html#config-paths
     paths: {
-        // Core Javascript
-        'base_router'   : 'core/js/base_router',
-        'base_view'     : 'core/js/base_view',
-
         // RequireJS Plugins
         'async'         : 'vendor/requirejs-plugins/src/async',
         'depend'        : 'vendor/requirejs-plugins/src/depend',
@@ -77,7 +73,11 @@ var requirejs = {
         'jquery.ui.slider'      : 'vendor/jquery-ui/ui/jquery.ui.slider',
         'jquery.ui.spinner'     : 'vendor/jquery-ui/ui/jquery.ui.spinner',
         'jquery.ui.tabs'        : 'vendor/jquery-ui/ui/jquery.ui.tabs',
-        'jquery.ui.tooltip'     : 'vendor/jquery-ui/ui/jquery.ui.tooltip'
+        'jquery.ui.tooltip'     : 'vendor/jquery-ui/ui/jquery.ui.tooltip',
+
+        // Core Javascript
+        'base_router'   : 'core/js/base_router',
+        'base_view'     : 'core/js/base_view'
     },
 
     // shim: Configure dependencies, exports, and custom initialization for non-AMD scripts.
