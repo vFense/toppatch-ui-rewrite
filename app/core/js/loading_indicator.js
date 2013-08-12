@@ -1,23 +1,34 @@
 define(
-    ['text!core/templates/loading_indicator.html', 'backbone'],
-    function (template) {
+    ['text!core/templates/loading_indicator.html', 'base_view', 'backbone.modelBinder'],
+    function (template, base_view) {
         "use strict";
-        return Backbone.View.extend({
+        return base_view.extend({
             className: 'loading_indicator',
             _template: _.template(template),
-            initialize: function () { this.render(); },
+            _Model: Backbone.Model.extend({
+                defaults: {
+                    'text': ''
+                }
+            }),
+            _modelBinder: undefined,
+            initialize: function () {
+                this.model = new this._Model();
+                this._modelBinder = new Backbone.ModelBinder();
+                this.render();
+            },
             render: function () {
                 if (!this.$spinner) { this.$spinner = this._template(); }
                 this.$el.html(this.$spinner);
+                this._modelBinder.bind(this.model, this.el, {
+                    'loading-text': '[data-name=text]'
+                });
                 return this;
             },
             setLoadingText: function (text) {
-                var $element = this.$('[data-name="loading-text"]');
-                if (text) {
-                    $element.html(text);
-                } else {
-                    $element.empty();
-                }
+                this.model.set('loading-text', text);
+            },
+            getLoadingText: function (text) {
+                this.model.get('loading-text');
             }
         });
     }
