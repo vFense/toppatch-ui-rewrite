@@ -23,7 +23,7 @@ var requirejs = {
         'es5-shim'              : 'vendor/es5-shim/es5-shim',
         'highcharts'            : 'vendor/highcharts-components/highcharts.src',
         'highcharts-more'       : 'vendor/highcharts-components/highcharts-more.src',
-        'jquery'                : 'vendor/jquery/jquery-migrate',
+        'jquery'                : 'vendor/jquery/jquery',
         'livestamp'             : 'vendor/livestampjs/livestamp',
         'moment'                : 'vendor/moment/moment',
         'respond'               : 'vendor/respond/respond.src',
@@ -81,9 +81,6 @@ var requirejs = {
     // shim: Configure dependencies, exports, and custom initialization for non-AMD scripts.
     // See: http://requirejs.org/docs/api.html#config-shim
     shim: {
-        // Note: 'jquery' = jquery-migrate
-        'jquery'          : { exports: 'jQuery', deps: ['vendor/jquery/jquery'] },
-
         // Vendor Library Shims
         'underscore'            : { exports: '_' },
         'backbone'              : { exports: 'Backbone', deps: ['underscore', 'jquery'] },
