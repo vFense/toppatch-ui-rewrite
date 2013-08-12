@@ -86,8 +86,11 @@ var requirejs = {
         'backbone'              : { exports: 'Backbone', deps: ['underscore', 'jquery'] },
         'backbone.validation'   : { exports: 'Backbone.Validation', deps: ['backbone']},
 
+        'respond'               : { exports: 'respond' },
+
         'highcharts'            : { exports: 'Highcharts' },
         'highcharts-more'       : { exports: 'Highcharts.seriesTypes.bubble', deps: ['highcharts'] },
+
         'livestamp'             : { exports: '$.livestamp', deps: ['jquery', 'moment'] },
         'crel'                  : { exports: 'crel' },
         'select2'               : { exports: 'Select2', deps: ['jquery']},
