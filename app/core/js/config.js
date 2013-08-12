@@ -10,12 +10,10 @@ var requirejs = {
     paths: {
         // RequireJS Plugins
         'async'         : 'vendor/requirejs-plugins/src/async',
-        'depend'        : 'vendor/requirejs-plugins/src/depend',
         'font'          : 'vendor/requirejs-plugins/src/font',
         'goog'          : 'vendor/requirejs-plugins/src/goog',
         'image'         : 'vendor/requirejs-plugins/src/image',
         'json'          : 'vendor/requirejs-plugins/src/json',
-        //'mdown'         : 'vendor/requirejs-plugins/src/mdown',
         'noext'         : 'vendor/requirejs-plugins/src/noext',
         'propertyParser': 'vendor/requirejs-plugins/src/propertyParser',
         'text'          : 'vendor/requirejs-text/text',
