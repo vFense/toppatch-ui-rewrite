@@ -81,7 +81,7 @@ module.exports = function(grunt) {
             }
         },
         jshint: {
-            all: ['Gruntfile.js', '<%= rv.app %>/core/**/*.js']
+            all: ['Gruntfile.js', '<%= rv.app %>/core/{js,tests/unit}/*.js']
         },
         open: {
             dev: {
