@@ -59,6 +59,13 @@ module.exports = function(grunt) {
                         ];
                     }
                 }
+            },
+            test: {
+                options: {
+                    base: '<%= rv.app %>/',
+                    hostname: 'localhost',
+                    port: 8001
+                }
             }
         },
         copy: {
@@ -92,8 +99,8 @@ module.exports = function(grunt) {
             all: {
                 options: {
                     urls: [
-                        'http://localhost:8000/core/tests/config.html',
-                        'http://localhost:8000/core/tests/index.html'
+                        'http://localhost:8001/core/tests/config.html',
+                        'http://localhost:8001/core/tests/index.html'
                     ]
                 }
             }
@@ -179,6 +186,6 @@ module.exports = function(grunt) {
     });
 
     grunt.registerTask('default', ['test', 'clean:dist', 'copy:dist', 'concurrent:dist', 'concat']);
-    grunt.registerTask('dev', ['concurrent:dev', 'connect', 'open:dev', 'watch']);
-    grunt.registerTask('test', ['jshint', 'connect', 'qunit']);
+    grunt.registerTask('dev', ['concurrent:dev', 'connect:server', 'open:dev', 'watch']);
+    grunt.registerTask('test', ['jshint', 'connect:test', 'qunit']);
 };
