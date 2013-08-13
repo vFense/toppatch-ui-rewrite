@@ -8,8 +8,6 @@ define(
         'backbone.localStorage',
         'backbone.modelBinder',
         'backbone.validation',
-        'base_view',
-        'base_router',
         'es5-shim'
     ],
     function() {
