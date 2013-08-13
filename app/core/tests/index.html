@@ -6,13 +6,19 @@
     <title>Remediation Vault Unit Tests</title>
     <link rel="stylesheet" href="vendor/qunit/qunit/qunit.css" type="text/css" media="screen"/>
     <script src="vendor/jquery/jquery.js"></script>
+    <script src="vendor/underscore/underscore.js"></script>
     <script src="vendor/qunit/qunit/qunit.js"></script>
 
     <!-- load configuration -->
     <script src="core/js/config.js"></script>
+    <script>
+        requirejs_paths = requirejs.paths;
+        requirejs_shims = requirejs.shim;
+    </script>
     <script src="vendor/requirejs/require.js"></script>
 
     <!-- tests -->
+    <script src="core/tests/unit/config.js"></script>
     <script src="core/tests/unit/base_view.js"></script>
 </head>
 <body>
