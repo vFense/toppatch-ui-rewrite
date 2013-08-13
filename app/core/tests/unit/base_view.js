@@ -23,7 +23,6 @@ $(document).ready(function () {
         require(['base_view'], function() {
             ok(true, 'Attempt new view()');
             var view = new (require('base_view'))();
-            strictEqual(view.__super__, Backbone.View.prototype, 'view.__super__ points to Backbone.View.prototype');
             ok(_.isUndefined(view.children), 'view.children is undefined');
 
             start();

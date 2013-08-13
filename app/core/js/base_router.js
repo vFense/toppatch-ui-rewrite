@@ -7,10 +7,8 @@
  */
 define(['backbone'], function () {
     "use strict";
-    var __super__ = Backbone.Router.prototype;
     return Backbone.Router.extend({
-        __super__: __super__,
-        _navigate: __super__.navigate,
+        _navigate: Backbone.Router.prototype.navigate,
         navigate: function (fragment, options) {
             // Override
             // Call updateFragments after navigate
@@ -18,7 +16,7 @@ define(['backbone'], function () {
             return this.updateFragments();
         },
 
-        _route: __super__.route,
+        _route: Backbone.Router.prototype.route,
         route: function (route, name, callback) {
             // Override
             // Wrap callback so that we always updateFragments

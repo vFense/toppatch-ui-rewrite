@@ -4,7 +4,6 @@
  * Supplemental Backbone.View functions
  *
  * Includes:
- *  __super__ reference to Backbone.View.prototype
  *  Zombie Prevention
  *      Close method
  *  Child Services
@@ -17,10 +16,7 @@ define(
     ['jquery', 'backbone', 'backbone.babysitter'],
     function () {
         "use strict";
-        var __super__ = Backbone.View.prototype;
         return Backbone.View.extend({
-            __super__: __super__,
-
             // Zombie Prevention Part 1
             // Add close function to Backbone.View to prevent "Zombies"
             // Inspired by: Derick Bailey
