@@ -7,6 +7,8 @@
  */
 define(['backbone'], function () {
     "use strict";
+    var lastFragment,
+        currentFragment;
     return Backbone.Router.extend({
         _navigate: Backbone.Router.prototype.navigate,
         navigate: function (fragment, options) {
@@ -33,13 +35,13 @@ define(['backbone'], function () {
         // Getters/Setters
         updateFragments: function () {
             var newFragment = Backbone.history.getFragment();
-            if (this.currentFragment !== newFragment) {
-                this.lastFragment = this.currentFragment;
-                this.currentFragment = newFragment;
+            if (currentFragment !== newFragment) {
+                lastFragment = currentFragment;
+                currentFragment = newFragment;
             }
             return this;
         },
-        getCurrentFragment: function () { return this.currentFragment; },
-        getLastFragment: function () { return this.lastFragment; }
+        getCurrentFragment: function () { return currentFragment; },
+        getLastFragment: function () { return lastFragment; }
     });
 });
