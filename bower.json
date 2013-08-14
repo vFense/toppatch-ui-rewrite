@@ -1,5 +1,5 @@
 {
-    "name": "rvwebui",
+    "name": "toppatch-ui",
     "ignore": [
         "**/.*",
         "node_modules",
