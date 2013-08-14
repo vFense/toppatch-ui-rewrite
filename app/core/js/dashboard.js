@@ -9,7 +9,6 @@ define(
         "use strict";
         var exports = {};
         exports.View = base_view.extend({
-            __super__: base_view.prototype,
             el: '#dashboard',
             _template: _.template(template),
             setContentView: function (view) {
