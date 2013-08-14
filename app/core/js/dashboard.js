@@ -13,7 +13,7 @@ define(
             _template: _.template(template),
             setContentView: function (view) {
                 var that = this,
-                    $target = this.$('>#main');
+                    $target = this.$('#main');
                 this.closeContentView();
 
                 if (view instanceof Backbone.View) {
