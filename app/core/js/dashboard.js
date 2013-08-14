@@ -11,6 +11,18 @@ define(
         exports.View = base_view.extend({
             el: '#dashboard',
             _template: _.template(template),
+            render: function () {
+                if (this.$el.html() === "") {
+                    this.layout();
+                }
+                return this;
+            },
+            layout: function () {
+                this.$el.html(this._template({
+                    username: 'John Doe'
+                }));
+                return this;
+            },
             setContentView: function (view) {
                 var that = this,
                     $target = this.$('#main');
@@ -33,18 +45,6 @@ define(
                     this.closeChildView(this._contentView);
                     this._contentView = undefined;
                 }
-                return this;
-            },
-            render: function () {
-                if (this.$el.html() === "") {
-                    this.layout();
-                }
-                return this;
-            },
-            layout: function () {
-                this.$el.html(this._template({
-                    username: 'John Doe'
-                }));
                 return this;
             }
         });
