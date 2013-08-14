@@ -1,21 +1,24 @@
 <header>
-    <nav class="navbar">
+    <nav class="navbar" role="navigation">
         <div class="container">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <div class="navbar-brand dropdown">
-                <span id="currentPlugin">RemediationVault</span>
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                    <b class="caret"></b>
-                </a>
-                <ul class="dropdown-menu" role="menu" id="pluginSelect"></ul>
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <div class="navbar-brand dropdown">
+                    RemediationVault
+                </div>
             </div>
-            <div class="nav-collapse collapse navbar-responsive-collapse">
-                <ul class="nav navbar-nav" id="primaryNav"></ul>
-                <ul class="nav navbar-nav pull-right" id="secondaryNav">
+            <div class="navbar-collapse collapse navbar-responsive-collapse">
+                <ul class="nav navbar-nav navbar-left" id="primaryNav">
+                    <li><a href="#">Dashboard</a></li>
+                    <li><a href="#">Agents</a></li>
+                    <li><a href="#">Patches</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right" id="secondaryNav">
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             <%= username%>
