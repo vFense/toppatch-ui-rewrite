@@ -22,14 +22,22 @@ define(
             // Inspired by: Derick Bailey
             // See: http://bit.ly/odAfKo
             close: function () {
+                // Only proceed if not already closing
                 if (!this.isClosing) {
+                    // Declare that this view is closing
                     this.isClosing = true;
+
+                    // Call before close if it is a function
                     if (this.beforeClose && _.isFunction(this.beforeClose)) {
                         this.beforeClose();
                     }
+
+                    // Close child views, then remove and unbind this view
                     this.closeChildViews()
                         .remove()
                         .unbind();
+
+                    // Closing has completed
                     this.isClosing = false;
                 }
                 return this;
