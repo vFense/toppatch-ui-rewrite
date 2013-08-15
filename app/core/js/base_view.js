@@ -73,16 +73,19 @@ define(
             },
 
             closeChildView: function (view) {
-                if (view instanceof Backbone.View) {
+                // Only close the view if it is a child of "this" view.
+                if (view instanceof Backbone.View && this.children.contains(view)) {
                     if (_.isFunction(view.close)) {
                         view.close();
-                    } else if (_.isFunction(view.remove)) {
+                    } else {
                         view.remove();
                     }
+
                     this.children.remove(view);
                 }
                 return this;
             },
+
             closeChildViews: function () {
                 if (this.children instanceof Backbone.ChildViewContainer) {
                     this.children.each(function(child){
