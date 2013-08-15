@@ -7,8 +7,7 @@ define(
         'backbone.babysitter',
         'backbone.localStorage',
         'backbone.modelBinder',
-        'backbone.validation',
-        'es5-shim'
+        'backbone.validation'
     ],
     function() {
         "use strict";
