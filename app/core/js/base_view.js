@@ -53,15 +53,20 @@ define(
                 }
                 return this;
             },
+
             registerChildView: function () {
                 var that = this,
-                    args = _.filter(_.toArray(arguments), function(arg) { return arg !== that && arg instanceof Backbone.View; });
+                    args = _.filter(_.toArray(arguments), function(arg) {
+                        // Filter out any instances of "this" view
+                        // Filter out any objects that are not an instance of Backbone.View
+                        return arg !== that && arg instanceof Backbone.View;
+                    });
+                // Continue if there are any unfiltered arguments
                 if (args.length > 0) {
                     this._initChildServices();
                     _.each(args, function (child) {
-                        if (child instanceof Backbone.View) {
-                            this.children.add(child);
-                        }
+                        // See backbone.babysitter.js
+                        this.children.add(child);
                     }, this);
                 }
                 return this;
