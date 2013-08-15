@@ -90,6 +90,7 @@ module.exports = function(grunt) {
         },
         qunit: {
             options: {
+                timeout: '8100',
                 coverage: {
                     src: ['<%= rv.app %>/core/js/**/*.js'],
                     instrumentedFiles: 'temp/',
