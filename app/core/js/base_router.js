@@ -23,11 +23,15 @@ define(['backbone'], function () {
             // Override
             // Wrap callback so that we always updateFragments
             // before running the original callback
+            if (_.isFunction(name)) {
+                callback = name;
+                name = '';
+            }
             if (!callback) { callback = this[name]; }
-            var that = this,
+            var router = this,
                 newCallback = function () {
-                    that.updateFragments();
-                    if (callback) { callback.apply(that, arguments); }
+                    router.updateFragments();
+                    if (callback) { callback.apply(router, arguments); }
                 };
             return this._route.call(this, route, name, newCallback);
         },
