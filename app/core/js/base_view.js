@@ -47,16 +47,17 @@ define(
             // Heavily inspired by Backbone.Marionette.collectionView
             // ------------------------------------------------------------------------
             _initChildServices: function () {
-                this.children = new Backbone.ChildViewContainer();
+                if (!(this.children instanceof Backbone.ChildViewContainer)) {
+                    // Backbone.ChildViewContainer (backbone.babysitter.js)
+                    this.children = new Backbone.ChildViewContainer();
+                }
                 return this;
             },
             registerChildView: function () {
                 var that = this,
                     args = _.filter(_.toArray(arguments), function(arg) { return arg !== that && arg instanceof Backbone.View; });
                 if (args.length > 0) {
-                    if (!(this.children instanceof Backbone.ChildViewContainer)) {
-                        this._initChildServices();
-                    }
+                    this._initChildServices();
                     _.each(args, function (child) {
                         if (child instanceof Backbone.View) {
                             this.children.add(child);
