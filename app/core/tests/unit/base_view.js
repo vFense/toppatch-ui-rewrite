@@ -160,27 +160,21 @@ $(document).ready(function () {
         require(['base_view'], function() {
             var view = new (require('base_view'))(),
                 childView1 = new Backbone.View(),
-                childView2 = new Backbone.View(),
-                childView3 = new Backbone.View(),
+                childView2 = new (require('base_view'))(),
                 result;
 
-            view.registerChildView(childView1, childView2, childView3);
-            strictEqual(view.children.length, 3, 'Start with a view that has 3 children');
+            view.registerChildView(childView1, childView2);
+            strictEqual(view.children.length, 2, 'Start with a view that has 2 children');
 
-            ok(true, 'Attempt view.closeChildView() with childView1 refrence');
+            ok(true, 'Attempt view.closeChildView() with childView1 reference');
             result = view.closeChildView(childView1);
             strictEqual(result, view, 'Returned this');
-            strictEqual(view.children.length, 2, 'view has 2 children');
+            strictEqual(view.children.length, 1, 'view has 1 children');
 
-            ok(true, 'Attempt view.closeChildView() with childView2 refrence');
+            ok(true, 'Attempt view.closeChildView() with childView2 reference');
             result = view.closeChildView(childView2);
             strictEqual(result, view, 'Returned this');
-            strictEqual(view.children.length, 1, 'view has 1 child');
-
-            ok(true, 'Attempt view.closeChildView() with childView3 refrence');
-            result = view.closeChildView(childView3);
-            strictEqual(result, view, 'Returned this');
-            strictEqual(view.children.length, 0, 'view has 0 children');
+            strictEqual(view.children.length, 0, 'view has 0 child');
 
             start();
         });
@@ -189,12 +183,11 @@ $(document).ready(function () {
         require(['base_view'], function() {
             var view = new (require('base_view'))(),
                 childView1 = new Backbone.View(),
-                childView2 = new Backbone.View(),
-                childView3 = new Backbone.View(),
+                childView2 = new (require('base_view'))(),
                 result;
 
-            view.registerChildView(childView1, childView2, childView3);
-            strictEqual(view.children.length, 3, 'Start with a view that has 3 children');
+            view.registerChildView(childView1, childView2);
+            strictEqual(view.children.length, 2, 'Start with a view that has 2 children');
 
             ok(true, 'Attempt view.closeChildViews()');
             result = view.closeChildViews();
