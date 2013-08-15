@@ -226,4 +226,22 @@ $(document).ready(function () {
             start();
         });
     });
+    asyncTest("base_view.close() [Circular reference]", function () {
+        var $body = $('body'),
+            View = require('base_view'),
+            mainView = new View(),
+            childView = new (require('base_view'))();
+
+
+        mainView.registerChildView(childView);
+        childView.registerChildView(mainView);
+        ok(true, '[mainView] has child [childView]');
+        ok(true, '[childView] has child [mainView]');
+        ok(true, 'Close method should prevent infinite loop');
+        ok(true, 'Attempting mainVIew.close()');
+        mainView.close();
+        ok('true', 'Close method prevented infinite loop');
+
+        start();
+    });
 });
