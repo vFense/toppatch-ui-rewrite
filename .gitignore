@@ -1,8 +1,9 @@
 .DS_Store
-.idea/*
-node_modules
-npm-debug.log
-app/vendor
-app/css
-app/api
-dist
+/.idea
+/node_modules
+/npm-debug.log
+/app/vendor
+/app/css
+/app/api
+/dist
+/report
