@@ -20,15 +20,15 @@ define(
                 if (!this.$spinner) { this.$spinner = this._template(); }
                 this.$el.html(this.$spinner);
                 this._modelBinder.bind(this.model, this.el, {
-                    'loading-text': '[data-name=text]'
+                    'text': '[data-name=text]'
                 });
                 return this;
             },
             setLoadingText: function (text) {
-                this.model.set('loading-text', text);
+                this.model.set('text', text);
             },
             getLoadingText: function (text) {
-                this.model.get('loading-text');
+                this.model.get('text');
             }
         });
     }
