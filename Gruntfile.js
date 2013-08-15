@@ -89,6 +89,13 @@ module.exports = function(grunt) {
             }
         },
         qunit: {
+            options: {
+                coverage: {
+                    src: ['<%= rv.app %>/core/js/**/*.js'],
+                    instrumentedFiles: 'temp/',
+                    htmlReport: 'report/'
+                }
+            },
             all: ['<%= rv.app %>/core/tests/*.html']
         },
         recess: {
