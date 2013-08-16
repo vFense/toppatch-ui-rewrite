@@ -6,9 +6,9 @@
  * Includes:
  */
 define(['backbone'], function () {
-    "use strict";
     var lastFragment,
         currentFragment;
+    'use strict';
     return Backbone.Router.extend({
         _navigate: Backbone.Router.prototype.navigate,
         navigate: function (fragment, options) {

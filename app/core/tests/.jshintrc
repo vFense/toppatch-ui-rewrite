@@ -1,5 +1,50 @@
 {
-    "predef": {
-        "module": false
-    }
+    "bitwise"   : true,
+    "camelcase" : true,
+    "curly"     : true,
+    "eqeqeq"    : true,
+    "forin"     : true,
+    "immed"     : true,
+    "latedef"   : true,
+    "newcap"    : true,
+    "noarg"     : true,
+    "noempty"   : true,
+    "nonew"     : true,
+    "plusplus"  : true,
+    "regexp"    : true,
+    "undef"     : true,
+    "unused"    : true,
+    "strict"    : true,
+    "trailing"  : true,
+
+    "indent"    : 4,
+    "quotmark"  : true,
+
+    "browser"   : true,
+
+    "predef": [
+        "QUnit",
+        "module",
+        "test",
+        "asyncTest",
+        "expect",
+        "start",
+        "stop",
+
+        "ok",
+        "equal",
+        "notEqual",
+        "deepEqual",
+        "notDeepEqual",
+        "strictEqual",
+        "notStrictEqual",
+        "throws",
+
+        "jQuery",
+        "$",
+        "_",
+        "Backbone",
+        "require",
+        "define"
+    ]
 }

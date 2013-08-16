@@ -1,25 +1,25 @@
 $(document).ready(function () {
-    "use strict";
+    'use strict';
     module('base_view', {
         setup: function () {
             this.invalidTypes = function () {
                 return {
-                    "string": "",
-                    "number": 1,
-                    "function": function () {},
-                    "array": [],
-                    "object": {},
-                    "boolean": true,
-                    "undefined": undefined,
-                    "null": null,
-                    "Backbone.Collection": new Backbone.Collection(),
-                    "Backbone.Model": new Backbone.Model(),
-                    "Backbone.Router": new Backbone.Router()
+                    'string': '',
+                    'number': 1,
+                    'function': function () {},
+                    'array': [],
+                    'object': {},
+                    'boolean': true,
+                    'undefined': undefined,
+                    'null': null,
+                    'Backbone.Collection': new Backbone.Collection(),
+                    'Backbone.Model': new Backbone.Model(),
+                    'Backbone.Router': new Backbone.Router()
                 };
             };
         }
     });
-    asyncTest("new base_view()", function () {
+    asyncTest('new base_view()', function () {
         require(['base_view'], function() {
             ok(true, 'Attempt new view()');
             var view = new (require('base_view'))();
@@ -28,7 +28,7 @@ $(document).ready(function () {
             start();
         });
     });
-    asyncTest("base_view._initChildServices", function () {
+    asyncTest('base_view._initChildServices', function () {
         require(['base_view'], function() {
             var view = new (require('base_view'))(),
                 result;
@@ -41,7 +41,7 @@ $(document).ready(function () {
             start();
         });
     });
-    asyncTest("base_view.registerChildView() [no arguments]", function () {
+    asyncTest('base_view.registerChildView() [no arguments]', function () {
         require(['base_view'], function() {
             var view = new (require('base_view'))(),
                 result;
@@ -55,7 +55,7 @@ $(document).ready(function () {
             start();
         });
     });
-    asyncTest("base_view.registerChildView() [invalid type]", function () {
+    asyncTest('base_view.registerChildView() [invalid type]', function () {
         var that = this;
         require(['base_view'], function() {
             var view = new (require('base_view'))(),
@@ -71,7 +71,7 @@ $(document).ready(function () {
             start();
         });
     });
-    asyncTest("base_view.registerChildView() [multiple invalid types at once]", function () {
+    asyncTest('base_view.registerChildView() [multiple invalid types at once]', function () {
         var that = this;
         require(['base_view'], function() {
             var view = new (require('base_view'))(),
@@ -86,7 +86,7 @@ $(document).ready(function () {
             start();
         });
     });
-    asyncTest("base_view.registerChildView() [reference to itself]", function () {
+    asyncTest('base_view.registerChildView() [reference to itself]', function () {
         require(['base_view'], function() {
             var view = new (require('base_view'))(),
                 result;
@@ -99,7 +99,7 @@ $(document).ready(function () {
             start();
         });
     });
-    asyncTest("base_view.registerChildView() [new Backbone.View and new base_view]", function () {
+    asyncTest('base_view.registerChildView() [new Backbone.View and new base_view]', function () {
         require(['base_view'], function() {
             var view = new (require('base_view'))(),
                 newBackboneView = new Backbone.View(),
@@ -122,7 +122,7 @@ $(document).ready(function () {
             start();
         });
     });
-    asyncTest("base_view.registerChildView() [multiple Backbone.Views at once]", function () {
+    asyncTest('base_view.registerChildView() [multiple Backbone.Views at once]', function () {
         require(['base_view'], function() {
             var view = new (require('base_view'))(),
                 result;
@@ -136,7 +136,7 @@ $(document).ready(function () {
             start();
         });
     });
-    asyncTest("base_view.closeChildView() [invalid arguments]", function () {
+    asyncTest('base_view.closeChildView() [invalid arguments]', function () {
         var that = this;
         require(['base_view'], function() {
             var view = new (require('base_view'))(),
@@ -156,7 +156,7 @@ $(document).ready(function () {
             start();
         });
     });
-    asyncTest("base_view.closeChildView()", function () {
+    asyncTest('base_view.closeChildView()', function () {
         require(['base_view'], function() {
             var view = new (require('base_view'))(),
                 childView1 = new Backbone.View(),
@@ -179,7 +179,7 @@ $(document).ready(function () {
             start();
         });
     });
-    asyncTest("base_view.closeChildViews()", function () {
+    asyncTest('base_view.closeChildViews()', function () {
         require(['base_view'], function() {
             var view = new (require('base_view'))(),
                 childView1 = new Backbone.View(),
@@ -197,7 +197,7 @@ $(document).ready(function () {
             start();
         });
     });
-    asyncTest("base_view.close() [No child views]", function () {
+    asyncTest('base_view.close() [No child views]', function () {
         require(['base_view'], function() {
             var beforeCloseCalled = false,
                 isClosingSet = false,
@@ -226,9 +226,8 @@ $(document).ready(function () {
             start();
         });
     });
-    asyncTest("base_view.close() [Circular reference]", function () {
-        var $body = $('body'),
-            View = require('base_view'),
+    asyncTest('base_view.close() [Circular reference]', function () {
+        var View = require('base_view'),
             mainView = new View(),
             childView = new (require('base_view'))();
 

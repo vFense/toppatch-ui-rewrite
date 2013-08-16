@@ -1,8 +1,8 @@
 define(
     ['text!core/templates/loading_indicator.html', 'base_view', 'backbone.modelBinder'],
-    function (template, base_view) {
-        "use strict";
-        return base_view.extend({
+    function (template, baseView) {
+        'use strict';
+        return baseView.extend({
             className: 'loading_indicator',
             _template: _.template(template),
             _Model: Backbone.Model.extend({
@@ -27,7 +27,7 @@ define(
             setLoadingText: function (text) {
                 this.model.set('text', text);
             },
-            getLoadingText: function (text) {
+            getLoadingText: function () {
                 this.model.get('text');
             }
         });

@@ -15,7 +15,7 @@
 define(
     ['jquery', 'backbone', 'backbone.babysitter'],
     function () {
-        "use strict";
+        'use strict';
         return Backbone.View.extend({
             // Zombie Prevention Part 1
             // Add close function to Backbone.View to prevent "Zombies"

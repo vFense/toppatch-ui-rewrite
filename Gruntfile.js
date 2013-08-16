@@ -81,7 +81,22 @@ module.exports = function(grunt) {
             }
         },
         jshint: {
-            all: ['Gruntfile.js', '<%= rv.app %>/core/{js,tests/unit}/*.js']
+            options: {
+                jshintrc: '.jshintrc'
+            },
+            gruntfile: ['Gruntfile.js'],
+            core: {
+                options: {
+                    jshintrc: '<%= rv.app %>/core/js/.jshintrc'
+                },
+                src: ['<%= rv.app %>/core/js/*.js']
+            },
+            coreTests: {
+                options: {
+                    jshintrc: '<%= rv.app %>/core/tests/.jshintrc'
+                },
+                src: ['<%= rv.app %>/core/tests/unit/*.js']
+            }
         },
         open: {
             dev: {

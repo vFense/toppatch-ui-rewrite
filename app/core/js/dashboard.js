@@ -5,14 +5,14 @@ define(
         'bootstrap.collapse',
         'bootstrap.dropdown'
     ],
-    function (template, base_view) {
-        "use strict";
+    function (template, baseView) {
+        'use strict';
         var exports = {};
-        exports.View = base_view.extend({
+        exports.View = baseView.extend({
             el: '#dashboard',
             _template: _.template(template),
             render: function () {
-                if (this.$el.html() === "") {
+                if (this.$el.html() === '') {
                     this.layout();
                 }
                 return this;
@@ -24,8 +24,7 @@ define(
                 return this;
             },
             setContentView: function (view) {
-                var that = this,
-                    $target = this.$('#main');
+                var $target = this.$('#main');
                 this.closeContentView();
 
                 if (view instanceof Backbone.View) {

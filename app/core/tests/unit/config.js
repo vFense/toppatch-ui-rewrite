@@ -1,17 +1,17 @@
 $(document).ready(function () {
-    "use strict";
+    'use strict';
     module('require.config');
-    test("For every shim, there must be an equally named path (shim[name] && path[name] !== undefined)", function() {
-        var paths = requirejs_paths,
-            shims = requirejs_shims;
+    test('For every shim, there must be an equally named path (shim[name] && path[name] !== undefined)', function() {
+        var paths = window.requirejsPaths,
+            shims = window.requirejsShims;
 
         $.each(shims, function(shim) {
             notStrictEqual(typeof paths[shim], 'undefined', shim);
         });
     });
-    test("For every shim dependency, there must be an equally named path (shim.deps[name] && path[name] !== undefined)", function () {
-        var paths = requirejs_paths,
-            shims = requirejs_shims;
+    test('For every shim dependency, there must be an equally named path (shim.deps[name] && path[name] !== undefined)', function () {
+        var paths = window.requirejsPaths,
+            shims = window.requirejsShims;
 
         $.each(shims, function(shim, shimProps) {
             if (typeof shimProps.deps !== 'undefined') {
@@ -19,7 +19,7 @@ $(document).ready(function () {
                 $.each(shimProps.deps, function(index, dependency) {
                     if (typeof paths[dependency] === 'undefined') {
                         ok(false, [shim, ' - Dependency "', dependency, '" is undefined'].join(''));
-                        pass &= false;
+                        pass = pass && false;
                     }
                 });
                 if (pass) {
@@ -28,7 +28,7 @@ $(document).ready(function () {
             }
         });
     });
-    asyncTest("Attempt to require all paths", function () {
+    asyncTest('Attempt to require all paths', function () {
         /**
          * Previous versions of this test had race condition in which two versions of
          * bootstrap.tooltip was loading at the same time. If the version called by
@@ -38,7 +38,7 @@ $(document).ready(function () {
          * This version gets around this by waiting for each require call to complete
          * before calling the next require call.
          */
-        var paths = _.keys(requirejs_paths),
+        var paths = _.keys(window.requirejsPaths),
             pathCount = paths.length,
             pathTester,
             nextPath,
@@ -46,13 +46,13 @@ $(document).ready(function () {
 
         nextPath = function () {
             if (i < pathCount) {
-                pathTester(paths[i++], nextPath);
+                pathTester(paths[i += 1], nextPath);
             } else {
                 start();
             }
         };
 
-        pathTester = function(path, callback) {
+        pathTester = function(path) {
             require(
                 [path],
                 function () {

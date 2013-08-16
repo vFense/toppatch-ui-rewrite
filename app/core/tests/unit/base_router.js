@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    "use strict";
+    'use strict';
 
     // The following code was adapted from Backbone's router unit test logic
     var Location = function(href) {
@@ -20,7 +20,7 @@ $(document).ready(function () {
             ));
             // In IE, anchor.pathname does not contain a leading slash though
             // window.location.pathname does.
-            if (!/^\//.test(this.pathname)) this.pathname = '/' + this.pathname;
+            if (!/^\//.test(this.pathname)) { this.pathname = '/' + this.pathname; }
         },
         toString: function() {
             return this.href;
@@ -41,8 +41,8 @@ $(document).ready(function () {
     });
 
     // Start custom test logic
-    asyncTest("Test navigate override", function () {
         var testSetup = this;
+    asyncTest('Test navigate override', function () {
         require(['base_router'], function(Router) {
             testSetup.initHistory();
             var router = new Router(),
@@ -55,14 +55,14 @@ $(document).ready(function () {
 
             Backbone.history.start({pushState: false});
             router.navigate('');
-            ok(updatedFragments, "router.navigate called updateFragments");
+            ok(updatedFragments, 'router.navigate called updateFragments');
 
             start();
         });
     });
 
-    asyncTest("Test route override", function () {
         var testSetup = this;
+    asyncTest('Test route override', function () {
         require(['base_router'], function(Router) {
             testSetup.initHistory();
             var router = new Router(),

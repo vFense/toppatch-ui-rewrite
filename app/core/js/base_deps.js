@@ -10,7 +10,7 @@ define(
         'backbone.validation'
     ],
     function() {
-        "use strict";
+        'use strict';
         GLOBALS.App = {
             vent: _.extend({}, Backbone.Events)
         };
@@ -33,7 +33,7 @@ define(
             _.extend(ModelBinder.prototype, Backbone.ModelBinder.prototype);
             Backbone.ModelBinder = ModelBinder;
         } else {
-            console.warn('base_deps.js: Backbone.ModelBinder override no longer needed');
+            window.console.warn('base_deps.js: Backbone.ModelBinder override no longer needed');
         }
     }
 );
