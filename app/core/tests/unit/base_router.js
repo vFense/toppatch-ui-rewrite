@@ -41,10 +41,10 @@ $(document).ready(function () {
     });
 
     // Start custom test logic
-        var testSetup = this;
     asyncTest('Test navigate override', function () {
+        var testSuite = this;
         require(['base_router'], function(Router) {
-            testSetup.initHistory();
+            testSuite.initHistory();
             var router = new Router(),
                 updatedFragments = false;
 
@@ -61,10 +61,10 @@ $(document).ready(function () {
         });
     });
 
-        var testSetup = this;
     asyncTest('Test route override', function () {
+        var testSuite = this;
         require(['base_router'], function(Router) {
-            testSetup.initHistory();
+            testSuite.initHistory();
             var router = new Router(),
                 updatedFragments = false;
 
