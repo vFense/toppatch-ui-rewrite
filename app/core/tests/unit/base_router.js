@@ -60,7 +60,7 @@ $(document).ready(function () {
 
             Backbone.history.start({pushState: false});
             router.navigate('');
-            strictEqual(updatedFragments, 1, 'router.navigate called updateFragments');
+            strictEqual(count, 1, 'router.navigate called updateFragments');
 
             start();
         });
