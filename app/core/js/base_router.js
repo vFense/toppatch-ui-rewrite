@@ -8,13 +8,13 @@ define(['backbone'], function () {
     return Backbone.Router.extend({
         constructor: function(){
             Backbone.Router.prototype.constructor.apply(this, _.toArray(arguments));
-            this.on('route', this.updateLastFragment);
+            this.on('route', this.updateFragments);
             return this;
         },
 
         lastFragment: null,
         currentFragment: null,
-        updateLastFragment: function () {
+        updateFragments: function () {
             this.lastFragment = this.currentFragment;
             this.currentFragment = Backbone.history.getFragment();
             return this;
