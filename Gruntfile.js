@@ -138,30 +138,6 @@ module.exports = function(grunt) {
             },
             all: ['<%= rv.app %>/core/tests/*.html']
         },
-        recess: {
-            options: {
-                compile: true
-            },
-            application: {
-                files: {
-                    '<%= rv.app %>/css/application.css': ['<%= rv.app %>/less/application.less']
-                }
-            },
-            bootstrap: {
-                files: {
-                    '<%= rv.app %>/css/bootstrap.css'  : ['<%= rv.app %>/vendor/bootstrap/less/bootstrap.less']
-                }
-            },
-            dist: {
-                options: {
-                    compress: true
-                },
-                files: {
-                    '<%= rv.dist %>/css/bootstrap.css'  : ['<%= rv.app %>/vendor/bootstrap/less/bootstrap.less'],
-                    '<%= rv.dist %>/css/application.css': ['<%= rv.app %>/less/application.less']
-                }
-            }
-        },
         requirejs: {
             options: {
                 findNestedDependencies: true,
