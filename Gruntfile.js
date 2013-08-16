@@ -35,11 +35,11 @@ module.exports = function(grunt) {
         },
         concurrent: {
             dev: [
-                'recess:application',
-                'recess:bootstrap'
+                'less:application',
+                'less:bootstrap'
             ],
             dist: [
-                'recess:dist',
+                'less:dist',
                 'imagemin:dist',
                 'uglify:dist',
                 'requirejs:dist',
@@ -96,6 +96,30 @@ module.exports = function(grunt) {
                     jshintrc: '<%= rv.app %>/core/tests/.jshintrc'
                 },
                 src: ['<%= rv.app %>/core/tests/unit/*.js']
+            }
+        },
+        less: {
+            options: {
+                report: 'min'
+            },
+            application: {
+                files: {
+                    '<%= rv.app %>/css/application.css': ['<%= rv.app %>/less/application.less']
+                }
+            },
+            bootstrap: {
+                files: {
+                    '<%= rv.app %>/css/bootstrap.css'  : ['<%= rv.app %>/vendor/bootstrap/less/bootstrap.less']
+                }
+            },
+            dist: {
+                options: {
+                    yuicompress: true
+                },
+                files: {
+                    '<%= rv.dist %>/css/bootstrap.css'  : ['<%= rv.app %>/vendor/bootstrap/less/bootstrap.less'],
+                    '<%= rv.dist %>/css/application.css': ['<%= rv.app %>/less/application.less']
+                }
             }
         },
         open: {
