@@ -34,6 +34,11 @@ $(document).ready(function () {
                 Backbone.history = _.extend(new Backbone.History(), {location: location});
                 Backbone.history.interval = 9;
             };
+            this.newLocation = function (href) {
+                location.replace(href);
+                Backbone.history.checkUrl();
+                return this;
+            };
         },
         teardown: function() {
             Backbone.history.stop();
@@ -79,32 +84,28 @@ $(document).ready(function () {
             router.pages = $.noop;
             router.route('test1');
 
-            location.replace('http://example.com/#test1');
-            Backbone.history.checkUrl();
+            testSuite.newLocation('http://example.com/#test1');
 
             strictEqual(count, 1, 'Navigation to new route called updateFragments');
 
             // Create new route(route, name) --------------------------
             router.route('test2', "test2");
 
-            location.replace('http://example.com/#test2');
-            Backbone.history.checkUrl();
+            testSuite.newLocation('http://example.com/#test2');
 
             strictEqual(count, 2,'Navigation to new route called updateFragments');
 
             // Create new route(route, callback) ----------------------
             router.route('test3', $.noop);
 
-            location.replace('http://example.com/#test3');
-            Backbone.history.checkUrl();
+            testSuite.newLocation('http://example.com/#test3');
 
             strictEqual(count, 3,'Navigation to new route called updateFragments');
 
             // Create new route(route, name, callback) ----------------
             router.route("test4/", "test4", $.noop);
 
-            location.replace('http://example.com/#test4');
-            Backbone.history.checkUrl();
+            testSuite.newLocation('http://example.com/#test4');
 
             strictEqual(count, 4, 'Navigation to new route called updateFragments');
 
