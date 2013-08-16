@@ -13,7 +13,7 @@
  *  Loading indicator
  */
 define(
-    ['jquery', 'backbone', 'backbone.babysitter'],
+    ['base_deps', 'backbone.babysitter'],
     function () {
         'use strict';
         return Backbone.View.extend({
