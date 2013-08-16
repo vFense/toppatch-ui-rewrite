@@ -74,8 +74,10 @@ window.requirejs = {
         'jquery.ui.tooltip'     : 'vendor/jquery-ui/ui/jquery.ui.tooltip',
 
         // Core Javascript
+        'base_deps'     : 'core/js/base_deps',
         'base_router'   : 'core/js/base_router',
-        'base_view'     : 'core/js/base_view'
+        'base_view'     : 'core/js/base_view',
+        'monkeyPatches' : 'core/js/monkeyPatches'
     },
 
     // shim: Configure dependencies, exports, and custom initialization for non-AMD scripts.
