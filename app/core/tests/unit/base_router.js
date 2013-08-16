@@ -46,16 +46,16 @@ $(document).ready(function () {
         require(['base_router'], function(Router) {
             testSuite.initHistory();
             var router = new Router(),
-                updatedFragments = false;
+                count = 0;
 
             // Override function so we can see if it gets called
             router.updateFragments = function () {
-                updatedFragments = true;
+                count += 1;
             };
 
             Backbone.history.start({pushState: false});
             router.navigate('');
-            ok(updatedFragments, 'router.navigate called updateFragments');
+            strictEqual(updatedFragments, 1, 'router.navigate called updateFragments');
 
             start();
         });
@@ -66,11 +66,11 @@ $(document).ready(function () {
         require(['base_router'], function(Router) {
             testSuite.initHistory();
             var router = new Router(),
-                updatedFragments = false;
+                count = 0;
 
             // Override function so we can see if it gets called
             router.updateFragments = function () {
-                updatedFragments = true;
+                count += 1;
             };
 
             Backbone.history.start({pushState: false});
@@ -82,7 +82,7 @@ $(document).ready(function () {
             location.replace('http://example.com/#test1');
             Backbone.history.checkUrl();
 
-            ok(updatedFragments, "Navigation to new route called updateFragments");
+            strictEqual(count, 1, 'Navigation to new route called updateFragments');
 
             // Create new route(route, name) --------------------------
             router.route('test2', "test2");
@@ -90,7 +90,7 @@ $(document).ready(function () {
             location.replace('http://example.com/#test2');
             Backbone.history.checkUrl();
 
-            ok(updatedFragments, "Navigation to new route called updateFragments");
+            strictEqual(count, 2,'Navigation to new route called updateFragments');
 
             // Create new route(route, callback) ----------------------
             router.route('test3', $.noop);
@@ -98,7 +98,7 @@ $(document).ready(function () {
             location.replace('http://example.com/#test3');
             Backbone.history.checkUrl();
 
-            ok(updatedFragments, "Navigation to new route called updateFragments");
+            strictEqual(count, 3,'Navigation to new route called updateFragments');
 
             // Create new route(route, name, callback) ----------------
             router.route("test4/", "test4", $.noop);
@@ -106,7 +106,7 @@ $(document).ready(function () {
             location.replace('http://example.com/#test4');
             Backbone.history.checkUrl();
 
-            ok(updatedFragments, "Navigation to new route called updateFragments");
+            strictEqual(count, 4, 'Navigation to new route called updateFragments');
 
             start();
         });
