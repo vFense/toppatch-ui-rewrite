@@ -46,68 +46,35 @@ $(document).ready(function () {
     });
 
     // Start custom test logic
-    asyncTest('Test navigate override', function () {
+    asyncTest('Test fragmentHistory', function () {
         var testSuite = this;
         require(['base_router'], function(Router) {
             testSuite.initHistory();
-            var router = new Router(),
-                count = 0;
+            var router = new (Router.extend({
+                    routes: {
+                        '*any': $.noop
+                    }
+                }))();
 
-            // Override function so we can see if it gets called
-            router.updateFragments = function () {
-                count += 1;
-            };
-
-            Backbone.history.start({pushState: false});
-            router.navigate('');
-            strictEqual(count, 1, 'router.navigate called updateFragments');
-
-            start();
-        });
-    });
-
-    asyncTest('Test route override', function () {
-        var testSuite = this;
-        require(['base_router'], function(Router) {
-            testSuite.initHistory();
-            var router = new Router(),
-                count = 0;
-
-            // Override function so we can see if it gets called
-            router.updateFragments = function () {
-                count += 1;
-            };
+            ok(_.isNull(router.currentFragment), 'Current fragment is null before history start');
+            ok(_.isNull(router.lastFragment), 'Last fragment is null before history start');
 
             Backbone.history.start({pushState: false});
 
-            // Create new route(route) --------------------------------
-            router.pages = $.noop;
-            router.route('test1');
+            strictEqual(router.currentFragment, '', 'Current fragment is ""');
+            ok(_.isNull(router.lastFragment), 'Last fragment is still null');
 
+            // Navigate to #test1
             testSuite.newLocation('http://example.com/#test1');
 
-            strictEqual(count, 1, 'Navigation to new route called updateFragments');
+            strictEqual(router.currentFragment, 'test1', 'Current fragment is "test1"');
+            strictEqual(router.lastFragment, '', 'Last fragment is ""');
 
-            // Create new route(route, name) --------------------------
-            router.route('test2', 'test2');
+            // Navigate to #test1 again
+            router.navigate('test1');
 
-            testSuite.newLocation('http://example.com/#test2');
-
-            strictEqual(count, 2,'Navigation to new route called updateFragments');
-
-            // Create new route(route, callback) ----------------------
-            router.route('test3', $.noop);
-
-            testSuite.newLocation('http://example.com/#test3');
-
-            strictEqual(count, 3,'Navigation to new route called updateFragments');
-
-            // Create new route(route, name, callback) ----------------
-            router.route('test4', 'test4', $.noop);
-
-            testSuite.newLocation('http://example.com/#test4');
-
-            strictEqual(count, 4, 'Navigation to new route called updateFragments');
+            strictEqual(router.currentFragment, 'test1', 'Current fragment is "test1"');
+            strictEqual(router.lastFragment, '', 'Last fragment is ""');
 
             start();
         });
