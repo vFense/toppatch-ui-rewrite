@@ -89,7 +89,7 @@ $(document).ready(function () {
             strictEqual(count, 1, 'Navigation to new route called updateFragments');
 
             // Create new route(route, name) --------------------------
-            router.route('test2', "test2");
+            router.route('test2', 'test2');
 
             testSuite.newLocation('http://example.com/#test2');
 
