@@ -1,13 +1,8 @@
 define(
     [
-        'respond',
         'jquery',
         'underscore',
-        'backbone',
-        'backbone.babysitter',
-        'backbone.localStorage',
-        'backbone.modelBinder',
-        'backbone.validation'
+        'backbone'
     ],
     function() {
         'use strict';
