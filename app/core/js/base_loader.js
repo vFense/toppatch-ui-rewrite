@@ -11,11 +11,11 @@ define(
                 return this;
             },
             setLoadingText: function (text) {
-                this.$('[data-name"text"]').text(text);
+                this.$('[data-name="text"]').text(text);
                 return this;
             },
             getLoadingText: function () {
-                return this.$('[data-name"text"]').text();
+                return this.$('[data-name="text"]').text();
             }
         });
     }
