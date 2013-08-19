@@ -1,4 +1,4 @@
-define('monkeyPatches', ['underscore'], function() {
+define(['underscore'], function() {
     'use strict';
     var patch = {};
 
