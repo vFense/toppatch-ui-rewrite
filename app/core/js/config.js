@@ -71,13 +71,7 @@ window.requirejs = {
         'jquery.ui.slider'      : 'vendor/jquery-ui/ui/jquery.ui.slider',
         'jquery.ui.spinner'     : 'vendor/jquery-ui/ui/jquery.ui.spinner',
         'jquery.ui.tabs'        : 'vendor/jquery-ui/ui/jquery.ui.tabs',
-        'jquery.ui.tooltip'     : 'vendor/jquery-ui/ui/jquery.ui.tooltip',
-
-        // Core Javascript
-        'base_deps'     : 'core/js/base_deps',
-        'base_router'   : 'core/js/base_router',
-        'base_view'     : 'core/js/base_view',
-        'monkeyPatches' : 'core/js/monkeyPatches'
+        'jquery.ui.tooltip'     : 'vendor/jquery-ui/ui/jquery.ui.tooltip'
     },
 
     // shim: Configure dependencies, exports, and custom initialization for non-AMD scripts.

@@ -3,7 +3,7 @@
  * ------------------------------------------------------------------------
  * Backbone.Router function overrides
  */
-define(['base_deps'], function () {
+define(['core/js/base_deps'], function () {
     'use strict';
     return Backbone.Router.extend({
         constructor: function(){
