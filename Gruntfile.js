@@ -62,11 +62,17 @@ module.exports = function(grunt) {
             }
         },
         copy: {
+            dev: {
+                files: [
+                    { cwd: '<%= rv.app %>/vendor/bootstrap/', src: 'fonts/*', dest: '<%= rv.app %>/', expand: true }
+                ]
+            },
             dist: {
                 files: [
                     { cwd: '<%= rv.app %>/', src: '404.html', dest: '<%= rv.dist %>/', expand: true },
                     { cwd: '<%= rv.app %>/', src: 'robots.txt', dest: '<%= rv.dist %>/', expand: true },
-                    { cwd: '<%= rv.app %>/', src: 'images/*', dest: '<%= rv.dist %>/', expand: true}
+                    { cwd: '<%= rv.app %>/', src: 'images/*', dest: '<%= rv.dist %>/', expand: true },
+                    { cwd: '<%= rv.app %>/vendor/bootstrap/', src: 'fonts/*', dest: '<%= rv.dist %>/', expand: true }
                 ]
             }
         },
@@ -195,6 +201,6 @@ module.exports = function(grunt) {
     });
 
     grunt.registerTask('default', ['test', 'clean:dist', 'copy:dist', 'concurrent:dist', 'concat']);
-    grunt.registerTask('dev', ['concurrent:dev', 'connect', 'open:dev', 'watch']);
+    grunt.registerTask('dev', ['copy:dev', 'concurrent:dev', 'connect', 'open:dev', 'watch']);
     grunt.registerTask('test', ['jshint', 'qunit']);
 };
