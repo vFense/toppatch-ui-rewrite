@@ -179,11 +179,11 @@ module.exports = function(grunt) {
             },
             application: {
                 files: ['<%= rv.app %>/less/*.less'],
-                tasks: ['recess:application']
+                tasks: ['less:application']
             },
             bootstrap: {
                 files: ['<%= rv.app %>/vendor/bootstrap/less/*.less'],
-                tasks: ['recess:bootstrap']
+                tasks: ['less:bootstrap']
             },
             javascript: {
                 files: ['<%= rv.app %>/core/js/*.js']
