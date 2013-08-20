@@ -6,15 +6,15 @@ module.exports = function(grunt) {
     grunt.initConfig({
         meta: {
             app: 'app',
-            dist: 'dist'
+            dist: 'dist',
+            pkg: grunt.file.readJSON('package.json'),
+            banner:
+                '/**\n' +
+                ' * <%= meta.pkg.name %> v<%= meta.pkg.version %>\n' +
+                ' * www.toppatch.com\n *\n' +
+                ' * Copyright (c) 2012, <%= grunt.template.today("yyyy") %> <%= meta.pkg.author %>\n' +
+                ' */\n'
         },
-        pkg: grunt.file.readJSON('package.json'),
-        banner:
-            '/**\n' +
-            ' * <%= pkg.name %> v<%= pkg.version %>\n' +
-            ' * www.toppatch.com\n *\n' +
-            ' * Copyright (c) 2012, <%= grunt.template.today("yyyy") %> <%= pkg.author %>\n' +
-            ' */\n',
 
         /**********************
          * Task Configuration *
