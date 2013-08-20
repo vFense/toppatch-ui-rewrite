@@ -6,8 +6,7 @@ define(
             className: 'loading_indicator',
             _template: _.template(template),
             render: function () {
-                if (!this.$spinner) { this.$spinner = this._template(); }
-                this.$el.html(this.$spinner);
+                this.$el.html(this._template());
                 return this;
             },
             setLoadingText: function (text) {
