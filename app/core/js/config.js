@@ -1,5 +1,9 @@
 /*exported requirejs */
 var requirejs = {
+    // enforceDefine: If set to true, an error will be thrown if a script loads
+    // that does not call define() or have a shim exports string value that can
+    // be checked. This helps catch load failures in IE.
+    // See: http://requirejs.org/docs/api.html#ieloadfail
     enforceDefine: true,
 
     // baseURL: The root path to use for all module lookups.
