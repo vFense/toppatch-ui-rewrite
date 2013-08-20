@@ -1,5 +1,6 @@
 # Project paths
 /app/vendor
+/app/fonts
 /app/css
 /app/api
 /dist
