@@ -1,3 +1,4 @@
+/*exported requirejs */
 var requirejs = {
     enforceDefine: true,
 
