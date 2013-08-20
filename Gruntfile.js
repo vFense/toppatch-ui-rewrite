@@ -4,7 +4,7 @@ module.exports = function(grunt) {
     require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
 
     grunt.initConfig({
-        rv: {
+        meta: {
             app: 'app',
             dist: 'dist'
         },
@@ -21,7 +21,7 @@ module.exports = function(grunt) {
          **********************/
 
         clean: {
-            dist: ['<%= rv.dist %>/']
+            dist: ['<%= meta.dist %>/']
         },
         concat: {
             options: {
@@ -29,8 +29,8 @@ module.exports = function(grunt) {
                 banner: '<%= banner %>'
             },
             dist: {
-                src: '<%= rv.dist %>/js/toppatch-ui.js',
-                dest: '<%= rv.dist %>/js/toppatch-ui.js'
+                src: '<%= meta.dist %>/js/toppatch-ui.js',
+                dest: '<%= meta.dist %>/js/toppatch-ui.js'
             }
         },
         concurrent: {
@@ -49,7 +49,7 @@ module.exports = function(grunt) {
         connect: {
             server: {
                 options: {
-                    base: '<%= rv.app %>/',
+                    base: '<%= meta.app %>/',
                     hostname: '*',
                     middleware: function (connect, options) {
                         return [
@@ -64,15 +64,15 @@ module.exports = function(grunt) {
         copy: {
             dev: {
                 files: [
-                    { cwd: '<%= rv.app %>/vendor/bootstrap/', src: 'fonts/*', dest: '<%= rv.app %>/', expand: true }
+                    { cwd: '<%= meta.app %>/vendor/bootstrap/', src: 'fonts/*', dest: '<%= meta.app %>/', expand: true }
                 ]
             },
             dist: {
                 files: [
-                    { cwd: '<%= rv.app %>/', src: '404.html', dest: '<%= rv.dist %>/', expand: true },
-                    { cwd: '<%= rv.app %>/', src: 'robots.txt', dest: '<%= rv.dist %>/', expand: true },
-                    { cwd: '<%= rv.app %>/', src: 'images/*', dest: '<%= rv.dist %>/', expand: true },
-                    { cwd: '<%= rv.app %>/vendor/bootstrap/', src: 'fonts/*', dest: '<%= rv.dist %>/', expand: true }
+                    { cwd: '<%= meta.app %>/', src: '404.html', dest: '<%= meta.dist %>/', expand: true },
+                    { cwd: '<%= meta.app %>/', src: 'robots.txt', dest: '<%= meta.dist %>/', expand: true },
+                    { cwd: '<%= meta.app %>/', src: 'images/*', dest: '<%= meta.dist %>/', expand: true },
+                    { cwd: '<%= meta.app %>/vendor/bootstrap/', src: 'fonts/*', dest: '<%= meta.dist %>/', expand: true }
                 ]
             }
         },
@@ -80,9 +80,9 @@ module.exports = function(grunt) {
             dist: {
                 files: [{
                     expand: true,
-                    cwd: '<%= rv.dist %>/images',
+                    cwd: '<%= meta.dist %>/images',
                     src: '{,*/}*.{png,jpg,jpeg}',
-                    dest: '<%= rv.dist %>/images'
+                    dest: '<%= meta.dist %>/images'
                 }]
             }
         },
@@ -93,15 +93,15 @@ module.exports = function(grunt) {
             gruntfile: ['Gruntfile.js'],
             core: {
                 options: {
-                    jshintrc: '<%= rv.app %>/core/js/.jshintrc'
+                    jshintrc: '<%= meta.app %>/core/js/.jshintrc'
                 },
-                src: ['<%= rv.app %>/core/js/*.js']
+                src: ['<%= meta.app %>/core/js/*.js']
             },
             coreTests: {
                 options: {
-                    jshintrc: '<%= rv.app %>/core/tests/.jshintrc'
+                    jshintrc: '<%= meta.app %>/core/tests/.jshintrc'
                 },
-                src: ['<%= rv.app %>/core/tests/unit/*.js']
+                src: ['<%= meta.app %>/core/tests/unit/*.js']
             }
         },
         less: {
@@ -110,12 +110,12 @@ module.exports = function(grunt) {
             },
             application: {
                 files: {
-                    '<%= rv.app %>/css/application.css': ['<%= rv.app %>/less/application.less']
+                    '<%= meta.app %>/css/application.css': ['<%= meta.app %>/less/application.less']
                 }
             },
             bootstrap: {
                 files: {
-                    '<%= rv.app %>/css/bootstrap.css'  : ['<%= rv.app %>/vendor/bootstrap/less/bootstrap.less']
+                    '<%= meta.app %>/css/bootstrap.css'  : ['<%= meta.app %>/vendor/bootstrap/less/bootstrap.less']
                 }
             },
             dist: {
@@ -123,8 +123,8 @@ module.exports = function(grunt) {
                     yuicompress: true
                 },
                 files: {
-                    '<%= rv.dist %>/css/bootstrap.css'  : ['<%= rv.app %>/vendor/bootstrap/less/bootstrap.less'],
-                    '<%= rv.dist %>/css/application.css': ['<%= rv.app %>/less/application.less']
+                    '<%= meta.dist %>/css/bootstrap.css'  : ['<%= meta.app %>/vendor/bootstrap/less/bootstrap.less'],
+                    '<%= meta.dist %>/css/application.css': ['<%= meta.app %>/less/application.less']
                 }
             }
         },
@@ -137,12 +137,12 @@ module.exports = function(grunt) {
             options: {
                 timeout: '8100',
                 coverage: {
-                    src: ['<%= rv.app %>/core/js/**/*.js'],
+                    src: ['<%= meta.app %>/core/js/**/*.js'],
                     instrumentedFiles: 'temp/',
                     htmlReport: 'report/'
                 }
             },
-            all: ['<%= rv.app %>/core/tests/*.html']
+            all: ['<%= meta.app %>/core/tests/*.html']
         },
         requirejs: {
             options: {
@@ -152,8 +152,8 @@ module.exports = function(grunt) {
                 preserveLicenseComments: false,
                 stubModules: ['text', 'json'],
                 wrap: true,
-                mainConfigFile: '<%= rv.app %>/core/js/config.js',
-                baseUrl: '<%= rv.app %>/'
+                mainConfigFile: '<%= meta.app %>/core/js/config.js',
+                baseUrl: '<%= meta.app %>/'
             },
             dist: {
                 options: {
@@ -161,21 +161,21 @@ module.exports = function(grunt) {
                     insertRequire: ['core/js/main'],
                     name: 'vendor/requirejs/require',
                     optimize: 'uglify2',
-                    out: '<%= rv.dist %>/js/toppatch-ui.js'
+                    out: '<%= meta.dist %>/js/toppatch-ui.js'
                 }
             }
         },
         targethtml: {
             dist: {
                 files: {
-                    '<%= rv.dist %>/index.html': '<%= rv.app %>/index.html'
+                    '<%= meta.dist %>/index.html': '<%= meta.app %>/index.html'
                 }
             }
         },
         uglify: {
             dist: {
                 files: {
-                    '<%= rv.dist %>/js/modernizr.min.js': ['<%= rv.app %>/vendor/modernizr/modernizr.js']
+                    '<%= meta.dist %>/js/modernizr.min.js': ['<%= meta.app %>/vendor/modernizr/modernizr.js']
                 }
             }
         },
@@ -184,18 +184,18 @@ module.exports = function(grunt) {
                 livereload: true
             },
             application: {
-                files: ['<%= rv.app %>/less/*.less'],
+                files: ['<%= meta.app %>/less/*.less'],
                 tasks: ['less:application']
             },
             bootstrap: {
-                files: ['<%= rv.app %>/vendor/bootstrap/less/*.less'],
+                files: ['<%= meta.app %>/vendor/bootstrap/less/*.less'],
                 tasks: ['less:bootstrap']
             },
             javascript: {
-                files: ['<%= rv.app %>/core/js/*.js']
+                files: ['<%= meta.app %>/core/js/*.js']
             },
             html: {
-                files: ['<%= rv.app %>/*.html', '<%= rv.app %>/core/templates/**/*.html']
+                files: ['<%= meta.app %>/*.html', '<%= meta.app %>/core/templates/**/*.html']
             }
         }
     });
