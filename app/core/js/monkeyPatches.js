@@ -2,34 +2,22 @@ define(['underscore'], function() {
     'use strict';
     var patch = {};
 
-    /*
-     * ModelBinder 1.0.2 does not work with the latest underscore.
-     * ModelBinder is AMD ready so we can't patch it in a shim.
-     * This issue is already resolved in the ModelBinder repo,
-     * but the fix has not been tagged yet.
-     *
-     * It may be wise to drop ModelBinder at this point and make
-     * a dedicated base_model_view that has bidirectional event
-     * bindings.
-     *
-     * This function can only be called once per session
+    /**
+     * Example patch for Backbone
+     * Use Underscore's once method to ensure that the patch is only applied once
      */
-    patch.modelBinder = _.once(function () {
-        if (!Backbone || !Backbone.ModelBinder) {
-            window.console.warn('Backbone.ModelBinder is not loaded');
-        }
-        var version = Backbone.ModelBinder.VERSION;
-        if (version === '1.0.2') {
-            version = '1.0.2-patched';
-            var ModelBinder = function () {
-                _.bindAll.apply(_, [this].concat(_.functions(this)));
-            };
-            _.extend(ModelBinder, Backbone.ModelBinder);
-            _.extend(ModelBinder.prototype, Backbone.ModelBinder.prototype);
-            Backbone.ModelBinder = ModelBinder;
+    patch.examplePatch = _.once(function () {
+        var applied = false;
+        // Make sure to only apply the patch when a certain condition is met
+        if (Backbone.VERSION === '1.0.0') {
+            // Apply patch here
+            applied = true;
         } else {
-            window.console.warn('Monkey Patch for [Backbone.ModelBinder] no longer needed');
+            // If the condition is not met
+            // WARN that the patch may no longer be needed
+            window.console.warn('Example monkey patch is no longer needed');
         }
+        return applied;
     });
 
     return patch;
