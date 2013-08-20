@@ -1,4 +1,4 @@
-window.requirejs = {
+var requirejs = {
     enforceDefine: true,
 
     // baseURL: The root path to use for all module lookups.
