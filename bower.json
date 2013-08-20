@@ -12,7 +12,7 @@
         "backbone.localStorage": "~1.1.6",
         "Backbone.ModelBinder": "~1.0.2",
         "backbone-validation": "~0.8.0",
-        "bootstrap": "3.0.0-rc.2",
+        "bootstrap": "3.0.0",
         "crel": "git@github.com:KoryNunn/crel.git",
         "es5-shim": "~2.1.0",
         "font-awesome": "~3.2.1",

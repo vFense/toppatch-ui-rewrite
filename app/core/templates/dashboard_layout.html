@@ -1,5 +1,5 @@
 <header>
-    <nav class="navbar" role="navigation">
+    <nav class="navbar navbar-default" role="banner">
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
@@ -8,11 +8,11 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <div class="navbar-brand dropdown">
+                <span class="navbar-brand">
                     RemediationVault
-                </div>
+                </span>
             </div>
-            <div class="navbar-collapse collapse navbar-responsive-collapse">
+            <div class="navbar-collapse collapse navbar-responsive-collapse" role="navigation">
                 <ul class="nav navbar-nav navbar-left" id="primaryNav">
                     <li><a href="#">Dashboard</a></li>
                     <li><a href="#">Agents</a></li>
@@ -21,7 +21,7 @@
                 <ul class="nav navbar-nav navbar-right" id="secondaryNav">
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            <%= username%>
+                            <span><%= username%></span>
                             <b class="caret"></b>
                         </a>
                         <ul class="dropdown-menu">
