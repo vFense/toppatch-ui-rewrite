@@ -10,17 +10,17 @@ define(
     function () {
         'use strict';
         /**
-         * Creates an instance of BaseRegion
+         * Creates an instance of Region
          * @param {string|object} options String or object to specify the target el
-         * @returns {BaseRegion}
+         * @returns {Region}
          * @constructor
          */
-        var BaseRegion = function (options) {
+        var Region = function (options) {
             if (_.isString(options)) {
-                // new BaseRegion('#someElement');
+                // new Region('#someElement');
                 this.el = options;
             } else if (_.isObject(options) && options.el) {
-                // new BaseRegion({
+                // new Region({
                 //   el: ...,
                 //   ...
                 // });
@@ -42,9 +42,9 @@ define(
         };
 
         // Copy backbone's extend method
-        BaseRegion.extend = Backbone.Model.extend;
+        Region.extend = Backbone.Model.extend;
 
-        _.extend(BaseRegion.prototype, {
+        _.extend(Region.prototype, {
             /**
              * Makes sure that $el is an instance of Backbone.$
              * @returns {this}
@@ -134,6 +134,6 @@ define(
             }
         });
 
-        return BaseRegion;
+        return Region;
     }
 );
