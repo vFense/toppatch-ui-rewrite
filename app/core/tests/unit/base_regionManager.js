@@ -237,4 +237,27 @@ $(document).ready(function () {
             }
         );
     });
+
+    asyncTest('addRegions', function () {
+        require(
+            ['core/js/base_regionManager', 'core/js/base_region'],
+            function (RegionManager) {
+                var regionManager = new RegionManager(),
+                    result;
+
+                result = regionManager.addRegions({
+                    'header': '#header',
+                    'main': '#main',
+                    'footer': '#footer'
+                });
+
+                strictEqual(regionManager.length, 3, 'Added 3 regions; header, main, footer');
+                ok(regionManager.has('header'), 'regionManager has header reference');
+                ok(regionManager.has('main'),   'regionManager has main reference');
+                ok(regionManager.has('footer'), 'regionManager has footer reference');
+
+                start();
+            }
+        );
+    });
 });

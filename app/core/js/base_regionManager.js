@@ -83,6 +83,19 @@ define(
                     this._store(name, region);
                 }
                 return this;
+            },
+
+            /**
+             * Add multiple regions via one method call
+             * @param regions {Object} Name:Definition pairs to pass to addRegion
+             * @returns {*}
+             */
+            addRegions: function (regions) {
+                _.each(regions, function (definition, name) {
+                    this.addRegion(name, definition);
+                }, this);
+                return this;
+            },
             }
         });
 
