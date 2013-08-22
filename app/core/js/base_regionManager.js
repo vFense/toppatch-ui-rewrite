@@ -43,6 +43,36 @@ define(
             get: function (name) {
                 return this._regions[name];
             },
+
+            /**
+             * Add a region as defined by definition, at the key name
+             * @param name {string} Name to identify the region
+             * @param definition {Region|Object|String} A region to store, or
+             *          an Object with attribute to create a new Region with, or
+             *          a String to create a new Region with.
+             * @returns {this}
+             */
+            addRegion: function (name, definition) {
+                if (!_.isUndefined(definition)) {
+                    // Although numbers are acceptable keys, it is not recommended
+                    if (!_.isString(name)) {
+                        throw new TypeError('Expected name to be a string');
+                    }
+
+                    var region;
+                    // If definition is a Region, then use it directly.
+                    // Otherwise, attempt to create a new Region
+                    if (definition instanceof Region) {
+                        region = definition;
+                    } else {
+                        // Let region test the definition
+                        region = new Region(definition);
+                    }
+
+                    this._store(name, region);
+                }
+                return this;
+            }
         });
 
         // The following code is inspired by Backbone's source code

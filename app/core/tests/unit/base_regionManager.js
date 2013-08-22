@@ -166,4 +166,51 @@ $(document).ready(function () {
             }
         );
     });
+
+    asyncTest('addRegion', function () {
+        require(
+            ['core/js/base_regionManager', 'core/js/base_region'],
+            function (RegionManager, Region) {
+                var regionManager = new RegionManager(),
+                    region = new Region('body'),
+                    result;
+
+                // addRegion with no arguments
+                result = regionManager.addRegion();
+                strictEqual(regionManager.length, 0, 'addRegion called with no arguments, added 0 regions');
+                strictEqual(result, regionManager, 'addRegion returns this');
+
+                // Call addRegion with invalid 'name' argument
+                QUnit.throws(function () {
+                    regionManager.addRegion(1, 'body');
+                }, TypeError, 'addRegion throws TypeError when "name" is not a string');
+
+                // Call addRegion with Region object as region argument
+                result = regionManager.addRegion('header', region);
+                ok(regionManager.has('header'), 'addRegion added "header" to _regions');
+                strictEqual(regionManager.get('header'), region,
+                    'Header region is properly stored'
+                );
+                strictEqual(regionManager.length, 1, 'regionManager now has 1 region');
+
+                // Call addRegion with string as region argument
+                result = regionManager.addRegion('main', '#main');
+                ok(regionManager.has('main'), 'addRegion added "main" to _regions');
+                deepEqual(regionManager.get('main'), new Region('#main'),
+                    'Main region is properly created, and stored'
+                );
+                strictEqual(regionManager.length, 2, 'regionManager now has 2 regions');
+
+                // Call addRegion with plain object as region argument
+                result = regionManager.addRegion('footer', {el: '#footer'});
+                ok(regionManager.has('footer'), 'addRegion added "footer" to _regions');
+                deepEqual(regionManager.get('footer'), new Region({el: '#footer'}),
+                    'Footer region is properly created, and stored'
+                );
+                strictEqual(regionManager.length, 3, 'regionManager now has 3 regions');
+
+                start();
+            }
+        );
+    });
 });
