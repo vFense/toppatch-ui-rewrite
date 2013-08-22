@@ -39,7 +39,11 @@ define(
         // The following code is inspired by Backbone's source code
         // See http://backbonejs.org/docs/backbone.html#section-71 (As of 08/22/2013)
         // Underscore methods that we want to implement on the RegionManager
-        var regionMethods = [];
+        var regionMethods = [
+            'each', 'map', 'find', 'filter', 'reject', 'every',
+            'some', 'contains', 'invoke', 'toArray', 'keys',
+            'values', 'pairs', 'pick', 'omit', 'has'
+        ];
         _.each(regionMethods, function(method) {
             RegionManager.prototype[method] = function() {
                 var args = _.toArray(arguments);
