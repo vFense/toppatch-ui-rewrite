@@ -109,6 +109,17 @@ define(
                     this._setLength();
                 }
                 return this;
+            },
+
+            /**
+             * Close all regions, but leave them attached
+             * @returns {this}
+             */
+            closeRegions: function () {
+                _.each(this._regions, function (region) {
+                    region.close();
+                }, this);
+                return this;
             }
         });
 

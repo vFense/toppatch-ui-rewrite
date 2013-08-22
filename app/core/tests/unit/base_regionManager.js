@@ -288,4 +288,32 @@ $(document).ready(function () {
             }
         );
     });
+
+    asyncTest('closeRegions', function () {
+        require(
+            ['core/js/base_regionManager', 'core/js/base_region'],
+            function (RegionManager, Region) {
+                var regionManager = new RegionManager(),
+                    testElement = $('<div></div>').attr('id', 'testID').appendTo('body'),
+                    view = new Backbone.View(),
+                    result;
+
+                regionManager.addRegions({
+                    'region': new Region('#testID')
+                });
+
+                regionManager.get('region').show(view);
+
+                strictEqual(view.$el.parent().length, 1, 'Use regionManager to show a region\'s view');
+
+                result = regionManager.closeRegions();
+                strictEqual(view.$el.parent().length, 0, 'The region\'s view was closed');
+                strictEqual(regionManager.length, 1, 'regionManager correctly retains the region');
+                strictEqual(result, regionManager, 'closeRegions returned this');
+
+                testElement.remove();
+                start();
+            }
+        );
+    });
 });
