@@ -1,6 +1,6 @@
 $(document).ready(function () {
     'use strict';
-    module('base_region', {
+    module('BaseRegion', {
         setup: function () {
             this.testID = 'testRegion';
             this.testSelector = '#' + this.testID;
@@ -12,7 +12,7 @@ $(document).ready(function () {
         }
     });
 
-    asyncTest('BaseRegion.constructor with no arguments', function () {
+    asyncTest('constructor with no arguments', function () {
         require(
             ['core/js/base_region'],
             function (BaseRegion) {
@@ -24,7 +24,7 @@ $(document).ready(function () {
         );
     });
 
-    asyncTest('BaseRegion.constructor with string', function () {
+    asyncTest('constructor with string', function () {
         require(
             ['core/js/base_region'],
             function (BaseRegion) {
@@ -39,7 +39,7 @@ $(document).ready(function () {
         );
     });
 
-    asyncTest('BaseRegion.constructor with empty object', function () {
+    asyncTest('constructor with empty object', function () {
         require(
             ['core/js/base_region'],
             function (BaseRegion) {
@@ -52,7 +52,7 @@ $(document).ready(function () {
         );
     });
 
-    asyncTest('BaseRegion.constructor with object', function () {
+    asyncTest('constructor with object', function () {
         require(
             ['core/js/base_region'],
             function (BaseRegion) {
@@ -69,7 +69,7 @@ $(document).ready(function () {
         );
     });
 
-    asyncTest('BaseRegion.extend: set el, and initialize method', function () {
+    asyncTest('extend: set el, and initialize method', function () {
         require(
             ['core/js/base_region'],
             function (BaseRegion) {
@@ -98,7 +98,7 @@ $(document).ready(function () {
         );
     });
 
-    asyncTest('BaseRegion.setElement', function () {
+    asyncTest('setElement', function () {
         require(
             ['core/js/base_region'],
             function (BaseRegion) {
@@ -128,7 +128,7 @@ $(document).ready(function () {
         );
     });
 
-    asyncTest('BaseRegion._ensureElement', function () {
+    asyncTest('_ensureElement', function () {
         require(
             ['core/js/base_region'],
             function (BaseRegion) {
@@ -162,7 +162,7 @@ $(document).ready(function () {
         );
     });
 
-    asyncTest('BaseRegion._open', function () {
+    asyncTest('_open', function () {
         var suite = this;
         require(
             ['core/js/base_region'],
@@ -187,7 +187,7 @@ $(document).ready(function () {
         );
     });
 
-    asyncTest('BaseRegion.close', function () {
+    asyncTest('close', function () {
         var suite = this;
         require(
             ['core/js/base_region', 'core/js/base_view'],
@@ -227,7 +227,7 @@ $(document).ready(function () {
         );
     });
 
-    asyncTest('BaseRegion.reset', function () {
+    asyncTest('reset', function () {
         var suite = this;
         require(
             ['core/js/base_region'],
@@ -254,7 +254,7 @@ $(document).ready(function () {
         );
     });
 
-    asyncTest('BaseRegion.show', function () {
+    asyncTest('show', function () {
         var suite = this;
         require(
             ['core/js/base_region', 'core/js/base_view'],
