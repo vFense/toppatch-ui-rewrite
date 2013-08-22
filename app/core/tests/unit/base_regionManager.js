@@ -17,6 +17,9 @@ $(document).ready(function () {
         );
     });
 
+    // We want to make sure that each mixin works
+    // as expected within the RegionManager context.
+    // Each underscore method is fully trusted.
     asyncTest('regionMethod mixins', function () {
         require(
             ['core/js/base_regionManager'],
