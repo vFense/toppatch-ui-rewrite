@@ -276,7 +276,7 @@ $(document).ready(function () {
                 });
 
                 result = regionManager.removeRegion('a');
-                strictEqual(result, regionManager, '_remove returned this');
+                strictEqual(result, regionManager, 'removeRegion returned this');
                 strictEqual(regionManager.length, 2, 'Length okay');
                 strictEqual(regionManager.get('a'), undefined, 'Region "a" was removed successfully');
 
