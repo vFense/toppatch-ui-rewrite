@@ -7,8 +7,9 @@
  */
 define(
     ['core/js/base_region'],
-    function (Region) {
+    function () {
         'use strict';
+        var Region = require('core/js/base_region');
         /**
          * Creates an instance of RegionManager
          * @returns {this}
