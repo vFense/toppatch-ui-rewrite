@@ -23,6 +23,16 @@ define(
 
         _.extend(RegionManager.prototype, {
             /**
+             * Set the this.length
+             * @returns {this}
+             * @private
+             */
+            _setLength: function () {
+                this.length = _.size(this._regions);
+                return this;
+            },
+
+            /**
              * Add the region to the _regions object at the named key
              * Update the cached _regions length
              * @param name
@@ -32,7 +42,7 @@ define(
              */
             _store: function (name, region) {
                 this._regions[name] = region;
-                this.length = _.size(this._regions);
+                this._setLength();
                 return this;
             },
 

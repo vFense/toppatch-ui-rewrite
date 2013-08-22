@@ -115,6 +115,30 @@ $(document).ready(function () {
         );
     });
 
+    asyncTest('_setLength', function () {
+        require(
+            ['core/js/base_regionManager'],
+            function (RegionManager) {
+                var regionManager = new RegionManager(),
+                    result;
+
+                result = regionManager._setLength();
+                strictEqual(regionManager.length, 0);
+                strictEqual(result, regionManager, '_setLength returned this');
+
+                regionManager._regions = { a:1, b:2 };
+                regionManager._setLength();
+                strictEqual(regionManager.length, 2);
+
+                regionManager._regions = { a:1, b:2, c:3, d:4 };
+                regionManager._setLength();
+                strictEqual(regionManager.length, 4);
+
+                start();
+            }
+        );
+    });
+
     asyncTest('_store', function () {
         require(
             ['core/js/base_regionManager'],
