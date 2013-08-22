@@ -255,6 +255,7 @@ $(document).ready(function () {
                 ok(regionManager.has('header'), 'regionManager has header reference');
                 ok(regionManager.has('main'),   'regionManager has main reference');
                 ok(regionManager.has('footer'), 'regionManager has footer reference');
+                strictEqual(result, regionManager, 'addRegions returned this');
 
                 start();
             }
