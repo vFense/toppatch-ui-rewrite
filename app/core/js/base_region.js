@@ -30,7 +30,7 @@ define(
 
             // this.el is REQUIRED
             if(!this.el) {
-                throw new Error('An \'el\' must be specified for a region.');
+                throw new Error('A target \'el\' must be specified for a region.');
             }
 
             // Run initialize if it exists and is a function
