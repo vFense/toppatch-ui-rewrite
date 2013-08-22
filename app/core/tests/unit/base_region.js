@@ -89,7 +89,9 @@ $(document).ready(function () {
                 strictEqual(region.el, 'body', 'region.el was set by the extended Region');
                 ok(_.isFunction(region.initialize), 'region.initialize was set by the extended Region');
                 ok(initializeCalled, 'Constructor called our initialize method');
-                ok(optionsPassed && optionsPassed.test, 'Constructor passed our options to initialize method');
+                ok(_.isObject(optionsPassed) && optionsPassed.test === true,
+                    'Constructor passed our options to initialize method'
+                );
 
                 start();
             }
