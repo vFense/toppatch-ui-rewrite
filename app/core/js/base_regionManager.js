@@ -21,6 +21,19 @@ define(
         };
 
         _.extend(RegionManager.prototype, {
+            /**
+             * Add the region to the _regions object at the named key
+             * Update the cached _regions length
+             * @param name
+             * @param region
+             * @returns {this}
+             * @private
+             */
+            _store: function (name, region) {
+                this._regions[name] = region;
+                this.length = _.size(this._regions);
+                return this;
+            },
         });
 
         // The following code is inspired by Backbone's source code
