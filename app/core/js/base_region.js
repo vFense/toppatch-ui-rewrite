@@ -6,6 +6,12 @@ define(
     ['core/js/base_deps'],
     function () {
         'use strict';
+        /**
+         * Creates an instance of BaseRegion
+         * @param {string|object} options String or object to specify the target el
+         * @returns {BaseRegion}
+         * @constructor
+         */
         var BaseRegion = function (options) {
             if (_.isString(options)) {
                 // new BaseRegion('#someElement');
@@ -25,22 +31,42 @@ define(
             if (_.isFunction(this.initialize)) {
                 this.initialize.apply(this, _.toArray(arguments));
             }
+
+            return this;
         };
 
         // Copy backbone's extend method
         BaseRegion.extend = Backbone.Model.extend;
 
         _.extend(BaseRegion.prototype, {
+            /**
+             * Makes sure that $el is an instance of Backbone.$
+             * @returns {this}
+             * @private
+             */
             _ensureElement: function () {
                 if (!(this.$el instanceof Backbone.$)) {
                     this.setElement(this.el);
                 }
                 return this;
             },
+
+            /**
+             * Empty this.$el and append a view's el
+             * @param {Backbone.View} view
+             * @returns {this}
+             * @private
+             */
             _open: function(view){
                 this.$el.empty().append(view.el);
                 return this;
             },
+
+            /**
+             * Set $el and el
+             * @param {Backbone.$|string} element
+             * @returns {this}
+             */
             setElement: function (element) {
                 if (element instanceof Backbone.$) {
                     this.$el = element;
@@ -51,6 +77,12 @@ define(
                 }
                 return this;
             },
+
+            /**
+             * Replace the current view with the passed view and append it to the DOM
+             * @param {Backbone.View} view
+             * @returns {this}
+             */
             show: function (view) {
                 if (!(view instanceof Backbone.View)) {
                     throw new TypeError('Show expects an instance of Backbone.View');
@@ -67,6 +99,11 @@ define(
 
                 return this;
             },
+
+            /**
+             * Close the current view, and delete the reference to it
+             * @returns {this}
+             */
             close: function () {
                 var view = this.currentView;
                 if (view instanceof Backbone.View) {
@@ -79,6 +116,11 @@ define(
                 }
                 return this;
             },
+
+            /**
+             * Close the current view, and delete the $el reference
+             * @returns {this}
+             */
             reset: function () {
                 this.close();
                 delete this.$el;
