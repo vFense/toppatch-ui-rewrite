@@ -120,6 +120,17 @@ define(
                     region.close();
                 }, this);
                 return this;
+            },
+
+            /**
+             * Remove all regions
+             * @returns {this}
+             */
+            close: function () {
+                _.each(this._regions, function (region, name) {
+                    this.removeRegion(name);
+                }, this);
+                return this;
             }
         });
 

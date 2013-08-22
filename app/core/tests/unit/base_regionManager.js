@@ -316,4 +316,27 @@ $(document).ready(function () {
             }
         );
     });
+
+    asyncTest('close', function () {
+        require(
+            ['core/js/base_regionManager', 'core/js/base_region'],
+            function (RegionManager, Region) {
+                var regionManager = new RegionManager(),
+                    result;
+
+                regionManager.addRegions({
+                    'a': new Region('#a'),
+                    'b': new Region('#b'),
+                    'c': new Region('#c')
+                });
+
+                result = regionManager.close();
+                strictEqual(result, regionManager, 'close returned this');
+                strictEqual(regionManager.length, 0, 'Length okay');
+
+
+                start();
+            }
+        );
+    });
 });
