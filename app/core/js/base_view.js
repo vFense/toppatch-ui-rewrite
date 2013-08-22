@@ -59,6 +59,7 @@ define(
                 return this;
             },
 
+            //TODO: This method prevents us from using custom babysitting indexes, refactor?
             registerChildView: function () {
                 var that = this,
                     args = _.filter(_.toArray(arguments), function(arg) {
