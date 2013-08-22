@@ -1,7 +1,7 @@
 $(document).ready(function () {
     'use strict';
     module('require.config');
-    test('For every shim, there must be an equally named path (shim[name] && path[name] !== undefined)', function() {
+    test('Every shim needs an associated path', function() {
         var paths = window.requirejsPaths,
             shims = window.requirejsShims;
 
@@ -9,7 +9,7 @@ $(document).ready(function () {
             notStrictEqual(typeof paths[shim], 'undefined', shim);
         });
     });
-    test('For every shim dependency, there must be an equally named path (shim.deps[name] && path[name] !== undefined)', function () {
+    test('Every shim dependency needs an associated path', function () {
         var paths = window.requirejsPaths,
             shims = window.requirejsShims;
 
