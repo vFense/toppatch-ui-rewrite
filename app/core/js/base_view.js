@@ -51,6 +51,12 @@ define(
             // Child sitting services
             // Heavily inspired by Backbone.Marionette.collectionView
             // ------------------------------------------------------------------------
+
+            /**
+             * Create a new instance of Backbone.ChildViewContainer if it does not already exist
+             * @returns {this}
+             * @private
+             */
             _initChildServices: function () {
                 if (!(this.children instanceof Backbone.ChildViewContainer)) {
                     // Backbone.ChildViewContainer (backbone.babysitter.js)
@@ -78,6 +84,11 @@ define(
                 return this;
             },
 
+            /**
+             * Close a child view
+             * @param view
+             * @returns {this}
+             */
             closeChildView: function (view) {
                 // Only close the view if it is a child of "this" view.
                 if (view instanceof Backbone.View && this.children.contains(view)) {
@@ -92,6 +103,10 @@ define(
                 return this;
             },
 
+            /**
+             * Close all child views
+             * @returns {this}
+             */
             closeChildViews: function () {
                 if (this.children instanceof Backbone.ChildViewContainer) {
                     this.children.each(function(child){
