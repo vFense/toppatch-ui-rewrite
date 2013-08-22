@@ -260,4 +260,31 @@ $(document).ready(function () {
             }
         );
     });
+
+    asyncTest('removeRegion', function () {
+        require(
+            ['core/js/base_regionManager'],
+            function (RegionManager) {
+                var regionManager = new RegionManager(),
+                    result;
+
+                regionManager.addRegions({
+                    'a': '#a',
+                    'b': '#b',
+                    'c': '#c'
+                });
+
+                result = regionManager.removeRegion('a');
+                strictEqual(result, regionManager, '_remove returned this');
+                strictEqual(regionManager.length, 2, 'Length okay');
+                strictEqual(regionManager.get('a'), undefined, 'Region "a" was removed successfully');
+
+                ok(true, 'Attempt to remove Region "d" which does not exist');
+                regionManager.removeRegion('d');
+                ok(true, 'Attempt to remove Region "d" did not throw an exception');
+
+                start();
+            }
+        );
+    });
 });

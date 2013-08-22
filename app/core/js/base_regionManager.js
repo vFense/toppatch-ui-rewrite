@@ -96,6 +96,19 @@ define(
                 }, this);
                 return this;
             },
+
+            /**
+             * Remove the named region
+             * @param name {string}
+             * @returns {this}
+             */
+            removeRegion: function (name) {
+                if (this.has(name)) {
+                    this._regions[name].close();
+                    delete this._regions[name];
+                    this._setLength();
+                }
+                return this;
             }
         });
 
