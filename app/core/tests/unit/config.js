@@ -28,22 +28,21 @@ $(document).ready(function () {
             }
         });
     });
+
+    // Warning: The following test uses recursion
     asyncTest('Attempt to require all paths', function () {
-        /**
-         * Previous versions of this test had race condition in which two versions of
-         * bootstrap.tooltip was loading at the same time. If the version called by
-         * bootstrap.popover was not loaded first, bootstrap.popover would throw
-         * an uncaught exception.
-         *
-         * This version gets around this by waiting for each require call to complete
-         * before calling the next require call.
-         */
         var paths = _.keys(window.requirejsPaths),
             pathCount = paths.length,
             pathTester,
             nextPath,
             i = 0;
 
+        expect(pathCount);
+
+        // We are creating a loop that is manually stepped
+        // Each call to nextPath goes to the next step
+        // Each step will call pathTester, unless we are
+        // at the end of the paths array
         nextPath = function () {
             if (i < pathCount) {
                 pathTester(paths[i += 1], nextPath);
@@ -52,20 +51,24 @@ $(document).ready(function () {
             }
         };
 
+        // Test the given path, and call nextPath onLoad, or onLoadError
         pathTester = function(path) {
             require(
                 [path],
                 function () {
+                    // Path loaded successfully
                     ok(true, path);
                     nextPath();
                 },
                 function (error) {
+                    // Path failed to load
                     ok(false, [path, '-', error.message].join(' '));
                     nextPath();
                 }
             );
         };
 
+        // Start the first path test
         nextPath();
     });
 });
