@@ -115,7 +115,6 @@ $(document).ready(function () {
                 strictEqual(region.$el.selector, '#qunit-header', 'setElement($) set $el correctly');
                 strictEqual(region.el, '#qunit-header', 'setElement($) set el correctly');
                 strictEqual(result, region, 'region.setElement() returned region');
-                result = undefined;
 
                 selector = '#qunit-banner';
                 result = region.setElement(selector);
@@ -285,7 +284,6 @@ $(document).ready(function () {
                     'region.show(backboneView) correctly set region.currentView to backboneView'
                 );
                 strictEqual(result, region, 'region.show(backboneView) returned region');
-                result = undefined;
 
                 result = region.show(baseView);
                 strictEqual(backboneView.$el.parents().length, 0,
@@ -298,7 +296,6 @@ $(document).ready(function () {
                     'region.show(baseView) correctly set region.currentView to baseView'
                 );
                 strictEqual(result, region, 'region.show(baseView) returned region');
-                result = undefined;
 
                 // Override close to see if it gets called
                 var called = 0;
