@@ -34,6 +34,15 @@ define(
                 this.length = _.size(this._regions);
                 return this;
             },
+
+            /**
+             * Get a stored region
+             * @param name
+             * @returns {Region}
+             */
+            get: function (name) {
+                return this._regions[name];
+            },
         });
 
         // The following code is inspired by Backbone's source code

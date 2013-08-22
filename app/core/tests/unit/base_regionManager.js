@@ -148,4 +148,22 @@ $(document).ready(function () {
             }
         );
     });
+
+    asyncTest('get', function () {
+        require(
+            ['core/js/base_regionManager', 'core/js/base_region'],
+            function (RegionManager, Region) {
+                var regionManager = new RegionManager();
+
+                regionManager._regions = { a: 1, b: 2, c: 3, d: 4 };
+
+                strictEqual(regionManager.get('a'), 1);
+                strictEqual(regionManager.get('b'), 2);
+                strictEqual(regionManager.get('c'), 3);
+                strictEqual(regionManager.get('d'), 4);
+
+                start();
+            }
+        );
+    });
 });
