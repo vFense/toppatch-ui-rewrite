@@ -1,7 +1,10 @@
-// Region
-//
-// Inspired by Backbone.Marionette.region
-
+/**
+ * base_region.js
+ * ------------------------------------------------------------------------
+ * Manage views within a section of the page
+ *
+ * Inspired by Backbone.Marionette.region
+ */
 define(
     ['core/js/base_deps'],
     function () {
