@@ -1,16 +1,7 @@
 /**
  * base_view.js
  * ------------------------------------------------------------------------
- * Supplemental Backbone.View functions
- *
- * Includes:
- *  Zombie Prevention
- *      Close method
- *  Child Services
- *      Register Child View
- *      Close Child View
- *      Close Child Views
- *  Loading indicator
+ * A Backbone.View with extra functionality
  */
 define(
     ['core/js/base_deps', 'backbone.babysitter'],
