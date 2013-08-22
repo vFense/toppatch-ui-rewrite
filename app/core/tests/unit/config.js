@@ -29,12 +29,13 @@ $(document).ready(function () {
         });
     });
 
-    // Warning: The following test uses recursion
     asyncTest('Attempt to require all paths', function () {
-        var paths = _.keys(window.requirejsPaths),
+        // Use Backbone.Events to get around recursion
+        var vent = _.extend({}, window.BACKBONE.Events),
+            paths = _.keys(window.requirejsPaths),
             pathCount = paths.length,
-            pathTester,
             nextPath,
+            pathTest,
             i = 0;
 
         expect(pathCount);
@@ -45,30 +46,34 @@ $(document).ready(function () {
         // at the end of the paths array
         nextPath = function () {
             if (i < pathCount) {
-                pathTester(paths[i += 1], nextPath);
+                vent.trigger('pathTest', paths[i]);
+                i += 1;
             } else {
                 start();
             }
         };
 
         // Test the given path, and call nextPath onLoad, or onLoadError
-        pathTester = function(path) {
+        pathTest = function(path) {
             require(
                 [path],
                 function () {
                     // Path loaded successfully
                     ok(true, path);
-                    nextPath();
+                    vent.trigger('nextPath');
                 },
                 function (error) {
                     // Path failed to load
                     ok(false, [path, '-', error.message].join(' '));
-                    nextPath();
+                    vent.trigger('nextPath');
                 }
             );
         };
 
+        vent.on('nextPath', nextPath);
+        vent.on('pathTest', pathTest);
+
         // Start the first path test
-        nextPath();
+        vent.trigger('nextPath');
     });
 });

@@ -23,6 +23,8 @@
     "browser"   : true,
 
     "predef": [
+        "GLOBALS",
+
         "QUnit",
         "module",
         "test",
