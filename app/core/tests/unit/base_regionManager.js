@@ -176,7 +176,7 @@ $(document).ready(function () {
     asyncTest('get', function () {
         require(
             ['core/js/base_regionManager', 'core/js/base_region'],
-            function (RegionManager, Region) {
+            function (RegionManager) {
                 var regionManager = new RegionManager();
 
                 regionManager._regions = { a: 1, b: 2, c: 3, d: 4 };
