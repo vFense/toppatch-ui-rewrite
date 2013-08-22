@@ -73,7 +73,9 @@ $(document).ready(function () {
         require(
             ['core/js/base_region'],
             function (BaseRegion) {
-                var Region, region, initializeCalled, optionsPassed;
+                var Region, region,
+                    initializeCalled = false,
+                    optionsPassed = false;
                 Region = BaseRegion.extend({
                     el: 'body',
                     initialize: function (options) {
