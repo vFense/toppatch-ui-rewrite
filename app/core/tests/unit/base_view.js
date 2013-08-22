@@ -263,4 +263,5 @@ $(document).ready(function () {
             start();
         });
     });
+    //ToDo: BaseView.Close() with multiple child views
 });
