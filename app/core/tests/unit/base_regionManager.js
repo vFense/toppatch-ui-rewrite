@@ -117,27 +117,29 @@ $(document).ready(function () {
             ['core/js/base_regionManager'],
             function (RegionManager) {
                 var regionManager = new RegionManager(),
-                    regions = regionManager._regions;
+                    regions = regionManager._regions,
+                    result;
 
                 // Since _store is a private function, it assumes
                 // the variables passed to it are correct. We can
                 // use this fact to make simple tests.
-                regionManager._store('a', '1');
-                strictEqual(regionManager.length, 1);
-                strictEqual(regions.a, '1');
+                result = regionManager._store('a', '1');
+                strictEqual(result, regionManager, '_store() returned regionManager');
+                strictEqual(regionManager.length, 1, 'Length okay');
+                strictEqual(regions.a, '1', 'Value stored at correct key');
 
                 regionManager._store('b', {});
-                strictEqual(regionManager.length, 2);
-                deepEqual(regions.b, {});
+                strictEqual(regionManager.length, 2, 'Length okay');
+                deepEqual(regions.b, {}, 'Value stored at correct key');
 
                 regionManager._store('c', []);
-                strictEqual(regionManager.length, 3);
-                deepEqual(regions.c, []);
+                strictEqual(regionManager.length, 3, 'Length okay');
+                deepEqual(regions.c, [], 'Value stored at correct key');
 
                 // Overwrite c, length should remain 3
                 regionManager._store('c', 2);
-                strictEqual(regionManager.length, 3);
-                strictEqual(regions.c, 2);
+                strictEqual(regionManager.length, 3, 'Length okay');
+                strictEqual(regions.c, 2, 'Value stored at correct key');
 
                 start();
             }
