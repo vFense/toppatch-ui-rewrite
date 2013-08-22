@@ -10,10 +10,6 @@ define(
             if (_.isString(options)) {
                 // new BaseRegion('#someElement');
                 this.el = options;
-            } else if (_.isFunction(options)) {
-                // new BaseRegion(function () {...});
-                // User wants the el to be evaluated at show
-                this.el = options;
             } else if (_.isObject(options) && options.el) {
                 // new BaseRegion({...});
                 this.options = options;

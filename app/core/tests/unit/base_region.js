@@ -39,18 +39,6 @@ $(document).ready(function () {
         );
     });
 
-    asyncTest('BaseRegion.constructor with function', function () {
-        require(
-            ['core/js/base_region'],
-            function (BaseRegion) {
-                var selector = function() { return 'body'; },
-                    region = new BaseRegion(selector);
-                strictEqual(region.el, selector, 'Function argument correctly copied to region.el');
-                start();
-            }
-        );
-    });
-
     asyncTest('BaseRegion.constructor with empty object', function () {
         require(
             ['core/js/base_region'],
