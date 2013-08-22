@@ -1,7 +1,7 @@
 /**
  * base_router.js
  * ------------------------------------------------------------------------
- * Backbone.Router function overrides
+ * A Backbone.Router that tracks the current and last fragments
  */
 define(['core/js/base_deps'], function () {
     'use strict';
