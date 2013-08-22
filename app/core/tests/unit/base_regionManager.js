@@ -218,7 +218,7 @@ $(document).ready(function () {
                 strictEqual(regionManager.length, 1, 'regionManager now has 1 region');
 
                 // Call addRegion with string as region argument
-                result = regionManager.addRegion('main', '#main');
+                regionManager.addRegion('main', '#main');
                 ok(regionManager.has('main'), 'addRegion added "main" to _regions');
                 deepEqual(regionManager.get('main'), new Region('#main'),
                     'Main region is properly created, and stored'
@@ -226,7 +226,7 @@ $(document).ready(function () {
                 strictEqual(regionManager.length, 2, 'regionManager now has 2 regions');
 
                 // Call addRegion with plain object as region argument
-                result = regionManager.addRegion('footer', {el: '#footer'});
+                regionManager.addRegion('footer', {el: '#footer'});
                 ok(regionManager.has('footer'), 'addRegion added "footer" to _regions');
                 deepEqual(regionManager.get('footer'), new Region({el: '#footer'}),
                     'Footer region is properly created, and stored'
