@@ -198,6 +198,24 @@ $(document).ready(function () {
         });
     });
     asyncTest('base_view.close() [No child views]', function () {
+    asyncTest('BaseView.clean()', function () {
+        require(['core/js/base_view'], function(BaseView) {
+            var baseView = new BaseView(),
+                childView = new BaseView();
+
+            baseView.$el.html('test');
+            baseView.registerChildView(childView);
+
+            // All we care about here is that the child views were closed,
+            // and that the html was emptied
+            baseView.clean();
+
+            strictEqual(baseView.children.length, 0, 'view has 0 children');
+            strictEqual(baseView.$el.html(), '', 'baseView.clean() emptied its element html');
+
+            start();
+        });
+    });
         require(['core/js/base_view'], function(BaseView) {
             var beforeCloseCalled = false,
                 isClosingSet = false,

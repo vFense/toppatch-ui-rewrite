@@ -43,6 +43,11 @@ define(
                 return this;
             },
 
+            clean: function () {
+                this.closeChildViews().$el.empty();
+                return this;
+            },
+
             // Child sitting services
             // Heavily inspired by Backbone.Marionette.collectionView
             // ------------------------------------------------------------------------
