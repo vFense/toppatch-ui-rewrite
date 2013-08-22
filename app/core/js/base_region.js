@@ -20,7 +20,10 @@ define(
                 // new BaseRegion('#someElement');
                 this.el = options;
             } else if (_.isObject(options) && options.el) {
-                // new BaseRegion({...});
+                // new BaseRegion({
+                //   el: ...,
+                //   ...
+                // });
                 this.options = options;
                 this.el = this.options.el;
             }
