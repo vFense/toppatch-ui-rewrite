@@ -151,7 +151,7 @@ $(document).ready(function () {
                 // the variables passed to it are correct. We can
                 // use this fact to make simple tests.
                 result = regionManager._store('a', '1');
-                strictEqual(result, regionManager, '_store() returned regionManager');
+                strictEqual(result, regionManager, '_store() returned this');
                 strictEqual(regionManager.length, 1, 'Length okay');
                 strictEqual(regions.a, '1', 'Value stored at correct key');
 
