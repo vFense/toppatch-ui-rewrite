@@ -132,7 +132,6 @@ $(document).ready(function () {
             strictEqual(result, view, 'Returned this');
             ok(!_.isUndefined(view.children), 'view.children is defined');
             strictEqual(view.children.length, 3, 'view has 3 children');
-            strictEqual(_.uniq(view.children._views).length, 3, 'Each child is unique');
             start();
         });
     });
@@ -143,10 +142,8 @@ $(document).ready(function () {
                 invalidTypes = that.invalidTypes();
 
             view.registerChildView(new Backbone.View(), new Backbone.View(), new Backbone.View());
-            strictEqual(_.uniq(view.children._views).length, 3, 'Start with a view that has 3 unique children');
 
             _.each(invalidTypes, function (value, key) {
-
                 ok(true, 'Attempt view.closeChildView(' + key + ')');
                 var result = view.closeChildView(value);
                 strictEqual(result, view, 'Returned this');
