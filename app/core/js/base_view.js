@@ -59,7 +59,7 @@ define(
             //TODO: This method prevents us from using custom babysitting indexes, refactor?
             registerChildView: function () {
                 var that = this,
-                    args = _.filter(_.toArray(arguments), function(arg) {
+                    args = _.filter(arguments, function(arg) {
                         // Filter out any instances of "this" view
                         // Filter out any objects that are not an instance of Backbone.View
                         return arg !== that && arg instanceof Backbone.View;
