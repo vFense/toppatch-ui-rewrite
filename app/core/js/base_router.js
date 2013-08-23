@@ -12,7 +12,7 @@ define(['core/js/base_deps'], function () {
          * @returns {*}
          */
         constructor: function(){
-            Backbone.Router.prototype.constructor.apply(this, _.toArray(arguments));
+            Backbone.Router.prototype.constructor.apply(this, arguments);
             this.on('route', this.updateFragments);
             return this;
         },

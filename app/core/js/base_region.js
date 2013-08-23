@@ -35,7 +35,7 @@ define(
 
             // Run initialize if it exists and is a function
             if (_.isFunction(this.initialize)) {
-                this.initialize.apply(this, _.toArray(arguments));
+                this.initialize.apply(this, arguments);
             }
 
             return this;
