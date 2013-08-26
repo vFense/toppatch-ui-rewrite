@@ -24,7 +24,6 @@ var requirejs = {
         'text'          : 'vendor/requirejs-text/text',
 
         // Vendor Library Paths
-        'crel'                  : 'vendor/crel/crel',
         'es5-shim'              : 'vendor/es5-shim/es5-shim',
         'highcharts'            : 'vendor/highcharts-components/highcharts.src',
         'highcharts-more'       : 'vendor/highcharts-components/highcharts-more.src',
@@ -93,7 +92,6 @@ var requirejs = {
         'highcharts-more'       : { exports: 'Highcharts.seriesTypes.bubble', deps: ['highcharts'] },
 
         'livestamp'             : { exports: '$.livestamp', deps: ['jquery', 'moment'] },
-        'crel'                  : { exports: 'crel' },
         'select2'               : { exports: 'Select2', deps: ['jquery']},
 
         // Bootstrap Shims
