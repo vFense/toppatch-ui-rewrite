@@ -1,6 +1,6 @@
 define(
     [
-        'text!core/template/dashboard_layout.html',
+        'hbs!core/template/dashboard_layout',
         'core/js/base_view',
         'bootstrap.collapse',
         'bootstrap.dropdown'
@@ -10,7 +10,7 @@ define(
         var exports = {};
         exports.View = baseView.extend({
             el: '#dashboard',
-            _template: _.template(template),
+            _template: template,
             render: function () {
                 if (this.$el.html() === '') {
                     this.layout();
