@@ -16,6 +16,7 @@
         "crel": "git@github.com:KoryNunn/crel.git",
         "es5-shim": "~2.1.0",
         "font-awesome": "~3.2.1",
+        "handlebars.js": "~1.0.12",
         "highcharts-components": "~3.0.4",
         "jquery": "~1.10.2",
         "jquery-ui": "~1.10.3",
