@@ -5,6 +5,7 @@
         "node_modules",
         "app/vendor"
     ],
+    "private": true,
     "dependencies": {
         "almond": "~0.2.5",
         "backbone": "~1.0.0",
