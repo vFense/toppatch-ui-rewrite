@@ -145,9 +145,18 @@ var requirejs = {
 
     // deps: An array of dependencies to load as soon as require() is defined.
     // See: http://requirejs.org/docs/api.html#config-deps
-    deps: ['es5-shim', 'respond']
+    deps: ['es5-shim', 'respond'],
 
     // callback: A function to execute after deps have been loaded.
     // See: http://requirejs.org/docs/api.html#config-callback
     // callback: function () { 'use strict'; return this; }
+
+    // Handlebars' RequireJS loader plugin configuration
+    hbs: {
+        disableI18n: true,
+        disableHelpers: false,
+        helperDirectory: 'core/template/helpers/',
+        i18nDirectory: 'core/template/i18n/',
+        templateExtension: 'html'
+    }
 };
