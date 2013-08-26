@@ -34,6 +34,12 @@ var requirejs = {
         'select2'               : 'vendor/select2/select2',
         'underscore'            : 'vendor/underscore/underscore',
 
+        // Handlebars.js, its RequireJS plugin, and dependencies
+        'handlebars'            : 'vendor/handlebars.js/dist/handlebars',
+        'hbs'                   : 'vendor/require-handlebars-plugin/hbs',
+        'i18nprecompile'        : 'vendor/require-handlebars-plugin/hbs/i18nprecompile',
+        'json2'                 : 'core/js/json2',
+
         // Backbone Paths
         'backbone'              : 'vendor/backbone/backbone',
         'backbone.babysitter'   : 'vendor/backbone.babysitter/lib/amd/backbone.babysitter',
@@ -87,6 +93,8 @@ var requirejs = {
         'backbone.validation'   : { exports: 'Backbone.Validation', deps: ['backbone']},
 
         'respond'               : { exports: 'respond' },
+
+        'handlebars'            : { exports: 'Handlebars' },
 
         'highcharts'            : { exports: 'Highcharts' },
         'highcharts-more'       : { exports: 'Highcharts.seriesTypes.bubble', deps: ['highcharts'] },
