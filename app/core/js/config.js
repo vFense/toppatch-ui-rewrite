@@ -35,7 +35,8 @@ var requirejs = {
         'underscore'            : 'vendor/underscore/underscore',
 
         // Handlebars.js, its RequireJS plugin, and dependencies
-        'handlebars'            : 'vendor/handlebars.js/dist/handlebars',
+        // Using Handlebars.js from hbs until main handlebars.js repo fixes AMD loading issue
+        'handlebars'            : 'vendor/require-handlebars-plugin/handlebars',
         'hbs'                   : 'vendor/require-handlebars-plugin/hbs',
         'i18nprecompile'        : 'vendor/require-handlebars-plugin/hbs/i18nprecompile',
         'json2'                 : 'core/js/json2',
@@ -93,8 +94,6 @@ var requirejs = {
         'backbone.validation'   : { exports: 'Backbone.Validation', deps: ['backbone']},
 
         'respond'               : { exports: 'respond' },
-
-        'handlebars'            : { exports: 'Handlebars' },
 
         'highcharts'            : { exports: 'Highcharts' },
         'highcharts-more'       : { exports: 'Highcharts.seriesTypes.bubble', deps: ['highcharts'] },
