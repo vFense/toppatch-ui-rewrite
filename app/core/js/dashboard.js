@@ -1,6 +1,6 @@
 define(
     [
-        'text!core/templates/dashboard_layout.html',
+        'text!core/template/dashboard_layout.html',
         'core/js/base_view',
         'bootstrap.collapse',
         'bootstrap.dropdown'
