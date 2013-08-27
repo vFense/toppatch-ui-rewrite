@@ -148,7 +148,6 @@ module.exports = function(grunt) {
             options: {
                 findNestedDependencies: true,
                 inlineText: true,
-                pragmasOnSave: { excludeTpl: true },
                 preserveLicenseComments: false,
                 stubModules: ['text', 'json'],
                 wrap: true,
