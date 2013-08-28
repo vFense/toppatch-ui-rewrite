@@ -141,13 +141,4 @@ var requirejs = {
     // callback: A function to execute after deps have been loaded.
     // See: http://requirejs.org/docs/api.html#config-callback
     // callback: function () { 'use strict'; return this; }
-
-    // Handlebars' RequireJS loader plugin configuration
-    hbs: {
-        disableI18n: true,
-        disableHelpers: false,
-        helperDirectory: 'core/template/helpers/',
-        i18nDirectory: 'core/template/i18n/',
-        templateExtension: 'html'
-    }
 };
