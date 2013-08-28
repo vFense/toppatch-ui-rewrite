@@ -83,18 +83,15 @@ var requirejs = {
     // See: http://requirejs.org/docs/api.html#config-shim
     shim: {
         // Vendor Library Shims
-        'underscore'            : { exports: '_' },
         'backbone'              : { exports: 'Backbone', deps: ['underscore', 'jquery'] },
         'backbone.validation'   : { exports: 'Backbone.Validation', deps: ['backbone']},
-
-        'respond'               : { exports: 'respond' },
-
         'handlebars'            : { exports: 'Handlebars' },
         'highcharts'            : { exports: 'Highcharts' },
         'highcharts-more'       : { exports: 'Highcharts.seriesTypes.bubble', deps: ['highcharts'] },
-
         'livestamp'             : { exports: '$.livestamp', deps: ['jquery', 'moment'] },
+        'respond'               : { exports: 'respond' },
         'select2'               : { exports: 'Select2', deps: ['jquery']},
+        'underscore'            : { exports: '_' },
 
         // Bootstrap Shims
         'bootstrap.affix'       : { exports: 'jQuery.fn.affix',           deps: ['jquery'] },
