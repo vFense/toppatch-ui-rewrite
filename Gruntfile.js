@@ -5,8 +5,8 @@ module.exports = function(grunt) {
 
     grunt.initConfig({
         meta: {
-            app: 'app',
-            dist: 'dist',
+            app: 'app/',
+            dist: 'dist/',
             pkg: grunt.file.readJSON('package.json'),
             banner:
                 '/**\n' +
@@ -21,7 +21,7 @@ module.exports = function(grunt) {
          **********************/
 
         clean: {
-            dist: ['<%= meta.dist %>/']
+            dist        : ['<%= meta.dist %>'],
         },
         concat: {
             options: {
@@ -29,8 +29,8 @@ module.exports = function(grunt) {
                 banner: '<%= banner %>'
             },
             dist: {
-                src: '<%= meta.dist %>/js/toppatch-ui.js',
-                dest: '<%= meta.dist %>/js/toppatch-ui.js'
+                src: '<%= meta.dist %>js/toppatch-ui.js',
+                dest: '<%= meta.dist %>js/toppatch-ui.js'
             }
         },
         concurrent: {
@@ -49,7 +49,7 @@ module.exports = function(grunt) {
         connect: {
             server: {
                 options: {
-                    base: '<%= meta.app %>/',
+                    base: '<%= meta.app %>',
                     hostname: '*',
                     middleware: function (connect, options) {
                         return [
@@ -64,15 +64,15 @@ module.exports = function(grunt) {
         copy: {
             dev: {
                 files: [
-                    { cwd: '<%= meta.app %>/vendor/bootstrap/', src: 'fonts/*', dest: '<%= meta.app %>/', expand: true }
+                    { cwd: '<%= meta.app %>vendor/bootstrap/', src: 'fonts/*', dest: '<%= meta.app %>', expand: true }
                 ]
             },
             dist: {
                 files: [
-                    { cwd: '<%= meta.app %>/', src: '404.html', dest: '<%= meta.dist %>/', expand: true },
-                    { cwd: '<%= meta.app %>/', src: 'robots.txt', dest: '<%= meta.dist %>/', expand: true },
-                    { cwd: '<%= meta.app %>/', src: 'images/*', dest: '<%= meta.dist %>/', expand: true },
-                    { cwd: '<%= meta.app %>/vendor/bootstrap/', src: 'fonts/*', dest: '<%= meta.dist %>/', expand: true }
+                    { cwd: '<%= meta.app %>', src: '404.html', dest: '<%= meta.dist %>', expand: true },
+                    { cwd: '<%= meta.app %>', src: 'robots.txt', dest: '<%= meta.dist %>', expand: true },
+                    { cwd: '<%= meta.app %>', src: 'images/*', dest: '<%= meta.dist %>', expand: true },
+                    { cwd: '<%= meta.app %>vendor/bootstrap/', src: 'fonts/*', dest: '<%= meta.dist %>', expand: true }
                 ]
             }
         },
@@ -80,9 +80,9 @@ module.exports = function(grunt) {
             dist: {
                 files: [{
                     expand: true,
-                    cwd: '<%= meta.dist %>/images',
+                    cwd: '<%= meta.dist %>images',
                     src: '{,*/}*.{png,jpg,jpeg}',
-                    dest: '<%= meta.dist %>/images'
+                    dest: '<%= meta.dist %>images'
                 }]
             }
         },
@@ -93,15 +93,15 @@ module.exports = function(grunt) {
             gruntfile: ['Gruntfile.js'],
             core: {
                 options: {
-                    jshintrc: '<%= meta.app %>/core/js/.jshintrc'
+                    jshintrc: '<%= meta.app %>core/js/.jshintrc'
                 },
-                src: ['<%= meta.app %>/core/js/*.js']
+                src: ['<%= meta.app %>core/js/**/*.js']
             },
             coreTests: {
                 options: {
-                    jshintrc: '<%= meta.app %>/core/tests/.jshintrc'
+                    jshintrc: '<%= meta.app %>core/tests/.jshintrc'
                 },
-                src: ['<%= meta.app %>/core/tests/unit/*.js']
+                src: ['<%= meta.app %>core/tests/unit/*.js']
             }
         },
         less: {
@@ -110,12 +110,12 @@ module.exports = function(grunt) {
             },
             application: {
                 files: {
-                    '<%= meta.app %>/css/application.css': ['<%= meta.app %>/less/application.less']
+                    '<%= meta.app %>css/application.css': ['<%= meta.app %>less/application.less']
                 }
             },
             bootstrap: {
                 files: {
-                    '<%= meta.app %>/css/bootstrap.css'  : ['<%= meta.app %>/vendor/bootstrap/less/bootstrap.less']
+                    '<%= meta.app %>css/bootstrap.css'  : ['<%= meta.app %>vendor/bootstrap/less/bootstrap.less']
                 }
             },
             dist: {
@@ -123,8 +123,8 @@ module.exports = function(grunt) {
                     yuicompress: true
                 },
                 files: {
-                    '<%= meta.dist %>/css/bootstrap.css'  : ['<%= meta.app %>/vendor/bootstrap/less/bootstrap.less'],
-                    '<%= meta.dist %>/css/application.css': ['<%= meta.app %>/less/application.less']
+                    '<%= meta.dist %>css/bootstrap.css'  : ['<%= meta.app %>vendor/bootstrap/less/bootstrap.less'],
+                    '<%= meta.dist %>css/application.css': ['<%= meta.app %>less/application.less']
                 }
             }
         },
@@ -137,12 +137,12 @@ module.exports = function(grunt) {
             options: {
                 timeout: '8100',
                 coverage: {
-                    src: ['<%= meta.app %>/core/js/**/*.js'],
+                    src: ['<%= meta.app %>core/js/**/*.js'],
                     instrumentedFiles: 'temp/',
                     htmlReport: 'report/'
                 }
             },
-            all: ['<%= meta.app %>/core/tests/*.html']
+            all: ['<%= meta.app %>core/tests/*.html']
         },
         requirejs: {
             options: {
@@ -151,8 +151,8 @@ module.exports = function(grunt) {
                 preserveLicenseComments: false,
                 stubModules: ['text', 'json'],
                 wrap: true,
-                mainConfigFile: '<%= meta.app %>/core/js/config.js',
-                baseUrl: '<%= meta.app %>/'
+                mainConfigFile: '<%= meta.app %>core/js/config.js',
+                baseUrl: '<%= meta.app %>'
             },
             dist: {
                 options: {
@@ -160,11 +160,11 @@ module.exports = function(grunt) {
                     insertRequire: ['core/js/main'],
                     name: 'vendor/requirejs/require',
                     optimize: 'uglify2',
-                    out: '<%= meta.dist %>/js/toppatch-ui.js',
                     pragmasOnSave: {
                         excludeHbsParser: true,
                         excludeHbs: true,
                         excludeAfterBuild: true
+                    out: '<%= meta.dist %>js/toppatch-ui.js',
                     }
                 }
             }
@@ -172,14 +172,14 @@ module.exports = function(grunt) {
         targethtml: {
             dist: {
                 files: {
-                    '<%= meta.dist %>/index.html': '<%= meta.app %>/index.html'
+                    '<%= meta.dist %>index.html': '<%= meta.app %>index.html'
                 }
             }
         },
         uglify: {
             dist: {
                 files: {
-                    '<%= meta.dist %>/js/modernizr.min.js': ['<%= meta.app %>/vendor/modernizr/modernizr.js']
+                    '<%= meta.dist %>js/modernizr.min.js': ['<%= meta.app %>vendor/modernizr/modernizr.js']
                 }
             }
         },
@@ -188,18 +188,18 @@ module.exports = function(grunt) {
                 livereload: true
             },
             application: {
-                files: ['<%= meta.app %>/less/*.less'],
+                files: ['<%= meta.app %>less/*.less'],
                 tasks: ['less:application']
             },
             bootstrap: {
-                files: ['<%= meta.app %>/vendor/bootstrap/less/*.less'],
+                files: ['<%= meta.app %>vendor/bootstrap/less/*.less'],
                 tasks: ['less:bootstrap']
             },
             javascript: {
-                files: ['<%= meta.app %>/core/js/*.js']
+                files: ['<%= meta.app %>core/js/*.js']
             },
             html: {
-                files: ['<%= meta.app %>/*.html', '<%= meta.app %>/core/templates/**/*.html']
+                files: ['<%= meta.app %>*.html']
             }
         }
     });
