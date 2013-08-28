@@ -1,6 +1,6 @@
 define(
     [
-        'hbs!core/template/dashboard_layout',
+        'core/js/template/dashboard_layout',
         'core/js/base_view',
         'bootstrap.collapse',
         'bootstrap.dropdown'
