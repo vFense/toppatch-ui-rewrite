@@ -199,7 +199,10 @@ module.exports = function(grunt) {
                     insertRequire: ['core/js/main'],
                     name: 'vendor/requirejs/require',
                     optimize: 'uglify2',
-                    out: '<%= meta.dist %>js/toppatch-ui.js'
+                    out: '<%= meta.dist %>js/toppatch-ui.js',
+                    uglify2: {
+                        'screw-ie8': true
+                    }
                 }
             }
         },
@@ -225,7 +228,8 @@ module.exports = function(grunt) {
                         bracketize: true
                     },
                     mangle: false,
-                    compress: false
+                    compress: false,
+                    'screw-ie8': true
                 },
                 expand: true,
                 cwd: '<%= meta.temp %>/template/',

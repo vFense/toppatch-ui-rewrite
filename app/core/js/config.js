@@ -24,14 +24,12 @@ var requirejs = {
         'text'          : 'vendor/requirejs-text/text',
 
         // Vendor Library Paths
-        'es5-shim'              : 'vendor/es5-shim/es5-shim',
         'handlebars'            : 'vendor/handlebars.js/dist/handlebars.runtime',
         'highcharts'            : 'vendor/highcharts-components/highcharts.src',
         'highcharts-more'       : 'vendor/highcharts-components/highcharts-more.src',
         'jquery'                : 'vendor/jquery/jquery',
         'livestamp'             : 'vendor/livestampjs/livestamp',
         'moment'                : 'vendor/moment/moment',
-        'respond'               : 'vendor/respond/respond.src',
         'select2'               : 'vendor/select2/select2',
         'underscore'            : 'vendor/underscore/underscore',
 
@@ -89,7 +87,6 @@ var requirejs = {
         'highcharts'            : { exports: 'Highcharts' },
         'highcharts-more'       : { exports: 'Highcharts.seriesTypes.bubble', deps: ['highcharts'] },
         'livestamp'             : { exports: '$.livestamp', deps: ['jquery', 'moment'] },
-        'respond'               : { exports: 'respond' },
         'select2'               : { exports: 'Select2', deps: ['jquery']},
         'underscore'            : { exports: '_' },
 
@@ -132,11 +129,11 @@ var requirejs = {
         'jquery.ui.spinner'     : { exports: 'jQuery.ui.spinner',      deps: ['jquery.ui.core', 'jquery.ui.widget', 'jquery.ui.button']},
         'jquery.ui.tabs'        : { exports: 'jQuery.ui.tabs',         deps: ['jquery.ui.core', 'jquery.ui.widget']},
         'jquery.ui.tooltip'     : { exports: 'jQuery.ui.tooltip',      deps: ['jquery.ui.core', 'jquery.ui.widget', 'jquery.ui.position']}
-    },
+    }
 
     // deps: An array of dependencies to load as soon as require() is defined.
     // See: http://requirejs.org/docs/api.html#config-deps
-    deps: ['es5-shim', 'respond'],
+    // deps: [],
 
     // callback: A function to execute after deps have been loaded.
     // See: http://requirejs.org/docs/api.html#config-callback
