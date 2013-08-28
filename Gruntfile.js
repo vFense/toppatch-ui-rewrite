@@ -6,6 +6,7 @@ module.exports = function(grunt) {
     grunt.initConfig({
         meta: {
             app: 'app/',
+            temp: 'temp/',
             dist: 'dist/',
             pkg: grunt.file.readJSON('package.json'),
             banner:
