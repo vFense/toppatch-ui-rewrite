@@ -199,8 +199,7 @@ module.exports = function(grunt) {
                     insertRequire: ['core/js/main'],
                     name: 'vendor/requirejs/require',
                     optimize: 'uglify2',
-                    out: '<%= meta.dist %>js/toppatch-ui.js',
-                    }
+                    out: '<%= meta.dist %>js/toppatch-ui.js'
                 }
             }
         },
