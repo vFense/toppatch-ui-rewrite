@@ -47,7 +47,8 @@ module.exports = function(grunt) {
         concurrent: {
             dev: [
                 'less:application',
-                'less:bootstrap'
+                'less:bootstrap',
+                'templates'
             ],
             dist: [
                 'less:dist',
@@ -85,6 +86,34 @@ module.exports = function(grunt) {
                     { cwd: '<%= meta.app %>', src: 'images/*', dest: '<%= meta.dist %>', expand: true },
                     { cwd: '<%= meta.app %>vendor/bootstrap/', src: 'fonts/*', dest: '<%= meta.dist %>', expand: true }
                 ]
+            }
+        },
+        handlebars: {
+            options: {
+                amd: true,
+                namespace: false
+            },
+            dev: {
+                expand: true,
+                cwd: '<%= meta.temp %>',
+                src: 'template/**/*.html',
+                dest:'<%= meta.temp %>/',
+                ext: '.js'
+            }
+        },
+        htmlmin: {
+            templates: {
+                options: {
+                    removeComments: true,
+                    collapseWhitespace: true,
+                    collapseBooleanAttributes: true,
+                    removeRedundantAttributes: true,
+                    removeEmptyAttributes: true
+                },
+                expand: true,
+                cwd: '<%= meta.app %>core/',
+                src: 'template/**/*.html',
+                dest:'<%= meta.temp %>/'
             }
         },
         imagemin: {
@@ -187,6 +216,22 @@ module.exports = function(grunt) {
                 files: {
                     '<%= meta.dist %>js/modernizr.min.js': ['<%= meta.app %>vendor/modernizr/modernizr.js']
                 }
+            },
+            templates: {
+                options: {
+                    banner: '/*jshint strict:false, quotmark: false, boss: true */\n',
+                    beautify: {
+                        width: 80,
+                        beautify: true,
+                        bracketize: true
+                    },
+                    mangle: false,
+                    compress: false
+                },
+                expand: true,
+                cwd: '<%= meta.temp %>/template/',
+                src: '**/*.js',
+                dest: '<%= meta.app %>/core/js/template'
             }
         },
         watch: {
@@ -206,11 +251,16 @@ module.exports = function(grunt) {
             },
             html: {
                 files: ['<%= meta.app %>*.html']
+            },
+            templates: {
+                files: ['<%= meta.app %>core/templates/**/*.html'],
+                tasks: ['templates']
             }
         }
     });
 
-    grunt.registerTask('default', ['test', 'clean:dist', 'copy:dist', 'concurrent:dist', 'concat']);
-    grunt.registerTask('dev', ['copy:dev', 'concurrent:dev', 'connect', 'open:dev', 'watch']);
+    grunt.registerTask('default', ['test', 'clean:dist', 'copy:dist', 'templates', 'concurrent:dist', 'concat']);
+    grunt.registerTask('templates', ['clean:temp', 'htmlmin:templates', 'handlebars:dev', 'uglify:templates', 'clean:temp']);
+    grunt.registerTask('dev', ['clean:app', 'copy:dev', 'concurrent:dev', 'connect', 'open:dev', 'watch']);
     grunt.registerTask('test', ['jshint', 'qunit']);
 };
