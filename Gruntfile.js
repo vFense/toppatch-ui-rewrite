@@ -161,7 +161,6 @@ module.exports = function(grunt) {
                 inlineText: true,
                 preserveLicenseComments: false,
                 stubModules: ['text', 'json'],
-                wrap: true,
                 mainConfigFile: '<%= meta.app %>core/js/config.js',
                 baseUrl: '<%= meta.app %>'
             },
