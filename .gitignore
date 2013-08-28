@@ -1,10 +1,12 @@
 # Project paths
-/app/vendor
-/app/fonts
-/app/css
 /app/api
+/app/css
+/app/core/js/template
+/app/fonts
+/app/vendor
 /dist
 /report
+/temp
 
 # List below is based on files from:
 # https://github.com/github/gitignore
