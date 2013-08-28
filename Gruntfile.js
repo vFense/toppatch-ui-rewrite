@@ -22,7 +22,17 @@ module.exports = function(grunt) {
          **********************/
 
         clean: {
+            app: [
+                '<%= meta.app %>api',
+                '<%= meta.app %>css',
+                '<%= meta.app %>core/js/template',
+                '<%= meta.app %>fonts'
+            ],
             dist        : ['<%= meta.dist %>'],
+            nodeModules : ['node_modules/'],
+            report      : ['report/'],
+            temp        : ['<%= meta.temp %>'],
+            vendor      : ['<%= meta.app %>vendor']
         },
         concat: {
             options: {
