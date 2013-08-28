@@ -170,10 +170,6 @@ module.exports = function(grunt) {
                     insertRequire: ['core/js/main'],
                     name: 'vendor/requirejs/require',
                     optimize: 'uglify2',
-                    pragmasOnSave: {
-                        excludeHbsParser: true,
-                        excludeHbs: true,
-                        excludeAfterBuild: true
                     out: '<%= meta.dist %>js/toppatch-ui.js',
                     }
                 }
