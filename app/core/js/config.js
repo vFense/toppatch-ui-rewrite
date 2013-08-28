@@ -25,6 +25,7 @@ var requirejs = {
 
         // Vendor Library Paths
         'es5-shim'              : 'vendor/es5-shim/es5-shim',
+        'handlebars'            : 'vendor/handlebars.js/dist/handlebars.runtime',
         'highcharts'            : 'vendor/highcharts-components/highcharts.src',
         'highcharts-more'       : 'vendor/highcharts-components/highcharts-more.src',
         'jquery'                : 'vendor/jquery/jquery',
@@ -33,13 +34,6 @@ var requirejs = {
         'respond'               : 'vendor/respond/respond.src',
         'select2'               : 'vendor/select2/select2',
         'underscore'            : 'vendor/underscore/underscore',
-
-        // Handlebars.js, its RequireJS plugin, and dependencies
-        // Using Handlebars.js from hbs until main handlebars.js repo fixes AMD loading issue
-        'handlebars'            : 'vendor/require-handlebars-plugin/handlebars',
-        'hbs'                   : 'vendor/require-handlebars-plugin/hbs',
-        'i18nprecompile'        : 'vendor/require-handlebars-plugin/hbs/i18nprecompile',
-        'json2'                 : 'core/js/json2',
 
         // Backbone Paths
         'backbone'              : 'vendor/backbone/backbone',
@@ -95,6 +89,7 @@ var requirejs = {
 
         'respond'               : { exports: 'respond' },
 
+        'handlebars'            : { exports: 'Handlebars' },
         'highcharts'            : { exports: 'Highcharts' },
         'highcharts-more'       : { exports: 'Highcharts.seriesTypes.bubble', deps: ['highcharts'] },
 
