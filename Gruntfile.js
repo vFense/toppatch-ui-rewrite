@@ -263,7 +263,7 @@ module.exports = function(grunt) {
     });
 
     grunt.registerTask('default', ['test', 'clean:dist', 'copy:dist', 'templates', 'concurrent:dist', 'concat']);
-    grunt.registerTask('templates', ['clean:temp', 'htmlmin:templates', 'handlebars:dev', 'uglify:templates', 'clean:temp']);
     grunt.registerTask('dev', ['clean:app', 'copy:dev', 'concurrent:dev', 'connect', 'open:dev', 'watch']);
+    grunt.registerTask('templates', ['clean:temp', 'htmlmin:templates', 'handlebars:dev', 'uglify:templates', 'clean:temp']);
     grunt.registerTask('test', ['jshint', 'qunit']);
 };
