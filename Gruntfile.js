@@ -256,7 +256,7 @@ module.exports = function(grunt) {
                 files: ['<%= meta.app %>*.html']
             },
             templates: {
-                files: ['<%= meta.app %>core/templates/**/*.html'],
+                files: ['<%= meta.app %>core/template/**/*.html'],
                 tasks: ['templates']
             }
         }
