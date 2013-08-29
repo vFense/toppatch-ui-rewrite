@@ -178,7 +178,7 @@ module.exports = function(grunt) {
                 timeout: '8100',
                 coverage: {
                     src: ['<%= meta.app %>core/js/**/*.js'],
-                    instrumentedFiles: 'temp/',
+                    instrumentedFiles: 'report/temp/',
                     htmlReport: 'report/'
                 }
             },
