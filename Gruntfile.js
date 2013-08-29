@@ -250,7 +250,10 @@ module.exports = function(grunt) {
                 tasks: ['less:bootstrap']
             },
             javascript: {
-                files: ['<%= meta.app %>core/js/*.js']
+                files: [
+                    '<%= meta.app %>core/js/**/*.js',
+                    '!<%= meta.app %>core/js/template/*'
+                ]
             },
             html: {
                 files: ['<%= meta.app %>*.html']
