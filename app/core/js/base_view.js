@@ -35,7 +35,8 @@ define(
             },
 
             clean: function () {
-                this.closeChildViews().$el.empty();
+                this.closeChildViews()
+                    .$el.empty();
                 return this;
             },
 
