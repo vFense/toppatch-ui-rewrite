@@ -24,7 +24,7 @@ define(
                     }
 
                     // Close child views, then remove and unbind this view
-                    this.closeChildViews()
+                    this.clean()
                         .remove()
                         .unbind();
 
