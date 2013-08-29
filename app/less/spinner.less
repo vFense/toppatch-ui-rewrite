@@ -1,65 +1,83 @@
 // Styles for the loading indicator (pinwheel)
 
-@pinwheelFontSize: 16px;
-@pinwheelSize:     64px;
-@pinwheelBorder:    5px;
-@pinwheelPadding:   2px;
-@pinwheelColor: #001678;
-.spinner {
-    font-size: @pinwheelFontSize;
-
+@ringFontSize: 16px;
+@ringSize:     64px;
+@ringBorder:    5px;
+@ringPadding:   2px;
+@ringColor: #001678;
+.loading-ring {
+    font-size: @ringFontSize;
     text-align: center;
-
     background-color: transparent;
-    border-width: @pinwheelBorder;
+    border-width: @ringBorder;
     border-style: solid;
-    border-color: transparent @pinwheelColor;
-    border-radius: @pinwheelSize/2;
-
-    padding: @pinwheelPadding;
+    border-color: transparent @ringColor;
+    border-radius: @ringSize/2;
+    padding: @ringPadding;
     margin:0 auto;
-
     .box-sizing(border-box);
-
     position: relative;
-    height: @pinwheelSize;
-    width:  @pinwheelSize;
+}
 
-    >.spinner {
-        width:100%;
-        height:100%;
-    }
+.outer-loading-ring {
+    height: @ringSize;
+    width: @ringSize;
+}
+
+.middle-loading-ring {
+    @space: (2 * (@ringBorder + @ringPadding));
+    @thisSize: (@ringSize - @space);
+    .animated();
+    .spin();
+    .infinite();
+    .linear();
+    .normalTime();
+    height: @thisSize;
+    width:  @thisSize;
+}
+
+.inner-loading-ring {
+    @space: (4 * (@ringBorder + @ringPadding));
+    @thisSize: (@ringSize - @space);
+    .animated();
+    .spin();
+    .reverse();
+    .infinite();
+    .linear();
+    .doubleTime();
+    height: @thisSize;
+    width:  @thisSize;
 }
 
 // Animation styles
-.cssanimations {
-    // Restrict animation styles to browsers that support it
-    // cssanimations class is appended to the <html> element by Modernizr.js
-    @animationTime:      1s;
-    .animated {
-        .animation-fill-mode(both);
-        .animation-duration(@animationTime);
-    }
-    .infinite {
-        .animation-iteration-count(infinite);
-    }
-    .linear {
-        .animation-timing-function(linear);
-    }
-    // http://en.wikipedia.org/wiki/Double-time
-    .doubleTime {
-        .animation-duration(@animationTime/2);
-    }
-    // http://en.wikipedia.org/wiki/Half_time_(music)
-    .halfTime {
-        .animation-duration(@animationTime*2);
-    }
-    .reverse {
-        .animation-direction(reverse);
-    }
-    .spin {
-        .animation-name(spin);
-    }
+// Restrict animation styles to browsers that support it
+// cssanimations class is appended to the <html> element by Modernizr.js
+@animationTime:      1s;
+.animated() {
+    .animation-fill-mode(both);
+}
+.infinite() {
+    .animation-iteration-count(infinite);
+}
+.linear() {
+    .animation-timing-function(linear);
+}
+.normalTime() {
+    .animation-duration(@animationTime);
+}
+// http://en.wikipedia.org/wiki/Double-time
+.doubleTime() {
+    .animation-duration(@animationTime/2);
+}
+// http://en.wikipedia.org/wiki/Half_time_(music)
+.halfTime() {
+    .animation-duration(@animationTime*2);
+}
+.reverse() {
+    .animation-direction(reverse);
+}
+.spin() {
+    .animation-name(spin);
 }
 
 @keyframes spin {
