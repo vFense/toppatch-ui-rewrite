@@ -238,25 +238,21 @@ module.exports = function(grunt) {
             }
         },
         watch: {
-            options: {
-                livereload: true
-            },
-            application: {
-                files: ['<%= meta.app %>less/*.less'],
-                tasks: ['less:application']
-            },
-            bootstrap: {
-                files: ['<%= meta.app %>vendor/bootstrap/less/*.less'],
-                tasks: ['less:bootstrap']
-            },
-            javascript: {
-                files: [
-                    '<%= meta.app %>core/js/**/*.js',
-                    '!<%= meta.app %>core/js/template/*'
-                ]
+            css: {
+                files: ['<%= meta.app %>css/*.css'],
+                options: { livereload: true }
             },
             html: {
-                files: ['<%= meta.app %>*.html']
+                files: ['<%= meta.app %>*.html'],
+                options: { livereload: true }
+            },
+            javascript: {
+                files: ['<%= meta.app %>core/js/**/*.js'],
+                options: { livereload: true }
+            },
+            less: {
+                files: ['<%= meta.app %>less/*.less'],
+                tasks: ['less:application']
             },
             templates: {
                 files: ['<%= meta.app %>core/template/**/*.html'],
