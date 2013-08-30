@@ -22,7 +22,7 @@ $(document).ready(function () {
 
     asyncTest('setLoadingText', function () {
         require(
-            ['core/js/base_loader'],
+            ['core/js/base_loaderView'],
             function (BaseLoaderView) {
                 var loader = new BaseLoaderView();
                 loader.render()
@@ -35,7 +35,7 @@ $(document).ready(function () {
 
     asyncTest('getLoadingText', function () {
         require(
-            ['core/js/base_loader'],
+            ['core/js/base_loaderView'],
             function (BaseLoaderView) {
                 var loader = new BaseLoaderView();
                 loader.render()
