@@ -4,9 +4,9 @@ $(document).ready(function () {
 
     asyncTest('render', function () {
         require(
-            ['core/js/base_loader'],
-            function (BaseLoader) {
-                var loader = new BaseLoader();
+            ['core/js/base_loaderView'],
+            function (BaseLoaderView) {
+                var loader = new BaseLoaderView();
 
                 strictEqual(loader.render(), loader, 'Render method returns this');
 
@@ -23,8 +23,8 @@ $(document).ready(function () {
     asyncTest('setLoadingText', function () {
         require(
             ['core/js/base_loader'],
-            function (BaseLoader) {
-                var loader = new BaseLoader();
+            function (BaseLoaderView) {
+                var loader = new BaseLoaderView();
                 loader.render()
                     .setLoadingText('test1');
                 strictEqual(loader.$('[data-name="text"]').text(), 'test1', 'The loading text was set to test1');
@@ -36,8 +36,8 @@ $(document).ready(function () {
     asyncTest('getLoadingText', function () {
         require(
             ['core/js/base_loader'],
-            function (BaseLoader) {
-                var loader = new BaseLoader();
+            function (BaseLoaderView) {
+                var loader = new BaseLoaderView();
                 loader.render()
                     .$('[data-name="text"]')
                     .text('test2');
