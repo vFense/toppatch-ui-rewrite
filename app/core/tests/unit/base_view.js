@@ -238,6 +238,23 @@ $(document).ready(function () {
             start();
         });
     });
+    asyncTest('close() [Many child views]', function () {
+        require(['core/js/base_view'], function(BaseView) {
+            var mainView = new BaseView(),
+                childView1 = new BaseView(),
+                childView2 = new BaseView();
+
+            mainView.registerChildView(childView1);
+            mainView.registerChildView(childView2);
+
+            mainView.close();
+            strictEqual(mainView.isClosed, true, 'mainView is closed');
+            strictEqual(childView1.isClosed, true, 'childView1 is closed');
+            strictEqual(childView2.isClosed, true, 'childView2 is closed');
+
+            start();
+        });
+    });
     asyncTest('close() [Circular reference]', function () {
         require(['core/js/base_view'], function(BaseView) {
             var mainView = new BaseView(),
