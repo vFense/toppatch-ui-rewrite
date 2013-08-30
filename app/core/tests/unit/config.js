@@ -1,3 +1,4 @@
+/*globals libs */
 $(document).ready(function () {
     'use strict';
     module('require.config');
@@ -13,7 +14,7 @@ $(document).ready(function () {
         var paths = window.requirejsPaths,
             shims = window.requirejsShims;
 
-        $.each(shims, function(shim, shimProps) {
+        libs._.each(shims, function(shimProps, shim) {
             if (typeof shimProps.deps !== 'undefined') {
                 var pass = true;
                 $.each(shimProps.deps, function(index, dependency) {
@@ -31,8 +32,8 @@ $(document).ready(function () {
 
     asyncTest('Attempt to require all paths', function () {
         // Use Backbone.Events to get around recursion
-        var vent = _.extend({}, window.BACKBONE.Events),
-            paths = _.keys(window.requirejsPaths),
+        var vent = libs._.extend({}, libs.Backbone.Events),
+            paths = libs._.keys(window.requirejsPaths),
             pathCount = paths.length,
             nextPath,
             pathTest,

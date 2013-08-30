@@ -1,3 +1,4 @@
+/*globals libs */
 $(document).ready(function () {
     'use strict';
 
@@ -7,9 +8,9 @@ $(document).ready(function () {
         },
         location = null;
 
-    _.extend(Location.prototype, {
+    libs._.extend(Location.prototype, {
         replace: function(href) {
-            _.extend(this, _.pick($('<a></a>', {href: href})[0],
+            libs._.extend(this, libs._.pick($('<a></a>', {href: href})[0],
                 'href',
                 'hash',
                 'host',
