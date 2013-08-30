@@ -129,11 +129,11 @@ var requirejs = {
         'jquery.ui.spinner'     : { exports: 'jQuery.ui.spinner',      deps: ['jquery.ui.core', 'jquery.ui.widget', 'jquery.ui.button']},
         'jquery.ui.tabs'        : { exports: 'jQuery.ui.tabs',         deps: ['jquery.ui.core', 'jquery.ui.widget']},
         'jquery.ui.tooltip'     : { exports: 'jQuery.ui.tooltip',      deps: ['jquery.ui.core', 'jquery.ui.widget', 'jquery.ui.position']}
-    }
+    },
 
     // deps: An array of dependencies to load as soon as require() is defined.
     // See: http://requirejs.org/docs/api.html#config-deps
-    // deps: [],
+    deps: ['jquery', 'underscore', 'backbone']
 
     // callback: A function to execute after deps have been loaded.
     // See: http://requirejs.org/docs/api.html#config-callback

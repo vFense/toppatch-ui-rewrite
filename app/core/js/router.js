@@ -3,7 +3,7 @@
  * ------------------------------------------------------------------------
  * A Backbone.Router that tracks the current and last fragments
  */
-define(['core/js/deps'], function () {
+define(function () {
     'use strict';
     return Backbone.Router.extend({
         /**

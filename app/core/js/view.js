@@ -4,7 +4,7 @@
  * A Backbone.View with extra functionality
  */
 define(
-    ['core/js/deps', 'backbone.babysitter'],
+    ['backbone.babysitter'],
     function () {
         'use strict';
         return Backbone.View.extend({
