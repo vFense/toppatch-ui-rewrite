@@ -303,6 +303,8 @@ $(document).ready(function () {
             ok(true, 'Attempting mainView.close()');
             mainView.close();
             strictEqual(callCount, 2, 'Close method prevented infinite loop');
+            strictEqual(mainView.isClosed, true, 'mainView is closed');
+            strictEqual(childView.isClosed, true, 'childView is closed');
 
             start();
         });
