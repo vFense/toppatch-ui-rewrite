@@ -10,7 +10,7 @@ define(
         var exports = {};
         exports.View = baseView.extend({
             el: '#dashboard',
-            _template: template,
+            template: template,
             render: function () {
                 if (this.$el.html() === '') {
                     this.layout();
@@ -18,7 +18,7 @@ define(
                 return this;
             },
             layout: function () {
-                this.$el.html(this._template({
+                this.$el.html(this.template({
                     username: 'John Doe'
                 }));
                 return this;
