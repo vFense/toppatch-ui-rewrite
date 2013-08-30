@@ -9,7 +9,9 @@
     <script src="../../vendor/qunit/qunit/qunit.js"></script>
     <script>
         GLOBALS = window;
-        BACKBONE = Backbone.noConflict();
+        var libs = window.libs = {};
+        libs._ = _.noConflict();
+        libs.Backbone = Backbone.noConflict();
 
         // Requirejs currently has a maximum load time of 7 seconds.
         // Give an extra second for padding.
