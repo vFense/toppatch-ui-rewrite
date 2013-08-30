@@ -1,12 +1,12 @@
 define(
-    ['core/js/base_view', 'text!core/template/loading_indicator.html'],
+    ['core/js/base_view', 'core/js/template/loading_indicator'],
     function (BaseView, template) {
         'use strict';
         return BaseView.extend({
             className: 'loading_indicator',
-            _template: _.template(template),
+            template: template,
             render: function () {
-                this.$el.html(this._template());
+                this.$el.html(this.template());
                 return this;
             },
             setLoadingText: function (text) {
