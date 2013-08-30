@@ -14,7 +14,7 @@ $(document).ready(function () {
 
     asyncTest('constructor with no arguments', function () {
         require(
-            ['core/js/base_region'],
+            ['core/js/region'],
             function (BaseRegion) {
                 QUnit.throws(function () {
                     return new BaseRegion();
@@ -26,7 +26,7 @@ $(document).ready(function () {
 
     asyncTest('constructor with string', function () {
         require(
-            ['core/js/base_region'],
+            ['core/js/region'],
             function (BaseRegion) {
                 var selector = 'body',
                     region = new BaseRegion(selector);
@@ -41,7 +41,7 @@ $(document).ready(function () {
 
     asyncTest('constructor with empty object', function () {
         require(
-            ['core/js/base_region'],
+            ['core/js/region'],
             function (BaseRegion) {
                 var selector = {};
                 QUnit.throws(function () {
@@ -54,7 +54,7 @@ $(document).ready(function () {
 
     asyncTest('constructor with object', function () {
         require(
-            ['core/js/base_region'],
+            ['core/js/region'],
             function (BaseRegion) {
                 var selector = { el: 'body' },
                     region = new BaseRegion(selector);
@@ -71,7 +71,7 @@ $(document).ready(function () {
 
     asyncTest('extend: set el, and initialize method', function () {
         require(
-            ['core/js/base_region'],
+            ['core/js/region'],
             function (BaseRegion) {
                 var Region, region,
                     initializeCalled = false,
@@ -100,7 +100,7 @@ $(document).ready(function () {
 
     asyncTest('setElement', function () {
         require(
-            ['core/js/base_region'],
+            ['core/js/region'],
             function (BaseRegion) {
                 var Region = BaseRegion.extend({
                         el: 'body'
@@ -130,7 +130,7 @@ $(document).ready(function () {
 
     asyncTest('_ensureElement', function () {
         require(
-            ['core/js/base_region'],
+            ['core/js/region'],
             function (BaseRegion) {
                 var selector = 'body',
                     Region = BaseRegion.extend({
@@ -165,7 +165,7 @@ $(document).ready(function () {
     asyncTest('_open', function () {
         var suite = this;
         require(
-            ['core/js/base_region'],
+            ['core/js/region'],
             function (BaseRegion) {
                 var Region = BaseRegion.extend({
                         el: suite.testSelector
@@ -190,7 +190,7 @@ $(document).ready(function () {
     asyncTest('close', function () {
         var suite = this;
         require(
-            ['core/js/base_region', 'core/js/base_view'],
+            ['core/js/region', 'core/js/view'],
             function (BaseRegion, BaseView) {
                 var Region = BaseRegion.extend({
                         el: suite.testSelector
@@ -230,7 +230,7 @@ $(document).ready(function () {
     asyncTest('reset', function () {
         var suite = this;
         require(
-            ['core/js/base_region'],
+            ['core/js/region'],
             function (BaseRegion) {
                 var called = 0,
                     Region = BaseRegion.extend({
@@ -257,7 +257,7 @@ $(document).ready(function () {
     asyncTest('show', function () {
         var suite = this;
         require(
-            ['core/js/base_region', 'core/js/base_view'],
+            ['core/js/region', 'core/js/view'],
             function (BaseRegion, BaseView) {
                 var Region = BaseRegion.extend({
                         el: suite.testSelector

@@ -7,7 +7,7 @@ $(document).ready(function () {
 
     asyncTest('constructor', function () {
         require(
-            ['core/js/base_regionManager'],
+            ['core/js/regionManager'],
             function (RegionManager) {
                 var regionManager = new RegionManager();
                 deepEqual(regionManager._regions, {}, 'Default _regions is empty object');
@@ -22,7 +22,7 @@ $(document).ready(function () {
     // Each underscore method is fully trusted.
     asyncTest('regionMethod mixins', function () {
         require(
-            ['core/js/base_regionManager'],
+            ['core/js/regionManager'],
             function (RegionManager) {
                 var regionManager = new RegionManager(),
                     result;
@@ -117,7 +117,7 @@ $(document).ready(function () {
 
     asyncTest('_setLength', function () {
         require(
-            ['core/js/base_regionManager'],
+            ['core/js/regionManager'],
             function (RegionManager) {
                 var regionManager = new RegionManager(),
                     result;
@@ -141,7 +141,7 @@ $(document).ready(function () {
 
     asyncTest('_store', function () {
         require(
-            ['core/js/base_regionManager'],
+            ['core/js/regionManager'],
             function (RegionManager) {
                 var regionManager = new RegionManager(),
                     regions = regionManager._regions,
@@ -175,7 +175,7 @@ $(document).ready(function () {
 
     asyncTest('get', function () {
         require(
-            ['core/js/base_regionManager', 'core/js/base_region'],
+            ['core/js/regionManager', 'core/js/region'],
             function (RegionManager) {
                 var regionManager = new RegionManager();
 
@@ -193,7 +193,7 @@ $(document).ready(function () {
 
     asyncTest('addRegion', function () {
         require(
-            ['core/js/base_regionManager', 'core/js/base_region'],
+            ['core/js/regionManager', 'core/js/region'],
             function (RegionManager, Region) {
                 var regionManager = new RegionManager(),
                     region = new Region('body'),
@@ -240,7 +240,7 @@ $(document).ready(function () {
 
     asyncTest('addRegions', function () {
         require(
-            ['core/js/base_regionManager', 'core/js/base_region'],
+            ['core/js/regionManager', 'core/js/region'],
             function (RegionManager) {
                 var regionManager = new RegionManager(),
                     result;
@@ -264,7 +264,7 @@ $(document).ready(function () {
 
     asyncTest('removeRegion', function () {
         require(
-            ['core/js/base_regionManager'],
+            ['core/js/regionManager'],
             function (RegionManager) {
                 var regionManager = new RegionManager(),
                     result;
@@ -291,7 +291,7 @@ $(document).ready(function () {
 
     asyncTest('closeRegions', function () {
         require(
-            ['core/js/base_regionManager', 'core/js/base_region'],
+            ['core/js/regionManager', 'core/js/region'],
             function (RegionManager, Region) {
                 var regionManager = new RegionManager(),
                     testElement = $('<div></div>').attr('id', 'testID').appendTo('body'),
@@ -319,7 +319,7 @@ $(document).ready(function () {
 
     asyncTest('close', function () {
         require(
-            ['core/js/base_regionManager', 'core/js/base_region'],
+            ['core/js/regionManager', 'core/js/region'],
             function (RegionManager, Region) {
                 var regionManager = new RegionManager(),
                     result;

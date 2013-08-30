@@ -6,10 +6,10 @@
  * Inspired by Backbone.Marionette.regionManager
  */
 define(
-    ['core/js/base_region'],
+    ['core/js/region'],
     function () {
         'use strict';
-        var Region = require('core/js/base_region');
+        var Region = require('core/js/region');
         /**
          * Creates an instance of RegionManager
          * @returns {this}

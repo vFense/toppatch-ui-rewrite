@@ -49,7 +49,7 @@ $(document).ready(function () {
     // Start custom test logic
     asyncTest('Test fragmentHistory', function () {
         var testSuite = this;
-        require(['core/js/base_router'], function(Router) {
+        require(['core/js/router'], function(Router) {
             testSuite.initHistory();
             var router = new (Router.extend({
                     routes: {

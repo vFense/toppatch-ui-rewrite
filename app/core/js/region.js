@@ -6,7 +6,7 @@
  * Inspired by Backbone.Marionette.region
  */
 define(
-    ['core/js/base_deps'],
+    ['core/js/deps'],
     function () {
         'use strict';
         /**

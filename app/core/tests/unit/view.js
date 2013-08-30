@@ -20,7 +20,7 @@ $(document).ready(function () {
         }
     });
     asyncTest('new base_view()', function () {
-        require(['core/js/base_view'], function(BaseView) {
+        require(['core/js/view'], function(BaseView) {
             ok(true, 'Attempt new view()');
             var view = new BaseView();
             ok(_.isUndefined(view.children), 'view.children is undefined');
@@ -29,7 +29,7 @@ $(document).ready(function () {
         });
     });
     asyncTest('_initChildServices', function () {
-        require(['core/js/base_view'], function(BaseView) {
+        require(['core/js/view'], function(BaseView) {
             var view = new BaseView(),
                 result;
 
@@ -42,7 +42,7 @@ $(document).ready(function () {
         });
     });
     asyncTest('registerChildView() [no arguments]', function () {
-        require(['core/js/base_view'], function(BaseView) {
+        require(['core/js/view'], function(BaseView) {
             var view = new BaseView(),
                 result;
 
@@ -57,7 +57,7 @@ $(document).ready(function () {
     });
     asyncTest('registerChildView() [invalid type]', function () {
         var that = this;
-        require(['core/js/base_view'], function(BaseView) {
+        require(['core/js/view'], function(BaseView) {
             var view = new BaseView(),
                 invalidTypes = that.invalidTypes();
 
@@ -73,7 +73,7 @@ $(document).ready(function () {
     });
     asyncTest('registerChildView() [multiple invalid types at once]', function () {
         var that = this;
-        require(['core/js/base_view'], function(BaseView) {
+        require(['core/js/view'], function(BaseView) {
             var view = new BaseView(),
                 invalidTypes = that.invalidTypes(),
                 result;
@@ -87,7 +87,7 @@ $(document).ready(function () {
         });
     });
     asyncTest('registerChildView() [reference to itself]', function () {
-        require(['core/js/base_view'], function(BaseView) {
+        require(['core/js/view'], function(BaseView) {
             var view = new BaseView(),
                 result;
 
@@ -100,7 +100,7 @@ $(document).ready(function () {
         });
     });
     asyncTest('registerChildView() [new Backbone.View and new base_view]', function () {
-        require(['core/js/base_view'], function(BaseView) {
+        require(['core/js/view'], function(BaseView) {
             var view = new BaseView(),
                 newBackboneView = new Backbone.View(),
                 newBaseView = new BaseView(),
@@ -123,7 +123,7 @@ $(document).ready(function () {
         });
     });
     asyncTest('registerChildView() [multiple Backbone.Views at once]', function () {
-        require(['core/js/base_view'], function(BaseView) {
+        require(['core/js/view'], function(BaseView) {
             var view = new BaseView(),
                 result;
 
@@ -137,7 +137,7 @@ $(document).ready(function () {
     });
     asyncTest('closeChildView() [invalid arguments]', function () {
         var that = this;
-        require(['core/js/base_view'], function(BaseView) {
+        require(['core/js/view'], function(BaseView) {
             var view = new BaseView(),
                 invalidTypes = that.invalidTypes();
 
@@ -154,7 +154,7 @@ $(document).ready(function () {
         });
     });
     asyncTest('closeChildView()', function () {
-        require(['core/js/base_view'], function(BaseView) {
+        require(['core/js/view'], function(BaseView) {
             var view = new BaseView(),
                 childView1 = new Backbone.View(),
                 childView2 = new BaseView(),
@@ -177,7 +177,7 @@ $(document).ready(function () {
         });
     });
     asyncTest('closeChildViews()', function () {
-        require(['core/js/base_view'], function(BaseView) {
+        require(['core/js/view'], function(BaseView) {
             var view = new BaseView(),
                 childView1 = new Backbone.View(),
                 childView2 = new BaseView(),
@@ -195,7 +195,7 @@ $(document).ready(function () {
         });
     });
     asyncTest('clean()', function () {
-        require(['core/js/base_view'], function(BaseView) {
+        require(['core/js/view'], function(BaseView) {
             var baseView = new BaseView(),
                 childView = new BaseView();
 
@@ -213,7 +213,7 @@ $(document).ready(function () {
         });
     });
     asyncTest('close() [No child views]', function () {
-        require(['core/js/base_view'], function(BaseView) {
+        require(['core/js/view'], function(BaseView) {
             var beforeCloseCalled = false,
                 $body = $('body'),
                 View = BaseView.extend({
@@ -239,7 +239,7 @@ $(document).ready(function () {
         });
     });
     asyncTest('close() [Many child views]', function () {
-        require(['core/js/base_view'], function(BaseView) {
+        require(['core/js/view'], function(BaseView) {
             var mainView = new BaseView(),
                 childView1 = new BaseView(),
                 childView2 = new BaseView();
@@ -256,7 +256,7 @@ $(document).ready(function () {
         });
     });
     asyncTest('close() [Child has child]', function () {
-        require(['core/js/base_view'], function(BaseView) {
+        require(['core/js/view'], function(BaseView) {
             var mainView = new BaseView(),
                 childView1 = new BaseView(),
                 childView2 = new BaseView();
@@ -273,7 +273,7 @@ $(document).ready(function () {
         });
     });
     asyncTest('close() [Circular reference]', function () {
-        require(['core/js/base_view'], function(BaseView) {
+        require(['core/js/view'], function(BaseView) {
             var mainView = new BaseView(),
                 childView = new BaseView(),
                 callCount = 0;
