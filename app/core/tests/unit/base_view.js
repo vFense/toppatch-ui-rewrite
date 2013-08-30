@@ -243,19 +243,35 @@ $(document).ready(function () {
     });
     asyncTest('close() [Circular reference]', function () {
         require(['core/js/base_view'], function(BaseView) {
-            var View = BaseView,
-                mainView = new View(),
-                childView = new View();
+            var mainView = new BaseView(),
+                childView = new BaseView(),
+                callCount = 0;
 
+            // mainView.close should be called twice.
+            // The first time by this test
+            // The second time by the child view
+            // If close is working correctly, then the second time should not
+            // call the child's close method, preventing the infinite loop.
+            mainView.close = _.wrap(mainView.close, function (originalClose) {
+                callCount += 1;
+                // If we reach 3 calls, an infinite loop is occurring
+                if (callCount <= 3) {
+                    // Apply the original close method
+                    return originalClose.apply(mainView, arguments);
+                } else {
+                    // Break the loop by not Applying the original close method
+                    return mainView;
+                }
+            });
 
             mainView.registerChildView(childView);
             childView.registerChildView(mainView);
             ok(true, '[mainView] has child [childView]');
             ok(true, '[childView] has child [mainView]');
             ok(true, 'Close method should prevent infinite loop');
-            ok(true, 'Attempting mainVIew.close()');
+            ok(true, 'Attempting mainView.close()');
             mainView.close();
-            ok('true', 'Close method prevented infinite loop');
+            strictEqual(callCount, 2, 'Close method prevented infinite loop');
 
             start();
         });
