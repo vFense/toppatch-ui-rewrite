@@ -1,6 +1,6 @@
 $(document).ready(function () {
     'use strict';
-    module('BaseView', {
+    module('View', {
         setup: function () {
             this.invalidTypes = function () {
                 return {

@@ -1,6 +1,6 @@
 $(document).ready(function () {
     'use strict';
-    module('BaseRegionManager', {
+    module('RegionManager', {
         setup: $.noop,
         teardown: $.noop
     });

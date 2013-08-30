@@ -1,6 +1,6 @@
 $(document).ready(function () {
     'use strict';
-    module('BaseLoader');
+    module('Loader');
 
     asyncTest('render', function () {
         require(

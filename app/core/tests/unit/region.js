@@ -1,6 +1,6 @@
 $(document).ready(function () {
     'use strict';
-    module('BaseRegion', {
+    module('Region', {
         setup: function () {
             this.testID = 'testRegion';
             this.testSelector = '#' + this.testID;
