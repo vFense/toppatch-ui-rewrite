@@ -96,11 +96,11 @@ included in the project:
 
    ```bash
    # Clone your fork of the repo into the current directory
-   git clone https://github.com/<your-username>/<repo-name>
+   git clone https://github.com/<your-username>/toppatch-ui-rewrite
    # Navigate to the newly cloned directory
-   cd <repo-name>
+   cd toppatch-ui-rewrite
    # Assign the original repo to a remote called "upstream"
-   git remote add upstream https://github.com/<upstream-owner>/<repo-name>
+   git remote add upstream https://github.com/toppatch/toppatch-ui-rewrite
    ```
 
 2. If you cloned a while ago, get the latest changes from upstream:
