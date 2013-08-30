@@ -47,7 +47,7 @@ $(document).ready(function () {
                 result = regionManager.find(function (value) {
                     return value % 2 === 0;
                 });
-                strictEqual(result, 2, 'Find okay');
+                strictEqual(result, 2, 'Find');
 
                 // Filter
                 result = regionManager.filter(function (value) {
