@@ -13,7 +13,7 @@
         "backbone.localStorage": "~1.1.6",
         "Backbone.ModelBinder": "~1.0.2",
         "backbone-validation": "~0.8.0",
-        "bootstrap": "3.0.0",
+        "bootstrap": "~3.0.0",
         "font-awesome": "~3.2.1",
         "handlebars.js": "~1.0.12",
         "highcharts-components": "~3.0.4",
