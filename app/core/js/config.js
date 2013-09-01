@@ -102,7 +102,7 @@ var requirejs = {
         'bootstrap.scrollspy'   : { exports: 'jQuery.fn.scrollspy',       deps: ['jquery'] },
         'bootstrap.tab'         : { exports: 'jQuery.fn.tab',             deps: ['jquery'] },
         'bootstrap.tooltip'     : { exports: 'jQuery.fn.tooltip',         deps: ['jquery'] },
-        'bootstrap.transition'  : { exports: 'jQuery.support.transition', deps: ['jquery'] },
+        'bootstrap.transition'  : { exports: 'jQuery.fn.emulateTransitionEnd', deps: ['jquery'] },
 
         // jQuery UI Core Shims
         'jquery.ui.core'        : { exports: 'jQuery.ui',       deps: ['jquery']},
