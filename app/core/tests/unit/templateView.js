@@ -73,10 +73,7 @@ $(document).ready(function () {
                 var view = new TemplateView();
                 view.model = new Model();
 
-                QUnit.throws(function () { view.render(); }, Error, 'Render without template threw an Error');
-
-                view.template = {};
-                QUnit.throws(function () { view.render(); }, TypeError, 'Render with template that is not a function, threw a TypeError');
+                QUnit.throws(function () { view.render(); }, TypeError, 'When template is not function, throws TypeError');
 
                 view.template = template;
                 view.render();
