@@ -38,7 +38,7 @@ var requirejs = {
         'backbone.babysitter'   : 'vendor/backbone.babysitter/lib/amd/backbone.babysitter',
         'backbone.localStorage' : 'vendor/backbone.localstorage/backbone.localStorage',
         'backbone.modelBinder'  : 'vendor/backbone.modelbinder/Backbone.ModelBinder',
-        'backbone.validation'   : 'vendor/backbone-validation/src/backbone-validation',
+        'backbone.validation'   : 'vendor/backbone-validation/dist/backbone-validation-amd',
 
         // Bootstrap Paths
         'bootstrap.affix'       : 'vendor/bootstrap/js/affix',
@@ -82,7 +82,6 @@ var requirejs = {
     shim: {
         // Vendor Library Shims
         'backbone'              : { exports: 'Backbone', deps: ['underscore', 'jquery'] },
-        'backbone.validation'   : { exports: 'Backbone.Validation', deps: ['backbone']},
         'handlebars'            : { exports: 'Handlebars' },
         'highcharts'            : { exports: 'Highcharts' },
         'highcharts-more'       : { exports: 'Highcharts.seriesTypes.bubble', deps: ['highcharts'] },
