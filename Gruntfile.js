@@ -64,6 +64,7 @@ module.exports = function(grunt) {
                     base: '<%= meta.app %>',
                     hostname: '*',
                     livereload: true,
+                    protocol: 'https'
                 }
             }
         },
