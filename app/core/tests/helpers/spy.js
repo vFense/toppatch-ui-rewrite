@@ -1,7 +1,15 @@
 /*globals _ */
-// This javascript requires Underscore
 /**
- * Construct a Spy object
+ * Spy on functions
+ * Record passed arguments, and return values
+ *
+ * This javascript requires Underscore
+ * This javascript is loosely based on:
+ *  Sinon.js: github.com/cjohansen/Sinon.JS
+ *  minispy: github.com/ericgj/minispy
+ *
+ * @author Luis Aleman
+ *
  * @param object {object} Object whose property you wish to watch
  * @param property {string} Name of the property you wish to watch
  * @returns {Spy}
@@ -53,7 +61,6 @@ _.extend(Spy.prototype, {
     },
     /**
      * Watch for calls to a given function
-     *  Records passed arguments, and return values
      * @param object
      * @param property
      * @returns {Spy}
