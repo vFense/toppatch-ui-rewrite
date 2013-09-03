@@ -41,7 +41,7 @@ _.extend(Spy.prototype, {
      * can be called while being spied on.
      * Helps control infinite loops
      */
-    callLimit: -1,
+    callLimit: false,
     /**
      * Empty the call history
      * @returns {Spy}
@@ -82,7 +82,7 @@ _.extend(Spy.prototype, {
             method,
             that = this;
         object[property] = method = function () {
-            if (that.callLimit >= 0 && that.count() > that.callLimit) {
+            if (_.isNumber(that.callLimit) && that.count() > that.callLimit) {
                 throw new Error('Call limit exceeded');
             }
             var ret, payload = {};
