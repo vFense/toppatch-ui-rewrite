@@ -76,9 +76,6 @@ _.extend(Spy.prototype, {
             throw new TypeError('Attempted to watch ' + property + ' which is already being watched');
         }
 
-        if (_.isFunction(this.restore)) {
-            this.restore();
-        }
         if (this.called()) {
             this.reset();
         }
