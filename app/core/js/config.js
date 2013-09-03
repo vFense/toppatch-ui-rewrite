@@ -31,7 +31,7 @@ var requirejs = {
         'livestamp'             : 'vendor/livestampjs/livestamp',
         'moment'                : 'vendor/moment/moment',
         'select2'               : 'vendor/select2/select2',
-        'underscore'            : 'vendor/underscore/underscore',
+        'underscore'            : 'vendor/lodash/dist/lodash.underscore',
 
         // Backbone Paths
         'backbone'              : 'vendor/backbone/backbone',
@@ -87,7 +87,6 @@ var requirejs = {
         'highcharts-more'       : { exports: 'Highcharts.seriesTypes.bubble', deps: ['highcharts'] },
         'livestamp'             : { exports: '$.livestamp', deps: ['jquery', 'moment'] },
         'select2'               : { exports: 'Select2', deps: ['jquery']},
-        'underscore'            : { exports: '_' },
 
         // Bootstrap Shims
         'bootstrap.affix'       : { exports: 'jQuery.fn.affix',           deps: ['jquery'] },
