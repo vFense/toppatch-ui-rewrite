@@ -10,9 +10,7 @@
 var Spy = function (object, property) {
     'use strict';
     if (!(this instanceof Spy)) { return new Spy(object, property); }
-    if (_.isUndefined(object)) {
-        return this;
-    }
+    if (_.isUndefined(object)) { return this; }
     return this.watch(object, property);
 };
 _.extend(Spy.prototype, {
