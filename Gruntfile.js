@@ -63,13 +63,7 @@ module.exports = function(grunt) {
                 options: {
                     base: '<%= meta.app %>',
                     hostname: '*',
-                    middleware: function (connect, options) {
-                        return [
-                            require('connect-livereload')(),
-                            connect.static(options.base),
-                            connect.directory(options.base)
-                        ];
-                    }
+                    livereload: true,
                 }
             }
         },
