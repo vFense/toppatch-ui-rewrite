@@ -7,7 +7,7 @@
         "type": "git",
         "url": "https://github.com/toppatch/toppatch-ui-rewrite.git"
     },
-    "devDependencies": {
+    "dependencies": {
         "grunt": "~0.4.1",
         "grunt-contrib-clean": "~0.5.0",
         "grunt-contrib-concat": "~0.3.0",
