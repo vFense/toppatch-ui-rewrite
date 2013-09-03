@@ -166,7 +166,14 @@ module.exports = function(grunt) {
         },
         open: {
             dev: {
-                url: 'http://localhost:8000/'
+                url:'<%=connect.server.options.protocol || "http" %>://' +
+                    '<%=connect.server.options.hostname && connect.server.options.hostname !== "*"? (' +
+                    '   connect.server.options.hostname' +
+                    ') : (' +
+                    '   "localhost"' +
+                    ') %>' +
+                    '<%=connect.server.options.port && (":" + connect.server.options.port) %>' +
+                    '/'
             }
         },
         qunit: {
