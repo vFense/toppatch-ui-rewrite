@@ -205,4 +205,32 @@ $(document).ready(function () {
             }
         );
     });
+
+    asyncTest('removeRegion', function () {
+        require(
+            ['core/js/layoutView'],
+            function (LayoutView) {
+                var layout = new LayoutView(),
+                    regions = {
+                        'regionOne': '#regionOne',
+                        'regionTwo': '#regionTwo'
+                    };
+                layout.addRegions(regions);
+
+                layout.removeRegion('regionOne');
+                deepEqual(layout.regions, {'regionTwo': '#regionTwo'}, 'this.regions is correct');
+                strictEqual(layout.regionManager.length, 1, 'this.regionManager now has 1 region');
+                deepEqual(layout.regionManager.keys(), ['regionTwo'], 'this.regionManager has correct region names');
+
+                // Duplicate removeRegion call to test for possible error
+                ok(layout.removeRegion('regionOne'), 'Did not throw an exception');
+
+                layout.removeRegion('regionTwo');
+                deepEqual(layout.regions, {}, 'this.regions is correct');
+                strictEqual(layout.regionManager.length, 0, 'this.regionManager now has 0 regions');
+
+                start();
+            }
+        );
+    });
 });

@@ -38,10 +38,15 @@ define(
                 var region = {};
                 region[name] = definition;
                 return this.addRegions(region);
+            },
             addRegions: function (regions) {
                 this.regions = _.extend({}, this.regions, regions);
                 return this._buildRegions(regions);
             },
+            removeRegion: function (name) {
+                delete this.regions[name];
+                this.regionManager.removeRegion(name);
+                return this;
             _buildRegions: function (regions) {
                 var that = this,
                     defaults = {
