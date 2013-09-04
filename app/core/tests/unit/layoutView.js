@@ -165,7 +165,15 @@ $(document).ready(function () {
 
                 // initRegions calls addRegions
                 strictEqual(layout.regionManager.length, 2, 'this.regionManager now has 2 regions');
-                deepEqual(layout.regionManager.keys(), _.keys(regions), 'this.regionManager has correct region names');
+
+                _.each(regions, function (value, key) {
+                    var manager = layout.regionManager;
+                    ok(manager.has(key), 'this.regionManager has ' + key);
+                    var region = layout.regionManager.get(key);
+                    strictEqual(region.el, value, key + '\'s el is correct');
+                    ok(_.isFunction(region.parentEl), key + '\'s parentEl is a function');
+                    strictEqual(region.parentEl(), layout.$el, key + '\'s parentEl evaluates to layout\'s $el');
+                });
 
                 start();
             }
