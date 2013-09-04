@@ -33,6 +33,11 @@ define(
                     this.addRegions(_.result(this, 'regions'));
                 }
                 return this;
+            },
+            addRegion: function (name, definition) {
+                var region = {};
+                region[name] = definition;
+                return this.addRegions(region);
             addRegions: function (regions) {
                 this.regions = _.extend({}, this.regions, regions);
                 return this._buildRegions(regions);

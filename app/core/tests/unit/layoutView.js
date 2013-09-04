@@ -167,6 +167,33 @@ $(document).ready(function () {
                 strictEqual(layout.regionManager.length, 2, 'this.regionManager now has 2 regions');
                 deepEqual(layout.regionManager.keys(), _.keys(regions), 'this.regionManager has correct region names');
                 
+
+    asyncTest('addRegion [definition is string]', function () {
+        require(
+            ['core/js/layoutView'],
+            function (LayoutView) {
+                var layout = new LayoutView();
+
+                layout.addRegion('regionOne', '#regionOne');
+                deepEqual(layout.regions, {'regionOne': '#regionOne'}, 'this.regions is correct');
+                strictEqual(layout.regionManager.length, 1, 'this.regionManager now has 1 regions');
+                deepEqual(layout.regionManager.keys(), ['regionOne'], 'this.regionManager has correct region names');
+
+                // Duplicate region name to ensure region overwrite
+                layout.addRegion('regionOne', '#regionOne');
+                deepEqual(layout.regions, {'regionOne': '#regionOne'}, 'this.regions is correct');
+                strictEqual(layout.regionManager.length, 1, 'this.regionManager now has 1 regions');
+                deepEqual(layout.regionManager.keys(), ['regionOne'], 'this.regionManager has correct region names');
+
+                layout.addRegion('regionTwo', '#regionTwo');
+                deepEqual(layout.regions, {'regionOne': '#regionOne', 'regionTwo': '#regionTwo'}, 'this.regions is correct');
+                strictEqual(layout.regionManager.length, 2, 'this.regionManager now has 2 regions');
+                deepEqual(layout.regionManager.keys(), ['regionOne', 'regionTwo'], 'this.regionManager has correct region names');
+
+                start();
+            }
+        );
+    });
                 start();
             }
         );
