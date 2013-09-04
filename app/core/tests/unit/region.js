@@ -109,19 +109,9 @@ $(document).ready(function () {
                     selector,
                     result;
 
-                selector = '#qunit-header';
-                result = region.getEl($(selector));
-                ok(region.$el instanceof Backbone.$, 'region.$el is an instance of Backbone.$');
-                strictEqual(region.$el.selector, '#qunit-header', 'getEl($) set $el correctly');
-                strictEqual(region.el, '#qunit-header', 'getEl($) set el correctly');
-                strictEqual(result, region, 'region.getEl() returned region');
-
-                selector = '#qunit-banner';
-                result = region.getEl(selector);
-                strictEqual(region.el, selector, 'getEl(string) set el correctly');
-                ok(region.$el instanceof Backbone.$, 'region.$el is an instance of Backbone.$');
-                strictEqual(region.$el.selector, selector, 'getEl(string) set $el correctly');
-                strictEqual(result, region, 'region.getEl() returned region');
+                result = region.getEl(region.el);
+                ok(result instanceof $, 'getEl returned an instance of Backbone.$');
+                strictEqual(result[0], $(region.el)[0], 'getEl selected the correct element');
 
                 start();
             }

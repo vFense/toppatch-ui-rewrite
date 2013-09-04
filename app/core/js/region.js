@@ -70,26 +70,19 @@ define(function () {
          * @returns {this}
          */
         ensureEl: function () {
-                this.getEl(this.el);
             if (!(this.$el instanceof $) || this.$el.length === 0) {
+                this.$el = this.getEl(this.el);
             }
             return this;
         },
 
         /**
-         * Set $el and el
-         * @param {Backbone.$|string} element
-         * @returns {this}
+         * Return $(selector)
+         * @param {string} selector
+         * @returns {jQuery}
          */
-        getEl: function (element) {
-            if (element instanceof Backbone.$) {
-                this.$el = element;
-                this.el = element.selector;
-            } else {
-                this.$el = Backbone.$(element);
-                this.el = element;
-            }
-            return this;
+        getEl: function (selector) {
+            return $(selector);
         },
 
         /**
