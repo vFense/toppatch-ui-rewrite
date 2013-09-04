@@ -47,9 +47,8 @@ define(function () {
          * Empty this.$el and append a view's el
          * @param {Backbone.View} view
          * @returns {this}
-         * @private
          */
-        _open: function(view){
+        open: function(view){
             this.$el.empty().append(view.el);
             return this;
         },
@@ -96,7 +95,7 @@ define(function () {
                 this.close();
             }
 
-            this._open(view.render());
+            this.open(view.render());
 
             this.currentView = view;
 

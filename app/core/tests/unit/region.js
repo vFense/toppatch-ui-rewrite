@@ -159,7 +159,7 @@ $(document).ready(function () {
         );
     });
 
-    asyncTest('_open', function () {
+    asyncTest('open', function () {
         var suite = this;
         require(
             ['core/js/region'],
@@ -172,12 +172,12 @@ $(document).ready(function () {
                     result;
 
                 region.ensureEl();
-                result = region._open(view);
+                result = region.open(view);
 
                 strictEqual(view.$el.parent()[0], region.$el[0],
-                    'region._open(view) properly appended the view.el to region.$el'
+                    'region.open(view) properly appended the view.el to region.$el'
                 );
-                strictEqual(result, region, 'region._open() returned region');
+                strictEqual(result, region, 'region.open() returned region');
 
                 start();
             }
@@ -208,13 +208,13 @@ $(document).ready(function () {
 
 
                 region.currentView = backboneView;
-                region.ensureEl()._open(region.currentView);
+                region.ensureEl().open(region.currentView);
                 region.close();
                 strictEqual(backboneView.$el.parents().length, 0, 'region.close removed the backboneView from the DOM');
                 ok(_.isUndefined(region.currentView), 'region.close correctly deleted the currentView reference');
 
                 region.currentView = baseView;
-                region.ensureEl()._open(region.currentView);
+                region.ensureEl().open(region.currentView);
                 region.close();
                 strictEqual(backboneView.$el.parents().length, 0, 'region.close removed the baseView from the DOM');
                 ok(_.isUndefined(region.currentView), 'region.close correctly deleted the currentView reference');
