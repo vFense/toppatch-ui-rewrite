@@ -262,6 +262,32 @@ $(document).ready(function () {
         );
     });
 
+    asyncTest('addRegions with defaults set', function () {
+        require(
+            ['core/js/regionManager', 'core/js/region'],
+            function (RegionManager) {
+                var regionManager = new RegionManager(),
+                    parentEl = $('<div></div>'),
+                    defaults = { parentEl: parentEl },
+                    result;
+
+                result = regionManager.addRegions({
+                    'header': '#header',
+                    'main': '#main',
+                    'footer': '#footer'
+                }, defaults);
+
+                strictEqual(regionManager.length, 3, 'Added 3 regions; header, main, footer');
+                strictEqual(regionManager.get('header').parentEl, parentEl, 'Header region has correct parentEl');
+                strictEqual(regionManager.get('main').parentEl, parentEl,   'main region has correct parentEl');
+                strictEqual(regionManager.get('footer').parentEl, parentEl, 'footer region has correct parentEl');
+                strictEqual(result, regionManager, 'addRegions returned this');
+
+                start();
+            }
+        );
+    });
+
     asyncTest('removeRegion', function () {
         require(
             ['core/js/regionManager'],
