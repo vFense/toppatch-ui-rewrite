@@ -46,15 +46,14 @@ define(function () {
         /**
          * Makes sure that $el is an instance of Backbone.$
          * @returns {this}
-         * @private
          */
-        _ensureElement: function () {
+        ensureEl: function () {
             if (!(this.$el instanceof Backbone.$)) {
                 this.setElement(this.el);
             }
             return this;
         },
-
+        
         /**
          * Empty this.$el and append a view's el
          * @param {Backbone.View} view
@@ -92,7 +91,7 @@ define(function () {
                 throw new TypeError('Show expects an instance of Backbone.View');
             }
 
-            this._ensureElement();
+            this.ensureEl();
             if (view !== this.currentView) {
                 this.close();
             }

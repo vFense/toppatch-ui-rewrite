@@ -128,7 +128,7 @@ $(document).ready(function () {
         );
     });
 
-    asyncTest('_ensureElement', function () {
+    asyncTest('ensureEl', function () {
         require(
             ['core/js/region'],
             function (BaseRegion) {
@@ -139,10 +139,10 @@ $(document).ready(function () {
                     region = new Region(),
                     result;
 
-                result = region._ensureElement();
+                result = region.ensureEl();
                 ok(region.$el instanceof Backbone.$, 'region.$el is an instance of Backbone.$');
                 strictEqual(region.$el.selector, selector, 'region.$el.selector is correct');
-                strictEqual(result, region, 'region._ensureElement() returned region');
+                strictEqual(result, region, 'region.ensureEl() returned region');
 
                 // override region.setElement to see if it gets called
                 var called = 0;
@@ -150,12 +150,12 @@ $(document).ready(function () {
                     called += 1;
                 };
 
-                // Call region._ensureElement again
-                region._ensureElement();
+                // Call region.ensureEl again
+                region.ensureEl();
 
                 // setElement should have not be called since $el is an instance of Backbone.$ now
                 // and $el.selector === el
-                strictEqual(called, 0, 'Subsequent call to _ensureElement did not call setElement');
+                strictEqual(called, 0, 'Subsequent call to ensureEl did not call setElement');
 
                 start();
             }
@@ -174,7 +174,7 @@ $(document).ready(function () {
                     view = new Backbone.View(),
                     result;
 
-                region._ensureElement();
+                region.ensureEl();
                 result = region._open(view);
 
                 strictEqual(view.$el.parent()[0], region.$el[0],
@@ -211,13 +211,13 @@ $(document).ready(function () {
 
 
                 region.currentView = backboneView;
-                region._ensureElement()._open(region.currentView);
+                region.ensureEl()._open(region.currentView);
                 region.close();
                 strictEqual(backboneView.$el.parents().length, 0, 'region.close removed the backboneView from the DOM');
                 ok(_.isUndefined(region.currentView), 'region.close correctly deleted the currentView reference');
 
                 region.currentView = baseView;
-                region._ensureElement()._open(region.currentView);
+                region.ensureEl()._open(region.currentView);
                 region.close();
                 strictEqual(backboneView.$el.parents().length, 0, 'region.close removed the baseView from the DOM');
                 ok(_.isUndefined(region.currentView), 'region.close correctly deleted the currentView reference');
@@ -242,7 +242,7 @@ $(document).ready(function () {
                     region = new Region(),
                     result;
 
-                region._ensureElement();
+                region.ensureEl();
                 result = region.reset();
 
                 strictEqual(called, 1, 'region.reset() called close once');
