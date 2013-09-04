@@ -187,13 +187,13 @@ $(document).ready(function () {
 
                 layout.addRegion('regionOne', '#regionOne');
                 deepEqual(layout.regions, {'regionOne': '#regionOne'}, 'this.regions is correct');
-                strictEqual(layout.regionManager.length, 1, 'this.regionManager now has 1 regions');
+                strictEqual(layout.regionManager.length, 1, 'this.regionManager now has 1 region');
                 deepEqual(layout.regionManager.keys(), ['regionOne'], 'this.regionManager has correct region names');
 
                 // Duplicate region name to ensure region overwrite
                 layout.addRegion('regionOne', '#regionOne');
                 deepEqual(layout.regions, {'regionOne': '#regionOne'}, 'this.regions is correct');
-                strictEqual(layout.regionManager.length, 1, 'this.regionManager now has 1 regions');
+                strictEqual(layout.regionManager.length, 1, 'this.regionManager now has 1 region');
                 deepEqual(layout.regionManager.keys(), ['regionOne'], 'this.regionManager has correct region names');
 
                 layout.addRegion('regionTwo', '#regionTwo');
