@@ -48,12 +48,12 @@ define(function () {
          * @returns {this}
          */
         ensureEl: function () {
-            if (!(this.$el instanceof Backbone.$)) {
+            if (!(this.$el instanceof Backbone.$) || this.$el.length === 0) {
                 this.setElement(this.el);
             }
             return this;
         },
-        
+
         /**
          * Empty this.$el and append a view's el
          * @param {Backbone.View} view

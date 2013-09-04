@@ -139,23 +139,20 @@ $(document).ready(function () {
                     region = new Region(),
                     result;
 
-                result = region.ensureEl();
-                ok(region.$el instanceof Backbone.$, 'region.$el is an instance of Backbone.$');
-                strictEqual(region.$el.selector, selector, 'region.$el.selector is correct');
-                strictEqual(result, region, 'region.ensureEl() returned region');
-
                 // override region.setElement to see if it gets called
                 var called = 0;
                 region.setElement = function() {
                     called += 1;
                 };
 
-                // Call region.ensureEl again
-                region.ensureEl();
+                result = region.ensureEl();
+                strictEqual(result, region, 'region.ensureEl() returned region');
+                strictEqual(called, 1, 'region.setElement was called because region.$el is not an instance of Backbone.$');
 
-                // setElement should have not be called since $el is an instance of Backbone.$ now
-                // and $el.selector === el
-                strictEqual(called, 0, 'Subsequent call to ensureEl did not call setElement');
+                ok(region.$el = $(), 'Manually set region.$el to an instance of Backbone.$, but selected nothing');
+
+                region.ensureEl();
+                strictEqual(called, 2, 'region.setElement was called again because region.$el.length === 0');
 
                 start();
             }
