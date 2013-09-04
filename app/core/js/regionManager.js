@@ -97,8 +97,10 @@ define(
                         definition = { el: definition };
                     }
 
-                    // _.defaults will only replace values that are undefined
-                    definition = _.defaults({}, definition, defaults);
+                    if (!_.isUndefined(defaults)) {
+                        // _.defaults will only replace values that are undefined
+                        definition = _.defaults({}, definition, defaults);
+                    }
 
                     this.addRegion(name, definition);
                 }, this);
