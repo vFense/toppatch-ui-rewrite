@@ -44,12 +44,24 @@ define(function () {
 
     _.extend(Region.prototype, {
         /**
-         * Empty this.$el and append a view's el
+         * Replace the current view with the passed view and append it to the DOM
          * @param {Backbone.View} view
          * @returns {this}
          */
-        open: function(view){
-            this.$el.empty().append(view.el);
+        show: function (view) {
+            if (!(view instanceof Backbone.View)) {
+                throw new TypeError('Show expects an instance of Backbone.View');
+            }
+
+            this.ensureEl();
+            if (view !== this.currentView) {
+                this.close();
+            }
+
+            this.open(view.render());
+
+            this.currentView = view;
+
             return this;
         },
         
@@ -81,24 +93,12 @@ define(function () {
         },
 
         /**
-         * Replace the current view with the passed view and append it to the DOM
+         * Empty this.$el and append a view's el
          * @param {Backbone.View} view
          * @returns {this}
          */
-        show: function (view) {
-            if (!(view instanceof Backbone.View)) {
-                throw new TypeError('Show expects an instance of Backbone.View');
-            }
-
-            this.ensureEl();
-            if (view !== this.currentView) {
-                this.close();
-            }
-
-            this.open(view.render());
-
-            this.currentView = view;
-
+        open: function(view){
+            this.$el.empty().append(view.el);
             return this;
         },
 
