@@ -22,8 +22,8 @@ define(function () {
             //   el: ...,
             //   ...
             // });
-            this.options = options;
-            this.el = this.options.el;
+            this.el = options.el;
+            this.options = _.omit(options, 'el');
         }
 
         // this.el is REQUIRED

@@ -58,8 +58,8 @@ $(document).ready(function () {
             function (BaseRegion) {
                 var selector = { el: 'body' },
                     region = new BaseRegion(selector);
-                strictEqual(region.options, selector,
-                    'New BaseRegion with object that defines \'el\' correctly copied object to region.options'
+                deepEqual(region.options, {},
+                    'New BaseRegion with object that defines \'el\' correctly omitted \'el\' from region.options'
                 );
                 strictEqual(region.el, selector.el,
                     'New BaseRegion with object that defines \'el\' correctly copied object.el to region.el'
