@@ -117,6 +117,27 @@ $(document).ready(function () {
         );
     });
 
+    asyncTest('getEl with parentEl', function () {
+        require(
+            ['core/js/region'],
+            function (BaseRegion) {
+                var parentEl = $('<div id="test1"><div id="test2"></div></div>'),
+                    Region = BaseRegion.extend({
+                        parentEl: parentEl,
+                        el: '#test2'
+                    }),
+                    region = new Region(),
+                    result;
+
+                result = region.getEl(region.el);
+                ok(result instanceof $, 'getEl returned an instance of Backbone.$');
+                strictEqual(result[0], parentEl.find(region.el)[0], 'getEl selected the correct element');
+
+                start();
+            }
+        );
+    });
+
     asyncTest('ensureEl', function () {
         require(
             ['core/js/region'],

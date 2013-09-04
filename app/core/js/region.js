@@ -17,13 +17,13 @@ define(function () {
         if (_.isString(options)) {
             // new Region('#someElement');
             this.el = options;
-        } else if (_.isObject(options) && options.el) {
+        } else if (_.isObject(options)) {
             // new Region({
             //   el: ...,
             //   ...
             // });
-            this.el = options.el;
-            this.options = _.omit(options, 'el');
+            _.extend(this, _.pick(options, 'el', 'parentEl'));
+            this.options = _.omit(options, 'el', 'parentEl');
         }
 
         // this.el is REQUIRED
@@ -77,12 +77,16 @@ define(function () {
         },
 
         /**
-         * Return $(selector)
+         * Return parentEl.find(selector) or $(selector)
          * @param {string} selector
          * @returns {jQuery}
          */
         getEl: function (selector) {
-            return $(selector);
+            if (!_.isUndefined(this.parentEl)) {
+                return _.result(this, 'parentEl').find(selector);
+            } else {
+                return $(selector);
+            }
         },
 
         /**
