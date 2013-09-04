@@ -354,4 +354,26 @@ $(document).ready(function () {
             }
         );
     });
+
+    asyncTest('render [after close]', function () {
+        require(
+            ['core/js/layoutView'],
+            function (LayoutView) {
+                var Layout = LayoutView.extend({
+                        template: _.template('<div><span id="regionOne"></span></div>'),
+                        regions: {
+                            regionOne: '#regionOne'
+                        }
+                    }),
+                    layout = new Layout();
+                layout.close();
+                layout.render();
+
+                strictEqual(layout.regionManager.length, 1, 'regionManager is managing regions again');
+                ok(layout.regionManager.has('regionOne'), 'regionManager has region "regionOne"');
+
+                start();
+            }
+        );
+    });
 });
