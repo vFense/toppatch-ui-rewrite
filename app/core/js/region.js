@@ -49,7 +49,7 @@ define(function () {
          */
         ensureEl: function () {
             if (!(this.$el instanceof Backbone.$) || this.$el.length === 0) {
-                this.setElement(this.el);
+                this.getEl(this.el);
             }
             return this;
         },
@@ -70,7 +70,7 @@ define(function () {
          * @param {Backbone.$|string} element
          * @returns {this}
          */
-        setElement: function (element) {
+        getEl: function (element) {
             if (element instanceof Backbone.$) {
                 this.$el = element;
                 this.el = element.selector;

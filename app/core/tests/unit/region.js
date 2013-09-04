@@ -98,7 +98,7 @@ $(document).ready(function () {
         );
     });
 
-    asyncTest('setElement', function () {
+    asyncTest('getEl', function () {
         require(
             ['core/js/region'],
             function (BaseRegion) {
@@ -110,18 +110,18 @@ $(document).ready(function () {
                     result;
 
                 selector = '#qunit-header';
-                result = region.setElement($(selector));
+                result = region.getEl($(selector));
                 ok(region.$el instanceof Backbone.$, 'region.$el is an instance of Backbone.$');
-                strictEqual(region.$el.selector, '#qunit-header', 'setElement($) set $el correctly');
-                strictEqual(region.el, '#qunit-header', 'setElement($) set el correctly');
-                strictEqual(result, region, 'region.setElement() returned region');
+                strictEqual(region.$el.selector, '#qunit-header', 'getEl($) set $el correctly');
+                strictEqual(region.el, '#qunit-header', 'getEl($) set el correctly');
+                strictEqual(result, region, 'region.getEl() returned region');
 
                 selector = '#qunit-banner';
-                result = region.setElement(selector);
-                strictEqual(region.el, selector, 'setElement(string) set el correctly');
+                result = region.getEl(selector);
+                strictEqual(region.el, selector, 'getEl(string) set el correctly');
                 ok(region.$el instanceof Backbone.$, 'region.$el is an instance of Backbone.$');
-                strictEqual(region.$el.selector, selector, 'setElement(string) set $el correctly');
-                strictEqual(result, region, 'region.setElement() returned region');
+                strictEqual(region.$el.selector, selector, 'getEl(string) set $el correctly');
+                strictEqual(result, region, 'region.getEl() returned region');
 
                 start();
             }
@@ -139,20 +139,20 @@ $(document).ready(function () {
                     region = new Region(),
                     result;
 
-                // override region.setElement to see if it gets called
+                // override region.getEl to see if it gets called
                 var called = 0;
-                region.setElement = function() {
+                region.getEl = function() {
                     called += 1;
                 };
 
                 result = region.ensureEl();
                 strictEqual(result, region, 'region.ensureEl() returned region');
-                strictEqual(called, 1, 'region.setElement was called because region.$el is not an instance of Backbone.$');
+                strictEqual(called, 1, 'region.getEl was called because region.$el is not an instance of Backbone.$');
 
                 ok(region.$el = $(), 'Manually set region.$el to an instance of Backbone.$, but selected nothing');
 
                 region.ensureEl();
-                strictEqual(called, 2, 'region.setElement was called again because region.$el.length === 0');
+                strictEqual(called, 2, 'region.getEl was called again because region.$el.length === 0');
 
                 start();
             }
