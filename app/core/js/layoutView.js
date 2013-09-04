@@ -34,6 +34,9 @@ define(
                 }
                 return this;
             },
+            getRegion: function (name) {
+                return this.regionManager.get(name);
+            },
             addRegion: function (name, definition) {
                 var region = {};
                 region[name] = definition;

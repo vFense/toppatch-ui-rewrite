@@ -233,4 +233,25 @@ $(document).ready(function () {
             }
         );
     });
+
+    asyncTest('getRegion', function () {
+        require(
+            ['core/js/layoutView'],
+            function (LayoutView) {
+                var layout = new LayoutView(),
+                    regions = {
+                        'regionOne': '#regionOne',
+                        'regionTwo': '#regionTwo'
+                    };
+                layout.addRegions(regions);
+
+                var regionOne = layout.regionManager.get('regionOne'),
+                    result = layout.getRegion('regionOne');
+
+                strictEqual(result, regionOne, 'returned the correct region');
+
+                start();
+            }
+        );
+    });
 });
