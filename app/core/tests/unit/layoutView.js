@@ -98,6 +98,7 @@ $(document).ready(function () {
 
                 // initRegions calls addRegions
                 notStrictEqual(layout.regions, regions, 'Rebuilt this.regions');
+                deepEqual(layout.regions, regions, 'this.regions is correct');
                 strictEqual(called, 1, 'Called _buildRegions');
                 strictEqual(args.length, 1, 'Passed one argument to _buildRegions');
                 strictEqual(args[0], regions, 'Passed argument "regions" to _buildRegions');
