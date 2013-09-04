@@ -38,7 +38,7 @@ $(document).ready(function () {
         );
     });
 
-    asyncTest('render', function () {
+    asyncTest('render [Handlebars Template]', function () {
         require(
             ['handlebars', 'core/js/templateView'],
             function (Handlebars, TemplateView) {
@@ -76,6 +76,27 @@ $(document).ready(function () {
                 QUnit.throws(function () { view.render(); }, TypeError, 'When template is not function, throws TypeError');
 
                 view.template = template;
+                view.render();
+                strictEqual(view.$el.html(), '<div>Hello World!</div>', 'Template rendered correctly');
+
+                start();
+            }
+        );
+    });
+
+    asyncTest('render [Lo-Dash Template]', function () {
+        require(
+            ['handlebars', 'core/js/templateView'],
+            function (Handlebars, TemplateView) {
+                var Model = Backbone.Model.extend({
+                    defaults: {
+                        name: 'World'
+                    }
+                });
+
+                var view = new TemplateView();
+                view.model = new Model();
+                view.template = _.template('<div>Hello <%= name%>!</div>');
                 view.render();
                 strictEqual(view.$el.html(), '<div>Hello World!</div>', 'Template rendered correctly');
 
