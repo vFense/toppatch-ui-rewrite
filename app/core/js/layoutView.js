@@ -20,6 +20,19 @@ define(
                 this._firstRender = true;
                 TemplateView.prototype.constructor.apply(this, arguments);
                 return this;
+            },
+            /**
+             * Sets up the region manager and populates it from this.regions
+             * @returns {this}
+             * @private
+             */
+            _initRegions: function () {
+                this.regionManager = new RegionManager();
+                var regions = _.result(this, 'regions');
+                if (!_.isUndefined(regions)) {
+                    this.addRegions(_.result(this, 'regions'));
+                }
+                return this;
             }
         });
     }
