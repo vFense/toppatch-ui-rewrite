@@ -148,4 +148,27 @@ $(document).ready(function () {
             }
         );
     });
+
+    asyncTest('_buildRegions [on construct, with regions]', function () {
+        require(
+            ['core/js/layoutView'],
+            function (LayoutView) {
+                var regions = {
+                        regionOne: '#regionOne',
+                        regionTwo: '#regionTwo'
+                    },
+                    Layout = LayoutView.extend({
+                        regions: regions
+                    }),
+                    layout;
+                layout = new Layout();
+
+                // initRegions calls addRegions
+                strictEqual(layout.regionManager.length, 2, 'this.regionManager now has 2 regions');
+                deepEqual(layout.regionManager.keys(), _.keys(regions), 'this.regionManager has correct region names');
+                
+                start();
+            }
+        );
+    });
 });

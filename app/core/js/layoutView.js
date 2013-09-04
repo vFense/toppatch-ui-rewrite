@@ -36,6 +36,16 @@ define(
             addRegions: function (regions) {
                 this.regions = _.extend({}, this.regions, regions);
                 return this._buildRegions(regions);
+            },
+            _buildRegions: function (regions) {
+                var that = this,
+                    defaults = {
+                        parentEl: function () { return that.$el; }
+                    };
+
+                this.regionManager.addRegions(regions, defaults);
+
+                return this;
             }
         });
     }
