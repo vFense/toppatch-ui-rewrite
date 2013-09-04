@@ -85,6 +85,13 @@ define(
                 }
                 TemplateView.prototype.render.apply(this, arguments);
                 return this;
+            },
+            close: function () {
+                if (!this.isClosed) {
+                    this.regionManager.close();
+                    TemplateView.prototype.close.apply(this, arguments);
+                }
+                return this;
             }
         });
     }

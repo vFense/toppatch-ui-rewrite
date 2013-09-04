@@ -327,4 +327,23 @@ $(document).ready(function () {
             }
         );
     });
+
+    asyncTest('close', function () {
+        require(
+            ['core/js/layoutView'],
+            function (LayoutView) {
+                var Layout = LayoutView.extend({
+                        regions: {
+                            regionOne: '#regionOne',
+                            regionTwo: '#regionTwo'
+                        }
+                    }),
+                    layout = new Layout();
+                layout.close();
+                strictEqual(layout.regionManager.length, 0, 'closed regionManager');
+                strictEqual(layout.isClosed, true, 'isClosed');
+                start();
+            }
+        );
+    });
 });
