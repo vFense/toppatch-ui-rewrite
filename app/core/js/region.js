@@ -70,8 +70,8 @@ define(function () {
          * @returns {this}
          */
         ensureEl: function () {
-            if (!(this.$el instanceof Backbone.$) || this.$el.length === 0) {
                 this.getEl(this.el);
+            if (!(this.$el instanceof $) || this.$el.length === 0) {
             }
             return this;
         },
