@@ -74,4 +74,36 @@ $(document).ready(function () {
             }
         );
     });
+
+    asyncTest('addRegions [on construct, with regions]', function () {
+        require(
+            ['core/js/layoutView'],
+            function (LayoutView) {
+                var called = 0,
+                    args,
+                    regions = {
+                        regionOne: '#regionOne',
+                        regionTwo: '#regionTwo'
+                    },
+                    Layout = LayoutView.extend({
+                        regions: regions,
+                        _buildRegions: function () {
+                            called += 1;
+                            args = _.toArray(arguments);
+                            return this;
+                        }
+                    }),
+                    layout;
+                layout = new Layout();
+
+                // initRegions calls addRegions
+                notStrictEqual(layout.regions, regions, 'Rebuilt this.regions');
+                strictEqual(called, 1, 'Called _buildRegions');
+                strictEqual(args.length, 1, 'Passed one argument to _buildRegions');
+                strictEqual(args[0], regions, 'Passed argument "regions" to _buildRegions');
+
+                start();
+            }
+        );
+    });
 });
