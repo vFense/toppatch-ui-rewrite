@@ -51,7 +51,8 @@ $(document).ready(function () {
         require(
             ['core/js/layoutView'],
             function (LayoutView) {
-                var called = 0, args,
+                var called = 0,
+                    args = [],
                     Layout = LayoutView.extend({
                         regions: {
                             regionOne: '#regionOne',
@@ -80,7 +81,7 @@ $(document).ready(function () {
             ['core/js/layoutView'],
             function (LayoutView) {
                 var called = 0,
-                    args,
+                    args = [],
                     regions = {
                         regionOne: '#regionOne',
                         regionTwo: '#regionTwo'
@@ -113,7 +114,7 @@ $(document).ready(function () {
             ['core/js/layoutView'],
             function (LayoutView) {
                 var called = 0,
-                    args,
+                    args = [],
                     regions = {
                         regionOne: '#regionOne',
                         regionTwo: '#regionTwo'
