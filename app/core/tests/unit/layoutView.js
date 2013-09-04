@@ -137,7 +137,6 @@ $(document).ready(function () {
                 };
                 layout.addRegions(testRegion);
 
-                // initRegions calls addRegions
                 notStrictEqual(layout.regions, regions, 'Rebuilt this.regions');
                 deepEqual(layout.regions, _.extend({}, regions, testRegion), 'this.regions is correct');
                 strictEqual(called, 1, 'Called _buildRegions');
@@ -163,7 +162,6 @@ $(document).ready(function () {
                     layout;
                 layout = new Layout();
 
-                // initRegions calls addRegions
                 strictEqual(layout.regionManager.length, 2, 'this.regionManager now has 2 regions');
 
                 _.each(regions, function (value, key) {
