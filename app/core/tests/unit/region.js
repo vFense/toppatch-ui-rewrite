@@ -106,7 +106,6 @@ $(document).ready(function () {
                         el: 'body'
                     }),
                     region = new Region(),
-                    selector,
                     result;
 
                 result = region.getEl(region.el);
