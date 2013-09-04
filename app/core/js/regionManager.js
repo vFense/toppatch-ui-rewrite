@@ -88,10 +88,18 @@ define(
             /**
              * Add multiple regions via one method call
              * @param regions {Object} Name:Definition pairs to pass to addRegion
+             * @param defaults {Object} Options to default into each definition
              * @returns {*}
              */
-            addRegions: function (regions) {
+            addRegions: function (regions, defaults) {
                 _.each(regions, function (definition, name) {
+                    if (_.isString(definition)) {
+                        definition = { el: definition };
+                    }
+
+                    // _.defaults will only replace values that are undefined
+                    definition = _.defaults({}, definition, defaults);
+
                     this.addRegion(name, definition);
                 }, this);
                 return this;
