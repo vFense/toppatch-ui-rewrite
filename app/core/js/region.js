@@ -44,17 +44,6 @@ define(function () {
 
     _.extend(Region.prototype, {
         /**
-         * Makes sure that $el is an instance of Backbone.$
-         * @returns {this}
-         */
-        ensureEl: function () {
-            if (!(this.$el instanceof Backbone.$) || this.$el.length === 0) {
-                this.getEl(this.el);
-            }
-            return this;
-        },
-
-        /**
          * Empty this.$el and append a view's el
          * @param {Backbone.View} view
          * @returns {this}
@@ -62,6 +51,17 @@ define(function () {
          */
         _open: function(view){
             this.$el.empty().append(view.el);
+            return this;
+        },
+        
+        /**
+         * Makes sure that $el is an instance of Backbone.$
+         * @returns {this}
+         */
+        ensureEl: function () {
+            if (!(this.$el instanceof Backbone.$) || this.$el.length === 0) {
+                this.getEl(this.el);
+            }
             return this;
         },
 
