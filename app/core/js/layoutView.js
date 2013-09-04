@@ -47,6 +47,7 @@ define(
                 delete this.regions[name];
                 this.regionManager.removeRegion(name);
                 return this;
+            },
             _buildRegions: function (regions) {
                 var that = this,
                     defaults = {
