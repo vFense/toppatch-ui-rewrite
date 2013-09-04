@@ -166,7 +166,11 @@ $(document).ready(function () {
                 // initRegions calls addRegions
                 strictEqual(layout.regionManager.length, 2, 'this.regionManager now has 2 regions');
                 deepEqual(layout.regionManager.keys(), _.keys(regions), 'this.regionManager has correct region names');
-                
+
+                start();
+            }
+        );
+    });
 
     asyncTest('addRegion [definition is string]', function () {
         require(
@@ -190,10 +194,6 @@ $(document).ready(function () {
                 strictEqual(layout.regionManager.length, 2, 'this.regionManager now has 2 regions');
                 deepEqual(layout.regionManager.keys(), ['regionOne', 'regionTwo'], 'this.regionManager has correct region names');
 
-                start();
-            }
-        );
-    });
                 start();
             }
         );
