@@ -254,4 +254,77 @@ $(document).ready(function () {
             }
         );
     });
+
+    asyncTest('Render [first call]', function () {
+        require(
+            ['core/js/layoutView'],
+            function (LayoutView) {
+                var Layout, layout;
+                Layout = LayoutView.extend({
+                    template: _.template('<div id="regionOne"></div><div id="regionTwo"></div>'),
+                    regions: {
+                        regionOne: '#regionOne',
+                        regionTwo: '#regionTwo'
+                    }
+                });
+                layout = new Layout();
+
+                var callCounts = {};
+                _.each(_.functions(layout), function (key) {
+                    callCounts[key] = 0;
+                    var wrappedMethod = layout[key];
+                    layout[key] = function () {
+                        callCounts[key] += 1;
+                        return wrappedMethod.apply(layout, arguments);
+                    };
+                });
+
+                layout.render();
+                strictEqual(layout._firstRender, false, 'Render set _firstRender to false');
+                strictEqual(callCounts._initRegions, 0, 'Render did not call _initRegions');
+                strictEqual(callCounts._reInitRegions, 0, 'Render did not call _reInitRegions');
+
+                var regionOne = layout.getRegion('regionOne'),
+                    $el = layout.$('#regionOne');
+                regionOne.ensureEl();
+                strictEqual(regionOne.$el[0], $el[0], 'regionOne found element within rendered template');
+
+                start();
+            }
+        );
+    });
+
+    asyncTest('Render [second call]', function () {
+        require(
+            ['core/js/layoutView'],
+            function (LayoutView) {
+                var Layout, layout;
+                Layout = LayoutView.extend({
+                    template: _.template('<div id="regionOne"></div><div id="regionTwo"></div>'),
+                    regions: {
+                        regionOne: '#regionOne',
+                        regionTwo: '#regionTwo'
+                    }
+                });
+                layout = new Layout();
+                layout.render();
+
+                var callCounts = {};
+                _.each(_.functions(layout), function (key) {
+                    callCounts[key] = 0;
+                    var wrappedMethod = layout[key];
+                    layout[key] = function () {
+                        callCounts[key] += 1;
+                        return wrappedMethod.apply(layout, arguments);
+                    };
+                });
+
+                layout.render();
+                strictEqual(callCounts._initRegions, 0, 'Render did not call _initRegions');
+                strictEqual(callCounts._reInitRegions, 1, 'Render called _reInitRegions');
+
+                start();
+            }
+        );
+    });
 });

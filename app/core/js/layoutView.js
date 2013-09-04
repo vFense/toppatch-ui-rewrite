@@ -34,6 +34,19 @@ define(
                 }
                 return this;
             },
+            /**
+             * Close all the regions, then reset each region
+             * @returns {this}
+             * @private
+             */
+            _reInitRegions: function () {
+                this.regionManager
+                    .closeRegions()
+                    .each(function (region) {
+                        region.reset();
+                    });
+                return this;
+            },
             getRegion: function (name) {
                 return this.regionManager.get(name);
             },
@@ -59,6 +72,18 @@ define(
 
                 this.regionManager.addRegions(regions, defaults);
 
+                return this;
+            },
+            render: function () {
+                if (this.isClosed === true) {
+                    this._initRegions();
+                }
+                if (this._firstRender) {
+                    this._firstRender = false;
+                } else {
+                    this._reInitRegions();
+                }
+                TemplateView.prototype.render.apply(this, arguments);
                 return this;
             }
         });
