@@ -342,6 +342,14 @@ $(document).ready(function () {
                 layout.close();
                 strictEqual(layout.regionManager.length, 0, 'closed regionManager');
                 strictEqual(layout.isClosed, true, 'isClosed');
+
+                var called = 0;
+                layout.regionManager.close = function () {
+                    called += 1;
+                };
+                layout.close();
+                strictEqual(called, 0, 'Calling close, when already closed, does not call regionManager.close');
+
                 start();
             }
         );
