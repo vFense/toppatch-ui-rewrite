@@ -283,4 +283,6 @@ $(document).ready(function () {
             start();
         });
     });
+    //Note: In the case of a circular reference, calling closeChildViews will close
+    //      the parent view, since a chile has a reference to the parent
 });
