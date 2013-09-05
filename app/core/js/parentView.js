@@ -1,7 +1,7 @@
 /**
- * base_view.js
+ * parentView.js
  * ------------------------------------------------------------------------
- * A Backbone.View with extra functionality
+ * A Backbone.View that manages child views
  */
 define(
     ['backbone.babysitter'],
