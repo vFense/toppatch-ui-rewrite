@@ -58,7 +58,8 @@ define(function () {
                 this.close();
             }
 
-            this.open(view.render());
+            view.render().delegateEvents();
+            this.open(view);
 
             this.currentView = view;
 
