@@ -59,6 +59,8 @@ define(
             closeChildView: function (view) {
                 // Only close the view if it is a child of "this" view.
                 if (view instanceof Backbone.View && this.children.contains(view)) {
+                    this.stopListening(view);
+
                     if (_.isFunction(view.close)) {
                         view.close();
                     } else {
