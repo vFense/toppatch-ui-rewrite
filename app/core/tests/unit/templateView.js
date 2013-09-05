@@ -16,7 +16,7 @@ $(document).ready(function () {
                 });
 
                 var view = new TemplateView();
-                deepEqual(view.getData(), {}, 'Returns empty object whe no model, or collection, is presnet');
+                deepEqual(view.getData(), {}, 'Returns empty object when no model, or collection, is present');
 
 
                 view.model = new Model();
