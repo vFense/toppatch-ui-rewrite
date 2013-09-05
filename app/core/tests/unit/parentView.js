@@ -1,6 +1,6 @@
 $(document).ready(function () {
     'use strict';
-    module('View', {
+    module('ParentView', {
         setup: function () {
             this.invalidTypes = function () {
                 return {
@@ -20,17 +20,17 @@ $(document).ready(function () {
         }
     });
     asyncTest('new base_view()', function () {
-        require(['core/js/view'], function(BaseView) {
+        require(['core/js/parentView'], function(ParentView) {
             ok(true, 'Attempt new view()');
-            var view = new BaseView();
+            var view = new ParentView();
             ok(_.isUndefined(view.children), 'view.children is undefined');
 
             start();
         });
     });
     asyncTest('_initChildServices', function () {
-        require(['core/js/view'], function(BaseView) {
-            var view = new BaseView(),
+        require(['core/js/parentView'], function(ParentView) {
+            var view = new ParentView(),
                 result;
 
             ok(true, 'Attempt view._initChildServices()');
@@ -42,8 +42,8 @@ $(document).ready(function () {
         });
     });
     asyncTest('registerChildView() [no arguments]', function () {
-        require(['core/js/view'], function(BaseView) {
-            var view = new BaseView(),
+        require(['core/js/parentView'], function(ParentView) {
+            var view = new ParentView(),
                 result;
 
             // registerChildView with no args
@@ -57,8 +57,8 @@ $(document).ready(function () {
     });
     asyncTest('registerChildView() [invalid type]', function () {
         var that = this;
-        require(['core/js/view'], function(BaseView) {
-            var view = new BaseView(),
+        require(['core/js/parentView'], function(ParentView) {
+            var view = new ParentView(),
                 invalidTypes = that.invalidTypes();
 
             _.each(invalidTypes, function (value, key) {
@@ -73,8 +73,8 @@ $(document).ready(function () {
     });
     asyncTest('registerChildView() [multiple invalid types at once]', function () {
         var that = this;
-        require(['core/js/view'], function(BaseView) {
-            var view = new BaseView(),
+        require(['core/js/parentView'], function(ParentView) {
+            var view = new ParentView(),
                 invalidTypes = that.invalidTypes(),
                 result;
 
@@ -87,8 +87,8 @@ $(document).ready(function () {
         });
     });
     asyncTest('registerChildView() [reference to itself]', function () {
-        require(['core/js/view'], function(BaseView) {
-            var view = new BaseView(),
+        require(['core/js/parentView'], function(ParentView) {
+            var view = new ParentView(),
                 result;
 
             ok(true, 'Attempt view.registerChildView() with view as an argument');
@@ -100,10 +100,10 @@ $(document).ready(function () {
         });
     });
     asyncTest('registerChildView() [new Backbone.View and new base_view]', function () {
-        require(['core/js/view'], function(BaseView) {
-            var view = new BaseView(),
+        require(['core/js/parentView'], function(ParentView) {
+            var view = new ParentView(),
                 newBackboneView = new Backbone.View(),
-                newBaseView = new BaseView(),
+                newParentView = new ParentView(),
                 result;
 
             // registerChild test
@@ -115,16 +115,16 @@ $(document).ready(function () {
             strictEqual(view.children.findByCid(newBackboneView.cid), newBackboneView, 'newBackboneView is in view.children');
 
             ok(true, 'Attempt view.registerChildView() with a new base_view');
-            result = view.registerChildView(newBaseView);
+            result = view.registerChildView(newParentView);
             strictEqual(result, view, 'Returned this');
             strictEqual(view.children.length, 2, 'view has 2 children');
-            strictEqual(view.children.findByCid(newBaseView.cid), newBaseView, 'newBaseView is in view.children');
+            strictEqual(view.children.findByCid(newParentView.cid), newParentView, 'newParentView is in view.children');
             start();
         });
     });
     asyncTest('registerChildView() [multiple Backbone.Views at once]', function () {
-        require(['core/js/view'], function(BaseView) {
-            var view = new BaseView(),
+        require(['core/js/parentView'], function(ParentView) {
+            var view = new ParentView(),
                 result;
 
             ok(true, 'Attempt view.registerChildView() with multiple new Backbone.View');
@@ -137,8 +137,8 @@ $(document).ready(function () {
     });
     asyncTest('closeChildView() [invalid arguments]', function () {
         var that = this;
-        require(['core/js/view'], function(BaseView) {
-            var view = new BaseView(),
+        require(['core/js/parentView'], function(ParentView) {
+            var view = new ParentView(),
                 invalidTypes = that.invalidTypes();
 
             view.registerChildView(new Backbone.View(), new Backbone.View(), new Backbone.View());
@@ -154,10 +154,10 @@ $(document).ready(function () {
         });
     });
     asyncTest('closeChildView()', function () {
-        require(['core/js/view'], function(BaseView) {
-            var view = new BaseView(),
+        require(['core/js/parentView'], function(ParentView) {
+            var view = new ParentView(),
                 childView1 = new Backbone.View(),
-                childView2 = new BaseView(),
+                childView2 = new ParentView(),
                 result;
 
             view.registerChildView(childView1, childView2);
@@ -177,10 +177,10 @@ $(document).ready(function () {
         });
     });
     asyncTest('closeChildViews()', function () {
-        require(['core/js/view'], function(BaseView) {
-            var view = new BaseView(),
+        require(['core/js/parentView'], function(ParentView) {
+            var view = new ParentView(),
                 childView1 = new Backbone.View(),
-                childView2 = new BaseView(),
+                childView2 = new ParentView(),
                 result;
 
             view.registerChildView(childView1, childView2);
@@ -195,54 +195,28 @@ $(document).ready(function () {
         });
     });
     asyncTest('clean()', function () {
-        require(['core/js/view'], function(BaseView) {
-            var baseView = new BaseView(),
-                childView = new BaseView();
+        require(['core/js/parentView'], function(ParentView) {
+            var parentView = new ParentView(),
+                childView = new ParentView();
 
-            baseView.$el.html('test');
-            baseView.registerChildView(childView);
+            parentView.$el.html('test');
+            parentView.registerChildView(childView);
 
             // All we care about here is that the child views were closed,
             // and that the html was emptied
-            baseView.clean();
+            parentView.clean();
 
-            strictEqual(baseView.children.length, 0, 'view has 0 children');
-            strictEqual(baseView.$el.html(), '', 'clean() emptied its element html');
-
-            start();
-        });
-    });
-    asyncTest('close() [No child views]', function () {
-        require(['core/js/view'], function(BaseView) {
-            var beforeCloseCalled = false,
-                $body = $('body'),
-                View = BaseView.extend({
-                    beforeClose: function () {
-                        beforeCloseCalled = true;
-                    }
-                }),
-                view = new View();
-
-            ok(true, 'New view has been created');
-
-            view.$el.appendTo($body);
-            strictEqual(view.$el.parent()[0], $body[0], 'view appended to body');
-
-            ok(true, 'Attempting view.close()');
-            var result = view.close();
-            ok(beforeCloseCalled, 'view.close() called this.beforeClose');
-            strictEqual(view.$el.parent()[0], undefined, 'view has been removed from the body');
-            strictEqual(view.isClosed, true, 'view.isClosed was set to true upon view.close completion');
-            strictEqual(result, view, 'view.close returned view');
+            strictEqual(parentView.children.length, 0, 'view has 0 children');
+            strictEqual(parentView.$el.html(), '', 'clean() emptied its element html');
 
             start();
         });
     });
     asyncTest('close() [Many child views]', function () {
-        require(['core/js/view'], function(BaseView) {
-            var mainView = new BaseView(),
-                childView1 = new BaseView(),
-                childView2 = new BaseView();
+        require(['core/js/parentView'], function(ParentView) {
+            var mainView = new ParentView(),
+                childView1 = new ParentView(),
+                childView2 = new ParentView();
 
             mainView.registerChildView(childView1);
             mainView.registerChildView(childView2);
@@ -256,10 +230,10 @@ $(document).ready(function () {
         });
     });
     asyncTest('close() [Child has child]', function () {
-        require(['core/js/view'], function(BaseView) {
-            var mainView = new BaseView(),
-                childView1 = new BaseView(),
-                childView2 = new BaseView();
+        require(['core/js/parentView'], function(ParentView) {
+            var mainView = new ParentView(),
+                childView1 = new ParentView(),
+                childView2 = new ParentView();
 
             mainView.registerChildView(childView1);
             childView1.registerChildView(childView2);
@@ -273,9 +247,9 @@ $(document).ready(function () {
         });
     });
     asyncTest('close() [Circular reference]', function () {
-        require(['core/js/view'], function(BaseView) {
-            var mainView = new BaseView(),
-                childView = new BaseView(),
+        require(['core/js/parentView'], function(ParentView) {
+            var mainView = new ParentView(),
+                childView = new ParentView(),
                 callCount = 0;
 
             // mainView.close should be called twice.
