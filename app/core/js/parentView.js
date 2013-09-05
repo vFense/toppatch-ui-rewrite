@@ -4,10 +4,11 @@
  * A Backbone.View that manages child views
  */
 define(
-    ['backbone.babysitter'],
-    function () {
+    ['core/js/view', 'backbone.babysitter'],
+    function (BaseView) {
         'use strict';
-        return Backbone.View.extend({
+        return BaseView.extend({
+            // override clean method to close all child views
             clean: function () {
                 this.closeChildViews()
                     .$el.empty();
