@@ -91,12 +91,12 @@ define(function () {
         },
 
         /**
-         * Empty this.$el and append a view's el
+         * replace this.$el's html with a view's el
          * @param {Backbone.View} view
          * @returns {this}
          */
         open: function(view){
-            this.$el.empty().append(view.el);
+            this.$el.html(view.el);
             return this;
         },
 
