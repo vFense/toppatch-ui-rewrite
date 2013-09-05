@@ -1,7 +1,7 @@
 /**
  * parentView.js
  * ------------------------------------------------------------------------
- * A Backbone.View that manages child views
+ * A BaseView that manages child views
  */
 define(
     ['core/js/view', 'backbone.babysitter'],
