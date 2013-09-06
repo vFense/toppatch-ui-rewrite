@@ -174,4 +174,32 @@ $(document).ready(function () {
             }
         );
     });
+
+    asyncTest('Close', function () {
+        require(
+            ['core/js/dialogView'],
+            function (DialogView) {
+                var dialog;
+
+                dialog = new DialogView();
+                var wrapped = {
+                    hide: { fn: dialog.hide, calls: 0 }
+                };
+                dialog.hide = function () {
+                    wrapped.hide.calls += 1;
+                    wrapped.hide.fn.apply(dialog, arguments);
+                    return this;
+                };
+
+                dialog.$el.modal('show');
+                ok(dialog.close(), 'Called close without exception');
+                strictEqual(wrapped.hide.calls, 1, 'Close called hide');
+
+                ok(dialog.close(), 'Called close, again, without exception');
+                strictEqual(wrapped.hide.calls, 1, 'Close did NOT call hide. Modal already closed');
+
+                start();
+            }
+        );
+    });
 });
