@@ -31,7 +31,12 @@ define(
                 this.toggleAnimate(this.animate);
                 return this;
             },
-            
+
+            /**
+             * Listen for the bootstrap.modal hidden event
+             * Use a function so we can inherit events
+             * @returns {Object}
+             */
             events: function () {
                 return _.extend({}, _.result(templateView.prototype, 'events'), {
                     'hidden': function () {
@@ -90,6 +95,10 @@ define(
                 return this;
             },
 
+            /**
+             * If the bootstrap.modal is shown, hide it
+             * @returns {this}
+             */
             beforeClose: function () {
                 if (this._isShown) { this.hide(); }
                 return this;
