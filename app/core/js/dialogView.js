@@ -1,14 +1,19 @@
 define(
     ['core/js/templateView', 'core/js/template/dialogView', 'bootstrap.modal'],
-    function (templateView, template) {
+    function (TemplateView, template) {
         'use strict';
         // List of view options to be merged as properties
         var viewOptions = ['animate', 'keyboard', 'backdrop'];
 
-        return templateView.extend({
+        return TemplateView.extend({
             className: 'modal',
+            attributes: function () {
+                return _.extend({}, _.result(TemplateView.prototype, 'attributes'), {
+                    'tabindex': '-1',
+                    'role': 'dialog'
+                });
+            },
             template: template,
-            _isShown: false,
 
             // --------------------------------------------------------
             // variables to pass to bootstrap-modal
@@ -27,7 +32,7 @@ define(
                 if (_.isObject(options)) {
                     _.extend(this, _.pick(options, viewOptions));
                 }
-                templateView.prototype.constructor.apply(this, arguments);
+                TemplateView.prototype.constructor.apply(this, arguments);
                 this.toggleAnimate(this.animate);
                 return this;
             },
@@ -38,9 +43,8 @@ define(
              * @returns {Object}
              */
             events: function () {
-                return _.extend({}, _.result(templateView.prototype, 'events'), {
-                    'hidden': function () {
-                        this._isShown = false;
+                return _.extend({}, _.result(TemplateView.prototype, 'events'), {
+                    'hidden.bs.modal': function () {
                         this.close();
                     }
                 });
@@ -51,9 +55,13 @@ define(
             // --------------------------------------------------------
             /**
              * Method to get the shown status of this DialogView
+             * Uses the Bootstrap Modal isShown value
              * @returns {boolean}
              */
-            isShown: function () { return this._isShown; },
+            isShown: function () {
+                var data = this.$el.data('bs.modal');
+                return _.isUndefined(data) ? false : data.isShown;
+            },
 
             /**
              * Method to show the boostrap.modal
@@ -61,7 +69,11 @@ define(
              */
             open: function () {
                 var $el = this.$el;
-                if (!this._isShown) {
+                if (!this.isShown()) {
+                    if(this.isClosed === true || _.isUndefined(this.isClosed)) {
+                        this.render();
+                    }
+
                     this.delegateEvents();
                     
                     // Set bootstrap modal options
@@ -69,8 +81,6 @@ define(
                         keyboard: this.keyboard,
                         backdrop: this.backdrop
                     });
-
-                    this._isShown = true;
                 }
 
                 return this;
@@ -99,8 +109,11 @@ define(
              * If the bootstrap.modal is shown, hide it
              * @returns {this}
              */
-            beforeClose: function () {
-                if (this._isShown) { this.hide(); }
+            close: function () {
+                if (!this.isClosed) {
+                    if (this.isShown()) { this.hide(); }
+                    TemplateView.prototype.close.apply(this, arguments);
+                }
                 return this;
             }
         });
