@@ -24,7 +24,9 @@ define(
              * @returns {this}
              */
             constructor: function (options) {
-                _.extend(this, _.pick(options, viewOptions));
+                if (_.isObject(options)) {
+                    _.extend(this, _.pick(options, viewOptions));
+                }
                 templateView.prototype.constructor.apply(this, arguments);
                 return this;
             },
