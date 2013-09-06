@@ -1,5 +1,5 @@
 define(
-    ['core/js/layoutView', 'core/js/template/dialog', 'bootstrap.modal'],
+    ['core/js/layoutView', 'core/js/template/dialogView', 'bootstrap.modal'],
     function (Layout, template) {
         'use strict';
         // List of view options to be merged as properties
@@ -18,9 +18,9 @@ define(
             backdrop: true,
 
             regions: {
-                header: '.modal-header',
-                body: '.modal-body',
-                footer: '.modal-footer'
+                header : '.modal-header',
+                content: '.modal-body',
+                footer : '.modal-footer'
             },
 
             /**
@@ -47,8 +47,16 @@ define(
             // --------------------------------------------------------
             // Dialog utility methods
             // --------------------------------------------------------
+            /**
+             * Method to get the shown status of this DialogView
+             * @returns {boolean}
+             */
             isShown: function () { return this._isShown; },
 
+            /**
+             * Method to show the boostrap.modal
+             * @returns {this}
+             */
             open: function () {
                 var $el = this.$el;
                 if (!this._isShown) {
@@ -66,11 +74,15 @@ define(
                 return this;
             },
 
-            hide: function () { this.$el.modal('hide'); return this; },
-
-            cancel: function () { return this.hide(); },
-
-            confirm: function () { return this.hide(); },
+            /**
+             * Method to hide the bootstrap.modal
+             * Once hidden, this DialogView will close
+             * @returns {this}
+             */
+            hide: function () {
+                this.$el.modal('hide');
+                return this;
+            },
 
             beforeClose: function () {
                 if (this._isShown) { this.hide(); }
