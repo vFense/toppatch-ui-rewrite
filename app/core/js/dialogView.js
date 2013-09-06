@@ -1,11 +1,11 @@
 define(
-    ['core/js/layoutView', 'core/js/template/dialogView', 'bootstrap.modal'],
-    function (Layout, template) {
+    ['core/js/templateView', 'core/js/template/dialogView', 'bootstrap.modal'],
+    function (templateView, template) {
         'use strict';
         // List of view options to be merged as properties
         var viewOptions = ['animate', 'keyboard', 'backdrop'];
 
-        return Layout.extend({
+        return templateView.extend({
             className: 'modal',
             template: template,
             _isShown: false,
@@ -17,12 +17,6 @@ define(
             keyboard: true,
             backdrop: true,
 
-            regions: {
-                header : '.modal-header',
-                content: '.modal-body',
-                footer : '.modal-footer'
-            },
-
             /**
              * Extend this instance with keys of special meaning (see `viewOptions`),
              * then call the parent constructor
@@ -31,12 +25,12 @@ define(
              */
             constructor: function (options) {
                 _.extend(this, _.pick(options, viewOptions));
-                Layout.prototype.constructor.apply(this, arguments);
+                templateView.prototype.constructor.apply(this, arguments);
                 return this;
             },
             
             events: function () {
-                _.extend({}, _.result(Layout.prototype, 'events'), {
+                return _.extend({}, _.result(templateView.prototype, 'events'), {
                     'hidden': function () {
                         this._isShown = false;
                         this.close();
