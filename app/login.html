@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang="en">
+<!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+    <title>TopPatch Remediation Vault: Login</title>
+    <meta name="description" content="">
+    <meta name="author" content="TopPatch, inc.">
+    <meta name="viewport" content="width=device-width">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/application.css">
+    <script src="vendor/modernizr/modernizr.js"></script>
+</head>
+<body>
+<!-- main -->
+<section class="container" role="main" id="dashboard">
+    <form action="/login" id="login" method="post">
+        <div class="logo">
+            <a href="http://www.toppatch.com/">
+                <img src="./images/brand-logo.png" class="logo" alt="TopPatch Logo"/>
+            </a>
+        </div>
+        <h2 class="product small-caps">RemediationVault</h2>
+        <hr/>
+        <label for="username" class="sr-only">Username</label>
+        <input class="form-control" type="text" id="username" name="name" placeholder="Username" pattern="[a-zA-Z0-9]{1,255}" required>
+        <label for="password" class="sr-only">Password</label>
+        <input class="form-control" type="password" id="password" name="password" placeholder="Password" required>
+        <button type="submit" class="btn btn-primary btn-lg btn-block">Sign In</button>
+        <input type="hidden" name="next" value=""/>
+    </form>
+    <div>
+        <p class="legal" style="text-align:center;">&copy; 2012 TopPatch Inc. All rights reserved.</p>
+    </div>
+</section>
+<!--/main -->
+<noscript>
+    <div class="title">JavaScript is required.</div>
+    <div class="subtitle">&nbsp;</div>
+    <div class="subtitle">To use TopPatch RemediationVault, enable JavaScript in your browser and try again.</div>
+    <hr/>
+    <div>
+        <a href="http://www.toppatch.com/">
+            <img src="images/brand-name-tag.png" class="brand-image" alt="Top Patch brand"/>
+        </a>
+    </div>
+</noscript>
+</body>
+</html>

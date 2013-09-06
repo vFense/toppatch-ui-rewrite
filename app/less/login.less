@@ -1,0 +1,48 @@
+// Login Panel Styles
+// -------------------
+#login {
+    @controlHeight: ceil(1.4 * @font-size-base);
+
+    background-color: #FFF;
+    #gradient > .vertical(#ffffff, darken(#ffffff, 5%));
+    width: 332px;
+    padding: 25px 15px;
+    margin: auto;
+    margin-top: 10%;
+    margin-bottom: 1em;
+    border: 1px solid #D5D5D5;
+    border-radius: 5px;
+
+    .logo {
+        text-align: center;
+        IMG {
+            height: 75px;
+        }
+    }
+
+    .small-caps {
+        font-variant: small-caps;
+    }
+
+    .product {
+        margin: 0;
+        text-align:center;
+        font-size: ceil(@font-size-base * 2.25);
+        .brand-dark-blue();
+    }
+
+    .form-control {
+        font-size: 18px;
+        height: auto;
+        padding: 6px;
+        margin-bottom: 10px;
+    }
+}
+
+// CSS3 Styles
+// Filtered by Modernizr
+// ----------------------
+.boxshadow #login {
+    border-color: none;
+    .box-shadow(0 1px 3px rgba(0, 0, 0, 0.3));
+}
