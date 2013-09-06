@@ -13,7 +13,7 @@ define(
         return TemplateView.extend({
             /**
              * Create an instance of LayoutView
-             * @returns {*}
+             * @returns {this}
              */
             constructor: function () {
                 this._initRegions();
