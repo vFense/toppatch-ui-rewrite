@@ -28,6 +28,7 @@ define(
                     _.extend(this, _.pick(options, viewOptions));
                 }
                 templateView.prototype.constructor.apply(this, arguments);
+                this.toggleAnimate(this.animate);
                 return this;
             },
             
@@ -68,6 +69,15 @@ define(
                 }
 
                 return this;
+            },
+
+            toggleAnimate: function (bool) {
+                if (_.isBoolean(bool)) {
+                    this.animate = bool;
+                } else {
+                    this.animate = !this.animate;
+                }
+                this.$el.toggleClass('fade', this.animate);
             },
 
             /**
