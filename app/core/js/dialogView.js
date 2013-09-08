@@ -111,8 +111,11 @@ define(
              */
             close: function () {
                 if (!this.isClosed) {
-                    if (this.isShown()) { this.hide(); }
-                    TemplateView.prototype.close.apply(this, arguments);
+                    if (this.isShown()) {
+                        this.hide();
+                    } else {
+                        TemplateView.prototype.close.apply(this, arguments);
+                    }
                 }
                 return this;
             }
