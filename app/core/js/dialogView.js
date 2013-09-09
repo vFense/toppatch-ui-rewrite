@@ -86,9 +86,14 @@ define(
                 return this;
             },
 
-            toggleAnimate: function (bool) {
-                if (_.isBoolean(bool)) {
-                    this.animate = bool;
+            /**
+             * Toggle the modal 'fade' class which instructs bootstrap.modal to animate
+             * @param state {boolean} A boolean value to determine whether the class should be added or removed.
+             * @returns {this}
+             */
+            toggleAnimate: function (state) {
+                if (_.isBoolean(state)) {
+                    this.animate = state;
                 } else {
                     this.animate = !this.animate;
                 }
