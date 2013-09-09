@@ -82,7 +82,6 @@ define(
                         backdrop: this.backdrop
                     });
                 }
-
                 return this;
             },
 
