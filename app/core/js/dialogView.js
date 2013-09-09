@@ -119,9 +119,8 @@ define(
                 if (!this.isClosed) {
                     if (this.isShown()) {
                         this.hide();
-                    } else {
-                        TemplateView.prototype.close.apply(this, arguments);
                     }
+                    TemplateView.prototype.close.apply(this, arguments);
                 }
                 return this;
             }
