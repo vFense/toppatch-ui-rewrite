@@ -192,8 +192,15 @@ $(document).ready(function () {
                 };
 
                 dialog.$el.modal('show');
+
+                var $backdrop = $('.modal-backdrop');
+                strictEqual($backdrop.parent().length, 1, 'Confirm modal-backdrop is visible');
+
                 ok(dialog.close(), 'Called close without exception');
                 strictEqual(wrapped.hide.calls, 1, 'Close called hide');
+
+                $backdrop = $($backdrop.selector);
+                strictEqual($backdrop.parent().length, 0, 'Confirm modal-backdrop is removed');
 
                 ok(dialog.close(), 'Called close, again, without exception');
                 strictEqual(wrapped.hide.calls, 1, 'Close did NOT call hide. Modal already closed');
