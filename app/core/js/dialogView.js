@@ -93,6 +93,7 @@ define(
                     this.animate = !this.animate;
                 }
                 this.$el.toggleClass('fade', this.animate);
+                return this;
             },
 
             /**
