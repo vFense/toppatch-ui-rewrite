@@ -129,7 +129,8 @@ module.exports = function(grunt) {
             gruntfile: ['Gruntfile.js'],
             core: {
                 options: {
-                    jshintrc: '<%= meta.app %>core/js/.jshintrc'
+                    jshintrc: '<%= meta.app %>core/js/.jshintrc',
+                    ignores: '<%= meta.app %>core/js/template/**/*.js'
                 },
                 src: ['<%= meta.app %>core/js/**/*.js']
             },
@@ -224,7 +225,6 @@ module.exports = function(grunt) {
             },
             templates: {
                 options: {
-                    banner: '/*jshint strict:false, quotmark: false, boss: true */\n',
                     beautify: {
                         width: 80,
                         beautify: true,
