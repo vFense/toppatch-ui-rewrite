@@ -182,16 +182,19 @@ $(document).ready(function () {
                         {title: 'Don\'t Save'}
                     ]);
 
-                var $el = alert.$el,
-                    $message = $el.find('.modal-alert-title'),
-                    $information = $el.find('.modal-alert-message'),
-                    $buttons = $el.find('.modal-alert-buttons');
+                var $el = alert.render().$el,
+                    $message = $el.find('.modal-alert-message'),
+                    $information = $el.find('.modal-alert-information'),
+                    $buttons = $el.find('.modal-alert-buttons .btn');
 
+                strictEqual($message.text(), message, 'Message was rendered correctly');
+                strictEqual($information.text(), information, 'Information was rendered correctly');
 
-                alert.open();
-                console.log(alert.$el);
+                var buttonTextArray = ['Don\'t Save', 'Cancel', 'Save'];
+                $buttons.each(function (index, button) {
+                    strictEqual($(button).text(), buttonTextArray[index], 'Button ' + (index + 1) + ' rendered correctly');
+                });
 
-                ok(true);
                 start();
             }
         );
