@@ -4,7 +4,7 @@ $(document).ready(function () {
 
     asyncTest('Constructor', function () {
         require(
-            ['core/js/dialogView'],
+            ['core/js/modal/dialogView'],
             function (DialogView) {
                 var dialog;
 
@@ -35,7 +35,7 @@ $(document).ready(function () {
 
     asyncTest('Events', function () {
         require(
-            ['core/js/dialogView'],
+            ['core/js/modal/dialogView'],
             function (DialogView) {
                 var dialog;
 
@@ -59,7 +59,7 @@ $(document).ready(function () {
 
     asyncTest('isShown', function () {
         require(
-            ['core/js/dialogView'],
+            ['core/js/modal/dialogView'],
             function (DialogView) {
                 var dialog;
 
@@ -81,7 +81,7 @@ $(document).ready(function () {
 
     asyncTest('Open', function () {
         require(
-            ['core/js/dialogView'],
+            ['core/js/modal/dialogView'],
             function (DialogView) {
                 var dialog;
 
@@ -130,7 +130,7 @@ $(document).ready(function () {
 
     asyncTest('Hide', function () {
         require(
-            ['core/js/dialogView'],
+            ['core/js/modal/dialogView'],
             function (DialogView) {
                 var dialog;
                 dialog = new DialogView();
@@ -148,7 +148,7 @@ $(document).ready(function () {
 
     asyncTest('toggleAnimate', function () {
         require(
-            ['core/js/dialogView'],
+            ['core/js/modal/dialogView'],
             function (DialogView) {
                 var dialog;
 
@@ -177,7 +177,7 @@ $(document).ready(function () {
 
     asyncTest('Close', function () {
         require(
-            ['core/js/dialogView'],
+            ['core/js/modal/dialogView'],
             function (DialogView) {
                 var dialog;
 
