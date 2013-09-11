@@ -1,0 +1,48 @@
+.modal-alert-icon {
+
+}
+
+.modal-alert-message {
+    #font.core-bold();
+    margin-bottom: 1em;
+}
+
+.modal-alert-information {
+    #font.core-small();
+    margin-bottom: 1em;
+}
+
+
+// Less than Tablet width
+@media (max-width: @screen-xs-max) {
+    .modal-alert-buttons {
+        > .btn {
+            display: block;
+            width: 100%;
+            padding-left: 0;
+            padding-right: 0;
+            margin-left: 0;
+
+            + .btn {
+                margin-top: 5px;
+            }
+
+            + .btn:last-child {
+                margin-top: 10px;
+            }
+        }
+    }
+}
+
+// Tablet width and up
+@media (min-width: @screen-sm) {
+    .modal-alert-buttons {
+        text-align: right;
+        > .btn {
+            min-width: 72px;
+            + .btn {
+                margin-left: 12px;
+            }
+        }
+    }
+}
