@@ -6,17 +6,10 @@ $(document).ready(function () {
         require(
             ['core/js/modal/alert'],
             function (AlertView) {
-                var dialog;
-                dialog = new AlertView();
-                /*
-                 // Instance Attributes
-                 alertStyle: 'info',
-                 messageText: 'Alert',
-                 informativeText: '',
-                 icon: '',
-                 buttons: {},
-                 */
+                var alert;
+                alert = new AlertView();
 
+                ok(true);
                 start();
             }
         );
