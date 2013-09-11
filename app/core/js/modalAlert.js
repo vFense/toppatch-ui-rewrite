@@ -8,26 +8,41 @@ define(
     function (DialogView, alertTemplate) {
         'use strict';
 
-        var AlertModel = Backbone.Model.extend({
-                defaults: {
-                    icon: null,
-                    titleField: '',
-                    messageField: '',
-                    defButton: null,
-                    altButton: null,
-                    othButton: null
-                }
-            }),
-            ButtonModel = Backbone.Model.extend({
-                defaults: {
-                    title: '',
-                    tag: null,
-                    'btn-style': 'btn-default',
-                    keyEquivalent: null
-                }
-            });
+        /**
+         * Default model for an Alert Button
+         * @type {Backbone.Model}
+         */
+        var AlertButton = Backbone.Model.extend({
+            defaults: {
+                title: '',
+                tag: null,
+                'btn-style': 'btn-default',
+                keyEquivalent: null
+            }
+        });
 
-        return DialogView.extend({
+        /**
+         * Default model for an Alert
+         * @type {Backbone.Model}
+         */
+        var AlertModel = Backbone.Model.extend({
+            defaults: {
+                icon: null,
+                titleField: '',
+                messageField: '',
+                defButton: null,
+                altButton: null,
+                othButton: null
+            },
+            fieldNames: ['titleField', 'messageField'],
+            buttonNames: ['defButton', 'altButton', 'othButton']
+        });
+
+        /**
+         * The Alert View
+         * @type {Backbone.View}
+         */
+        var AlertView = DialogView.extend({
             template: alertTemplate,
 
             // el Attributes
@@ -60,21 +75,20 @@ define(
             },
 
             setButton: function (name, options) {
-                if (this.model) {
-                    if (!_.isNull(options)) {
-                        this[name] = new ButtonModel(options);
-                    } else {
-                        this[name] = null;
-                    }
-                }
+                if (!_.contains(this.model.buttonNames, name)) { return this; }
+                var attributes = {};
+                attributes[name] = _.isNull(options) ? null : new AlertButton(options);
+                this.model.set(attributes);
                 return this;
             },
 
             setButtons: function (buttons) {
                 var count = buttons.length;
-                this.setButton('defButton', count > 0 ? buttons[0] : null);
-                this.setButton('altButton', count > 1 ? buttons[1] : null);
-                this.setButton('othButton', count > 2 ? buttons[2] : null);
+                this.model.set({
+                    'defButton': count > 0 ? buttons[0] : null,
+                    'altButton': count > 1 ? buttons[1] : null,
+                    'othButton': count > 2 ? buttons[2] : null
+                });
                 return this;
             },
 
