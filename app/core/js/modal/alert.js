@@ -4,7 +4,7 @@
  * This file is intended to be used via modalAlert.js
  */
 define(
-    ['core/js/dialogView', 'core/js/template/modalAlertView'],
+    ['core/js/dialogView', 'core/js/template/modalAlert'],
     function (DialogView, alertTemplate) {
         'use strict';
 
@@ -104,6 +104,7 @@ define(
                 return this;
             },
 
+            _result: null,
             buttonAction: function (event) {
                 $.noop(event);
                 return this;
@@ -144,7 +145,7 @@ define(
         /**
          * Set instance variables
          */
-        _.extend(ModalAlert.prototype, {
+        _.extend(ModalAlert.prototype, Backbone.Events, {
             alertWithMessage: function (messageText, defButtonTitle, altButtonTitle, otherButtonTitle, informativeText) {
                 this.setMessageText(messageText);
 
@@ -208,7 +209,7 @@ define(
             setKeyEquivalent: function (button) {
                 var title = button.title;
                 if (button.keyEquivalent !== '\r') {
-                    if (title.toLowerCase() === 'cancel') {
+                    if (title === 'Cancel') {
                         // Any button with a title of “Cancel”
                         // has a key equivalent of Escape (\x1B)
                         button.keyEquivalent = '\x1B';
@@ -226,11 +227,18 @@ define(
             _setupAlert: function () {
                 if (this._alertView instanceof DialogView) {
                     this._alertView.close();
+                    this.stopListening(this._alertView);
                 }
                 var alert = this._alertView = new AlertView();
                 alert.setMessage(this._messageText)
                      .setInformation(this._informativeText)
                      .setButtons(this._buttons);
+                return alert;
+            },
+
+            runAlert: function () {
+                var alert = this._setupAlert().open();
+                this.listenToOnce(alert, 'result', function () {});
                 return this;
             }
         });
