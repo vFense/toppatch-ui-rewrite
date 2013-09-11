@@ -4,7 +4,7 @@ $(document).ready(function () {
 
     asyncTest('Constructor', function () {
         require(
-            ['core/js/modal/alert'],
+            ['core/js/modal/alertView'],
             function (AlertView) {
                 var alert;
                 alert = new AlertView();
