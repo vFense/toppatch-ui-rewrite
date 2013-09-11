@@ -11,12 +11,7 @@ define(
                 icon: null,
                 message: 'Alert',
                 information: '',
-                defButton: {
-                    title: 'OK',
-                    tag: 1000,
-                    'btn-style': 'btn-primary',
-                    keyEquivalent: '\r'
-                },
+                defButton: null,
                 altButton: null,
                 othButton: null
             },
@@ -45,7 +40,7 @@ define(
              */
             events: function () {
                 return _.extend({}, _.result(DialogView.prototype, 'events'), {
-                    'click BUTTON[data-tagid]:enabled': 'buttonAction'
+                    'click BUTTON:enabled': 'buttonAction'
                 });
             },
 
