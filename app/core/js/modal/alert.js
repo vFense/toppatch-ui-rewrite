@@ -4,7 +4,7 @@
  * This file is intended to be used via modalAlert.js
  */
 define(
-    ['core/js/dialogView', 'core/js/template/modalAlert'],
+    ['core/js/modal/dialogView', 'core/js/template/modalAlert'],
     function (DialogView, alertTemplate) {
         'use strict';
 
