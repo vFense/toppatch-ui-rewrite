@@ -103,5 +103,94 @@ define(
                 return this;
             }
         });
+
+        /**
+         * Modal Alert Controller
+         * @constructor
+         */
+        var ModalAlert = function () {
+            this.alertView = new AlertView();
+        };
+
+        _.extend(ModalAlert, {
+            FirstButtonReturn: 1000,
+            SecondButtonReturn: 1001,
+            ThirdButtonReturn: 1002,
+
+            // Save References for testing purposes
+            AlertButton: AlertButton,
+            AlertModel: AlertModel,
+            AlertView: AlertView
+        });
+
+        _.extend(ModalAlert.prototype, {
+            // Alert View Attributes
+            _alertStyle: 'info',
+            _messageText: 'Alert',
+            _informativeText: '',
+            _icon: '',
+            _buttons: [],
+
+            alertWithMessage: function (messageText, defButtonTitle, altButtonTitle, otherButtonTitle, informativeText) {
+                this.setMessageText(messageText);
+
+                if (_.isString(information)) {
+                    this.setInformativeText(information);
+                }
+
+                if (_.isString(defButtonTitle)) {
+                    this.addButtonWithTitle(defButtonTitle);
+                } else {
+                    this.addButtonWithTitle('OK');
+                }
+
+
+
+                return this;
+            },
+
+            setMessageText: function (text) {
+                this._messageText = text.trim();
+            },
+
+            setInformativeText: function (text) {
+                this._informativeText = text.trim();
+                return this;
+            },
+
+            addButtonWithTitle: function (title) {
+                title = title.trim();
+
+                var button = {},
+                    count = this._buttons.length;
+
+                button.title = title.trim();
+
+                if (count === 0) {
+                    button['btn-style'] = 'btn-primary';
+                    button.tag = ModalAlert.FirstButtonReturn;
+                    button.keyEquivalent = '\r';
+                } else {
+                    button['btn-style'] = 'btn-default';
+                    button.tag = ModalAlert.FirstButtonReturn + count;
+                    this.setKeyEquivalent(button);
+                }
+
+                this.buttons.push(button);
+                return button;
+            },
+
+            setAlertStyle: function (style) {
+                if (_.isString(style)) {
+                    this.$el
+                        .removeClass(this.alertStyle)
+                        .addClass(style);
+                    this.alertStyle = style;
+                }
+                return this;
+            }
+        });
+
+        return ModalAlert;
     }
 );
