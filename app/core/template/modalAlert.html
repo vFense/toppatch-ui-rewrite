@@ -5,36 +5,28 @@
             <div class="modal-alert-icon">{{ icon }}</div>
             {{/if}}
 
-            <div class="modal-alert-title">
-                {{#if message}}
-                {{ message }}
-                {{else}}
-                No Message
-                {{/if}}
+            <div class="modal-alert-message">
+                {{#if message}}{{ message }}{{else}}Error: No Title{{/if}}
             </div>
 
             {{#if information}}
-            <div class="modal-alert-message">{{ information }}</div>
+            <div class="modal-alert-information">{{ information }}</div>
             {{/if}}
 
-            <div class="modal-alert-buttons text-right">
-                <button class="btn {{ defButton.btn-style }}" data-tagid="{{ defButton.tag }}">
-                    {{#if defButton.title}}
-                    {{defButton.title}}
-                    {{else}}
-                    No Title
-                    {{/if}}
-                </button>
-                {{#if altButton}}
-                <button class="btn {{ altButton.btn-style }}" data-tagid="{{ altButton.tag }}">
-                    {{ altButton.title }}
-                </button>
-                {{/if}}
+            <div class="modal-alert-buttons">
                 {{#if othButton}}
                 <button class="btn {{ othButton.btn-style }}" data-tagid="{{ othButton.tag }}">
                     {{ othButton.title }}
                 </button>
                 {{/if}}
+                {{#if altButton}}
+                <button class="btn {{ altButton.btn-style }}" data-tagid="{{ altButton.tag }}">
+                    {{ altButton.title }}
+                </button>
+                {{/if}}
+                <button class="btn {{ defButton.btn-style }}" data-tagid="{{ defButton.tag }}">
+                    {{#if defButton.title}}{{defButton.title}}{{else}}Error: No Title{{/if}}
+                </button>
             </div>
         </div>
     </div>
