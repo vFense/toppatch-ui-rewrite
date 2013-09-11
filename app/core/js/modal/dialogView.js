@@ -18,7 +18,7 @@ define(
             // --------------------------------------------------------
             // variables to pass to bootstrap-modal
             // --------------------------------------------------------
-            animate: false,
+            animate: false, // Animate: true causes async issues during unit tests
             keyboard: true,
             backdrop: true,
 
