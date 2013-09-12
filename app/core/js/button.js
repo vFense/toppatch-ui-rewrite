@@ -76,9 +76,8 @@ define(function () {
                 this.model = new Button(_.isObject(this.model) ? this.model : {});
             }
 
-            // We have functions that invoke setTimeout,
-            // the timeout calls functions from this instance
-            // This would cause errors without bindAll
+            // Make sure that all functions called from this instance of Button.View
+            // have "this" pointing to this instance of Button.View
             _.bindAll(this);
 
             return this;
