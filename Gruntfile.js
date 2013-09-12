@@ -65,7 +65,8 @@ module.exports = function(grunt) {
                     hostname: '*',
                     livereload: true,
                     port: '8443',
-                    protocol: 'https'
+                    protocol: 'https',
+                    open: true
                 }
             }
         },
@@ -165,18 +166,6 @@ module.exports = function(grunt) {
                 }
             }
         },
-        open: {
-            dev: {
-                url:'<%=connect.server.options.protocol || "http" %>://' +
-                    '<%=connect.server.options.hostname && connect.server.options.hostname !== "*"? (' +
-                    '   connect.server.options.hostname' +
-                    ') : (' +
-                    '   "localhost"' +
-                    ') %>' +
-                    '<%=connect.server.options.port && (":" + connect.server.options.port) %>' +
-                    '/'
-            }
-        },
         qunit: {
             options: {
                 timeout: '8100',
@@ -265,7 +254,7 @@ module.exports = function(grunt) {
     });
 
     grunt.registerTask('default', ['test', 'clean:dist', 'copy:dist', 'templates', 'concurrent:dist', 'concat']);
-    grunt.registerTask('dev', ['clean:app', 'copy:dev', 'concurrent:dev', 'connect', 'open:dev', 'watch']);
+    grunt.registerTask('dev', ['clean:app', 'copy:dev', 'concurrent:dev', 'connect', 'watch']);
     grunt.registerTask('templates', ['clean:temp', 'htmlmin:templates', 'handlebars:dev', 'uglify:templates', 'clean:temp']);
     grunt.registerTask('test', ['jshint', 'qunit']);
 };
