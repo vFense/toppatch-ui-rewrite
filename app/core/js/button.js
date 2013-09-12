@@ -110,11 +110,12 @@ define(function () {
         /**
          * Checks the button's key equivalent against the specified
          * event and, if they match, simulates the button being clicked.
-         * @param event
+         * @param event {Event}
+         * @param animate {boolean} Passed to performClick, if keyEquivalent match
          * @returns {boolean} true if the event key matches the button's keyEquivalent,
          *                    false if it does not match
          */
-        performKeyEquivalent: function (event) {
+        performKeyEquivalent: function (event, animate) {
             if (this.model.get('disabled')) { return false; }
             var keyEquivalent = this.model.get('keyEquivalent'),
                 eventKey = _.result(event, 'which'),
@@ -125,7 +126,7 @@ define(function () {
                 // Stop propagation of the event.
                 event.preventDefault()
                     .stopPropagation();
-                this.performClick(true);
+                this.performClick(animate);
             }
 
             return result;
@@ -133,15 +134,16 @@ define(function () {
 
         /**
          * Simulates a single mouse click on the control.
-         * @returns {this}
+         * @param animate {boolean} Visually animate this click
+         * @returns {*}
          */
-        performClick: function (animated) {
+        performClick: function (animate) {
             // Only perform click if the element is visible
             if (this.$el.is(':visible')) {
-                if (animated === true) {
+                if (animate === true) {
                     this._startAnimatedClick();
                 } else {
-                    this.$el.trigger('click');
+                    this.$el.click();
                 }
             }
             return this;
@@ -157,12 +159,16 @@ define(function () {
          * Start an animated click
          * @private
          */
-        _startAnimatedClick: function () {
+        _startAnimatedClick: function (time) {
+            if (!_.isNumber(time) || time < 0) {
+                time = 100;
+            }
             this.$el.addClass('active');
             if (!_.isNull(this._animatedClickTimeout)) {
                 clearTimeout(this._animatedClickTimeout);
             }
-            this._animatedClickTimeout = setTimeout(this._completeAnimatedClick, 100);
+            this._animatedClickTimeout = setTimeout(this._completeAnimatedClick, time);
+            return this;
         },
 
         /**
@@ -173,6 +179,7 @@ define(function () {
             this.$el.removeClass('active');
             this._animatedClickTimeout = null;
             this.performClick(false);
+            return this;
         },
 
         /**

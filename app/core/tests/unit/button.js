@@ -187,4 +187,67 @@ $(document).ready(function () {
             start();
         });
     });
+
+    asyncTest('performClick', function () {
+        require(['core/js/button'], function(Button) {
+            var button = new Button.View(),
+                $body = $('body'),
+                clicked = 0;
+
+            button.render().$el.on('click', function () { clicked += 1; });
+
+            ok(button.performClick(), 'Run performClick()');
+            strictEqual(clicked, 0, 'Button not visible, click did not fire');
+
+            ok(button.$el.appendTo($body), 'Append button to body');
+            ok(button.performClick(), 'Run performClick()');
+            strictEqual(clicked, 1, 'Click fired');
+
+            var called = 0;
+            button._startAnimatedClick = function () {
+                called += 1;
+            };
+
+            clicked = 0;
+            ok(button.performClick(true), 'Run performClick(true)');
+            strictEqual(called, 1, 'Called _startAnimatedClick');
+            strictEqual(clicked, 0, 'Click deferred');
+
+            button.$el.remove().off();
+
+            start();
+        });
+    });
+
+    asyncTest('_startAnimatedClick and _completeAnimatedClick', function () {
+        require(['core/js/button'], function(Button) {
+            var button = new Button.View(),
+                postAnimationTests;
+
+            postAnimationTests = function () {
+                ok(Date.now() - startTime > 90, 'Second startAnimatedClick supplanted the first');
+                ok(true, 'performClick was called by _completeAnimatedClick');
+                ok(!button.$el.hasClass('active'), 'Active class was removed from Button\'s element');
+                ok(_.isNull(button._animatedClickTimeout), '_animatedClickTimeout has been set back to null');
+                start(); // Tell QUnit to resume testing
+            };
+
+            button.performClick = postAnimationTests;
+
+            var startTime = Date.now();
+            ok(button._startAnimatedClick(20), 'Start animation, with duration of 20 milliseconds');
+            stop(); // Tell QUnit to wait for second start() (in postAnimationTests)
+
+            ok(_.isNumber(button._animatedClickTimeout), '_animatedClickTimeout is number');
+            ok(button.$el.hasClass('active'), 'Active class was added to Button\'s element');
+
+
+            // This second call should cancel the first time out
+            ok(button._startAnimatedClick(), 'Start animation again, with default duration');
+
+            button.$el.remove().off();
+
+            start();
+        });
+    });
 });
