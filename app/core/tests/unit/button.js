@@ -58,4 +58,133 @@ $(document).ready(function () {
             start();
         });
     });
+
+    module('Button.View');
+    asyncTest('Initialize', function () {
+        require(['core/js/button'], function(Button) {
+            var defaultButtonModel = Button.Model.prototype.defaults;
+            var model = new Button.Model({ tag: 1000 });
+            var button;
+
+            ok(button = new Button.View({ model: model }), 'Construct with instance of Button.Model');
+            strictEqual(button.model, model, 'Init did not touch instance of Button.Model at this.model');
+
+            ok(button = new Button.View(), 'Construct with no options, leaving this.model undefined');
+            ok(button.model instanceof Button.Model, 'Init created instance of Button.Model at this.model');
+            deepEqual(button.model.attributes, defaultButtonModel, 'model represents a default Button.Model');
+
+            ok(button = new Button.View({model: { title: 'OK' }}), 'Construct with this.model as Object');
+            ok(button.model instanceof Button.Model, 'Init created instance of Button.Model at this.model');
+            strictEqual(button.model.get('title'), 'OK', 'model has correct title');
+
+            start();
+        });
+    });
+
+    asyncTest('_setTitle', function () {
+        require(['core/js/button'], function(Button) {
+            var button = new Button.View();
+
+            ok(button._setTitle(), 'Run _setTitle');
+            strictEqual(button.$el.text(), 'Button', 'Applied default title to element text');
+
+            start();
+        });
+    });
+
+    asyncTest('_setStyle', function () {
+        require(['core/js/button'], function(Button) {
+            var button = new Button.View();
+
+            ok(button._setStyle(), 'Run _setStyle');
+            ok(button.$el.hasClass('btn-default'), 'Applied default style to element class');
+
+            ok(button.model.set('style', 'btn-primary'), 'Directly set the button\'s style');
+            ok(button._setStyle(), 'Run _setStyle');
+            ok(button.$el.hasClass('btn-primary'), 'Switched style on element class');
+
+            start();
+        });
+    });
+
+    asyncTest('_setDisabled', function () {
+        require(['core/js/button'], function(Button) {
+            var button = new Button.View();
+
+
+            ok(button.model.set('disabled', true), 'Directly set the button\'s disabled value');
+            ok(button._setDisabled(), 'Run _setDisabled');
+            strictEqual(button.$el.attr('disabled'), 'disabled', 'Set element\'s disabled value to true');
+
+            ok(button.model.set('disabled', false), 'Directly set the button\'s disabled value');
+            ok(button._setDisabled(), 'Run _setDisabled');
+            strictEqual(button.$el.attr('disabled'), undefined, 'Set element\'s disabled value to undefined');
+
+            start();
+        });
+    });
+
+    asyncTest('_setTag', function () {
+        require(['core/js/button'], function(Button) {
+            var button = new Button.View();
+
+            ok(button._setTag(), 'Run _setTag');
+            strictEqual(button.$el.data('tag'), 0, 'Set element\'s data("tag") to default of 0');
+
+            start();
+        });
+    });
+
+    asyncTest('Render', function () {
+        require(['core/js/button'], function(Button) {
+            var button = new Button.View(),
+                listeners,
+                listenerEvents,
+                result;
+
+            ok(result = button.render(), 'Run render');
+
+            strictEqual(button.$el.text(), 'Button', 'Applied default title to element text');
+            ok(button.$el.hasClass('btn-default'), 'Applied default style to element class');
+            strictEqual(button.$el.attr('disabled'), undefined, 'Set element\'s disabled value to undefined');
+            strictEqual(button.$el.data('tag'), 0, 'Set element\'s data("tag") to default of 0');
+
+            listeners = _.values(result._listeners);
+            strictEqual(listeners.length, 1, 'View should have 1 listener');
+            listenerEvents = listeners[0]._events;
+            deepEqual(_.keys(listenerEvents), [
+                'change:title',
+                'change:style',
+                'change:disabled',
+                'change:tag'
+            ], 'Listener has correct events');
+
+            // Render again and make sure we don't have duplicate events
+            ok(result = button.render(), 'Run render again');
+            listeners = _.values(result._listeners);
+            strictEqual(listeners.length, 1, 'View should have 1 listener');
+            listenerEvents = listeners[0]._events;
+            deepEqual(_.keys(listenerEvents), [
+                'change:title',
+                'change:style',
+                'change:disabled',
+                'change:tag'
+            ], 'Listener has correct events');
+
+            // Test to make sure our model events are working
+            ok(button.model.set({
+                title: 'OK',
+                style: 'btn-primary',
+                disabled: true,
+                tag: 5
+            }), 'Change model attributes directly to test if events are set up correctly');
+
+            strictEqual(button.$el.text(), 'OK', 'Button\'s title is now "OK"');
+            ok(button.$el.hasClass('btn-primary'), 'Button\'s style is now "btn-primary"');
+            strictEqual(button.$el.attr('disabled'), 'disabled', 'Button is now disabled');
+            strictEqual(button.$el.data('tag'), 5, 'Button\'s tag is now 5');
+
+            start();
+        });
+    });
 });
