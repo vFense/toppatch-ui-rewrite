@@ -98,10 +98,10 @@ define(function () {
             this._setTag();
 
             // Set up all events
-            this.listenTo(this.model, 'change:title',   '_setTitle');
-            this.listenTo(this.model, 'change:style',   '_setStyle');
-            this.listenTo(this.model, 'change:disabled','_setDisabled');
-            this.listenTo(this.model, 'change:tag',     '_setTag');
+            this.listenTo(this.model, 'change:title',   this._setTitle);
+            this.listenTo(this.model, 'change:style',   this._setStyle);
+            this.listenTo(this.model, 'change:disabled',this._setDisabled);
+            this.listenTo(this.model, 'change:tag',     this._setTag);
             this.delegateEvents();
 
             return this;
