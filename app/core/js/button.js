@@ -118,6 +118,15 @@ define(function () {
         },
 
         /**
+         * Return true if this $el is enabled and visible
+         * @returns {boolean}
+         */
+        canPerform: function () {
+            var enabled = !this.model.get('disabled');
+            return enabled && this.$el.is(':visible');
+        },
+
+        /**
          * Checks the button's key equivalent against the specified
          * event and, if they match, simulates the button being clicked.
          * @param event {Event}
@@ -126,20 +135,29 @@ define(function () {
          *                    false if it does not match
          */
         performKeyEquivalent: function (event, animate) {
-            if (this.model.get('disabled')) { return false; }
-            var keyEquivalent = this.model.get('keyEquivalent'),
-                eventKey = _.result(event, 'which'),
-                result = eventKey === keyEquivalent;
+            // Continue only if the element is enabled and visible
+            if (this.canPerform()) {
+                var keyEquivalent = this.model.get('keyEquivalent'),
+                    eventKey = _.result(event, 'which'),
+                    result = eventKey === keyEquivalent;
 
-            if (result) {
-                // We are handling the event here.
-                // Stop propagation of the event.
-                event.preventDefault()
-                    .stopPropagation();
-                this.performClick(animate);
+                if (result) {
+                    // We are handling the event here.
+                    // Prevent default action
+                    // Stop propagation of the event.
+
+                    // Using _.result since direct invocation
+                    // fails during unit testing
+                    _.result(event, 'preventDefault');
+                    _.result(event, 'stopPropagation');
+
+                    this.performClick(animate);
+                }
+
+                return result;
+            } else {
+                return false;
             }
-
-            return result;
         },
 
         /**
@@ -148,8 +166,8 @@ define(function () {
          * @returns {*}
          */
         performClick: function (animate) {
-            // Only perform click if the element is visible
-            if (this.$el.is(':visible')) {
+            // Continue only if the element is enabled and visible
+            if (this.canPerform()) {
                 if (animate === true) {
                     this._startAnimatedClick();
                 } else {
