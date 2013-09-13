@@ -28,6 +28,7 @@ var requirejs = {
         'highcharts'            : 'vendor/highcharts-components/highcharts.src',
         'highcharts-more'       : 'vendor/highcharts-components/highcharts-more.src',
         'jquery'                : 'vendor/jquery/jquery',
+        'jquery.simulate'       : 'vendor/jquery-simulate/jquery.simulate',
         'livestamp'             : 'vendor/livestampjs/livestamp',
         'moment'                : 'vendor/moment/moment',
         'select2'               : 'vendor/select2/select2',
@@ -85,6 +86,7 @@ var requirejs = {
         'handlebars'            : { exports: 'Handlebars' },
         'highcharts'            : { exports: 'Highcharts' },
         'highcharts-more'       : { exports: 'Highcharts.seriesTypes.bubble', deps: ['highcharts'] },
+        'jquery.simulate'       : { exports: '$.simulate', deps: ['jquery']},
         'livestamp'             : { exports: '$.livestamp', deps: ['jquery', 'moment'] },
         'select2'               : { exports: 'Select2', deps: ['jquery']},
 
