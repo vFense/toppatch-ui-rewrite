@@ -37,7 +37,7 @@ define(function () {
             if (isDefined(attributes.disabled) && !_.isBoolean(attributes.disabled)) {
                 return 'Button.disabled must be boolean';
             }
-            if (!_.isUndefined(attributes.tag) && !_.isNumber(attributes.tag)) {
+            if (!_.isUndefined(attributes.tagID) && !_.isNumber(attributes.tagID)) {
                 return 'Button.tag must be number';
             }
             if (isDefined(attributes.keyEquivalent) && !_.isNumber(attributes.keyEquivalent)) {
