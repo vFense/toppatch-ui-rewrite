@@ -85,6 +85,32 @@ $(document).ready(function () {
         });
     });
 
+    asyncTest('Convenience methods', function () {
+        require(['core/js/button'], function(Button) {
+            var button = new Button.View();
+
+            strictEqual(button._modelGetSet('title'), 'Button', '_modelGetSet method got title correctly');
+            strictEqual(button._modelGetSet('title', 'OK'), 'OK', '_modelGetSet method set, and returned, title correctly');
+
+            strictEqual(button.title(), 'OK', 'title method got title correctly');
+            strictEqual(button.title('Button'), 'Button', 'title method, set and returned, title correctly');
+
+            strictEqual(button.style(), 'btn-default', 'style method got style correctly');
+            strictEqual(button.style('btn-primary'), 'btn-primary', 'style method set, and returned, style correctly');
+
+            strictEqual(button.disabled(), false, 'disabled method got title correctly');
+            strictEqual(button.disabled(true), true, 'disabled method, set and returned, disabled correctly');
+
+            strictEqual(button.tagID(), 0, 'tagID method got tagID correctly');
+            strictEqual(button.tagID(5), 5, 'tagID method, set and returned, tagID correctly');
+
+            strictEqual(button.keyEquivalent(), 0, 'keyEquivalent method got keyEquivalent correctly');
+            strictEqual(button.keyEquivalent(32), 32, 'keyEquivalent method, set and returned, keyEquivalent correctly');
+
+            start();
+        });
+    });
+
     asyncTest('_setElTitle', function () {
         require(['core/js/button'], function(Button) {
             var button = new Button.View();
