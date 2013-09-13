@@ -15,18 +15,12 @@
 
             <div class="modal-alert-buttons">
                 {{#if othButton}}
-                <button class="btn {{ othButton.btn-style }}" data-tagid="{{ othButton.tag }}">
-                    {{ othButton.title }}
-                </button>
+                    {{{ othButton.el.outerHTML }}}
                 {{/if}}
                 {{#if altButton}}
-                <button class="btn {{ altButton.btn-style }}" data-tagid="{{ altButton.tag }}">
-                    {{ altButton.title }}
-                </button>
+                    {{{ altButton.el.outerHTML }}}
                 {{/if}}
-                <button class="btn {{ defButton.btn-style }}" data-tagid="{{ defButton.tag }}">
-                    {{#if defButton.title}}{{defButton.title}}{{else}}Error: No Title{{/if}}
-                </button>
+                {{{ defButton.el.outerHTML }}}
             </div>
         </div>
     </div>
