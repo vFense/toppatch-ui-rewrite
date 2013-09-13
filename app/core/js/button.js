@@ -141,7 +141,7 @@ define(function () {
             this.listenTo(this.model, 'change:title',   this._setElTitle);
             this.listenTo(this.model, 'change:style',   this._setElStyle);
             this.listenTo(this.model, 'change:disabled',this._setElDisabled);
-            this.listenTo(this.model, 'change:tagID',     this._setElTagID);
+            this.listenTo(this.model, 'change:tagID',   this._setElTagID);
             this.delegateEvents();
 
             return this;
