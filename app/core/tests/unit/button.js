@@ -250,4 +250,43 @@ $(document).ready(function () {
             start();
         });
     });
+
+    asyncTest('performKeyEquivalent', function () {
+        require(['core/js/button', 'jquery.simulate'], function(Button) {
+            var button = new Button.View(),
+                called = 0, args,
+                result;
+
+            button.model.set('keyEquivalent', ' ');
+            button.performClick = function () {
+                args = _.toArray(arguments);
+                called += 1;
+            };
+            button.$el.on('keypress', function () {
+                button.performKeyEquivalent.apply(button, arguments);
+            });
+
+            button.render();
+            button.$el
+                .simulate('keypress', { keyCode: $.simulate.keyCode.SPACE });
+
+            strictEqual(called, 1, 'performClick called by performKeyEquivalent after simulated press of " "');
+
+            called = 0;
+            args = null;
+            result = button.performKeyEquivalent({ which: $.simulate.keyCode.SPACE }, true);
+            strictEqual(result, true, 'performKeyEquivalent returned true on key match');
+            strictEqual(called, 1, 'performClick called by performKeyEquivalent');
+            deepEqual(args, [true], 'performKeyEquivalent passed true to performClick');
+
+            called = 0;
+            args = null;
+            result = button.performKeyEquivalent({ which: $.simulate.keyCode.ENTER });
+            strictEqual(result, false, 'performKeyEquivalent returned false, key did not match');
+            strictEqual(called, 0, 'performClick not called');
+
+            button.$el.remove().off();
+            start();
+        });
+    });
 });
