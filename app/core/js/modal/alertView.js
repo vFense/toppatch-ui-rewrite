@@ -84,7 +84,7 @@ define(
 
             setMessage: function (text) {
                 if (_.isString(text)) {
-                    this.model.set({message: text});
+                    this.model.set({message: text.trim()});
                 }
                 return this;
             },
