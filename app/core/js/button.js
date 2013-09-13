@@ -37,6 +37,16 @@ define(function () {
             }
             return '';
         },
+
+        /**
+         * Override default set method to run a few extra
+         * steps before calling the original set method
+         * @param key
+         * @param [val]
+         * @param [options]
+         * @override
+         * @returns {*}
+         */
         set: function (key, val, options) {
             var attrs;
             if (typeof key === 'object') {
