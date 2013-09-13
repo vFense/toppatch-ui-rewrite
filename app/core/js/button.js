@@ -96,9 +96,13 @@ define(function () {
                 // Construct a default button
                 var button = new Button();
 
-                // If this.model is an object, send it to our new button
+
                 if (_.isObject(this.model)) {
+                    // If this.model is an object, send it to our new button
                     button.set(this.model);
+                } else if (_.isString(this.model)) {
+                    // If this.model is a string, assume the string is a title
+                    button.set('title', this.model);
                 }
 
                 // Set this.model to reference button
