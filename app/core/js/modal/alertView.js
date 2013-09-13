@@ -2,8 +2,8 @@
  * alertView
  */
 define(
-    ['core/js/modal/dialogView', 'core/js/template/modalAlert'],
-    function (DialogView, alertTemplate) {
+    ['core/js/modal/dialogView', 'core/js/template/modalAlert', 'core/js/button'],
+    function (DialogView, alertTemplate, Button) {
         'use strict';
 
         var AlertModel = Backbone.Model.extend({
@@ -55,30 +55,22 @@ define(
                 return DialogView.prototype.constructor.apply(this, arguments);
             },
 
-            createButton: function (options) {
-                var button = _.defaults({}, options, {
-                    title: 'No Title',
-                    tag: null,
-                    'btn-style': 'btn-default',
-                    keyEquivalent: null
-                });
-                if (_.isString(button.keyEquivalent)) {
-                    button.keyEquivalent = button.keyEquivalent.charCodeAt(0);
-                }
-                return button;
-            },
-
-            setButton: function (name, options) {
             /**
              * Set a button instance
              * @param name {string} Name of the button to set
              * @param button {core/js/button.View|null}
              * @returns {this}
              */
+            setButton: function (name, button) {
+                // Short circuit only set for names we want
                 if (_.contains(this.model.buttonNames, name)) {
-                    var attributes = {};
-                    attributes[name] = _.isNull(options) ? null : this.createButton(options);
-                    this.model.set(attributes);
+                    if (_.isNull(button)) {
+                        this.model.set(name, null);
+                    } else if (button instanceof Button.View) {
+                        this.model.set(name, button);
+                    } else {
+                        throw new TypeError('setButton(name, button): expected button to be instance of Button.View or null');
+                    }
                 }
                 return this;
             },
@@ -150,6 +142,37 @@ define(
                     throw new Error('Cannot open Alert: DefaultButton is null');
                 }
                 DialogView.prototype.open.apply(this, arguments);
+                return this;
+            },
+
+            /**
+             * Close this View
+             * ---
+             * Currently this  method also conducts a full reset of this.model
+             * Which would prevent the reuse of this view. Is this the best
+             * solution? Is there a use case for reusing the view?
+             *
+             * @override
+             * @returns {*}
+             */
+            close: function () {
+                if (!this.isClosed) {
+                    // Close/Remove the buttons views
+                    var buttons = _.pick(this.model.attributes, this.model.buttonNames);
+                    _.each(buttons, function (button) {
+                        if (_.isFunction(button.close)) {
+                            button.close();
+                        } else if (_.isFunction(button.remove)) {
+                            button.remove();
+                        }
+                    }, this);
+
+                    // Reset this.model to its default state
+                    this.model.clear().set(this.model.defaults);
+
+                    // Call the prototype close method
+                    DialogView.prototype.close.apply(this, arguments);
+                }
                 return this;
             }
         });

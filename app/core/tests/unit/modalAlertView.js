@@ -25,40 +25,6 @@ $(document).ready(function () {
         );
     });
 
-    asyncTest('createButton', function () {
-        require(
-            ['core/js/modal/alertView'],
-            function (AlertView) {
-                var alert, result, expecting;
-                alert = new AlertView();
-
-                result = alert.createButton();
-                expecting = { 'btn-style': 'btn-default', keyEquivalent: null, tag: null, title: 'No Title' };
-                deepEqual(result, expecting);
-
-                result = alert.createButton({ title: 'OK' });
-                expecting = { 'btn-style': 'btn-default', keyEquivalent: null, tag: null, title: 'OK' };
-                deepEqual(result, expecting);
-
-                result = alert.createButton({
-                    'btn-style': 'btn-primary',
-                    keyEquivalent: '\r',
-                    tag: 1000,
-                    title: 'Done'
-                });
-                expecting = {
-                    'btn-style': 'btn-primary',
-                    keyEquivalent: 13, // keyEquivalent converted to charCodeAt(0)
-                    tag: 1000,
-                    title: 'Done'
-                };
-                deepEqual(result, expecting);
-
-                start();
-            }
-        );
-    });
-
     asyncTest('setButton', function () {
         require(
             ['core/js/modal/alertView'],
