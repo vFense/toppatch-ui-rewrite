@@ -69,7 +69,7 @@ define(
                     } else if (button instanceof Button.View) {
                         this.model.set(name, button);
                     } else {
-                        throw new TypeError('setButton(name, button): expected button to be instance of Button.View or null');
+                        throw new TypeError('Expected button to be instance of Button.View or null');
                     }
                 }
                 return this;
