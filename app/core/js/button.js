@@ -132,16 +132,16 @@ define(function () {
             // This helps prevent duplicate events from firing
             this.stopListening();
 
-            this._setTitle();
-            this._setStyle();
-            this._setDisabled();
-            this._setTagID();
+            this._setElTitle();
+            this._setElStyle();
+            this._setElDisabled();
+            this._setElTagID();
 
             // Set up all events
-            this.listenTo(this.model, 'change:title',   this._setTitle);
-            this.listenTo(this.model, 'change:style',   this._setStyle);
-            this.listenTo(this.model, 'change:disabled',this._setDisabled);
-            this.listenTo(this.model, 'change:tagID',     this._setTagID);
+            this.listenTo(this.model, 'change:title',   this._setElTitle);
+            this.listenTo(this.model, 'change:style',   this._setElStyle);
+            this.listenTo(this.model, 'change:disabled',this._setElDisabled);
+            this.listenTo(this.model, 'change:tagID',     this._setElTagID);
             this.delegateEvents();
 
             return this;
@@ -245,7 +245,7 @@ define(function () {
          * @returns {this}
          * @private
          */
-        _setTitle: function () {
+        _setElTitle: function () {
             this.$el
                 .text(this.model.get('title'))
             ;
@@ -257,7 +257,7 @@ define(function () {
          * @returns {*}
          * @private
          */
-        _setStyle: function () {
+        _setElStyle: function () {
             this.$el
                 .removeClass(this.model.previous('style'))
                 .addClass(this.model.get('style'))
@@ -270,7 +270,7 @@ define(function () {
          * @returns {*}
          * @private
          */
-        _setDisabled: function () {
+        _setElDisabled: function () {
             this.$el
                 .attr('disabled', this.model.get('disabled'))
             ;
@@ -282,7 +282,7 @@ define(function () {
          * @returns {*}
          * @private
          */
-        _setTagID: function () {
+        _setElTagID: function () {
             this.$el
                 .data('tagID', this.model.get('tagID'))
             ;
