@@ -188,6 +188,27 @@ $(document).ready(function () {
         });
     });
 
+    asyncTest('canPerform', function () {
+        require(['core/js/button'], function(Button) {
+            var button = new Button.View(),
+                $body = $('body');
+
+            strictEqual(button.canPerform(), false, 'returned false, button is not visible');
+
+            button.render().$el.appendTo($body);
+
+            strictEqual(button.canPerform(), true, 'returned true, button is visible');
+
+            button.model.set('disabled', true);
+
+            strictEqual(button.canPerform(), false, 'returned false, button is disabled');
+
+            button.$el.remove().off();
+
+            start();
+        });
+    });
+
     asyncTest('performClick', function () {
         require(['core/js/button'], function(Button) {
             var button = new Button.View(),
