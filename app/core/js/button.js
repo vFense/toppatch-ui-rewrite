@@ -148,6 +148,65 @@ define(function () {
         },
 
         /**
+         * Convenience method to get/set this.model's attributes
+         * @param key {string}
+         * @param [value] {*}
+         * @returns {*}
+         * @private
+         */
+        _modelGetSet: function (key, value) {
+            if (!_.isUndefined(value)) {
+                this.model.set(key, value);
+            }
+            return this.model.get(key);
+        },
+
+        /**
+         * Convenience method to get/set this.model's title attribute
+         * @param [value] {string}
+         * @returns {string}
+         */
+        title: function (value) {
+            return this._modelGetSet('title', value);
+        },
+
+        /**
+         * Convenience method to get/set this.model's style attribute
+         * @param [value] {string}
+         * @returns {string}
+         */
+        style: function (value) {
+            return this._modelGetSet('style', value);
+        },
+
+        /**
+         * Convenience method to get/set this.model's disabled attribute
+         * @param [value] {boolean}
+         * @returns {boolean}
+         */
+        disabled: function (value) {
+            return this._modelGetSet('disabled', value);
+        },
+
+        /**
+         * Convenience method to get/set this.model's tagID attribute
+         * @param [value] {number}
+         * @returns {number}
+         */
+        tagID: function (value) {
+            return this._modelGetSet('tagID', value);
+        },
+
+        /**
+         * Convenience method to get/set this.model's keyEquivalent attribute
+         * @param [value] {number}
+         * @returns {number}
+         */
+        keyEquivalent: function (value) {
+            return this._modelGetSet('keyEquivalent', value);
+        },
+
+        /**
          * Return true if this $el is enabled and visible
          * @returns {boolean}
          */
