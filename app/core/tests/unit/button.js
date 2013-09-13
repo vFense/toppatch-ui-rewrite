@@ -289,23 +289,28 @@ $(document).ready(function () {
 
             button.render();
             button.$el
-                .appendTo($('body'))
-                .simulate('keypress', { keyCode: $.simulate.keyCode.SPACE });
-
-            strictEqual(called, 1, 'performClick called by performKeyEquivalent after simulated press of " "');
+                .appendTo($('body'));
+            ok(button.$el.simulate('keypress', { keyCode: $.simulate.keyCode.SPACE }), 'Simulate keypress event');
+            strictEqual(called, 1, 'called performClick');
 
             called = 0;
             args = null;
             result = button.performKeyEquivalent({ which: $.simulate.keyCode.SPACE }, true);
-            strictEqual(result, true, 'performKeyEquivalent returned true on key match');
+            strictEqual(result, true, 'returned true, key matched');
             strictEqual(called, 1, 'performClick called by performKeyEquivalent');
-            deepEqual(args, [true], 'performKeyEquivalent passed true to performClick');
+            deepEqual(args, [true], 'passed true to performClick');
 
             called = 0;
             args = null;
             result = button.performKeyEquivalent({ which: $.simulate.keyCode.ENTER });
-            strictEqual(result, false, 'performKeyEquivalent returned false, key did not match');
+            strictEqual(result, false, 'returned false, key did not match');
             strictEqual(called, 0, 'performClick not called');
+
+            called = 0;
+            args = null;
+            button.model.set('disabled', true);
+            result = button.performKeyEquivalent({ which: $.simulate.keyCode.SPACE }, true);
+            strictEqual(result, false, 'returned false, button disabled');
 
             button.$el.remove().off();
             start();
