@@ -85,54 +85,54 @@ $(document).ready(function () {
         });
     });
 
-    asyncTest('_setTitle', function () {
+    asyncTest('_setElTitle', function () {
         require(['core/js/button'], function(Button) {
             var button = new Button.View();
 
-            ok(button._setTitle(), 'Run _setTitle');
+            ok(button._setElTitle(), 'Run _setElTitle');
             strictEqual(button.$el.text(), 'Button', 'Applied default title to element text');
 
             start();
         });
     });
 
-    asyncTest('_setStyle', function () {
+    asyncTest('_setElStyle', function () {
         require(['core/js/button'], function(Button) {
             var button = new Button.View();
 
-            ok(button._setStyle(), 'Run _setStyle');
+            ok(button._setElStyle(), 'Run _setElStyle');
             ok(button.$el.hasClass('btn-default'), 'Applied default style to element class');
 
             ok(button.model.set('style', 'btn-primary'), 'Directly set the button\'s style');
-            ok(button._setStyle(), 'Run _setStyle');
+            ok(button._setElStyle(), 'Run _setElStyle');
             ok(button.$el.hasClass('btn-primary'), 'Switched style on element class');
 
             start();
         });
     });
 
-    asyncTest('_setDisabled', function () {
+    asyncTest('_setElDisabled', function () {
         require(['core/js/button'], function(Button) {
             var button = new Button.View();
 
 
             ok(button.model.set('disabled', true), 'Directly set the button\'s disabled value');
-            ok(button._setDisabled(), 'Run _setDisabled');
+            ok(button._setElDisabled(), 'Run _setElDisabled');
             strictEqual(button.$el.attr('disabled'), 'disabled', 'Set element\'s disabled value to true');
 
             ok(button.model.set('disabled', false), 'Directly set the button\'s disabled value');
-            ok(button._setDisabled(), 'Run _setDisabled');
+            ok(button._setElDisabled(), 'Run _setElDisabled');
             strictEqual(button.$el.attr('disabled'), undefined, 'Set element\'s disabled value to undefined');
 
             start();
         });
     });
 
-    asyncTest('_setTagID', function () {
+    asyncTest('_setElTagID', function () {
         require(['core/js/button'], function(Button) {
             var button = new Button.View();
 
-            ok(button._setTagID(), 'Run _setTagID');
+            ok(button._setElTagID(), 'Run _setElTagID');
             strictEqual(button.$el.data('tagID'), 0, 'Set element\'s data("tagID") to default of 0');
 
             start();
