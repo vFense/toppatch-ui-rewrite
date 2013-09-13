@@ -121,7 +121,7 @@ define(function () {
          * Checks the button's key equivalent against the specified
          * event and, if they match, simulates the button being clicked.
          * @param event {Event}
-         * @param animate {boolean} Passed to performClick, if keyEquivalent match
+         * @param [animate] {boolean} Passed to performClick, if keyEquivalent match
          * @returns {boolean} true if the event key matches the button's keyEquivalent,
          *                    false if it does not match
          */
@@ -144,7 +144,7 @@ define(function () {
 
         /**
          * Simulates a single mouse click on the control.
-         * @param animate {boolean} Visually animate this click
+         * @param [animate] {boolean} Visually animate this click
          * @returns {*}
          */
         performClick: function (animate) {
