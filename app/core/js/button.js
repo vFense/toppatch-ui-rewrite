@@ -14,7 +14,7 @@ define(function () {
             title: 'Button',
             style: 'btn-default',
             disabled: false,
-            tag: 0,
+            tagID: 0,
             keyEquivalent: 0
         },
 
@@ -117,13 +117,13 @@ define(function () {
             this._setTitle();
             this._setStyle();
             this._setDisabled();
-            this._setTag();
+            this._setTagID();
 
             // Set up all events
             this.listenTo(this.model, 'change:title',   this._setTitle);
             this.listenTo(this.model, 'change:style',   this._setStyle);
             this.listenTo(this.model, 'change:disabled',this._setDisabled);
-            this.listenTo(this.model, 'change:tag',     this._setTag);
+            this.listenTo(this.model, 'change:tagID',     this._setTagID);
             this.delegateEvents();
 
             return this;
@@ -264,9 +264,9 @@ define(function () {
          * @returns {*}
          * @private
          */
-        _setTag: function () {
+        _setTagID: function () {
             this.$el
-                .data('tag', this.model.get('tag'))
+                .data('tagID', this.model.get('tagID'))
             ;
             return this;
         }

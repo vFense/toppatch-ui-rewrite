@@ -27,11 +27,11 @@ $(document).ready(function () {
             result = validate({disabled:1});
             notStrictEqual(result, validResult, '1 is NOT a valid disabled value');
 
-            result = validate({tag:32});
-            strictEqual(result, validResult, '32 is a valid tag');
+            result = validate({tagID:32});
+            strictEqual(result, validResult, '32 is a valid tagID');
 
-            result = validate({tag:' '});
-            notStrictEqual(result, validResult, '" " is NOT a valid tag');
+            result = validate({tagID:' '});
+            notStrictEqual(result, validResult, '" " is NOT a valid tagID');
 
             result = validate({keyEquivalent:32});
             strictEqual(result, validResult, '32 is a valid keyEquivalent');
@@ -63,7 +63,7 @@ $(document).ready(function () {
     asyncTest('Initialize', function () {
         require(['core/js/button'], function(Button) {
             var defaultButtonModel = Button.Model.prototype.defaults;
-            var model = new Button.Model({ tag: 1000 });
+            var model = new Button.Model({ tagID: 1000 });
             var button;
 
             ok(button = new Button.View({ model: model }), 'Construct with instance of Button.Model');
@@ -124,12 +124,12 @@ $(document).ready(function () {
         });
     });
 
-    asyncTest('_setTag', function () {
+    asyncTest('_setTagID', function () {
         require(['core/js/button'], function(Button) {
             var button = new Button.View();
 
-            ok(button._setTag(), 'Run _setTag');
-            strictEqual(button.$el.data('tag'), 0, 'Set element\'s data("tag") to default of 0');
+            ok(button._setTagID(), 'Run _setTagID');
+            strictEqual(button.$el.data('tagID'), 0, 'Set element\'s data("tagID") to default of 0');
 
             start();
         });
@@ -147,7 +147,7 @@ $(document).ready(function () {
             strictEqual(button.$el.text(), 'Button', 'Applied default title to element text');
             ok(button.$el.hasClass('btn-default'), 'Applied default style to element class');
             strictEqual(button.$el.attr('disabled'), undefined, 'Set element\'s disabled value to undefined');
-            strictEqual(button.$el.data('tag'), 0, 'Set element\'s data("tag") to default of 0');
+            strictEqual(button.$el.data('tagID'), 0, 'Set element\'s data("tagID") to default of 0');
 
             listeners = _.values(result._listeners);
             strictEqual(listeners.length, 1, 'View should have 1 listener');
@@ -156,7 +156,7 @@ $(document).ready(function () {
                 'change:title',
                 'change:style',
                 'change:disabled',
-                'change:tag'
+                'change:tagID'
             ], 'Listener has correct events');
 
             // Render again and make sure we don't have duplicate events
@@ -168,7 +168,7 @@ $(document).ready(function () {
                 'change:title',
                 'change:style',
                 'change:disabled',
-                'change:tag'
+                'change:tagID'
             ], 'Listener has correct events');
 
             // Test to make sure our model events are working
@@ -176,13 +176,13 @@ $(document).ready(function () {
                 title: 'OK',
                 style: 'btn-primary',
                 disabled: true,
-                tag: 5
+                tagID: 5
             }), 'Change model attributes directly to test if events are set up correctly');
 
             strictEqual(button.$el.text(), 'OK', 'Button\'s title is now "OK"');
             ok(button.$el.hasClass('btn-primary'), 'Button\'s style is now "btn-primary"');
             strictEqual(button.$el.attr('disabled'), 'disabled', 'Button is now disabled');
-            strictEqual(button.$el.data('tag'), 5, 'Button\'s tag is now 5');
+            strictEqual(button.$el.data('tagID'), 5, 'Button\'s tagID is now 5');
 
             start();
         });
