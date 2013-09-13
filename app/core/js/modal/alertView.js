@@ -121,10 +121,10 @@ define(
             },
 
             open: function () {
-                if (this.model.get('message').trim() === '') {
-                    throw new Error('Alert message is empty, abort open');
+                if (this.model.get('message') === '') {
+                    throw new Error('Cannot open Alert: Alert message is empty');
                 } else if (_.isNull(this.model.get('defButton'))) {
-                    throw new Error('DefaultButton is null, abort open');
+                    throw new Error('Cannot open Alert: DefaultButton is null');
                 }
                 DialogView.prototype.open.apply(this, arguments);
                 return this;
