@@ -45,6 +45,11 @@ define(
                 });
             },
 
+            /**
+             * Construct this DialogView
+             * @constructor
+             * @returns {number}
+             */
             constructor: function () {
                 this.model = new AlertModel();
                 return DialogView.prototype.constructor.apply(this, arguments);
@@ -64,6 +69,12 @@ define(
             },
 
             setButton: function (name, options) {
+            /**
+             * Set a button instance
+             * @param name {string} Name of the button to set
+             * @param button {core/js/button.View|null}
+             * @returns {this}
+             */
                 if (_.contains(this.model.buttonNames, name)) {
                     var attributes = {};
                     attributes[name] = _.isNull(options) ? null : this.createButton(options);
@@ -72,6 +83,11 @@ define(
                 return this;
             },
 
+            /**
+             * Set the three buttons of concern with one call. This method will
+             * @param buttons {array} An array of up to 3 buttons to add to this.model
+             * @returns {*}
+             */
             setButtons: function (buttons) {
                 if (_.isArray(buttons)) {
                     var count = buttons.length;
@@ -120,6 +136,13 @@ define(
                 return this;
             },
 
+            /**
+             * Open this View
+             * ---
+             * Only open if there is a message and a default button
+             *
+             * @returns {*}
+             */
             open: function () {
                 if (this.model.get('message') === '') {
                     throw new Error('Cannot open Alert: Alert message is empty');

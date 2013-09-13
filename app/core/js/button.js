@@ -1,6 +1,14 @@
+/**
+ * A module representing a Button.
+ * @module Button
+ */
 define(function () {
     'use strict';
 
+    /**
+     * Button Model
+     * @alias Button.Model
+     */
     var Button = Backbone.Model.extend({
         defaults: {
             title: 'Button',
@@ -70,6 +78,10 @@ define(function () {
         }
     });
 
+    /**
+     * Button View
+     * @alias Button.View
+     */
     var View = Backbone.View.extend({
         tag: 'button',
         className: 'btn',
