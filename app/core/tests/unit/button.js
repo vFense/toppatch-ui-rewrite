@@ -268,6 +268,7 @@ $(document).ready(function () {
 
             button.render();
             button.$el
+                .appendTo($('body'))
                 .simulate('keypress', { keyCode: $.simulate.keyCode.SPACE });
 
             strictEqual(called, 1, 'performClick called by performKeyEquivalent after simulated press of " "');
