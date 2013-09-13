@@ -93,9 +93,23 @@ define(function () {
         initialize: function () {
             // If this.model is an instance of Button, do nothing
             if (!(this.model instanceof Button)) {
-                // If this.model is an object, pass it to a new instance of Button.
-                // Otherwise pass an empty object to create a default Button.
-                this.model = new Button(_.isObject(this.model) ? this.model : {});
+                // Construct a default button
+                var button = new Button();
+
+                // If this.model is an object, send it to our new button
+                if (_.isObject(this.model)) {
+                    button.set(this.model);
+                }
+
+                // Set this.model to reference button
+                this.model = button;
+            }
+
+            // Check the model for validation errors
+            if (!this.model.isValid()) {
+                var error = new Error(this.model.validationError);
+                error.name = 'InvalidButtonModel';
+                throw error;
             }
 
             // Make sure that all functions called from this instance of Button.View

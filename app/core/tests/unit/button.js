@@ -77,6 +77,10 @@ $(document).ready(function () {
             ok(button.model instanceof Button.Model, 'Init created instance of Button.Model at this.model');
             strictEqual(button.model.get('title'), 'OK', 'model has correct title');
 
+            QUnit.throws(function () {
+                button = new Button.View({ model: { title: 1 }});
+            }, Error, 'Constructor threw error because of invalid model');
+
             start();
         });
     });
