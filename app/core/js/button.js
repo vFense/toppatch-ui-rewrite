@@ -83,7 +83,7 @@ define(function () {
      * @alias Button.View
      */
     var View = Backbone.View.extend({
-        tag: 'button',
+        tagName: 'button',
         className: 'btn',
 
         /**
