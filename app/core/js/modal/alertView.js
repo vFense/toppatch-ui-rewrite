@@ -9,18 +9,18 @@ define(
         return DialogView.extend({
             template: alertTemplate,
 
-            constructor: function () {
-                _.extend(this, {
-                    // Alert properties
-                    icon: null,
-                    message: '',
-                    information: '',
-                    buttons: {
-                        default: null,
-                        alternate: null,
-                        other: null
-                    }
-                });
+            constructor: function (options) {
+                var defaults = {
+                        // Alert properties
+                        icon: null,
+                        message: '',
+                        information: '',
+                        defButton: null,
+                        altButton: null,
+                        othButton: null
+                    },
+                    defaultKeys = _.keys(defaults);
+                _.defaults(this, _.pick(options || {}, defaultKeys), defaults);
                 return DialogView.prototype.constructor.apply(this, arguments);
             },
 
@@ -77,9 +77,9 @@ define(
             setButtons: function (buttons) {
                 if (_.isArray(buttons)) {
                     var count = buttons.length;
-                    this.setButton('default',   count > 0 ? buttons[0] : null);
-                    this.setButton('alternate', count > 1 ? buttons[1] : null);
-                    this.setButton('other',     count > 2 ? buttons[2] : null);
+                    this.setButton('defButton', count > 0 ? buttons[0] : null);
+                    this.setButton('altButton', count > 1 ? buttons[1] : null);
+                    this.setButton('othButton', count > 2 ? buttons[2] : null);
                 }
                 return this;
             },
