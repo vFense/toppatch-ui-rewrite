@@ -5,22 +5,20 @@
             <div class="modal-alert-icon">{{ icon }}</div>
             {{/if}}
 
-            <div class="modal-alert-message">
-                {{#if message}}{{ message }}{{else}}Error: No Title{{/if}}
-            </div>
+            <div class="modal-alert-message">{{ message }}</div>
 
             {{#if information}}
             <div class="modal-alert-information">{{ information }}</div>
             {{/if}}
 
             <div class="modal-alert-buttons">
-                {{#if othButton}}
-                    {{{ othButton.el.outerHTML }}}
+                {{#if buttons.other}}
+                    {{{ buttons.other.el.outerHTML }}}
                 {{/if}}
-                {{#if altButton}}
-                    {{{ altButton.el.outerHTML }}}
+                {{#if buttons.alternate}}
+                    {{{ buttons.alternate.el.outerHTML }}}
                 {{/if}}
-                {{{ defButton.el.outerHTML }}}
+                {{{ buttons.default.el.outerHTML }}}
             </div>
         </div>
     </div>
