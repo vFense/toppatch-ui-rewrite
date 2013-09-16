@@ -6,18 +6,14 @@ $(document).ready(function () {
         require(
             ['core/js/modal/alertView'],
             function (AlertView) {
-                var alertView;
-                alertView = new AlertView();
+                var alertView = new AlertView();
 
-                ok(alertView.model instanceof Backbone.Model, 'Alert model is instance of Backbone.Model');
-
-                var attributes = alertView.model.attributes;
-                strictEqual(attributes.icon, null, 'icon is null');
-                strictEqual(attributes.message, '', 'message is ""');
-                strictEqual(attributes.information, '', 'information is ""');
-                strictEqual(attributes.defButton, null, 'defButton is null');
-                strictEqual(attributes.altButton, null, 'altButton is null');
-                strictEqual(attributes.othButton, null, 'othButton is null');
+                strictEqual(alertView.icon, null, 'icon is null');
+                strictEqual(alertView.message, '', 'message is ""');
+                strictEqual(alertView.information, '', 'information is ""');
+                strictEqual(alertView.buttons.default, null, 'Default button is null');
+                strictEqual(alertView.buttons.alternate, null, 'Alternate button is null');
+                strictEqual(alertView.buttons.other, null, 'Other button is null');
 
                 strictEqual(alertView.$el.attr('role'), 'alertdialog', 'element role:"alertdialog" set');
                 start();
@@ -29,32 +25,30 @@ $(document).ready(function () {
         require(
             ['core/js/modal/alertView', 'core/js/button'],
             function (AlertView, Button) {
-                var alertView, defButton;
-                alertView = new AlertView();
-                defButton = new Button.View();
+                var alertView = new AlertView(),
+                    defaultButton = new Button();
 
-                var listener = _.extend({}, Backbone.Events),
-                    changed = 0;
-                listener.listenTo(alertView.model, 'change', function () { changed += 1; });
-                alertView.setButton();
-                strictEqual(changed, 0, 'No options, no change');
+                alertView.setButton('wrong', {});
+                strictEqual(alertView.buttons.default, null, 'default still null');
+                strictEqual(alertView.buttons.alternate, null, 'altButton still null');
+                strictEqual(alertView.buttons.other, null, 'othButton still null');
 
-                changed = 0; // In case previous test caused a change
-                alertView.setButton('defButton', defButton);
-                strictEqual(changed, 1, 'Caused 1 model attribute change');
-                deepEqual(alertView.model.get('defButton').model.attributes, {
+                alertView.setButton('default', defaultButton);
+                deepEqual(alertView.buttons.default.attributes, {
                     title: 'Button',
                     style: 'btn-default',
                     disabled: false,
                     tagID: 0,
                     keyEquivalent: 0
 
-                }, 'Set defButton correctly');
-                strictEqual(alertView.model.get('altButton'), null, 'altButton still null');
-                strictEqual(alertView.model.get('othButton'), null, 'othButton still null');
+                }, 'Set default button correctly');
+                strictEqual(alertView.buttons.alternate, null, 'altButton still null');
+                strictEqual(alertView.buttons.other, null, 'othButton still null');
 
+                throws(function () {
+                    alertView.setButton('default', 'OK');
+                }, 'Throws TypeError when button argument is not instance of Button.Model or not null');
 
-                listener.stopListening();
                 start();
             }
         );
@@ -68,39 +62,39 @@ $(document).ready(function () {
                 alertView = new AlertView();
 
                 alertView.setButtons([
-                    new Button.View({ model: 'OK' })
+                    new Button({ title: 'OK' })
                 ]);
-                strictEqual(alertView.model.get('defButton').title(), 'OK', 'defButton title is "OK"');
-                strictEqual(alertView.model.get('altButton'), null, 'altButton is null');
-                strictEqual(alertView.model.get('othButton'), null, 'othButton is null');
+                strictEqual(alertView.buttons.default.get('title'), 'OK', 'defButton title is "OK"');
+                strictEqual(alertView.buttons.alternate, null, 'altButton is null');
+                strictEqual(alertView.buttons.other, null, 'othButton is null');
 
 
                 alertView.setButtons([
-                    new Button.View({ model: 'OK' }),
-                    new Button.View({ model: 'Cancel' })
+                    new Button({ title: 'OK' }),
+                    new Button({ title: 'Cancel' })
                 ]);
-                strictEqual(alertView.model.get('defButton').title(), 'OK', 'defButton title is "OK"');
-                strictEqual(alertView.model.get('altButton').title(), 'Cancel', 'altButton is title is "Cancel"');
-                strictEqual(alertView.model.get('othButton'), null, 'othButton is null');
+                strictEqual(alertView.buttons.default.get('title'), 'OK', 'defButton title is "OK"');
+                strictEqual(alertView.buttons.alternate.get('title'), 'Cancel', 'altButton is title is "Cancel"');
+                strictEqual(alertView.buttons.other, null, 'othButton is null');
 
                 alertView.setButtons([
-                    new Button.View({ model: 'OK' }),
-                    new Button.View({ model: 'Cancel' }),
-                    new Button.View({ model: 'Other' })
+                    new Button({ title: 'OK' }),
+                    new Button({ title: 'Cancel' }),
+                    new Button({ title: 'Other' })
                 ]);
-                strictEqual(alertView.model.get('defButton').title(), 'OK', 'defButton title is "OK"');
-                strictEqual(alertView.model.get('altButton').title(), 'Cancel', 'altButton is title is "Cancel"');
-                strictEqual(alertView.model.get('othButton').title(), 'Other', 'othButton is title is "Other"');
+                strictEqual(alertView.buttons.default.get('title'), 'OK', 'defButton title is "OK"');
+                strictEqual(alertView.buttons.alternate.get('title'), 'Cancel', 'altButton is title is "Cancel"');
+                strictEqual(alertView.buttons.other.get('title'), 'Other', 'othButton is title is "Other"');
 
                 alertView.setButtons('Argument is not an array, should not cause change');
-                strictEqual(alertView.model.get('defButton').title(), 'OK', 'defButton title is "OK"');
-                strictEqual(alertView.model.get('altButton').title(), 'Cancel', 'altButton is title is "Cancel"');
-                strictEqual(alertView.model.get('othButton').title(), 'Other', 'othButton is title is "Other"');
+                strictEqual(alertView.buttons.default.get('title'), 'OK', 'defButton title is "OK"');
+                strictEqual(alertView.buttons.alternate.get('title'), 'Cancel', 'altButton is title is "Cancel"');
+                strictEqual(alertView.buttons.other.get('title'), 'Other', 'othButton is title is "Other"');
 
                 alertView.setButtons([]); // Empty array will set all buttons to null
-                strictEqual(alertView.model.get('defButton'), null, 'defButton is null');
-                strictEqual(alertView.model.get('altButton'), null, 'altButton is null');
-                strictEqual(alertView.model.get('othButton'), null, 'othButton is null');
+                strictEqual(alertView.buttons.default, null, 'defButton is null');
+                strictEqual(alertView.buttons.alternate, null, 'altButton is null');
+                strictEqual(alertView.buttons.other, null, 'othButton is null');
 
                 start();
             }
@@ -117,53 +111,62 @@ $(document).ready(function () {
                 alertView = new AlertView();
 
                 alertView.setMessage(message);
-                strictEqual(alertView.model.get('message'), message, 'Message set correctly');
+                strictEqual(alertView.message, message, 'Message set correctly');
 
                 alertView.setMessage([]); // Array is not a string, should not cause change
-                strictEqual(alertView.model.get('message'), message, 'Message set correctly');
+                strictEqual(alertView.message, message, 'Message set correctly');
 
                 alertView.setInformation(information);
-                strictEqual(alertView.model.get('information'), information, 'Information set correctly');
+                strictEqual(alertView.information, information, 'Information set correctly');
 
                 alertView.setInformation([]); // Array is not a string, should not cause change
-                strictEqual(alertView.model.get('information'), information, 'Information set correctly');
+                strictEqual(alertView.information, information, 'Information set correctly');
 
                 start();
             }
         );
     });
 
+
     asyncTest('Rendering', function () {
         require(
             ['core/js/modal/alertView', 'core/js/button'],
             function (AlertView, Button) {
-                var alertView,
+                var alertView = new AlertView(),
                     message = 'Alert message',
-                    information = 'Alert information';
-                alertView = new AlertView();
+                    information = 'Alert information',
+                    buttons = [
+                        {title: 'Save'},
+                        {title: 'Cancel'},
+                        {title: 'Other'}
+                    ];
 
                 alertView
                     .setMessage(message)
                     .setInformation(information)
                     .setButtons([
-                        new Button.View({ model: {title: 'Save', keyEquivalent: '\r', 'btn-style': 'btn-primary' }}),
-                        new Button.View({ model: {title: 'Cancel', 'keyEquivalent': '\x1B' }}),
-                        new Button.View({ model: {title: 'Don\'t Save'}})
+                        new Button(buttons[0]),
+                        new Button(buttons[1]),
+                        new Button(buttons[2])
                     ]);
 
                 var $el = alertView.render().$el,
                     $message = $el.find('.modal-alert-message'),
                     $information = $el.find('.modal-alert-information'),
-                    $buttons = $el.find('.modal-alert-buttons .btn');
+                    $buttons = $el.find('.modal-alert-buttons > .btn');
+
 
                 strictEqual($message.text(), message, 'Message was rendered correctly');
                 strictEqual($information.text(), information, 'Information was rendered correctly');
 
-                var buttonTextArray = ['Don\'t Save', 'Cancel', 'Save'];
-                $buttons.each(function (index, button) {
-                    strictEqual($(button).text(), buttonTextArray[index], 'Button ' + (index + 1) + ' rendered correctly');
-                });
+                strictEqual($buttons[2].innerText, alertView.buttons.default.get('title'),
+                    'Default Button has correct text');
+                strictEqual($buttons[1].innerText, alertView.buttons.alternate.get('title'),
+                    'Alternate Button has correct text');
+                strictEqual($buttons[0].innerText, alertView.buttons.other.get('title'),
+                    'Other Button has correct text');
 
+                alertView.remove();
                 start();
             }
         );
