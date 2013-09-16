@@ -11,9 +11,9 @@ $(document).ready(function () {
                 strictEqual(alertView.icon, null, 'icon is null');
                 strictEqual(alertView.message, '', 'message is ""');
                 strictEqual(alertView.information, '', 'information is ""');
-                strictEqual(alertView.buttons.default, null, 'Default button is null');
-                strictEqual(alertView.buttons.alternate, null, 'Alternate button is null');
-                strictEqual(alertView.buttons.other, null, 'Other button is null');
+                strictEqual(alertView.defButton, null, 'Default button is null');
+                strictEqual(alertView.altButton, null, 'Alternate button is null');
+                strictEqual(alertView.othButton, null, 'Other button is null');
 
                 strictEqual(alertView.$el.attr('role'), 'alertdialog', 'element role:"alertdialog" set');
                 start();
@@ -29,12 +29,12 @@ $(document).ready(function () {
                     defaultButton = new Button();
 
                 alertView.setButton('wrong', {});
-                strictEqual(alertView.buttons.default, null, 'default still null');
-                strictEqual(alertView.buttons.alternate, null, 'altButton still null');
-                strictEqual(alertView.buttons.other, null, 'othButton still null');
+                strictEqual(alertView.defButton, null, 'default still null');
+                strictEqual(alertView.altButton, null, 'altButton still null');
+                strictEqual(alertView.othButton, null, 'othButton still null');
 
-                alertView.setButton('default', defaultButton);
-                deepEqual(alertView.buttons.default.attributes, {
+                alertView.setButton('defButton', defaultButton);
+                deepEqual(alertView.defButton.attributes, {
                     title: 'Button',
                     style: 'btn-default',
                     disabled: false,
@@ -42,11 +42,11 @@ $(document).ready(function () {
                     keyEquivalent: 0
 
                 }, 'Set default button correctly');
-                strictEqual(alertView.buttons.alternate, null, 'altButton still null');
-                strictEqual(alertView.buttons.other, null, 'othButton still null');
+                strictEqual(alertView.altButton, null, 'altButton still null');
+                strictEqual(alertView.othButton, null, 'othButton still null');
 
                 throws(function () {
-                    alertView.setButton('default', 'OK');
+                    alertView.setButton('defButton', 'OK');
                 }, 'Throws TypeError when button argument is not instance of Button.Model or not null');
 
                 start();
@@ -64,37 +64,37 @@ $(document).ready(function () {
                 alertView.setButtons([
                     new Button({ title: 'OK' })
                 ]);
-                strictEqual(alertView.buttons.default.get('title'), 'OK', 'defButton title is "OK"');
-                strictEqual(alertView.buttons.alternate, null, 'altButton is null');
-                strictEqual(alertView.buttons.other, null, 'othButton is null');
+                strictEqual(alertView.defButton.get('title'), 'OK', 'defButton title is "OK"');
+                strictEqual(alertView.altButton, null, 'altButton is null');
+                strictEqual(alertView.othButton, null, 'othButton is null');
 
 
                 alertView.setButtons([
                     new Button({ title: 'OK' }),
                     new Button({ title: 'Cancel' })
                 ]);
-                strictEqual(alertView.buttons.default.get('title'), 'OK', 'defButton title is "OK"');
-                strictEqual(alertView.buttons.alternate.get('title'), 'Cancel', 'altButton is title is "Cancel"');
-                strictEqual(alertView.buttons.other, null, 'othButton is null');
+                strictEqual(alertView.defButton.get('title'), 'OK', 'defButton title is "OK"');
+                strictEqual(alertView.altButton.get('title'), 'Cancel', 'altButton is title is "Cancel"');
+                strictEqual(alertView.othButton, null, 'othButton is null');
 
                 alertView.setButtons([
                     new Button({ title: 'OK' }),
                     new Button({ title: 'Cancel' }),
                     new Button({ title: 'Other' })
                 ]);
-                strictEqual(alertView.buttons.default.get('title'), 'OK', 'defButton title is "OK"');
-                strictEqual(alertView.buttons.alternate.get('title'), 'Cancel', 'altButton is title is "Cancel"');
-                strictEqual(alertView.buttons.other.get('title'), 'Other', 'othButton is title is "Other"');
+                strictEqual(alertView.defButton.get('title'), 'OK', 'defButton title is "OK"');
+                strictEqual(alertView.altButton.get('title'), 'Cancel', 'altButton is title is "Cancel"');
+                strictEqual(alertView.othButton.get('title'), 'Other', 'othButton is title is "Other"');
 
                 alertView.setButtons('Argument is not an array, should not cause change');
-                strictEqual(alertView.buttons.default.get('title'), 'OK', 'defButton title is "OK"');
-                strictEqual(alertView.buttons.alternate.get('title'), 'Cancel', 'altButton is title is "Cancel"');
-                strictEqual(alertView.buttons.other.get('title'), 'Other', 'othButton is title is "Other"');
+                strictEqual(alertView.defButton.get('title'), 'OK', 'defButton title is "OK"');
+                strictEqual(alertView.altButton.get('title'), 'Cancel', 'altButton is title is "Cancel"');
+                strictEqual(alertView.othButton.get('title'), 'Other', 'othButton is title is "Other"');
 
                 alertView.setButtons([]); // Empty array will set all buttons to null
-                strictEqual(alertView.buttons.default, null, 'defButton is null');
-                strictEqual(alertView.buttons.alternate, null, 'altButton is null');
-                strictEqual(alertView.buttons.other, null, 'othButton is null');
+                strictEqual(alertView.defButton, null, 'defButton is null');
+                strictEqual(alertView.altButton, null, 'altButton is null');
+                strictEqual(alertView.othButton, null, 'othButton is null');
 
                 start();
             }
@@ -159,11 +159,11 @@ $(document).ready(function () {
                 strictEqual($message.text(), message, 'Message was rendered correctly');
                 strictEqual($information.text(), information, 'Information was rendered correctly');
 
-                strictEqual($buttons[2].innerText, alertView.buttons.default.get('title'),
+                strictEqual($buttons[2].innerText, alertView.defButton.get('title'),
                     'Default Button has correct text');
-                strictEqual($buttons[1].innerText, alertView.buttons.alternate.get('title'),
+                strictEqual($buttons[1].innerText, alertView.altButton.get('title'),
                     'Alternate Button has correct text');
-                strictEqual($buttons[0].innerText, alertView.buttons.other.get('title'),
+                strictEqual($buttons[0].innerText, alertView.othButton.get('title'),
                     'Other Button has correct text');
 
                 alertView.remove();

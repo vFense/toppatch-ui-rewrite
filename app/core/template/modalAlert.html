@@ -12,13 +12,13 @@
             {{/if}}
 
             <div class="modal-alert-buttons">
-                {{#if buttons.other}}
-                    {{{ buttons.other.el.outerHTML }}}
+                {{#if othButton}}
+                    {{{ othButton.el.outerHTML }}}
                 {{/if}}
-                {{#if buttons.alternate}}
-                    {{{ buttons.alternate.el.outerHTML }}}
+                {{#if altButton}}
+                    {{{ altButton.el.outerHTML }}}
                 {{/if}}
-                {{{ buttons.default.el.outerHTML }}}
+                {{{ defButton.el.outerHTML }}}
             </div>
         </div>
     </div>
