@@ -16,6 +16,30 @@ $(document).ready(function () {
                 strictEqual(alertView.othButton, null, 'Other button is null');
 
                 strictEqual(alertView.$el.attr('role'), 'alertdialog', 'element role:"alertdialog" set');
+
+                start();
+            }
+        );
+    });
+
+    asyncTest('Constructor [with options]', function () {
+        require(
+            ['core/js/modal/alertView', 'core/js/button'],
+            function (AlertView, Button) {
+                var alertView = new AlertView({
+                    message: 'M',
+                    information: 'I',
+                    defButton: new Button({title: '0'}),
+                    altButton: new Button({title: '1'}),
+                    othButton: new Button({title: '2'})
+                });
+
+                strictEqual(alertView.message, 'M', 'message is correct');
+                strictEqual(alertView.information, 'I', 'information is correct');
+                strictEqual(alertView.defButton.get('title'), '0', 'Default button is correct');
+                strictEqual(alertView.altButton.get('title'), '1', 'Alternate button is correct');
+                strictEqual(alertView.othButton.get('title'), '2', 'Other button is correct');
+
                 start();
             }
         );
