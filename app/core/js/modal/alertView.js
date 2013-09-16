@@ -47,8 +47,17 @@ define(
                 });
             },
 
+            /**
+             * Function that returns an object containing
+             * references to each of this view's buttons
+             * @returns {Object}
+             */
+            buttons: function () {
+                return _.pick(this, 'defButton', 'altButton', 'othButton');
+            },
+
             getData: function () {
-                return _.extend({}, _.pick(this, 'icon', 'message', 'information', 'buttons'));
+                return _.extend({}, _.pick(this, 'icon', 'message', 'information'), this.buttons());
             },
 
             /**
@@ -59,9 +68,9 @@ define(
              */
             setButton: function (name, button) {
                 // Short circuit only set for names we want
-                if (_.has(this.buttons, name)) {
+                if (_.has(this.buttons(), name)) {
                     if (_.isNull(button) || (button instanceof Button)) {
-                        this.buttons[name] = button;
+                        this[name] = button;
                     } else {
                         throw new TypeError('Expected button to be instance of Button or null');
                     }
@@ -116,7 +125,7 @@ define(
             keyAction: function (event) {
                 // Run each button's performKeyEquivalent
                 // Funky things will happen if there is more than one matching button
-                _.invoke(this.buttons, 'performKeyEquivalent', event);
+                _.invoke(this.buttons(), 'performKeyEquivalent', event);
 
                 return this;
             },
@@ -139,7 +148,7 @@ define(
             open: function () {
                 if (this.message === '') {
                     throw new Error('Cannot open Alert: Alert message is empty');
-                } else if (_.isNull(this.buttons.def)) {
+                } else if (_.isNull(this.defButton)) {
                     throw new Error('Cannot open Alert: DefaultButton is null');
                 }
                 DialogView.prototype.open.apply(this, arguments);
@@ -160,10 +169,7 @@ define(
             close: function () {
                 if (!this.isClosed) {
                     // Remove the buttons for garbage collection
-                    _.each(this.buttons, function (button) {
-                        _.result(button, 'remove');
-                        button = null;
-                    }, this);
+                    _.invoke(this.buttons(), 'remove');
 
                     // Call the prototype close method
                     DialogView.prototype.close.apply(this, arguments);
