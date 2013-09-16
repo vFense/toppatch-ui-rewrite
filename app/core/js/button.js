@@ -1,5 +1,10 @@
 /**
  * A module representing a Button.
+ *
+ * This module is actually a Model with some Backbone.View logic built in.
+ * The model has its own $el and el, and will update its element properties
+ * when the model attributes change
+ *
  * @module Button
  */
 define(function () {
@@ -9,13 +14,37 @@ define(function () {
      * Button Model
      * @alias Button.Model
      */
-    var Button = Backbone.Model.extend({
+    return Backbone.Model.extend({
         defaults: {
             title: 'Button',
             style: 'btn-default',
             disabled: false,
             tagID: 0,
             keyEquivalent: 0
+        },
+
+        /**
+         * Construct this button
+         * @returns {*}
+         */
+        constructor: function () {
+            // Apply the prototype constructor first
+            Backbone.Model.prototype.constructor.apply(this, arguments);
+
+            // Setup element
+            this._ensureElement();
+
+            // Setup events
+            this.on('change:title'   , this._changeTitle);
+            this.on('change:style'   , this._changeStyle);
+            this.on('change:disabled', this._changeDisabled);
+            this.on('change:tagID'   , this._changeTagID);
+
+            // Make sure that when _completeAnimatedClick is called
+            // from a timeout, it has the correct `this` value
+            _.bindAll(this, '_completeAnimatedClick');
+
+            return this;
         },
 
         /**
@@ -69,141 +98,45 @@ define(function () {
                 attrs.title = attrs.title.trim();
             }
 
+            // Trim the style
+            if (_.isString(attrs.style)) {
+                attrs.style = attrs.style.trim();
+            }
+
             // Coerce keyEquivalent to character code
             if (_.isString(attrs.keyEquivalent)) {
                 attrs.keyEquivalent = attrs.keyEquivalent.charCodeAt(0);
             }
 
             return Backbone.Model.prototype.set.call(this, attrs, options);
-        }
-    });
-
-    /**
-     * Button View
-     * @alias Button.View
-     */
-    var View = Backbone.View.extend({
-        tagName: 'button',
-        className: 'btn',
-
-        /**
-         * Initialize this view
-         * @returns {*}
-         */
-        initialize: function () {
-            // If this.model is an instance of Button, do nothing
-            if (!(this.model instanceof Button)) {
-                // Construct a default button
-                var button = new Button();
-
-
-                if (_.isObject(this.model)) {
-                    // If this.model is an object, send it to our new button
-                    button.set(this.model);
-                } else if (_.isString(this.model)) {
-                    // If this.model is a string, assume the string is a title
-                    button.set('title', this.model);
-                }
-
-                // Set this.model to reference button
-                this.model = button;
-            }
-
-            // Check the model for validation errors
-            if (!this.model.isValid()) {
-                var error = new Error(this.model.validationError);
-                error.name = 'InvalidButtonModel';
-                throw error;
-            }
-
-            // Make sure that all functions called from this instance of Button.View
-            // have "this" pointing to this instance of Button.View
-            _.bindAll(this);
-
-            return this;
         },
 
         /**
-         * Setup attributes on this.$el, and setup all events
-         * @returns {*}
-         */
-        render: function () {
-            // Let render recreate all events
-            // This helps prevent duplicate events from firing
-            this.stopListening();
-
-            this._setElTitle();
-            this._setElStyle();
-            this._setElDisabled();
-            this._setElTagID();
-
-            // Set up all events
-            this.listenTo(this.model, 'change:title',   this._setElTitle);
-            this.listenTo(this.model, 'change:style',   this._setElStyle);
-            this.listenTo(this.model, 'change:disabled',this._setElDisabled);
-            this.listenTo(this.model, 'change:tagID',   this._setElTagID);
-            this.delegateEvents();
-
-            return this;
-        },
-
-        /**
-         * Convenience method to get/set this.model's attributes
-         * @param key {string}
-         * @param [value] {*}
-         * @returns {*}
+         * Create the DOM element to represent this Button
          * @private
          */
-        _modelGetSet: function (key, value) {
-            if (!_.isUndefined(value)) {
-                this.model.set(key, value);
-            }
-            return this.model.get(key);
+        _ensureElement: function () {
+            this.$el = Backbone.$('<button>');
+            this.$el
+                .attr({
+                    id: _.result(this, 'cid'),
+                    class: ['btn', _.result(this.attributes, 'style')].join(' ')
+                })
+                .data('tagID', _.result(this.attributes, 'tagID'))
+                .text(_.result(this.attributes, 'title'));
+
+            this.el = this.$el[0];
+
+            return this;
         },
 
         /**
-         * Convenience method to get/set this.model's title attribute
-         * @param [value] {string}
-         * @returns {string}
+         * Take the element out of the DOM
+         * @returns {*}
          */
-        title: function (value) {
-            return this._modelGetSet('title', value);
-        },
-
-        /**
-         * Convenience method to get/set this.model's style attribute
-         * @param [value] {string}
-         * @returns {string}
-         */
-        style: function (value) {
-            return this._modelGetSet('style', value);
-        },
-
-        /**
-         * Convenience method to get/set this.model's disabled attribute
-         * @param [value] {boolean}
-         * @returns {boolean}
-         */
-        disabled: function (value) {
-            return this._modelGetSet('disabled', value);
-        },
-
-        /**
-         * Convenience method to get/set this.model's tagID attribute
-         * @param [value] {number}
-         * @returns {number}
-         */
-        tagID: function (value) {
-            return this._modelGetSet('tagID', value);
-        },
-
-        /**
-         * Convenience method to get/set this.model's keyEquivalent attribute
-         * @param [value] {number}
-         * @returns {number}
-         */
-        keyEquivalent: function (value) {
-            return this._modelGetSet('keyEquivalent', value);
+        remove: function () {
+            this.$el.remove();
+            return this;
         },
 
         /**
@@ -211,7 +144,7 @@ define(function () {
          * @returns {boolean}
          */
         canPerform: function () {
-            var enabled = !this.model.get('disabled');
+            var enabled = !this.get('disabled');
             return enabled && this.$el.is(':visible');
         },
 
@@ -226,7 +159,7 @@ define(function () {
         performKeyEquivalent: function (event, animate) {
             // Continue only if the element is enabled and visible
             if (this.canPerform()) {
-                var keyEquivalent = this.model.get('keyEquivalent'),
+                var keyEquivalent = this.get('keyEquivalent'),
                     eventKey = _.result(event, 'which'),
                     result = eventKey === keyEquivalent;
 
@@ -304,9 +237,9 @@ define(function () {
          * @returns {this}
          * @private
          */
-        _setElTitle: function () {
+        _changeTitle: function () {
             this.$el
-                .text(this.model.get('title'))
+                .text(this.get('title'))
             ;
             return this;
         },
@@ -316,10 +249,10 @@ define(function () {
          * @returns {*}
          * @private
          */
-        _setElStyle: function () {
+        _changeStyle: function () {
             this.$el
-                .removeClass(this.model.previous('style'))
-                .addClass(this.model.get('style'))
+                .removeClass(this.previous('style'))
+                .addClass(this.get('style'))
             ;
             return this;
         },
@@ -329,9 +262,9 @@ define(function () {
          * @returns {*}
          * @private
          */
-        _setElDisabled: function () {
+        _changeDisabled: function () {
             this.$el
-                .attr('disabled', this.model.get('disabled'))
+                .attr('disabled', this.get('disabled'))
             ;
             return this;
         },
@@ -341,16 +274,11 @@ define(function () {
          * @returns {*}
          * @private
          */
-        _setElTagID: function () {
+        _changeTagID: function () {
             this.$el
-                .data('tagID', this.model.get('tagID'))
+                .data('tagID', this.get('tagID'))
             ;
             return this;
         }
     });
-
-    return {
-        Model: Button,
-        View: View
-    };
 });

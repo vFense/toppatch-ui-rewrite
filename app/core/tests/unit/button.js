@@ -1,10 +1,62 @@
 $(document).ready(function () {
     'use strict';
-    module('Button.Model');
+    module('Button');
+
+    asyncTest('Events', function () {
+        require(['core/js/button'], function(Button) {
+            var button = new Button();
+
+            // Since the constructor creates the events,
+            // just test the new instance of Button
+
+            var events = button._events;
+            ok(!_.isUndefined(events), '_events property is defined');
+            deepEqual(_.keys(events), [
+                'change:title',
+                'change:style',
+                'change:disabled',
+                'change:tagID'
+            ], '_events property has correct events');
+
+            strictEqual(events['change:title'][0].callback   , button._changeTitle   , 'change:title has correct callback');
+            strictEqual(events['change:style'][0].callback   , button._changeStyle   , 'change:style has correct callback');
+            strictEqual(events['change:disabled'][0].callback, button._changeDisabled, 'change:disabled has correct callback');
+            strictEqual(events['change:tagID'][0].callback   , button._changeTagID   , 'change:tagID has correct callback');
+
+            start();
+        });
+    });
+
+    asyncTest('_ensureElement', function () {
+        require(['core/js/button'], function(Button) {
+            var button = new Button();
+
+            // Since the constructor calls _ensureElement,
+            // just test the new instance of Button
+
+            ok(!_.isUndefined(button.$el), 'button.$el is defined');
+            ok(button.$el instanceof Backbone.$, 'Button.$el is instance of $');
+
+            ok(!_.isUndefined(button.el), 'button.el is defined');
+
+            var $el = button.$el;
+            strictEqual($el.attr('id'), button.cid, 'Element ID is correct');
+            ok($el.hasClass('btn'), 'Element has `btn` class');
+
+            var style = button.get('style');
+            ok($el.hasClass(style), 'Element has `' + style + '` class');
+
+            strictEqual($el.data('tagID'), button.get('tagID'), 'Button has correct tagID');
+
+            strictEqual($el.text(), button.get('title'), 'Button has correct title text');
+
+            start();
+        });
+    });
 
     asyncTest('Validate', function () {
         require(['core/js/button'], function(Button) {
-            var button = new Button.Model(),
+            var button = new Button(),
                 validate = button.validate,
                 validResult = '',
                 result;
@@ -45,11 +97,15 @@ $(document).ready(function () {
 
     asyncTest('Set', function () {
         require(['core/js/button'], function(Button) {
-            var button = new Button.Model();
+            var button = new Button();
 
             // Test to make sure that set trims the title value
             button.set('title', 'Test     ');
-            strictEqual(button.get('title'), 'Test', 'Trimmed "Test     " to "Test"');
+            strictEqual(button.get('title'), 'Test', 'Trimmed title "Test     " to "Test"');
+
+            // Test to make sure that set trims the style value
+            button.set('style', 'Test     ');
+            strictEqual(button.get('style'), 'Test', 'Trimmed style "Test     " to "Test"');
 
             // Test to make sure we are coercing the keyEquivalent to a characterCode (Number)
             button.set('keyEquivalent', ' ');
@@ -59,160 +115,69 @@ $(document).ready(function () {
         });
     });
 
-    module('Button.View');
-    asyncTest('Initialize', function () {
+    asyncTest('Remove', function () {
         require(['core/js/button'], function(Button) {
-            var defaultButtonModel = Button.Model.prototype.defaults;
-            var model = new Button.Model({ tagID: 1000 });
-            var button;
+            var button = new Button();
 
-            ok(button = new Button.View({ model: model }), 'Construct with instance of Button.Model');
-            strictEqual(button.model, model, 'Init did not touch instance of Button.Model at this.model');
+            button.$el.appendTo($('body'));
 
-            ok(button = new Button.View(), 'Construct with no options, leaving this.model undefined');
-            ok(button.model instanceof Button.Model, 'Init created instance of Button.Model at this.model');
-            deepEqual(button.model.attributes, defaultButtonModel, 'model represents a default Button.Model');
+            button.remove();
 
-            ok(button = new Button.View({model: { title: 'OK' }}), 'Construct with this.model as Object');
-            ok(button.model instanceof Button.Model, 'Init created instance of Button.Model at this.model');
-            strictEqual(button.model.get('title'), 'OK', 'model has correct title');
-
-            QUnit.throws(function () {
-                button = new Button.View({ model: { title: 1 }});
-            }, Error, 'Constructor threw error because of invalid model');
+            strictEqual(button.$el.parents().length, 0, 'Button was removed successfully');
 
             start();
         });
     });
 
-    asyncTest('Convenience methods', function () {
+    asyncTest('_changeTitle', function () {
         require(['core/js/button'], function(Button) {
-            var button = new Button.View();
+            var button = new Button();
 
-            strictEqual(button._modelGetSet('title'), 'Button', '_modelGetSet method got title correctly');
-            strictEqual(button._modelGetSet('title', 'OK'), 'OK', '_modelGetSet method set, and returned, title correctly');
-
-            strictEqual(button.title(), 'OK', 'title method got title correctly');
-            strictEqual(button.title('Button'), 'Button', 'title method, set and returned, title correctly');
-
-            strictEqual(button.style(), 'btn-default', 'style method got style correctly');
-            strictEqual(button.style('btn-primary'), 'btn-primary', 'style method set, and returned, style correctly');
-
-            strictEqual(button.disabled(), false, 'disabled method got title correctly');
-            strictEqual(button.disabled(true), true, 'disabled method, set and returned, disabled correctly');
-
-            strictEqual(button.tagID(), 0, 'tagID method got tagID correctly');
-            strictEqual(button.tagID(5), 5, 'tagID method, set and returned, tagID correctly');
-
-            strictEqual(button.keyEquivalent(), 0, 'keyEquivalent method got keyEquivalent correctly');
-            strictEqual(button.keyEquivalent(32), 32, 'keyEquivalent method, set and returned, keyEquivalent correctly');
-
-            start();
-        });
-    });
-
-    asyncTest('_setElTitle', function () {
-        require(['core/js/button'], function(Button) {
-            var button = new Button.View();
-
-            ok(button._setElTitle(), 'Run _setElTitle');
+            ok(button._changeTitle(), 'Run _changeTitle');
             strictEqual(button.$el.text(), 'Button', 'Applied default title to element text');
 
             start();
         });
     });
 
-    asyncTest('_setElStyle', function () {
+    asyncTest('_changeStyle', function () {
         require(['core/js/button'], function(Button) {
-            var button = new Button.View();
+            var button = new Button();
 
-            ok(button._setElStyle(), 'Run _setElStyle');
+            ok(button._changeStyle(), 'Run _changeStyle');
             ok(button.$el.hasClass('btn-default'), 'Applied default style to element class');
 
-            ok(button.model.set('style', 'btn-primary'), 'Directly set the button\'s style');
-            ok(button._setElStyle(), 'Run _setElStyle');
+            ok(button.set('style', 'btn-primary'), 'Directly set the button\'s style');
+            ok(button._changeStyle(), 'Run _changeStyle');
             ok(button.$el.hasClass('btn-primary'), 'Switched style on element class');
 
             start();
         });
     });
 
-    asyncTest('_setElDisabled', function () {
+    asyncTest('_changeDisabled', function () {
         require(['core/js/button'], function(Button) {
-            var button = new Button.View();
+            var button = new Button();
 
 
-            ok(button.model.set('disabled', true), 'Directly set the button\'s disabled value');
-            ok(button._setElDisabled(), 'Run _setElDisabled');
+            ok(button.set('disabled', true), 'Directly set the button\'s disabled value');
+            ok(button._changeDisabled(), 'Run _changeDisabled');
             strictEqual(button.$el.attr('disabled'), 'disabled', 'Set element\'s disabled value to true');
 
-            ok(button.model.set('disabled', false), 'Directly set the button\'s disabled value');
-            ok(button._setElDisabled(), 'Run _setElDisabled');
+            ok(button.set('disabled', false), 'Directly set the button\'s disabled value');
+            ok(button._changeDisabled(), 'Run _changeDisabled');
             strictEqual(button.$el.attr('disabled'), undefined, 'Set element\'s disabled value to undefined');
 
             start();
         });
     });
 
-    asyncTest('_setElTagID', function () {
+    asyncTest('_changeTagID', function () {
         require(['core/js/button'], function(Button) {
-            var button = new Button.View();
+            var button = new Button();
 
-            ok(button._setElTagID(), 'Run _setElTagID');
+            ok(button._changeTagID(), 'Run _changeTagID');
             strictEqual(button.$el.data('tagID'), 0, 'Set element\'s data("tagID") to default of 0');
-
-            start();
-        });
-    });
-
-    asyncTest('Render', function () {
-        require(['core/js/button'], function(Button) {
-            var button = new Button.View(),
-                listeners,
-                listenerEvents,
-                result;
-
-            ok(result = button.render(), 'Run render');
-
-            strictEqual(button.$el.text(), 'Button', 'Applied default title to element text');
-            ok(button.$el.hasClass('btn-default'), 'Applied default style to element class');
-            strictEqual(button.$el.attr('disabled'), undefined, 'Set element\'s disabled value to undefined');
-            strictEqual(button.$el.data('tagID'), 0, 'Set element\'s data("tagID") to default of 0');
-
-            listeners = _.values(result._listeners);
-            strictEqual(listeners.length, 1, 'View should have 1 listener');
-            listenerEvents = listeners[0]._events;
-            deepEqual(_.keys(listenerEvents), [
-                'change:title',
-                'change:style',
-                'change:disabled',
-                'change:tagID'
-            ], 'Listener has correct events');
-
-            // Render again and make sure we don't have duplicate events
-            ok(result = button.render(), 'Run render again');
-            listeners = _.values(result._listeners);
-            strictEqual(listeners.length, 1, 'View should have 1 listener');
-            listenerEvents = listeners[0]._events;
-            deepEqual(_.keys(listenerEvents), [
-                'change:title',
-                'change:style',
-                'change:disabled',
-                'change:tagID'
-            ], 'Listener has correct events');
-
-            // Test to make sure our model events are working
-            ok(button.model.set({
-                title: 'OK',
-                style: 'btn-primary',
-                disabled: true,
-                tagID: 5
-            }), 'Change model attributes directly to test if events are set up correctly');
-
-            strictEqual(button.$el.text(), 'OK', 'Button\'s title is now "OK"');
-            ok(button.$el.hasClass('btn-primary'), 'Button\'s style is now "btn-primary"');
-            strictEqual(button.$el.attr('disabled'), 'disabled', 'Button is now disabled');
-            strictEqual(button.$el.data('tagID'), 5, 'Button\'s tagID is now 5');
 
             start();
         });
@@ -220,20 +185,20 @@ $(document).ready(function () {
 
     asyncTest('canPerform', function () {
         require(['core/js/button'], function(Button) {
-            var button = new Button.View(),
+            var button = new Button(),
                 $body = $('body');
 
             strictEqual(button.canPerform(), false, 'returned false, button is not visible');
 
-            button.render().$el.appendTo($body);
+            button.$el.appendTo($body);
 
             strictEqual(button.canPerform(), true, 'returned true, button is visible');
 
-            button.model.set('disabled', true);
+            button.set('disabled', true);
 
             strictEqual(button.canPerform(), false, 'returned false, button is disabled');
 
-            button.$el.remove().off();
+            button.remove();
 
             start();
         });
@@ -241,11 +206,11 @@ $(document).ready(function () {
 
     asyncTest('performClick', function () {
         require(['core/js/button'], function(Button) {
-            var button = new Button.View(),
+            var button = new Button(),
                 $body = $('body'),
                 clicked = 0;
 
-            button.render().$el.on('click', function () { clicked += 1; });
+            button.$el.on('click', function () { clicked += 1; });
 
             ok(button.performClick(), 'Run performClick()');
             strictEqual(clicked, 0, 'Button not visible, click did not fire');
@@ -264,7 +229,7 @@ $(document).ready(function () {
             strictEqual(called, 1, 'Called _startAnimatedClick');
             strictEqual(clicked, 0, 'Click deferred');
 
-            button.$el.remove().off();
+            button.remove();
 
             start();
         });
@@ -272,7 +237,7 @@ $(document).ready(function () {
 
     asyncTest('_startAnimatedClick and _completeAnimatedClick', function () {
         require(['core/js/button'], function(Button) {
-            var button = new Button.View(),
+            var button = new Button(),
                 postAnimationTests;
 
             postAnimationTests = function () {
@@ -296,7 +261,7 @@ $(document).ready(function () {
             // This second call should cancel the first time out
             ok(button._startAnimatedClick(), 'Start animation again, with default duration');
 
-            button.$el.remove().off();
+            button.$el.remove();
 
             start();
         });
@@ -304,11 +269,11 @@ $(document).ready(function () {
 
     asyncTest('performKeyEquivalent', function () {
         require(['core/js/button', 'jquery.simulate'], function(Button) {
-            var button = new Button.View(),
+            var button = new Button(),
                 called = 0, args,
                 result;
 
-            button.model.set('keyEquivalent', ' ');
+            button.set('keyEquivalent', ' ');
             button.performClick = function () {
                 args = _.toArray(arguments);
                 called += 1;
@@ -317,9 +282,7 @@ $(document).ready(function () {
                 button.performKeyEquivalent.apply(button, arguments);
             });
 
-            button.render();
-            button.$el
-                .appendTo($('body'));
+            button.$el.appendTo($('body'));
             ok(button.$el.simulate('keypress', { keyCode: $.simulate.keyCode.SPACE }), 'Simulate keypress event');
             strictEqual(called, 1, 'called performClick');
 
@@ -338,7 +301,7 @@ $(document).ready(function () {
 
             called = 0;
             args = null;
-            button.model.set('disabled', true);
+            button.set('disabled', true);
             result = button.performKeyEquivalent({ which: $.simulate.keyCode.SPACE }, true);
             strictEqual(result, false, 'returned false, button disabled');
 
