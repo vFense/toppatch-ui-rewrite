@@ -1,5 +1,7 @@
 /**
- * alertView
+ * @class AlertView
+ * @extends DialogView
+ * @requires Button
  */
 define(
     ['core/js/modal/dialogView', 'core/js/template/modalAlert', 'core/js/button'],
@@ -9,6 +11,12 @@ define(
         return DialogView.extend({
             template: alertTemplate,
 
+            /**
+             * Construct this AlertView
+             * @constructor AlertView
+             * @param options {Object} Properties to init this AlertView with
+             * @returns {this}
+             */
             constructor: function (options) {
                 var defaults = {
                         // Alert properties
@@ -21,9 +29,14 @@ define(
                     },
                     defaultKeys = _.keys(defaults);
                 _.defaults(this, _.pick(options || {}, defaultKeys), defaults);
-                return DialogView.prototype.constructor.apply(this, arguments);
+                DialogView.prototype.constructor.apply(this, arguments);
+                return this;
             },
 
+            /**
+             * Extend the prototype's attributes
+             * @returns {Object}
+             */
             attributes: function () {
                 return _.extend({}, _.result(DialogView.prototype, 'attributes'), {
                     'role': 'alertdialog'
@@ -42,9 +55,32 @@ define(
              */
             events: function () {
                 return _.extend({}, _.result(DialogView.prototype, 'events'), {
-                    'click BUTTON:enabled': 'clickAction',
-                    'keypress': 'keyAction'
+                    'click BUTTON:enabled': 'clickEventHandler',
+                    'keypress': 'keyEventHandler'
                 });
+            },
+
+            /**
+             * Render this view
+             * @returns {this}
+             */
+            render: function () {
+                // Render
+                DialogView.prototype.render.apply(this, arguments);
+
+                // Post Render tasks
+                var $buttonArea = this.$('.modal-alert-buttons');
+
+                // The following logic assumes that this.buttons()
+                // always returns the buttons in the correct order:
+                // [defButton, altButton, othButton]
+                _.each(this.buttons(), function (button) {
+                    if (button !== null) {
+                        $buttonArea.prepend(_.result(button, '$el'));
+                    }
+                });
+
+                return this;
             },
 
             /**
@@ -53,11 +89,16 @@ define(
              * @returns {Object}
              */
             buttons: function () {
-                return _.pick(this, 'defButton', 'altButton', 'othButton');
+                return _.pick(this, ['defButton', 'altButton', 'othButton']);
             },
 
+            /**
+             * Get the properties that will be passed to the template
+             * @override
+             * @returns {Object}
+             */
             getData: function () {
-                return _.extend({}, _.pick(this, 'icon', 'message', 'information'), this.buttons());
+                return _.extend({}, _.pick(this, 'icon', 'message', 'information'));
             },
 
             /**
@@ -122,20 +163,30 @@ define(
              * @param event
              * @returns {*}
              */
-            keyAction: function (event) {
+            keyEventHandler: function (event) {
                 // Run each button's performKeyEquivalent
                 // Funky things will happen if there is more than one matching button
-                _.invoke(this.buttons(), 'performKeyEquivalent', event);
+                _.each(this.buttons(), function (button) {
+                    if (!_.isNull(button)) {
+                        button.performKeyEquivalent(event, this.animate);
+                    }
+                }, this);
 
                 return this;
             },
 
-            _result: null,
-            clickAction: function (event) {
-                this._result = $(event.target).data('tagid');
-                this.trigger('result', this._result);
-                this.hide();
-                return this;
+            result: null,
+
+            /**
+             *
+             * @param event
+             * @returns {*}
+             */
+            clickEventHandler: function (event) {
+                var $target = $(event.target);
+                this.result = $target.data('tagID');
+                this.trigger('result', this.result);
+                return this.hide();
             },
 
             /**
@@ -148,28 +199,23 @@ define(
             open: function () {
                 if (this.message === '') {
                     throw new Error('Cannot open Alert: Alert message is empty');
-                } else if (_.isNull(this.defButton)) {
-                    throw new Error('Cannot open Alert: DefaultButton is null');
+                } else if (!(this.defButton instanceof Button)) {
+                    throw new TypeError('Cannot open Alert: defButton is not an instance of Button');
                 }
-                DialogView.prototype.open.apply(this, arguments);
-                return this;
+                return DialogView.prototype.open.apply(this, arguments);
             },
 
             /**
              * Close this View
-             * ---
-             * Currently this method removes the button elements, and sets each
-             * button reference to null. This would cause the View to not be reusable
-             * without further setup.
-             * Is there a use case for reusing the view?
-             *
              * @override
              * @returns {*}
              */
             close: function () {
                 if (!this.isClosed) {
                     // Remove the buttons for garbage collection
-                    _.invoke(this.buttons(), 'remove');
+                    _.each(this.buttons(), function (button) {
+                        _.result(button, 'remove');
+                    });
 
                     // Call the prototype close method
                     DialogView.prototype.close.apply(this, arguments);

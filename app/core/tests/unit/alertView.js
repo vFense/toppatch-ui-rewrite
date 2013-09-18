@@ -151,7 +151,6 @@ $(document).ready(function () {
         );
     });
 
-
     asyncTest('Rendering', function () {
         require(
             ['core/js/modal/alertView', 'core/js/button'],
@@ -191,6 +190,103 @@ $(document).ready(function () {
                     'Other Button has correct text');
 
                 alertView.remove();
+                start();
+            }
+        );
+    });
+
+    asyncTest('Open', function () {
+        require(
+            ['core/js/modal/alertView', 'core/js/button'],
+            function (AlertView, Button) {
+                var alertView = new AlertView({ animate: false });
+
+                throws(function () { alertView.open(); }, Error, 'Throws error with empty message');
+
+                ok(alertView.setMessage('Alert'), 'Set message to "Alert"');
+
+                throws(function () { alertView.open(); }, TypeError,
+                    'Throws TypeError when defButton is not instance of Button'
+                );
+
+                ok(alertView.setButton('defButton', new Button()), 'Set defButton to new Button()');
+
+                alertView.open();
+
+                strictEqual(alertView.isShown(), true, 'Opened modal');
+
+                alertView.hide();
+                start();
+            }
+        );
+    });
+
+    asyncTest('clickEventHandler', function () {
+        require(
+            ['core/js/modal/alertView', 'core/js/button', 'jquery.simulate'],
+            function (AlertView, Button) {
+                var alertView = new AlertView({
+                    animate: false,
+                    message: 'Alert',
+                    defButton: new Button({title: 'OK', keyEquivalent: $.simulate.keyCode.ENTER, tagID: 1000})
+                });
+
+                alertView.open();
+                var $el = alertView.defButton.$el;
+                ok($el.simulate('click'), 'Simulate click event');
+                strictEqual(alertView.result, 1000, 'Result code is correct');
+                strictEqual(alertView.isShown(), false, 'Modal closed after event');
+                start();
+            }
+        );
+    });
+
+    asyncTest('keyEventHandler', function () {
+        require(
+            ['core/js/modal/alertView', 'core/js/button', 'jquery.simulate'],
+            function (AlertView, Button) {
+                var alertView = new AlertView({
+                    animate: false,
+                    message: 'Alert',
+                    defButton: new Button({title: 'OK', keyEquivalent: $.simulate.keyCode.ENTER, tagID: 1000})
+                });
+
+                alertView.open();
+                var $el = alertView.$el;
+                ok($el.simulate('keypress', { keyCode: $.simulate.keyCode.ENTER }), 'Simulate keypress event');
+                strictEqual(alertView.result, 1000, 'Result code is correct');
+                strictEqual(alertView.isShown(), false, 'Modal closed after event');
+                start();
+            }
+        );
+    });
+
+    asyncTest('close', function () {
+        require(
+            ['core/js/modal/alertView', 'core/js/button'],
+            function (AlertView, Button) {
+                var alertView = new AlertView({
+                    animate: false,
+                    message: 'Alert',
+                    defButton: new Button()
+                });
+
+                var defButton = alertView.defButton,
+                    called = 0;
+                // Override the remove function to increment called.
+                // Then call the original remove function.
+                defButton.remove = function () {
+                    called += 1;
+                    return Button.prototype.remove.apply(this, arguments);
+                };
+                alertView.open().hide(); // Hide calls close
+
+                strictEqual(called, 1, 'Called defButton.remove');
+
+                ok(alertView.close(), 'Run close() again');
+
+                strictEqual(called, 1, 'Did not call defButton.remove again');
+
                 start();
             }
         );
