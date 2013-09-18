@@ -1,15 +1,11 @@
-/**
- * base_region.js
- * ------------------------------------------------------------------------
- * Manage views within a section of the page
- *
- * Inspired by Backbone.Marionette.region
- */
 define(function () {
     'use strict';
     /**
-     * Creates an instance of Region
-     * @param {string|object} options String or object to specify the target el
+     * Manage views within a section of the page
+     *
+     * Inspired by Backbone.Marionette.region
+     * @class Region
+     * @param {string|object} options String or object to specify the target element
      * @returns {Region}
      * @constructor
      */
@@ -39,13 +35,21 @@ define(function () {
         return this;
     };
 
-    // Copy backbone's extend method
+    /**
+     * Copy Backbone.Model.extend to make Region extendable
+     * @property extend
+     * @type Function
+     * @default Backbone.Model.extend
+     * @final
+     */
     Region.extend = Backbone.Model.extend;
 
     _.extend(Region.prototype, {
         /**
          * Replace the current view with the passed view and append it to the DOM
-         * @param {Backbone.View} view
+         * @method show
+         * @param view {Backbone.View}
+         * @chainable
          * @returns {this}
          */
         show: function (view) {
@@ -67,7 +71,9 @@ define(function () {
         },
         
         /**
-         * Makes sure that $el is an instance of Backbone.$
+         * Makes sure that $el is an instance of jQuery
+         * @method ensureEl
+         * @chainable
          * @returns {this}
          */
         ensureEl: function () {
@@ -79,8 +85,9 @@ define(function () {
 
         /**
          * Return parentEl.find(selector) or $(selector)
-         * @param {string} selector
-         * @returns {jQuery}
+         * @method getEl
+         * @param selector {string}
+         * @returns {jQuery} jQuery object representing this.$el
          */
         getEl: function (selector) {
             if (!_.isUndefined(this.parentEl)) {
@@ -92,7 +99,9 @@ define(function () {
 
         /**
          * replace this.$el's html with a view's el
-         * @param {Backbone.View} view
+         * @method open
+         * @param view {Backbone.View}
+         * @chainable
          * @returns {this}
          */
         open: function(view){
@@ -102,6 +111,8 @@ define(function () {
 
         /**
          * Close the current view, and delete the reference to it
+         * @method close
+         * @chainable
          * @returns {this}
          */
         close: function () {
@@ -119,6 +130,8 @@ define(function () {
 
         /**
          * Close the current view, and delete the $el reference
+         * @method reset
+         * @chainable
          * @returns {this}
          */
         reset: function () {

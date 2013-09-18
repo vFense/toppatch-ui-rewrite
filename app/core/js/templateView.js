@@ -1,15 +1,29 @@
 /**
- * base_templateView.js
- * ------------------------------------------------------------------------
- * A base_view that renders its template to $el
+ * A View that renders its template to $el
  *
- * Inspired by Backbone.Marionette.layout
+ * @class TemplateView
+ * @extends View
  */
 define(
     ['core/js/view'],
     function (BaseView) {
         'use strict';
         return BaseView.extend({
+            /**
+             * A handlebars, or underscore, template method to render with.
+             * If this property is not set when render is executed, render
+             * will throw an exception.
+             * @attribute template
+             * @type Function
+             * @default undefined
+             */
+            template: undefined,
+
+            /**
+             * Render the result of this.getData() via this.template
+             * @method render
+             * @chainable
+             */
             render: function () {
                 this.isClosed = false;
                 if (_.isFunction(this.template)) {
@@ -24,6 +38,15 @@ define(
                 // Base view does not have a render method
                 return this;
             },
+
+            /**
+             * Get this.model, or this.collection, converted to JSON.
+             * If this.model and this.collection exist at the same time,
+             * this.model will be returned. Override this method if you
+             * want a different behaviour.
+             * @method getData
+             * @returns {Object} JSON representation of this.model, or this.collection
+             */
             getData: function () {
                 var data = {};
                 if (this.model instanceof Backbone.Model) {

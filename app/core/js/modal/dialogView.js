@@ -1,3 +1,7 @@
+/**
+ * @class DialogView
+ * @extends TemplateView
+ */
 define(
     ['core/js/templateView', 'core/js/template/dialogView', 'bootstrap.modal'],
     function (TemplateView, template) {
@@ -7,12 +11,6 @@ define(
 
         return TemplateView.extend({
             className: 'modal',
-            attributes: function () {
-                return _.extend({}, _.result(TemplateView.prototype, 'attributes'), {
-                    'tabindex': '-1',
-                    'role': 'dialog'
-                });
-            },
             template: template,
 
             // --------------------------------------------------------
@@ -23,8 +21,20 @@ define(
             backdrop: true,
 
             /**
+             * Extend the prototype's attributes
+             * @returns {Object}
+             */
+            attributes: function () {
+                return _.extend({}, _.result(TemplateView.prototype, 'attributes'), {
+                    'tabindex': '-1',
+                    'role': 'dialog'
+                });
+            },
+
+            /**
              * Extend this instance with keys of special meaning (see `viewOptions`),
              * then call the parent constructor
+             * @constructor DialogView
              * @param options
              * @returns {this}
              */

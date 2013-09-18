@@ -1,14 +1,21 @@
 /**
- * parentView.js
- * ------------------------------------------------------------------------
- * A BaseView that manages child views
+ * A View that manages child views
+ *
+ * @class ParentView
+ * @extends View
  */
 define(
     ['core/js/view', 'backbone.babysitter'],
     function (BaseView) {
         'use strict';
         return BaseView.extend({
-            // override clean method to close all child views
+            /**
+             * Override clean method to close all child views
+             * @method clean
+             * @override
+             * @chainable
+             * @returns {this}
+             */
             clean: function () {
                 this.closeChildViews()
                     .$el.empty();
@@ -21,6 +28,8 @@ define(
 
             /**
              * Create a new instance of Backbone.ChildViewContainer if it does not already exist
+             * @method _initChildServices
+             * @chainable
              * @returns {this}
              * @private
              */
@@ -33,6 +42,13 @@ define(
             },
 
             //TODO: This method prevents us from using custom babysitting indexes, refactor?
+            /**
+             * Register a chile view with the babysitter
+             * @method registerChildView
+             * @param views* {Backbone.View}
+             * @chainable
+             * @returns {this}
+             */
             registerChildView: function () {
                 var that = this,
                     args = _.filter(arguments, function(arg) {
@@ -53,7 +69,9 @@ define(
 
             /**
              * Close a child view
-             * @param view
+             * @method closeChildView
+             * @param view {Backbone.View}
+             * @chainable
              * @returns {this}
              */
             closeChildView: function (view) {
@@ -74,6 +92,8 @@ define(
 
             /**
              * Close all child views
+             * @method closeChildViews
+             * @chainable
              * @returns {this}
              */
             closeChildViews: function () {

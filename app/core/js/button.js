@@ -5,7 +5,7 @@
  * The model has its own $el and el, and will update its element properties
  * when the model attributes change
  *
- * @module Button
+ * @class Button
  */
 define(function () {
     'use strict';
@@ -24,8 +24,9 @@ define(function () {
         },
 
         /**
-         * Construct this button
-         * @returns {*}
+         * Construct a Button
+         * @method constructor
+         * @returns {Button}
          */
         constructor: function () {
             // Apply the prototype constructor first
@@ -48,12 +49,10 @@ define(function () {
         },
 
         /**
-         * Check the incoming attributes for errors.
-         * If attributes[key] is defined, check its type.
-         * If incorrect type found, returns error string.
-         * If no errors are found, returns empty string.
-         * @param attributes
-         * @returns {String}
+         * Validate incoming attributes
+         * @method validate
+         * @param attributes {Object} Attributes to validate
+         * @returns {String} Error string. If no error, empty string
          */
         validate: function (attributes) {
             var isDefined = function (value) { return !_.isUndefined(value); };
@@ -77,12 +76,12 @@ define(function () {
 
         /**
          * Override default set method to run a few extra
-         * steps before calling the original set method
-         * @param key
-         * @param [val]
-         * @param [options]
-         * @override
-         * @returns {*}
+         * steps before calling the original Backbone.Model.set method
+         * @method set
+         * @param key {String|Object}
+         * @param [val] {*}
+         * @param [options] {Object}
+         * @returns {this}
          */
         set: function (key, val, options) {
             var attrs;
@@ -112,7 +111,9 @@ define(function () {
         },
 
         /**
-         * Create the DOM element to represent this Button
+         * Create a HTML element to represent this Button
+         * @method _ensureElement
+         * @returns {this}
          * @private
          */
         _ensureElement: function () {
@@ -131,8 +132,9 @@ define(function () {
         },
 
         /**
-         * Take the element out of the DOM
-         * @returns {*}
+         * Remove this $el from the DOM
+         * @method remove
+         * @returns {this}
          */
         remove: function () {
             this.$el.remove();
@@ -141,6 +143,7 @@ define(function () {
 
         /**
          * Return true if this $el is enabled and visible
+         * @method canPerform
          * @returns {boolean}
          */
         canPerform: function () {
@@ -150,7 +153,8 @@ define(function () {
 
         /**
          * Checks the button's key equivalent against the specified
-         * event and, if they match, simulates the button being clicked.
+         * event and, if they match, calls performClick.
+         * @method performKeyEquivalent
          * @param event {Event}
          * @param [animate] {boolean} Passed to performClick, if keyEquivalent match
          * @returns {boolean} true if the event key matches the button's keyEquivalent,
@@ -183,9 +187,10 @@ define(function () {
         },
 
         /**
-         * Simulates a single mouse click on the control.
+         * Simulates a single mouse click on the Button.
+         * @method performClick
          * @param [animate] {boolean} Visually animate this click
-         * @returns {*}
+         * @returns {this}
          */
         performClick: function (animate) {
             // Continue only if the element is enabled and visible
@@ -200,13 +205,16 @@ define(function () {
         },
 
         /**
-         * Keep reference to the timeout
+         * Keep reference to click timeout
+         * @property _animatedClickTimeout
          * @private
          */
         _animatedClickTimeout: null,
 
         /**
          * Start an animated click
+         * @method _startAnimatedClick
+         * @returns {this}
          * @private
          */
         _startAnimatedClick: function (time) {
@@ -223,6 +231,8 @@ define(function () {
 
         /**
          * Complete the animated click
+         * @method _completeAnimatedClick
+         * @returns {this}
          * @private
          */
         _completeAnimatedClick: function () {
@@ -234,6 +244,7 @@ define(function () {
 
         /**
          * Update the Button's rendered title
+         * @method _changeTitle
          * @returns {this}
          * @private
          */
@@ -246,7 +257,8 @@ define(function () {
 
         /**
          * Update the Button's rendered style
-         * @returns {*}
+         * @method _changeStyle
+         * @returns {this}
          * @private
          */
         _changeStyle: function () {
@@ -259,7 +271,8 @@ define(function () {
 
         /**
          * Update the Button's rendered disabled attribute
-         * @returns {*}
+         * @method _changeDisabled
+         * @returns {this}
          * @private
          */
         _changeDisabled: function () {
@@ -271,7 +284,8 @@ define(function () {
 
         /**
          * Update the button's rendered data-tag attribute
-         * @returns {*}
+         * @method _changeTagID
+         * @returns {this}
          * @private
          */
         _changeTagID: function () {

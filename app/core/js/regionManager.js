@@ -1,19 +1,16 @@
-/**
- * base_regionManager.js
- * ------------------------------------------------------------------------
- * Manage multiple Regions from one location
- *
- * Inspired by Backbone.Marionette.regionManager
- */
 define(
     ['core/js/region'],
     function () {
         'use strict';
         var Region = require('core/js/region');
         /**
-         * Creates an instance of RegionManager
-         * @returns {this}
+         * Manage multiple Regions from one location
+         *
+         * Inspired by Backbone.Marionette.regionManager
+         * @class RegionManager
+         * @requires Region
          * @constructor
+         * @returns {this}
          */
         var RegionManager = function () {
             this._regions = {};
@@ -24,7 +21,9 @@ define(
         _.extend(RegionManager.prototype, {
             /**
              * Set the this.length
+             * @method _setLength
              * @returns {this}
+             * @chainable
              * @private
              */
             _setLength: function () {
@@ -35,9 +34,11 @@ define(
             /**
              * Add the region to the _regions object at the named key
              * Update the cached _regions length
-             * @param name
-             * @param region
+             * @method _store
+             * @param name {String} Key Name
+             * @param region {Region} Region to store
              * @returns {this}
+             * @chainable
              * @private
              */
             _store: function (name, region) {
@@ -48,8 +49,9 @@ define(
 
             /**
              * Get a stored region
-             * @param name
-             * @returns {Region}
+             * @method get
+             * @param name {String} Key name
+             * @returns {Region} Region at key name
              */
             get: function (name) {
                 return this._regions[name];
@@ -57,11 +59,13 @@ define(
 
             /**
              * Add a region as defined by definition, at the key name
+             * @method addRegion
              * @param name {string} Name to identify the region
              * @param definition {Region|Object|String} A region to store, or
              *          an Object with attribute to create a new Region with, or
              *          a String to create a new Region with.
              * @returns {this}
+             * @chainable
              */
             addRegion: function (name, definition) {
                 if (!_.isUndefined(definition)) {
@@ -87,9 +91,11 @@ define(
 
             /**
              * Add multiple regions via one method call
+             * @method addRegions
              * @param regions {Object} Name:Definition pairs to pass to addRegion
              * @param defaults {Object} Options to default into each definition
              * @returns {*}
+             * @chainable
              */
             addRegions: function (regions, defaults) {
                 _.each(regions, function (definition, name) {
@@ -109,8 +115,10 @@ define(
 
             /**
              * Remove the named region
+             * @method removeRegion
              * @param name {string}
              * @returns {this}
+             * @chainable
              */
             removeRegion: function (name) {
                 if (this.has(name)) {
@@ -123,7 +131,9 @@ define(
 
             /**
              * Close all regions, but leave them attached
+             * @method closeRegions
              * @returns {this}
+             * @chainable
              */
             closeRegions: function () {
                 _.each(this._regions, function (region) {
@@ -134,7 +144,9 @@ define(
 
             /**
              * Remove all regions
+             * @method close
              * @returns {this}
+             * @chainable
              */
             close: function () {
                 _.each(this._regions, function (region, name) {

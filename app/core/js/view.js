@@ -1,17 +1,20 @@
 /**
- * parentView.js
- * ------------------------------------------------------------------------
  * A Backbone.View with close and clean methods
+ *
+ * @class View
+ * @extends Backbone.View
  */
 define(
     ['backbone.babysitter'],
     function () {
         'use strict';
         return Backbone.View.extend({
-            // Zombie Prevention Part 1
-            // Add close function to Backbone.View to prevent "Zombies"
-            // Inspired by: Derick Bailey
-            // See: http://bit.ly/odAfKo
+            /**
+             * Call beforeClose, if defined, then
+             * Clean, remove, and unbind this View
+             * @method close
+             * @chainable
+             */
             close: function () {
                 if (!this.isClosed) {
                     // Call before close if it is a function
@@ -28,6 +31,11 @@ define(
                 return this;
             },
 
+            /**
+             * Empty this.$el
+             * @method clean
+             * @chainable
+             */
             clean: function () {
                 this.$el.empty();
                 return this;

@@ -1,9 +1,10 @@
 /**
- * base_layoutView.js
- * ------------------------------------------------------------------------
- * A base_templateView that is specialized to use the region manager
+ * A TemplateView that is specialized in using the region manager
  *
  * Inspired by Backbone.Marionette.layout
+ *
+ * @class LayoutView
+ * @extends TemplateView
  */
 define(
     ['core/js/templateView', 'core/js/regionManager'],
