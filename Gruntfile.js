@@ -8,6 +8,7 @@ module.exports = function(grunt) {
             app: 'app/',
             temp: 'temp/',
             dist: 'dist/',
+            docs: 'docs/',
             pkg: grunt.file.readJSON('package.json'),
             banner:
                 '/**\n' +
@@ -83,6 +84,10 @@ module.exports = function(grunt) {
                     { cwd: '<%= meta.app %>', src: 'images/*', dest: '<%= meta.dist %>', expand: true },
                     { cwd: '<%= meta.app %>vendor/bootstrap/', src: 'fonts/*', dest: '<%= meta.dist %>', expand: true }
                 ]
+            },
+            docs: {
+                src: '<%= meta.app %>/images/brand-name.png',
+                dest: '<%= meta.docs %>/assets/css/logo.png'
             }
         },
         handlebars: {
@@ -250,11 +255,25 @@ module.exports = function(grunt) {
                 files: ['<%= meta.app %>core/template/**/*.html'],
                 tasks: ['templates']
             }
+        },
+        yuidoc: {
+            compile: {
+                name: '<%= meta.pkg.name %>',
+                description: '<%= meta.pkg.description %>',
+                version: '<%= meta.pkg.version %>',
+                url: '<%= meta.pkg.homepage %>',
+                options: {
+                    paths: '<%= meta.app %>core/js/',
+                    ignorePaths: ['template'],
+                    outdir: '<%= meta.docs %>'
+                }
+            }
         }
     });
 
     grunt.registerTask('default', ['test', 'clean:dist', 'copy:dist', 'templates', 'concurrent:dist', 'concat']);
     grunt.registerTask('dev', ['clean:app', 'copy:dev', 'concurrent:dev', 'connect', 'watch']);
+    grunt.registerTask('docs', ['yuidoc', 'copy:docs']);
     grunt.registerTask('templates', ['clean:temp', 'htmlmin:templates', 'handlebars:dev', 'uglify:templates', 'clean:temp']);
     grunt.registerTask('test', ['jshint', 'qunit']);
 };
