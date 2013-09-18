@@ -193,7 +193,7 @@ define(function () {
                 if (animate === true) {
                     this._startAnimatedClick();
                 } else {
-                    this.$el.click();
+                    this.$el.trigger('click');
                 }
             }
             return this;
