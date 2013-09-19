@@ -62,7 +62,7 @@ define(
                         title: altButtonTitle,
                         tagID: Alert.altReturn
                     });
-                    Alert._setKeyEquivalent(alert.altButton);
+                    Alert._setKeyEquivalent(button);
                     alert.setButton('altButton', button);
                 }
 
