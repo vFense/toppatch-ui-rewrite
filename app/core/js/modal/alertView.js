@@ -1,20 +1,24 @@
-/**
- * @class AlertView
- * @extends DialogView
- * @requires Button
- */
 define(
     ['core/js/modal/dialogView', 'core/js/template/modalAlert', 'core/js/button'],
     function (DialogView, alertTemplate, Button) {
         'use strict';
 
         return DialogView.extend({
-            template: alertTemplate,
-
             /**
-             * Construct this AlertView
-             * @constructor AlertView
+             * Display an alert in a modal
+             *
+             * By design, the `AlertView` is intended for a single alert—that is, an alert
+             * with a unique combination of title, buttons, and so on—that is displayed
+             * upon a particular condition. You should create a new `AlertView` for each
+             * alert dialog. If you have a particular alert dialog that you need to show
+             * repeatedly, you can retain an instance of `AlertView` for this dialog.
+             *
+             * @class AlertView
+             * @extends DialogView
+             * @requires Button
+             * @constructor
              * @param options {Object} Properties to init this AlertView with
+             * @example new AlertView({title: 'Alert', defButton: new Button()});
              * @returns {this}
              */
             constructor: function (options) {
@@ -34,8 +38,21 @@ define(
             },
 
             /**
-             * Extend the prototype's attributes
-             * @returns {Object}
+             * @attribute template
+             * @type Function
+             * @default Default alert template
+             * @protected
+             */
+            template: alertTemplate,
+
+            /**
+             * A hash of attributes that will be set as HTML DOM element
+             * attributes on the view's el (id, class, data-properties, etc.),
+             * or a function that returns such a hash.
+             * @attribute attributes
+             * @type String|Function
+             * @default Function
+             * @protected
              */
             attributes: function () {
                 return _.extend({}, _.result(DialogView.prototype, 'attributes'), {
@@ -43,15 +60,28 @@ define(
                 });
             },
 
-            // Dialog View Attribute Override
-            // The alert itself will handle keyboard events
-            keyboard: false,    // Disable Bootstrap.modal keyboard events
-            backdrop: 'static', // Disable close on backdrop click
+            /**
+             * @attribute keyboard
+             * @type boolean
+             * @default false
+             * @protected
+             */
+            keyboard: false,
+
+            /**
+             * @attribute backdrop
+             * @type boolean|'static'
+             * @default 'static'
+             * @protected
+             */
+            backdrop: 'static',
 
             /**
              * Listen for button clicks
-             * Use a function so we can inherit events
-             * @returns {Object}
+             * Uses a function to inherit events
+             * @attribute events
+             * @type String|Function
+             * @default Function
              */
             events: function () {
                 return _.extend({}, _.result(DialogView.prototype, 'events'), {
@@ -62,6 +92,8 @@ define(
 
             /**
              * Render this view
+             * @method render
+             * @chainable
              * @returns {this}
              */
             render: function () {
@@ -86,6 +118,7 @@ define(
             /**
              * Function that returns an object containing
              * references to each of this view's buttons
+             * @method buttons
              * @returns {Object}
              */
             buttons: function () {
@@ -94,6 +127,7 @@ define(
 
             /**
              * Get the properties that will be passed to the template
+             * @method getData
              * @override
              * @returns {Object}
              */
@@ -103,8 +137,10 @@ define(
 
             /**
              * Set a button instance
+             * @method setButton
              * @param name {string} Name of the button to set
-             * @param button {core/js/button|null}
+             * @param button {Button|null}
+             * @chainable
              * @returns {this}
              */
             setButton: function (name, button) {
@@ -121,8 +157,10 @@ define(
 
             /**
              * Set the three buttons of concern with one call. This method will
+             * @method setButtons
              * @param buttons {array} An array of up to 3 buttons to add to this.model
-             * @returns {*}
+             * @chainable
+             * @returns {this}
              */
             setButtons: function (buttons) {
                 if (_.isArray(buttons)) {
@@ -136,8 +174,10 @@ define(
 
             /**
              * Convenience method to set this alert.model's message
+             * @method setMessage
              * @param text
-             * @returns {*}
+             * @chainable
+             * @returns {this}
              */
             setMessage: function (text) {
                 if (_.isString(text)) {
@@ -148,8 +188,10 @@ define(
 
             /**
              * Convenience method to set this alert.model's information
+             * @method setInformation
              * @param text
-             * @returns {*}
+             * @chainable
+             * @returns {this}
              */
             setInformation: function (text) {
                 if (_.isString(text)) {
@@ -160,8 +202,11 @@ define(
 
             /**
              * On every keypress, run each button's performKeyEquivalent method
-             * @param event
-             * @returns {*}
+             * @method keyEventHandler
+             * @param event {Event}
+             * @chainable
+             * @returns {this}
+             * @protected
              */
             keyEventHandler: function (event) {
                 // Run each button's performKeyEquivalent
@@ -178,9 +223,12 @@ define(
             result: null,
 
             /**
-             *
-             * @param event
-             * @returns {*}
+             * Handle the click event
+             * @method clickEventHandler
+             * @param event {Event}
+             * @chainable
+             * @returns {this}
+             * @protected
              */
             clickEventHandler: function (event) {
                 var $target = $(event.target);
@@ -193,8 +241,10 @@ define(
              * Open this View
              * ---
              * Only open if there is a message and a default button
-             *
-             * @returns {*}
+             * @method open
+             * @chainable
+             * @override
+             * @returns {this}
              */
             open: function () {
                 if (this.message === '') {
@@ -206,9 +256,11 @@ define(
             },
 
             /**
-             * Close this View
+             * Remove the buttons from this.el, then close this view
+             * @method close
+             * @chainable
              * @override
-             * @returns {*}
+             * @returns {this}
              */
             close: function () {
                 if (!this.isClosed) {
