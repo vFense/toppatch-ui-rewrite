@@ -52,6 +52,7 @@ define(
 
                 button = new Button({
                     title: _.isString(defButtonTitle) ? defButtonTitle : 'OK',
+                    style: 'btn-primary',
                     tagID: Alert.defReturn,
                     keyEquivalent: ENTER
                 });
