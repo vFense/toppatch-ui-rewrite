@@ -1,7 +1,3 @@
-/**
- * @class DialogView
- * @extends TemplateView
- */
 define(
     ['core/js/templateView', 'core/js/template/dialogView', 'bootstrap.modal'],
     function (TemplateView, template) {
@@ -10,31 +6,11 @@ define(
         var viewOptions = ['animate', 'keyboard', 'backdrop'];
 
         return TemplateView.extend({
-            className: 'modal',
-            template: template,
-
-            // --------------------------------------------------------
-            // variables to pass to bootstrap-modal
-            // --------------------------------------------------------
-            animate: false, // Animate: true causes async issues during unit tests
-            keyboard: true,
-            backdrop: true,
-
             /**
-             * Extend the prototype's attributes
-             * @returns {Object}
-             */
-            attributes: function () {
-                return _.extend({}, _.result(TemplateView.prototype, 'attributes'), {
-                    'tabindex': '-1',
-                    'role': 'dialog'
-                });
-            },
-
-            /**
-             * Extend this instance with keys of special meaning (see `viewOptions`),
-             * then call the parent constructor
-             * @constructor DialogView
+             * A TemplateView that manages a Bootstrap Modal
+             * @class DialogView
+             * @extends TemplateView
+             * @constructor
              * @param options
              * @returns {this}
              */
@@ -48,9 +24,63 @@ define(
             },
 
             /**
+             * @attribute className
+             * @type String
+             * @default 'modal'
+             * @protected
+             */
+            className: 'modal',
+            /**
+             * @attribute template
+             * @type function
+             * @default Basic Modal Template
+             * @protected
+             */
+            template: template,
+            /**
+             * Enable/Disable modal animations
+             * @attribute animate
+             * @type Boolean
+             * @default false
+             */
+            animate: false,
+            /**
+             * Enable/Disable modal response to escape key
+             * @attribute keyboard
+             * @type boolean
+             * @default true
+             */
+            keyboard: true,
+            /**
+             * Enable/Disable modal backdrop response to click
+             * @attribute backdrop
+             * @type boolean|'static'
+             * @default true
+             */
+            backdrop: true,
+
+            /**
+             * A hash of attributes that will be set as HTML DOM element
+             * attributes on the view's el (id, class, data-properties, etc.),
+             * or a function that returns such a hash.
+             * @attribute attributes
+             * @type String|Function
+             * @default Function
+             * @protected
+             */
+            attributes: function () {
+                return _.extend({}, _.result(TemplateView.prototype, 'attributes'), {
+                    'tabindex': '-1',
+                    'role': 'dialog'
+                });
+            },
+
+            /**
              * Listen for the bootstrap.modal hidden event
-             * Use a function so we can inherit events
-             * @returns {Object}
+             * Uses a function to inherit events
+             * @attribute events
+             * @type String|Function
+             * @default Function
              */
             events: function () {
                 return _.extend({}, _.result(TemplateView.prototype, 'events'), {
@@ -66,6 +96,7 @@ define(
             /**
              * Method to get the shown status of this DialogView
              * Uses the Bootstrap Modal isShown value
+             * @method isShown
              * @returns {boolean}
              */
             isShown: function () {
@@ -75,6 +106,8 @@ define(
 
             /**
              * Method to show the boostrap.modal
+             * @method open
+             * @chainable
              * @returns {this}
              */
             open: function () {
@@ -97,7 +130,9 @@ define(
 
             /**
              * Toggle the modal 'fade' class which instructs bootstrap.modal to animate
+             * @method toggleAnimate
              * @param state {boolean} A boolean value to determine whether the class should be added or removed.
+             * @chainable
              * @returns {this}
              */
             toggleAnimate: function (state) {
@@ -113,6 +148,8 @@ define(
             /**
              * Method to hide the bootstrap.modal
              * Once hidden, this DialogView will close
+             * @method hide
+             * @chainable
              * @returns {this}
              */
             hide: function () {
@@ -121,7 +158,9 @@ define(
             },
 
             /**
-             * If the bootstrap.modal is shown, hide it
+             * If the bootstrap.modal is shown, hide it, then close this view
+             * @method close
+             * @chainable
              * @returns {this}
              */
             close: function () {
