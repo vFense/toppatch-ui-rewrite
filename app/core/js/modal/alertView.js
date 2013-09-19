@@ -116,6 +116,44 @@ define(
             },
 
             /**
+             * Open this View
+             * ---
+             * Only open if there is a message and a default button
+             * @method open
+             * @chainable
+             * @override
+             * @returns {this}
+             */
+            open: function () {
+                if (this.message === '') {
+                    throw new Error('Cannot open Alert: Alert message is empty');
+                } else if (!(this.defButton instanceof Button)) {
+                    throw new TypeError('Cannot open Alert: defButton is not an instance of Button');
+                }
+                return DialogView.prototype.open.apply(this, arguments);
+            },
+
+            /**
+             * Remove the buttons from this.el, then close this view
+             * @method close
+             * @chainable
+             * @override
+             * @returns {this}
+             */
+            close: function () {
+                if (!this.isClosed) {
+                    // Remove the buttons for garbage collection
+                    _.each(this.buttons(), function (button) {
+                        _.result(button, 'remove');
+                    });
+
+                    // Call the prototype close method
+                    DialogView.prototype.close.apply(this, arguments);
+                }
+                return this;
+            },
+
+            /**
              * Function that returns an object containing
              * references to each of this view's buttons
              * @method buttons
@@ -235,44 +273,6 @@ define(
                 this.result = $target.data('tagID');
                 this.trigger('result', this.result);
                 return this.hide();
-            },
-
-            /**
-             * Open this View
-             * ---
-             * Only open if there is a message and a default button
-             * @method open
-             * @chainable
-             * @override
-             * @returns {this}
-             */
-            open: function () {
-                if (this.message === '') {
-                    throw new Error('Cannot open Alert: Alert message is empty');
-                } else if (!(this.defButton instanceof Button)) {
-                    throw new TypeError('Cannot open Alert: defButton is not an instance of Button');
-                }
-                return DialogView.prototype.open.apply(this, arguments);
-            },
-
-            /**
-             * Remove the buttons from this.el, then close this view
-             * @method close
-             * @chainable
-             * @override
-             * @returns {this}
-             */
-            close: function () {
-                if (!this.isClosed) {
-                    // Remove the buttons for garbage collection
-                    _.each(this.buttons(), function (button) {
-                        _.result(button, 'remove');
-                    });
-
-                    // Call the prototype close method
-                    DialogView.prototype.close.apply(this, arguments);
-                }
-                return this;
             }
         });
     }
