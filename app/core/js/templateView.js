@@ -16,6 +16,7 @@ define(
              * @attribute template
              * @type Function
              * @default undefined
+             * @protected
              */
             template: undefined,
 
