@@ -86,7 +86,7 @@ define(
             events: function () {
                 return _.extend({}, _.result(DialogView.prototype, 'events'), {
                     'click BUTTON:enabled': 'clickEventHandler',
-                    'keypress': 'keyEventHandler'
+                    'keyup': 'keyEventHandler'
                 });
             },
 

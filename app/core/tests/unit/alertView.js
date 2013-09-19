@@ -253,7 +253,7 @@ $(document).ready(function () {
 
                 alertView.open();
                 var $el = alertView.$el;
-                ok($el.simulate('keypress', { keyCode: $.simulate.keyCode.ENTER }), 'Simulate keypress event');
+                ok($el.simulate('keyup', { keyCode: $.simulate.keyCode.ENTER }), 'Simulate keyup event');
                 strictEqual(alertView.result, 1000, 'Result code is correct');
                 strictEqual(alertView.isShown(), false, 'Modal closed after event');
                 start();
