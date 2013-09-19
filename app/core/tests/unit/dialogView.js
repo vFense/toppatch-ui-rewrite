@@ -12,19 +12,19 @@ $(document).ready(function () {
                 dialog = new DialogView();
                 ok(dialog instanceof DialogView, 'Created default instance of DialogView');
                 strictEqual(dialog.className, 'modal', 'className is correct');
-                strictEqual(dialog.animate, false, 'animate is correct');
+                strictEqual(dialog.animate, true, 'animate is correct');
+                ok(dialog.$el.hasClass('fade'), 'Has class fade when animate is true');
                 strictEqual(dialog.keyboard, true, 'keyboard is correct');
                 strictEqual(dialog.backdrop, true, 'backdrop is correct');
 
                 // constructor with options
                 dialog = new DialogView({
-                    animate: true,
+                    animate: false,
                     keyboard: false,
                     backdrop: false
                 });
                 ok(dialog instanceof DialogView, 'Created instance of DialogView with options');
-                strictEqual(dialog.animate, true, 'animate is correct');
-                ok(dialog.$el.hasClass('fade'), 'Has class fade when animate is true');
+                strictEqual(dialog.animate, false, 'animate is correct');
                 strictEqual(dialog.keyboard, false, 'keyboard is correct');
                 strictEqual(dialog.backdrop, false, 'backdrop is correct');
 
@@ -39,7 +39,9 @@ $(document).ready(function () {
             function (DialogView) {
                 var dialog;
 
-                dialog = new DialogView();
+                dialog = new DialogView({
+                    animate: false
+                });
                 var wrapped = {
                     close: { fn: dialog.close, calls: 0 }
                 };
@@ -63,7 +65,9 @@ $(document).ready(function () {
             function (DialogView) {
                 var dialog;
 
-                dialog = new DialogView();
+                dialog = new DialogView({
+                    animate: false
+                });
 
                 strictEqual(dialog.isShown(), false, 'Returns false before modal init');
 
@@ -85,8 +89,9 @@ $(document).ready(function () {
             function (DialogView) {
                 var dialog;
 
-                dialog = new DialogView();
-                dialog.animate = true;
+                dialog = new DialogView({
+                    animate: false
+                });
 
                 var wrapped = {
                     render: { fn: dialog.render, calls: 0 },
@@ -133,7 +138,9 @@ $(document).ready(function () {
             ['core/js/modal/dialogView'],
             function (DialogView) {
                 var dialog;
-                dialog = new DialogView();
+                dialog = new DialogView({
+                    animate: false
+                });
 
                 dialog.$el.modal('show');
 
@@ -152,7 +159,9 @@ $(document).ready(function () {
             function (DialogView) {
                 var dialog;
 
-                dialog = new DialogView();
+                dialog = new DialogView({
+                    animate: false
+                });
 
                 dialog.toggleAnimate(true);
                 strictEqual(dialog.animate, true, 'Forced animate to true');
@@ -181,7 +190,9 @@ $(document).ready(function () {
             function (DialogView) {
                 var dialog;
 
-                dialog = new DialogView();
+                dialog = new DialogView({
+                    animate: false
+                });
                 var wrapped = {
                     hide: { fn: dialog.hide, calls: 0 }
                 };

@@ -41,9 +41,9 @@ define(
              * Enable/Disable modal animations
              * @attribute animate
              * @type Boolean
-             * @default false
+             * @default true
              */
-            animate: false,
+            animate: true,
             /**
              * Enable/Disable modal response to escape key
              * @attribute keyboard

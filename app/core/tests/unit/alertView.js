@@ -49,7 +49,9 @@ $(document).ready(function () {
         require(
             ['core/js/modal/alertView', 'core/js/button'],
             function (AlertView, Button) {
-                var alertView = new AlertView(),
+                var alertView = new AlertView({
+                        animate: false
+                    }),
                     defaultButton = new Button();
 
                 alertView.setButton('wrong', {});
@@ -83,7 +85,9 @@ $(document).ready(function () {
             ['core/js/modal/alertView', 'core/js/button'],
             function (AlertView, Button) {
                 var alertView;
-                alertView = new AlertView();
+                alertView = new AlertView({
+                    animate: false
+                });
 
                 alertView.setButtons([
                     new Button({ title: 'OK' })
@@ -129,10 +133,11 @@ $(document).ready(function () {
         require(
             ['core/js/modal/alertView'],
             function (AlertView) {
-                var alertView,
+                var alertView = new AlertView({
+                        animate: false
+                    }),
                     message = 'Test message',
                     information = 'Test Information';
-                alertView = new AlertView();
 
                 alertView.setMessage(message);
                 strictEqual(alertView.message, message, 'Message set correctly');
@@ -155,7 +160,9 @@ $(document).ready(function () {
         require(
             ['core/js/modal/alertView', 'core/js/button'],
             function (AlertView, Button) {
-                var alertView = new AlertView(),
+                var alertView = new AlertView({
+                        animate: false
+                    }),
                     message = 'Alert message',
                     information = 'Alert information',
                     buttons = [
@@ -199,7 +206,9 @@ $(document).ready(function () {
         require(
             ['core/js/modal/alertView', 'core/js/button'],
             function (AlertView, Button) {
-                var alertView = new AlertView({ animate: false });
+                var alertView = new AlertView({
+                    animate: false
+                });
 
                 throws(function () { alertView.open(); }, Error, 'Throws error with empty message');
 
