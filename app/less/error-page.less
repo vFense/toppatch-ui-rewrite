@@ -1,0 +1,19 @@
+#status-code {
+    position: absolute;
+    left: 0; right: 0;
+    overflow: visible;
+    // Mobile First
+    text-align: center;
+    z-index: -1;
+
+    span {
+        font-size: 200px;
+        line-height: 50%;
+        color: #EEE;
+        width: 0;
+    }
+
+    @media (min-width: @screen-tablet) {
+        text-align: right;
+    }
+}
