@@ -93,7 +93,6 @@ define(
                     alert.setButton('othButton', button);
                 }
 
-                button = undefined; // Release the button reference
                 return alert;
             },
 
