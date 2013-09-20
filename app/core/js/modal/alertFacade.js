@@ -18,8 +18,29 @@ define(
             ESCAPE = 27;
 
         _.extend(Alert, {
+            /**
+             * The return value if the default button is pressed
+             * @property defReturn
+             * @type Number
+             * @default 1000
+             * @final
+             */
             defReturn: 1000,
+            /**
+             * The return value if the alternate button is pressed
+             * @property altReturn
+             * @type Number
+             * @default 1001
+             * @final
+             */
             altReturn: 1001,
+            /**
+             * The return value if the other button is pressed
+             * @property othReturn
+             * @type Number
+             * @default 1002
+             * @final
+             */
             othReturn: 1002,
 
             /**
