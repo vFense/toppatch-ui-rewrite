@@ -52,7 +52,7 @@ define(
              * @param [defButtonTitle] {string|null} Title for the default button. When null or an empty string, a default button title “OK” is used.
              * @param [altButtonTitle] {string|null} Title for the alternate button. When null, the alternate button is not created.
              * @param [othButtonTitle] {string|null} Title for the other button. When null, the other button is not created.
-             * @param [informativeText] {string|function} Informative text. Can be a handlebars, or underscore, template.
+             * @param [informativeText] {string} Informative text.
              * @returns {AlertView} Initialized AlertView
              */
             alertWithMessage: function (message, defButtonTitle, altButtonTitle, othButtonTitle, informativeText) {
@@ -63,12 +63,8 @@ define(
 
                 alert.setMessage(message);
 
-                if (!_.isUndefined(informativeText)) {
-                    var text = informativeText;
-                    if (_.isFunction(text)) {
-                        text = text();
-                    }
-                    alert.setInformation(text);
+                if (_.isString(informativeText)) {
+                    alert.setInformation(informativeText);
                 }
 
                 button = new Button({
