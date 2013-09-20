@@ -113,9 +113,9 @@ module.exports = function(grunt) {
                     removeEmptyAttributes: true
                 },
                 expand: true,
-                cwd: '<%= meta.app %>core/',
-                src: 'template/**/*.html',
-                dest:'<%= meta.temp %>/'
+                cwd: '<%= meta.app %>core/template/html/',
+                src: '**/*.html',
+                dest:'<%= meta.temp %>/template/'
             }
         },
         imagemin: {
