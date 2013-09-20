@@ -26,7 +26,7 @@ module.exports = function(grunt) {
             app: [
                 '<%= meta.app %>api',
                 '<%= meta.app %>css',
-                '<%= meta.app %>core/js/template',
+                '<%= meta.app %>core/template/**/*.js',
                 '<%= meta.app %>fonts'
             ],
             dist        : ['<%= meta.dist %>'],
@@ -231,7 +231,7 @@ module.exports = function(grunt) {
                 expand: true,
                 cwd: '<%= meta.temp %>/template/',
                 src: '**/*.js',
-                dest: '<%= meta.app %>/core/js/template'
+                dest: '<%= meta.app %>/core/template/'
             }
         },
         watch: {

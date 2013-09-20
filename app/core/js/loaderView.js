@@ -1,5 +1,5 @@
 define(
-    ['core/js/templateView', 'core/js/template/loading_indicator'],
+    ['core/js/templateView', 'core/template/loading_indicator'],
     function (BaseView, template) {
         'use strict';
         return BaseView.extend({
