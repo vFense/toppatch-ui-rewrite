@@ -33,7 +33,7 @@ define(function () {
             Backbone.Model.prototype.constructor.apply(this, arguments);
 
             // Setup element
-            this._ensureElement();
+            this.render();
 
             // Setup events
             this.on('change:title'   , this._changeTitle);
@@ -112,12 +112,19 @@ define(function () {
 
         /**
          * Create a HTML element to represent this Button
-         * @method _ensureElement
+         * @method render
          * @returns {this}
-         * @private
          */
-        _ensureElement: function () {
+        render: function () {
+            // Remove previous Element
+            if (this.$el instanceof Backbone.$) {
+                this.$el.remove();
+            }
+
+            // Create new Element
             this.$el = Backbone.$('<button>');
+
+            // Populate the Element
             this.$el
                 .attr({
                     id: _.result(this, 'cid'),

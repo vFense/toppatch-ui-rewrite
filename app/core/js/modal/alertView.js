@@ -34,6 +34,7 @@ define(
                     defaultKeys = _.keys(defaults);
                 _.defaults(this, _.pick(options || {}, defaultKeys), defaults);
                 DialogView.prototype.constructor.apply(this, arguments);
+                _.bindAll(this);
                 return this;
             },
 
@@ -78,17 +79,15 @@ define(
 
             /**
              * Listen for button clicks
-             * Uses a function to inherit events
+             * Extends the DialogView events
              * @attribute events
-             * @type String|Function
-             * @default Function
+             * @type Object
+             * @default Object
              */
-            events: function () {
-                return _.extend({}, _.result(DialogView.prototype, 'events'), {
-                    'click BUTTON:enabled': 'clickEventHandler',
-                    'keyup': 'keyEventHandler'
-                });
-            },
+            events: _.extend({
+                'click BUTTON:enabled': 'clickEventHandler',
+                'keyup': 'keyEventHandler'
+            }, _.result(DialogView.prototype, 'events')),
 
             /**
              * Render this view
@@ -108,7 +107,7 @@ define(
                 // [defButton, altButton, othButton]
                 _.each(this.buttons(), function (button) {
                     if (button !== null) {
-                        $buttonArea.prepend(_.result(button, '$el'));
+                        $buttonArea.prepend(button.render().$el);
                     }
                 });
 
@@ -130,6 +129,7 @@ define(
                 } else if (!(this.defButton instanceof Button)) {
                     throw new TypeError('Cannot open Alert: defButton is not an instance of Button');
                 }
+                this.result = null;
                 return DialogView.prototype.open.apply(this, arguments);
             },
 

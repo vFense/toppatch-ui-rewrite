@@ -234,17 +234,34 @@ $(document).ready(function () {
         require(
             ['core/js/modal/alertView', 'core/js/button', 'jquery.simulate'],
             function (AlertView, Button) {
-                var alertView = new AlertView({
+                var alertView, $button;
+
+                alertView = new AlertView({
                     animate: false,
                     message: 'Alert',
-                    defButton: new Button({title: 'OK', keyEquivalent: $.simulate.keyCode.ENTER, tagID: 1000})
+                    defButton: new Button({title: 'OK', tagID: 1000}),
+                    altButton: new Button({title: 'Cancel', tagID: 1001}),
+                    othButton: new Button({title: 'Don\'t Save', tagID: 1002})
                 });
 
                 alertView.open();
-                var $el = alertView.defButton.$el;
-                ok($el.simulate('click'), 'Simulate click event');
+                $button = alertView.defButton.$el;
+                ok($button.simulate('click'), 'Simulate click event');
                 strictEqual(alertView.result, 1000, 'Result code is correct');
                 strictEqual(alertView.isShown(), false, 'Modal closed after event');
+
+                alertView.open();
+                $button = alertView.altButton.$el;
+                ok($button.simulate('click'), 'Simulate click event');
+                strictEqual(alertView.result, 1001, 'Result code is correct');
+                strictEqual(alertView.isShown(), false, 'Modal closed after event');
+
+                alertView.open();
+                $button = alertView.othButton.$el;
+                ok($button.simulate('click'), 'Simulate click event');
+                strictEqual(alertView.result, 1002, 'Result code is correct');
+                strictEqual(alertView.isShown(), false, 'Modal closed after event');
+
                 start();
             }
         );
@@ -257,7 +274,7 @@ $(document).ready(function () {
                 var alertView = new AlertView({
                     animate: false,
                     message: 'Alert',
-                    defButton: new Button({title: 'OK', keyEquivalent: $.simulate.keyCode.ENTER, tagID: 1000})
+                    defButton: new Button({title: 'Save', keyEquivalent: $.simulate.keyCode.ENTER, tagID: 1000})
                 });
 
                 alertView.open();
