@@ -49,7 +49,7 @@ $(document).ready(function () {
                     wrapped.close.calls += 1;
                     return this;
                 };
-                ok(_.has(dialog.events(), 'hidden.bs.modal'), 'Includes "hidden.bs.modal" event');
+                ok(_.has(_.result(dialog, 'events'), 'hidden.bs.modal'), 'Includes "hidden.bs.modal" event');
 
                 dialog.$el.trigger('hidden.bs.modal');
                 strictEqual(wrapped.close.calls, 1, 'Triggering "hidden.bs.model" called close');

@@ -79,16 +79,14 @@ define(
              * Listen for the bootstrap.modal hidden event
              * Uses a function to inherit events
              * @attribute events
-             * @type String|Function
-             * @default Function
+             * @type Object|Function
+             * @default Object
              */
-            events: function () {
-                return _.extend({}, _.result(TemplateView.prototype, 'events'), {
-                    'hidden.bs.modal': function () {
-                        this.close();
-                    }
-                });
-            },
+            events: _.extend({}, {
+                'hidden.bs.modal': function () {
+                    this.close();
+                }
+            }, _.result(TemplateView.prototype, 'events')),
 
             // --------------------------------------------------------
             // Dialog utility methods

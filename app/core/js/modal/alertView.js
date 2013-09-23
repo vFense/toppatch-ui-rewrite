@@ -80,7 +80,7 @@ define(
              * Listen for button clicks
              * Extends the DialogView events
              * @attribute events
-             * @type Object
+             * @type Object|Function
              * @default Object
              */
             events: _.extend({
