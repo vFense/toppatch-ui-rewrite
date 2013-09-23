@@ -34,7 +34,6 @@ define(
                     defaultKeys = _.keys(defaults);
                 _.defaults(this, _.pick(options || {}, defaultKeys), defaults);
                 DialogView.prototype.constructor.apply(this, arguments);
-                _.bindAll(this);
                 return this;
             },
 
