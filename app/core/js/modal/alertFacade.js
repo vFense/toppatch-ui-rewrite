@@ -119,6 +119,9 @@ define(
              */
             criticalAlertWithMessage: function (message, dangerButtonTitle, safeButtonTitle, othButtonTitle, informativeText) {
                 if (!_.isString(message)) { throw new Error('Expected message to be a string'); }
+                if (!_.isString(dangerButtonTitle)) {
+                    throw new Error('Expected dangerButtonTitle to be a string');
+                }
 
                 var alert = new AlertView(),
                     buttons = [],
