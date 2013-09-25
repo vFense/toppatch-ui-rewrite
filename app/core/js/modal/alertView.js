@@ -6,7 +6,12 @@ define(
         /********************
          * Instance Methods *
          ********************/
-        var AlertView = DialogView.extend({
+        var ENTER = 13,
+            ESCAPE = 27,
+            AlertView;
+
+        AlertView = DialogView.extend(
+        {
             /**
              * Display an alert in a modal
              *
@@ -277,8 +282,6 @@ define(
             }
         });
 
-        var ENTER = 13,
-            ESCAPE = 27;
 
         /******************
          * Static methods *
