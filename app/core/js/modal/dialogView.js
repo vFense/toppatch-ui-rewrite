@@ -81,6 +81,7 @@ define(
              * @attribute events
              * @type Object|Function
              * @default Object
+             * @protected
              */
             events: _.extend({}, {
                 'hidden.bs.modal': function () {

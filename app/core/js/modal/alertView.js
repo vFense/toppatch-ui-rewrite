@@ -85,6 +85,7 @@ define(
              * @attribute events
              * @type Object|Function
              * @default Object
+             * @protected
              */
             events: _.extend({
                 'click BUTTON:enabled': 'clickEventHandler',
