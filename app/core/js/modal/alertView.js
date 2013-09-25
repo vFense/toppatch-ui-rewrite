@@ -21,6 +21,9 @@ define(
              * alert dialog. If you have a particular alert dialog that you need to show
              * repeatedly, you can retain an instance of `AlertView` for this dialog.
              *
+             * For easier use, use the static methods [alertWithMessage](#method_alertWithMessage) and
+             * [criticalAlertWithMessage](#method_criticalAlertWithMessage)
+             *
              * @class AlertView
              * @extends DialogView
              * @requires Button
