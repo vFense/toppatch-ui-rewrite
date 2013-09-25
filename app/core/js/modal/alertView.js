@@ -288,7 +288,7 @@ define(
         {
             /**
              * The return value if the default button is pressed
-             * @property defReturn
+             * @attribute defReturn
              * @type Number
              * @default 1000
              * @static
@@ -297,7 +297,7 @@ define(
             defReturn: 1000,
             /**
              * The return value if the alternate button is pressed
-             * @property altReturn
+             * @attribute altReturn
              * @type Number
              * @default 1001
              * @static
@@ -306,7 +306,7 @@ define(
             altReturn: 1001,
             /**
              * The return value if the other button is pressed
-             * @property othReturn
+             * @attribute othReturn
              * @type Number
              * @default 1002
              * @static
