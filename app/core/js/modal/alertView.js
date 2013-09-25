@@ -3,14 +3,14 @@ define(
     function (DialogView, alertTemplate, Button) {
         'use strict';
 
-        /********************
-         * Instance Methods *
-         ********************/
         var ENTER = 13,
             ESCAPE = 27,
             AlertView;
 
         AlertView = DialogView.extend(
+        /************************
+         * Prototype Properties *
+         ************************/
         {
             /**
              * Display an alert in a modal
@@ -280,13 +280,12 @@ define(
                 this.trigger('result', this.result);
                 return this.hide();
             }
-        });
+        },
 
-
-        /******************
-         * Static methods *
-         ******************/
-        _.extend(AlertView, {
+        /*********************
+         * Static Properties *
+         *********************/
+        {
             /**
              * The return value if the default button is pressed
              * @property defReturn
@@ -453,7 +452,8 @@ define(
                     }
                 }
             }
-        });
+        }
+        ); // End DialogView.extend
 
         return AlertView;
     }
