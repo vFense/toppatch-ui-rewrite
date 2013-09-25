@@ -3,7 +3,10 @@ define(
     function (DialogView, alertTemplate, Button) {
         'use strict';
 
-        return DialogView.extend({
+        /********************
+         * Instance Methods *
+         ********************/
+        var AlertView = DialogView.extend({
             /**
              * Display an alert in a modal
              *
@@ -115,8 +118,6 @@ define(
 
             /**
              * Open this View
-             * ---
-             * Only open if there is a message and a default button
              * @method open
              * @chainable
              * @override
@@ -274,5 +275,182 @@ define(
                 return this.hide();
             }
         });
+
+        var ENTER = 13,
+            ESCAPE = 27;
+
+        /******************
+         * Static methods *
+         ******************/
+        _.extend(AlertView, {
+            /**
+             * The return value if the default button is pressed
+             * @property defReturn
+             * @type Number
+             * @default 1000
+             * @static
+             * @final
+             */
+            defReturn: 1000,
+            /**
+             * The return value if the alternate button is pressed
+             * @property altReturn
+             * @type Number
+             * @default 1001
+             * @static
+             * @final
+             */
+            altReturn: 1001,
+            /**
+             * The return value if the other button is pressed
+             * @property othReturn
+             * @type Number
+             * @default 1002
+             * @static
+             * @final
+             */
+            othReturn: 1002,
+
+            /**
+             * Create an alert with the specified message, buttons, and informative text.
+             * This alert is intended to warn the user about a current or impending event.
+             *
+             * This method will instantiate the AlertView and Buttons for you.
+             * @method alertWithMessage
+             * @param message {string} Title of the alert.
+             * @param [defButtonTitle] {string|null} Title for the default button. When null or an empty string, a default button title “OK” is used.
+             * @param [altButtonTitle] {string|null} Title for the alternate button. When null, the alternate button is not created.
+             * @param [othButtonTitle] {string|null} Title for the other button. When null, the other button is not created.
+             * @param [informativeText] {string} Informative text.
+             * @returns {AlertView} Initialized AlertView
+             * @static
+             */
+            alertWithMessage: function (message, defButtonTitle, altButtonTitle, othButtonTitle, informativeText) {
+                if (!_.isString(message)) { throw new Error('Expected message to be a string'); }
+
+                var alert = new AlertView(),
+                    button;
+
+                alert.setMessage(message);
+
+                if (_.isString(informativeText)) {
+                    alert.setInformation(informativeText);
+                }
+
+                button = new Button({
+                    title: _.isString(defButtonTitle) ? defButtonTitle : 'OK',
+                    style: 'btn-primary',
+                    tagID: AlertView.defReturn,
+                    keyEquivalent: ENTER
+                });
+                alert.setButton('defButton', button);
+
+                if (_.isString(altButtonTitle)) {
+                    button = new Button({
+                        title: altButtonTitle,
+                        tagID: AlertView.altReturn
+                    });
+                    AlertView._setKeyEquivalent(button);
+                    alert.setButton('altButton', button);
+                }
+
+                if (_.isString(othButtonTitle)) {
+                    button = new Button({
+                        title: othButtonTitle,
+                        tagID: AlertView.othReturn
+                    });
+                    AlertView._setKeyEquivalent(button);
+                    alert.setButton('othButton', button);
+                }
+
+                return alert;
+            },
+
+            /**
+             * Create a critical alert with the specified message, buttons, and informative text.
+             * This alert style is intended to warn a user that there might be severe consequences
+             * as a result of a certain user response.
+             *
+             * This style causes the the following changes:
+             * - Danger button is styled as "btn-primary"
+             * - Danger button has a default keyEquivalent of "ENTER"
+             * - Danger button will always be furthest to the left, or topmost depending on device
+             * - Danger button will have return value of 1002 (1003 if othButton is defined).
+             * - Safe button has a default title of "Cancel"
+             * - Safe button has a default keyEquivalent of "ESCAPE"
+             *
+             * @method criticalAlertWithMessage
+             * @param message {string} Title of the alert.
+             * @param dangerButtonTitle {string} Title for the dangerous action button.
+             * @param [safeButtonTitle] {string|null} Title for the safe action button. When null, the safe button title defaults to "Cancel"
+             * @param [othButtonTitle] {string|null} Title for the other button. When null, the other button is not created.
+             * @param [informativeText] {string} Informative text.
+             * @returns {AlertView} Initialized AlertView
+             * @static
+             */
+            criticalAlertWithMessage: function (message, dangerButtonTitle, safeButtonTitle, othButtonTitle, informativeText) {
+                if (!_.isString(message)) { throw new Error('Expected message to be a string'); }
+                if (!_.isString(dangerButtonTitle)) {
+                    throw new Error('Expected dangerButtonTitle to be a string');
+                }
+
+                var alert = new AlertView(),
+                    buttons = [],
+                    button;
+
+                alert.setMessage(message);
+
+                if (_.isString(informativeText)) {
+                    alert.setInformation(informativeText);
+                }
+
+                button = new Button({
+                    title: _.isString(safeButtonTitle) ? safeButtonTitle : 'Cancel',
+                    tagID: AlertView.defReturn
+                });
+                AlertView._setKeyEquivalent(button);
+                buttons.push(button);
+
+                if (_.isString(othButtonTitle)) {
+                    button = new Button({
+                        title: othButtonTitle,
+                        tagID: AlertView.defReturn + buttons.length
+                    });
+                    AlertView._setKeyEquivalent(button);
+                    buttons.push(button);
+                }
+
+                button = new Button({
+                    title: dangerButtonTitle,
+                    style: 'btn-primary',
+                    tagID: AlertView.defReturn + buttons.length,
+                    keyEquivalent: ENTER
+                });
+                buttons.push(button);
+
+                alert.setButtons(buttons);
+
+                return alert;
+            },
+
+            /**
+             * @method _setKeyEquivalent
+             * @param button
+             * @private
+             * @static
+             */
+            _setKeyEquivalent: function (button) {
+                var title = button.get('title'),
+                    keyEquivalent = button.get('keyEquivalent');
+
+                if (keyEquivalent !== ENTER) {
+                    if (title === 'Cancel') {
+                        button.set('keyEquivalent', ESCAPE);
+                    }
+                }
+            }
+        });
+
+        return AlertView;
     }
 );
