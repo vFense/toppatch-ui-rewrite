@@ -98,7 +98,7 @@ module.exports = function(grunt) {
             dev: {
                 expand: true,
                 cwd: '<%= meta.temp %>',
-                src: 'template/**/*.html',
+                src: 'template/**/*.hbs',
                 dest:'<%= meta.temp %>/',
                 ext: '.js'
             }
@@ -114,7 +114,7 @@ module.exports = function(grunt) {
                 },
                 expand: true,
                 cwd: '<%= meta.app %>core/template/html/',
-                src: '**/*.html',
+                src: '**/*.hbs',
                 dest:'<%= meta.temp %>/template/'
             }
         },
