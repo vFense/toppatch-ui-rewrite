@@ -36,10 +36,10 @@ define(function () {
             this.render();
 
             // Setup events
-            this.on('change:title'   , this._changeTitle);
-            this.on('change:style'   , this._changeStyle);
-            this.on('change:disabled', this._changeDisabled);
-            this.on('change:returnValue'   , this._changeReturnValue);
+            this.on('change:title', this._changeTitle, this);
+            this.on('change:style', this._changeStyle, this);
+            this.on('change:disabled', this._changeDisabled, this);
+            this.on('change:returnValue', this._changeReturnValue, this);
 
             // Make sure that when _completeAnimatedClick is called
             // from a timeout, it has the correct `this` value
