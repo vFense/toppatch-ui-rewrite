@@ -6,9 +6,9 @@
  */
 define(
     ['core/js/view', 'backbone.babysitter'],
-    function (BaseView) {
+    function (View) {
         'use strict';
-        return BaseView.extend({
+        return View.extend({
             /**
              * Override clean method to close all child views
              * @method clean

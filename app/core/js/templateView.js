@@ -6,9 +6,9 @@
  */
 define(
     ['core/js/view'],
-    function (BaseView) {
+    function (View) {
         'use strict';
-        return BaseView.extend({
+        return View.extend({
             /**
              * A handlebars, or underscore, template method to render with.
              * If this property is not set when render is executed, render

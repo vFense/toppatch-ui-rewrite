@@ -5,10 +5,10 @@ define(
         'bootstrap.collapse',
         'bootstrap.dropdown'
     ],
-    function (template, baseView) {
+    function (template, View) {
         'use strict';
         var exports = {};
-        exports.View = baseView.extend({
+        exports.View = View.extend({
             el: '#dashboard',
             template: template,
             render: function () {
