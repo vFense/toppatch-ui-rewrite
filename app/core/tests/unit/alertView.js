@@ -64,7 +64,7 @@ $(document).ready(function () {
                     title: 'Button',
                     style: 'btn-default',
                     disabled: false,
-                    tagID: 0,
+                    returnValue: 0,
                     keyEquivalent: 0
 
                 }, 'Set default button correctly');
@@ -239,9 +239,9 @@ $(document).ready(function () {
                 alertView = new AlertView({
                     animate: false,
                     message: 'Alert',
-                    defButton: new Button({title: 'OK', tagID: 1000}),
-                    altButton: new Button({title: 'Cancel', tagID: 1001}),
-                    othButton: new Button({title: 'Don\'t Save', tagID: 1002})
+                    defButton: new Button({title: 'OK', returnValue: 1000}),
+                    altButton: new Button({title: 'Cancel', returnValue: 1001}),
+                    othButton: new Button({title: 'Don\'t Save', returnValue: 1002})
                 });
 
                 alertView.open();
@@ -274,7 +274,7 @@ $(document).ready(function () {
                 var alertView = new AlertView({
                     animate: false,
                     message: 'Alert',
-                    defButton: new Button({title: 'Save', keyEquivalent: $.simulate.keyCode.ENTER, tagID: 1000})
+                    defButton: new Button({title: 'Save', keyEquivalent: $.simulate.keyCode.ENTER, returnValue: 1000})
                 });
 
                 alertView.open();
@@ -355,7 +355,7 @@ $(document).ready(function () {
                 ok(alert.defButton instanceof Button, 'defButton is instanceof Button');
                 strictEqual(alert.defButton.get('title'), 'OK', 'defButton has correct title');
                 strictEqual(alert.defButton.get('style'), 'btn-primary', 'defButton has correct style');
-                strictEqual(alert.defButton.get('tagID'), 1000, 'defButton has correct tagID');
+                strictEqual(alert.defButton.get('returnValue'), 1000, 'defButton has correct returnValue');
                 strictEqual(alert.defButton.get('keyEquivalent'), 13, 'defButton has correct keyEquivalent');
 
                 strictEqual(alert.altButton, null, 'altButton is null');
@@ -371,17 +371,17 @@ $(document).ready(function () {
                 ok(alert.defButton instanceof Button, 'defButton is instanceof Button');
                 strictEqual(alert.defButton.get('title'), 'Save', 'defButton has correct title');
                 strictEqual(alert.defButton.get('style'), 'btn-primary', 'defButton has correct style');
-                strictEqual(alert.defButton.get('tagID'), 1000, 'defButton has correct tagID');
+                strictEqual(alert.defButton.get('returnValue'), 1000, 'defButton has correct returnValue');
                 strictEqual(alert.defButton.get('keyEquivalent'), 13, 'defButton has correct keyEquivalent');
 
                 strictEqual(alert.altButton.get('title'), 'Cancel', 'altButton has correct title');
                 strictEqual(alert.altButton.get('style'), 'btn-default', 'altButton has correct style');
-                strictEqual(alert.altButton.get('tagID'), 1001, 'altButton has correct tagID');
+                strictEqual(alert.altButton.get('returnValue'), 1001, 'altButton has correct returnValue');
                 strictEqual(alert.altButton.get('keyEquivalent'), 27, 'altButton has correct keyEquivalent');
 
                 strictEqual(alert.othButton.get('title'), 'Don\'t Save', 'othButton has correct title');
                 strictEqual(alert.othButton.get('style'), 'btn-default', 'othButton has correct style');
-                strictEqual(alert.othButton.get('tagID'), 1002, 'othButton has correct tagID');
+                strictEqual(alert.othButton.get('returnValue'), 1002, 'othButton has correct returnValue');
                 strictEqual(alert.othButton.get('keyEquivalent'), 0, 'othButton has correct keyEquivalent');
 
                 strictEqual(alert.information, 'Info', 'Information is correct');
@@ -410,12 +410,12 @@ $(document).ready(function () {
                 ok(alert instanceof AlertView, 'returned instance of AlertView');
                 strictEqual(alert.defButton.get('title'), 'Cancel', 'defButton (safe button) has correct title');
                 strictEqual(alert.defButton.get('style'), 'btn-default', 'defButton (safe button) has correct style');
-                strictEqual(alert.defButton.get('tagID'), 1000, 'defButton (safe button) has correct tagID');
+                strictEqual(alert.defButton.get('returnValue'), 1000, 'defButton (safe button) has correct returnValue');
                 strictEqual(alert.defButton.get('keyEquivalent'), 27, 'defButton (safe button) has correct keyEquivalent');
 
                 strictEqual(alert.altButton.get('title'), 'Danger', 'altButton (danger button) has correct title');
                 strictEqual(alert.altButton.get('style'), 'btn-primary', 'altButton (danger button) has correct style');
-                strictEqual(alert.altButton.get('tagID'), 1001, 'altButton (danger button) has correct tagID');
+                strictEqual(alert.altButton.get('returnValue'), 1001, 'altButton (danger button) has correct returnValue');
                 strictEqual(alert.altButton.get('keyEquivalent'), 13, 'altButton (danger button) has correct keyEquivalent');
 
                 strictEqual(alert.othButton, null, 'othButton is null');
@@ -428,17 +428,17 @@ $(document).ready(function () {
                 ok(alert instanceof AlertView, 'returned instance of AlertView');
                 strictEqual(alert.defButton.get('title'), 'Safe', 'defButton (safe button) has correct title');
                 strictEqual(alert.defButton.get('style'), 'btn-default', 'defButton (safe button) has correct style');
-                strictEqual(alert.defButton.get('tagID'), 1000, 'defButton (safe button) has correct tagID');
+                strictEqual(alert.defButton.get('returnValue'), 1000, 'defButton (safe button) has correct returnValue');
                 strictEqual(alert.defButton.get('keyEquivalent'), 0, 'defButton (safe button) has correct keyEquivalent');
 
                 strictEqual(alert.altButton.get('title'), 'Other', 'altButton (danger button) has correct title');
                 strictEqual(alert.altButton.get('style'), 'btn-default', 'altButton (danger button) has correct style');
-                strictEqual(alert.altButton.get('tagID'), 1001, 'altButton (danger button) has correct tagID');
+                strictEqual(alert.altButton.get('returnValue'), 1001, 'altButton (danger button) has correct returnValue');
                 strictEqual(alert.altButton.get('keyEquivalent'), 0, 'altButton (danger button) has correct keyEquivalent');
 
                 strictEqual(alert.othButton.get('title'), 'Danger', 'othButton has correct title');
                 strictEqual(alert.othButton.get('style'), 'btn-primary', 'othButton has correct style');
-                strictEqual(alert.othButton.get('tagID'), 1002, 'othButton has correct tagID');
+                strictEqual(alert.othButton.get('returnValue'), 1002, 'othButton has correct returnValue');
                 strictEqual(alert.othButton.get('keyEquivalent'), 13, 'othButton has correct keyEquivalent');
 
                 strictEqual(alert.information, 'Info', 'Information is correct');

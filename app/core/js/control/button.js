@@ -19,7 +19,7 @@ define(function () {
             title: 'Button',
             style: 'btn-default',
             disabled: false,
-            tagID: 0,
+            returnValue: 0,
             keyEquivalent: 0
         },
 
@@ -39,7 +39,7 @@ define(function () {
             this.on('change:title'   , this._changeTitle);
             this.on('change:style'   , this._changeStyle);
             this.on('change:disabled', this._changeDisabled);
-            this.on('change:tagID'   , this._changeTagID);
+            this.on('change:returnValue'   , this._changeReturnValue);
 
             // Make sure that when _completeAnimatedClick is called
             // from a timeout, it has the correct `this` value
@@ -65,7 +65,7 @@ define(function () {
             if (isDefined(attributes.disabled) && !_.isBoolean(attributes.disabled)) {
                 return 'Button.disabled must be boolean';
             }
-            if (!_.isUndefined(attributes.tagID) && !_.isNumber(attributes.tagID)) {
+            if (!_.isUndefined(attributes.returnValue) && !_.isNumber(attributes.returnValue)) {
                 return 'Button.tag must be number';
             }
             if (isDefined(attributes.keyEquivalent) && !_.isNumber(attributes.keyEquivalent)) {
@@ -130,7 +130,7 @@ define(function () {
                     id: _.result(this, 'cid'),
                     class: ['btn', _.result(this.attributes, 'style')].join(' ')
                 })
-                .data('tagID', _.result(this.attributes, 'tagID'))
+                .data('returnValue', _.result(this.attributes, 'returnValue'))
                 .text(_.result(this.attributes, 'title'));
 
             this.el = this.$el[0];
@@ -291,13 +291,13 @@ define(function () {
 
         /**
          * Update the button's rendered data-tag attribute
-         * @method _changeTagID
+         * @method _changeReturnValue
          * @returns {this}
          * @private
          */
-        _changeTagID: function () {
+        _changeReturnValue: function () {
             this.$el
-                .data('tagID', this.get('tagID'))
+                .data('returnValue', this.get('returnValue'))
             ;
             return this;
         }

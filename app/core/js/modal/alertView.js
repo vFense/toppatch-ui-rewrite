@@ -279,7 +279,7 @@ define(
                  */
                 clickEventHandler: function (event) {
                     var $target = $(event.target);
-                    this.result = $target.data('tagID');
+                    this.result = $target.data('returnValue');
                     this.trigger('result', this.result);
                     return this.hide();
                 }
@@ -346,7 +346,7 @@ define(
                     button = new Button({
                         title: _.isString(defButtonTitle) ? defButtonTitle : 'OK',
                         style: 'btn-primary',
-                        tagID: AlertView.defReturn,
+                        returnValue: AlertView.defReturn,
                         keyEquivalent: ENTER
                     });
                     alert.setButton('defButton', button);
@@ -354,7 +354,7 @@ define(
                     if (_.isString(altButtonTitle)) {
                         button = new Button({
                             title: altButtonTitle,
-                            tagID: AlertView.altReturn
+                            returnValue: AlertView.altReturn
                         });
                         AlertView._setKeyEquivalent(button);
                         alert.setButton('altButton', button);
@@ -363,7 +363,7 @@ define(
                     if (_.isString(othButtonTitle)) {
                         button = new Button({
                             title: othButtonTitle,
-                            tagID: AlertView.othReturn
+                            returnValue: AlertView.othReturn
                         });
                         AlertView._setKeyEquivalent(button);
                         alert.setButton('othButton', button);
@@ -412,7 +412,7 @@ define(
 
                     button = new Button({
                         title: _.isString(safeButtonTitle) ? safeButtonTitle : 'Cancel',
-                        tagID: AlertView.defReturn
+                        returnValue: AlertView.defReturn
                     });
                     AlertView._setKeyEquivalent(button);
                     buttons.push(button);
@@ -420,7 +420,7 @@ define(
                     if (_.isString(othButtonTitle)) {
                         button = new Button({
                             title: othButtonTitle,
-                            tagID: AlertView.defReturn + buttons.length
+                            returnValue: AlertView.defReturn + buttons.length
                         });
                         AlertView._setKeyEquivalent(button);
                         buttons.push(button);
@@ -429,7 +429,7 @@ define(
                     button = new Button({
                         title: dangerButtonTitle,
                         style: 'btn-primary',
-                        tagID: AlertView.defReturn + buttons.length,
+                        returnValue: AlertView.defReturn + buttons.length,
                         keyEquivalent: ENTER
                     });
                     buttons.push(button);

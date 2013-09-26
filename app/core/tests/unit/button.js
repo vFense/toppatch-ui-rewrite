@@ -15,13 +15,13 @@ $(document).ready(function () {
                 'change:title',
                 'change:style',
                 'change:disabled',
-                'change:tagID'
+                'change:returnValue'
             ], '_events property has correct events');
 
             strictEqual(events['change:title'][0].callback   , button._changeTitle   , 'change:title has correct callback');
             strictEqual(events['change:style'][0].callback   , button._changeStyle   , 'change:style has correct callback');
             strictEqual(events['change:disabled'][0].callback, button._changeDisabled, 'change:disabled has correct callback');
-            strictEqual(events['change:tagID'][0].callback   , button._changeTagID   , 'change:tagID has correct callback');
+            strictEqual(events['change:returnValue'][0].callback   , button._changeReturnValue   , 'change:returnValue has correct callback');
 
             start();
         });
@@ -46,7 +46,7 @@ $(document).ready(function () {
             var style = button.get('style');
             ok($el.hasClass(style), 'Element has `' + style + '` class');
 
-            strictEqual($el.data('tagID'), button.get('tagID'), 'Button has correct tagID');
+            strictEqual($el.data('returnValue'), button.get('returnValue'), 'Button has correct returnValue');
 
             strictEqual($el.text(), button.get('title'), 'Button has correct title text');
 
@@ -79,11 +79,11 @@ $(document).ready(function () {
             result = validate({disabled:1});
             notStrictEqual(result, validResult, '1 is NOT a valid disabled value');
 
-            result = validate({tagID:32});
-            strictEqual(result, validResult, '32 is a valid tagID');
+            result = validate({returnValue:32});
+            strictEqual(result, validResult, '32 is a valid returnValue');
 
-            result = validate({tagID:' '});
-            notStrictEqual(result, validResult, '" " is NOT a valid tagID');
+            result = validate({returnValue:' '});
+            notStrictEqual(result, validResult, '" " is NOT a valid returnValue');
 
             result = validate({keyEquivalent:32});
             strictEqual(result, validResult, '32 is a valid keyEquivalent');
@@ -172,12 +172,12 @@ $(document).ready(function () {
         });
     });
 
-    asyncTest('_changeTagID', function () {
+    asyncTest('_changeReturnValue', function () {
         require(['core/js/control/button'], function(Button) {
             var button = new Button();
 
-            ok(button._changeTagID(), 'Run _changeTagID');
-            strictEqual(button.$el.data('tagID'), 0, 'Set element\'s data("tagID") to default of 0');
+            ok(button._changeReturnValue(), 'Run _changeReturnValue');
+            strictEqual(button.$el.data('returnValue'), 0, 'Set element\'s data("returnValue") to default of 0');
 
             start();
         });
