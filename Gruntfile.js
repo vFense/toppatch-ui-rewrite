@@ -113,7 +113,7 @@ module.exports = function(grunt) {
                     removeEmptyAttributes: true
                 },
                 expand: true,
-                cwd: '<%= meta.app %>core/template/html/',
+                cwd: '<%= meta.app %>core/template/hbs/',
                 src: '**/*.hbs',
                 dest:'<%= meta.temp %>/template/'
             }
