@@ -221,6 +221,7 @@ define(function () {
         /**
          * Start an animated click
          * @method _startAnimatedClick
+         * @param [time=100] {number}
          * @returns {this}
          * @private
          */
