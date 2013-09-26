@@ -1,5 +1,5 @@
 define(
-    ['core/js/modal/dialogView', 'core/template/modalAlert', 'core/js/button'],
+    ['core/js/modal/dialogView', 'core/template/modalAlert', 'core/js/control/button'],
     function (DialogView, alertTemplate, Button) {
         'use strict';
 

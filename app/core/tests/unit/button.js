@@ -3,7 +3,7 @@ $(document).ready(function () {
     module('Button');
 
     asyncTest('Events', function () {
-        require(['core/js/button'], function(Button) {
+        require(['core/js/control/button'], function(Button) {
             var button = new Button();
 
             // Since the constructor creates the events,
@@ -28,7 +28,7 @@ $(document).ready(function () {
     });
 
     asyncTest('_ensureElement', function () {
-        require(['core/js/button'], function(Button) {
+        require(['core/js/control/button'], function(Button) {
             var button = new Button();
 
             // Since the constructor calls _ensureElement,
@@ -55,7 +55,7 @@ $(document).ready(function () {
     });
 
     asyncTest('Validate', function () {
-        require(['core/js/button'], function(Button) {
+        require(['core/js/control/button'], function(Button) {
             var button = new Button(),
                 validate = button.validate,
                 validResult = '',
@@ -96,7 +96,7 @@ $(document).ready(function () {
     });
 
     asyncTest('Set', function () {
-        require(['core/js/button'], function(Button) {
+        require(['core/js/control/button'], function(Button) {
             var button = new Button();
 
             // Test to make sure that set trims the title value
@@ -116,7 +116,7 @@ $(document).ready(function () {
     });
 
     asyncTest('Remove', function () {
-        require(['core/js/button'], function(Button) {
+        require(['core/js/control/button'], function(Button) {
             var button = new Button();
 
             button.$el.appendTo($('body'));
@@ -130,7 +130,7 @@ $(document).ready(function () {
     });
 
     asyncTest('_changeTitle', function () {
-        require(['core/js/button'], function(Button) {
+        require(['core/js/control/button'], function(Button) {
             var button = new Button();
 
             ok(button._changeTitle(), 'Run _changeTitle');
@@ -141,7 +141,7 @@ $(document).ready(function () {
     });
 
     asyncTest('_changeStyle', function () {
-        require(['core/js/button'], function(Button) {
+        require(['core/js/control/button'], function(Button) {
             var button = new Button();
 
             ok(button._changeStyle(), 'Run _changeStyle');
@@ -156,7 +156,7 @@ $(document).ready(function () {
     });
 
     asyncTest('_changeDisabled', function () {
-        require(['core/js/button'], function(Button) {
+        require(['core/js/control/button'], function(Button) {
             var button = new Button();
 
 
@@ -173,7 +173,7 @@ $(document).ready(function () {
     });
 
     asyncTest('_changeTagID', function () {
-        require(['core/js/button'], function(Button) {
+        require(['core/js/control/button'], function(Button) {
             var button = new Button();
 
             ok(button._changeTagID(), 'Run _changeTagID');
@@ -184,7 +184,7 @@ $(document).ready(function () {
     });
 
     asyncTest('canPerform', function () {
-        require(['core/js/button'], function(Button) {
+        require(['core/js/control/button'], function(Button) {
             var button = new Button(),
                 $body = $('body');
 
@@ -205,7 +205,7 @@ $(document).ready(function () {
     });
 
     asyncTest('performClick', function () {
-        require(['core/js/button'], function(Button) {
+        require(['core/js/control/button'], function(Button) {
             var button = new Button(),
                 $body = $('body'),
                 clicked = 0;
@@ -236,7 +236,7 @@ $(document).ready(function () {
     });
 
     asyncTest('_startAnimatedClick and _completeAnimatedClick', function () {
-        require(['core/js/button'], function(Button) {
+        require(['core/js/control/button'], function(Button) {
             var button = new Button(),
                 postAnimationTests;
 
@@ -268,7 +268,7 @@ $(document).ready(function () {
     });
 
     asyncTest('performKeyEquivalent', function () {
-        require(['core/js/button', 'jquery.simulate'], function(Button) {
+        require(['core/js/control/button', 'jquery.simulate'], function(Button) {
             var button = new Button(),
                 called = 0, args,
                 result;
