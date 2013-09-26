@@ -25,7 +25,6 @@
     "modernizr": "~2.6.2",
     "moment": "~2.2.1",
     "qunit": "~1.12.0",
-    "require-handlebars-plugin": "~0.4.0",
     "requirejs": "~2.1.8",
     "requirejs-plugins": "~1.0.2",
     "requirejs-text": "~2.0.10",
