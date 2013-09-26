@@ -18,16 +18,18 @@
     "handlebars.js": "~1.0.12",
     "highcharts-components": "~3.0.5",
     "jquery": "~2.0.3",
-    "jquery-simulate": "latest",
     "jquery-ui": "~1.10.3",
     "livestampjs": "~1.1.2",
     "lodash": "~2.1.0",
     "modernizr": "~2.6.2",
     "moment": "~2.2.1",
-    "qunit": "~1.12.0",
     "requirejs": "~2.1.8",
     "requirejs-plugins": "~1.0.2",
     "requirejs-text": "~2.0.10",
     "select2": "~3.4.3"
+  },
+  "devDependencies": {
+    "jquery-simulate": "latest",
+    "qunit": "~1.12.0"
   }
 }
