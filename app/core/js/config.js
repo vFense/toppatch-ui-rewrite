@@ -37,7 +37,6 @@ var requirejs = {
         // Backbone Paths
         'backbone'              : 'vendor/backbone/backbone',
         'backbone.babysitter'   : 'vendor/backbone.babysitter/lib/amd/backbone.babysitter',
-        'backbone.localStorage' : 'vendor/backbone.localstorage/backbone.localStorage',
         'backbone.modelBinder'  : 'vendor/backbone.modelbinder/Backbone.ModelBinder',
         'backbone.validation'   : 'vendor/backbone-validation/dist/backbone-validation-amd',
 

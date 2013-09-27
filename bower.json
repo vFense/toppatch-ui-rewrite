@@ -11,7 +11,6 @@
     "backbone": "~1.0.0",
     "backbone-validation": "~0.8.1",
     "backbone.babysitter": "~0.0.6",
-    "backbone.localStorage": "~1.1.6",
     "Backbone.ModelBinder": "~1.0.4",
     "bootstrap": "~3.0.0",
     "font-awesome": "~3.2.1",
