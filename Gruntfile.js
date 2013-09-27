@@ -67,6 +67,13 @@ module.exports = function(grunt) {
                     protocol: 'http',
                     open: true
                 }
+            },
+            test: {
+                options: {
+                    base: '<%= meta.app %>',
+                    hostname: 'localhost',
+                    port: '8001'
+                }
             }
         },
         copy: {
@@ -173,12 +180,18 @@ module.exports = function(grunt) {
             options: {
                 timeout: '8100',
                 coverage: {
-                    src: ['<%= meta.app %>core/js/**/*.js', '!<%= meta.app%>core/js/template/**'],
+                    src: ['/core/js/**/*.js'],
                     instrumentedFiles: 'report/temp/',
                     htmlReport: 'report/'
                 }
             },
-            all: ['<%= meta.app %>core/tests/*.html']
+            all: {
+                options: {
+                    urls: [
+                        'http://localhost:8001/core/tests/index.html'
+                    ]
+                }
+            }
         },
         requirejs: {
             options: {
@@ -270,8 +283,8 @@ module.exports = function(grunt) {
     });
 
     grunt.registerTask('default', ['test', 'clean:dist', 'copy:dist', 'templates', 'concurrent:dist', 'concat']);
-    grunt.registerTask('dev', ['clean:app', 'copy:dev', 'concurrent:dev', 'connect', 'watch']);
+    grunt.registerTask('dev', ['clean:app', 'copy:dev', 'concurrent:dev', 'connect:server', 'watch']);
     grunt.registerTask('docs', ['yuidoc', 'copy:docs']);
     grunt.registerTask('templates', ['clean:temp', 'htmlmin:templates', 'handlebars:dev', 'uglify:templates', 'clean:temp']);
-    grunt.registerTask('test', ['jshint', 'qunit']);
+    grunt.registerTask('test', ['jshint', 'connect:test', 'qunit']);
 };
