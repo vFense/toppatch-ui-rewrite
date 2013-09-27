@@ -252,7 +252,7 @@ module.exports = function(grunt) {
                 tasks: ['less:application']
             },
             templates: {
-                files: ['<%= meta.app %>core/template/**/*.html'],
+                files: ['<%= meta.app %>core/template/hbs/**/*.hbs'],
                 tasks: ['templates']
             }
         },
