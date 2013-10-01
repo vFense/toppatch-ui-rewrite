@@ -12,7 +12,7 @@
     "backbone-validation": "~0.8.1",
     "backbone.babysitter": "~0.0.6",
     "backbone-fetch-cache": "~1.1.2",
-    "Backbone.ModelBinder": "~1.0.4",
+    "Backbone.ModelBinder": "~1.0.5",
     "bootstrap": "~3.0.0",
     "font-awesome": "~3.2.1",
     "handlebars.js": "~1.0.12",
