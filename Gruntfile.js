@@ -25,6 +25,7 @@ module.exports = function(grunt) {
         clean: {
             app: [
                 '<%= meta.app %>css',
+                '<%= meta.app %>core/template/**/*.js',
                 '<%= meta.app %>fonts'
             ],
             dist        : ['<%= meta.dist %>'],
