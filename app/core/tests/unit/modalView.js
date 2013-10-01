@@ -1,16 +1,16 @@
 $(document).ready(function () {
     'use strict';
-    module('DialogView');
+    module('ModalView');
 
     asyncTest('Constructor', function () {
         require(
-            ['core/js/modal/dialogView'],
-            function (DialogView) {
+            ['core/js/modal/modalView'],
+            function (ModalView) {
                 var dialog;
 
                 // default constructor
-                dialog = new DialogView();
-                ok(dialog instanceof DialogView, 'Created default instance of DialogView');
+                dialog = new ModalView();
+                ok(dialog instanceof ModalView, 'Created default instance of ModalView');
                 strictEqual(dialog.className, 'modal', 'className is correct');
                 strictEqual(dialog.animate, true, 'animate is correct');
                 ok(dialog.$el.hasClass('fade'), 'Has class fade when animate is true');
@@ -18,12 +18,12 @@ $(document).ready(function () {
                 strictEqual(dialog.backdrop, true, 'backdrop is correct');
 
                 // constructor with options
-                dialog = new DialogView({
+                dialog = new ModalView({
                     animate: false,
                     keyboard: false,
                     backdrop: false
                 });
-                ok(dialog instanceof DialogView, 'Created instance of DialogView with options');
+                ok(dialog instanceof ModalView, 'Created instance of ModalView with options');
                 strictEqual(dialog.animate, false, 'animate is correct');
                 strictEqual(dialog.keyboard, false, 'keyboard is correct');
                 strictEqual(dialog.backdrop, false, 'backdrop is correct');
@@ -35,11 +35,11 @@ $(document).ready(function () {
 
     asyncTest('Events', function () {
         require(
-            ['core/js/modal/dialogView'],
-            function (DialogView) {
+            ['core/js/modal/modalView'],
+            function (ModalView) {
                 var dialog;
 
-                dialog = new DialogView({
+                dialog = new ModalView({
                     animate: false
                 });
                 var wrapped = {
@@ -61,11 +61,11 @@ $(document).ready(function () {
 
     asyncTest('isShown', function () {
         require(
-            ['core/js/modal/dialogView'],
-            function (DialogView) {
+            ['core/js/modal/modalView'],
+            function (ModalView) {
                 var dialog;
 
-                dialog = new DialogView({
+                dialog = new ModalView({
                     animate: false
                 });
 
@@ -85,11 +85,11 @@ $(document).ready(function () {
 
     asyncTest('Open', function () {
         require(
-            ['core/js/modal/dialogView'],
-            function (DialogView) {
+            ['core/js/modal/modalView'],
+            function (ModalView) {
                 var dialog;
 
-                dialog = new DialogView({
+                dialog = new ModalView({
                     animate: false
                 });
 
@@ -135,10 +135,10 @@ $(document).ready(function () {
 
     asyncTest('Hide', function () {
         require(
-            ['core/js/modal/dialogView'],
-            function (DialogView) {
+            ['core/js/modal/modalView'],
+            function (ModalView) {
                 var dialog;
-                dialog = new DialogView({
+                dialog = new ModalView({
                     animate: false
                 });
 
@@ -155,11 +155,11 @@ $(document).ready(function () {
 
     asyncTest('toggleAnimate', function () {
         require(
-            ['core/js/modal/dialogView'],
-            function (DialogView) {
+            ['core/js/modal/modalView'],
+            function (ModalView) {
                 var dialog;
 
-                dialog = new DialogView({
+                dialog = new ModalView({
                     animate: false
                 });
 
@@ -186,11 +186,11 @@ $(document).ready(function () {
 
     asyncTest('Close', function () {
         require(
-            ['core/js/modal/dialogView'],
-            function (DialogView) {
+            ['core/js/modal/modalView'],
+            function (ModalView) {
                 var dialog;
 
-                dialog = new DialogView({
+                dialog = new ModalView({
                     animate: false
                 });
                 var wrapped = {

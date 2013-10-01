@@ -1,13 +1,13 @@
 define(
-    ['core/js/modal/dialogView', 'core/template/modalAlert', 'core/js/control/button'],
-    function (DialogView, alertTemplate, Button) {
+    ['core/js/modal/modalView', 'core/template/modalAlert', 'core/js/control/button'],
+    function (ModalView, alertTemplate, Button) {
         'use strict';
 
         var ENTER = 13,
             ESCAPE = 27,
             AlertView;
 
-        AlertView = DialogView.extend(
+        AlertView = ModalView.extend(
             /************************
              * Prototype Properties *
              ************************/
@@ -44,7 +44,7 @@ define(
                         },
                         defaultKeys = _.keys(defaults);
                     _.defaults(this, _.pick(options || {}, defaultKeys), defaults);
-                    DialogView.prototype.constructor.apply(this, arguments);
+                    ModalView.prototype.constructor.apply(this, arguments);
                     return this;
                 },
 
@@ -66,7 +66,7 @@ define(
                  * @protected
                  */
                 attributes: function () {
-                    return _.extend({}, _.result(DialogView.prototype, 'attributes'), {
+                    return _.extend({}, _.result(ModalView.prototype, 'attributes'), {
                         'role': 'alertdialog'
                     });
                 },
@@ -89,7 +89,7 @@ define(
 
                 /**
                  * Listen for button clicks
-                 * Extends the DialogView events
+                 * Extends the ModalView events
                  * @attribute events
                  * @type Object|Function
                  * @default Object
@@ -98,7 +98,7 @@ define(
                 events: _.extend({
                     'click BUTTON:enabled': 'clickEventHandler',
                     'keyup': 'keyEventHandler'
-                }, _.result(DialogView.prototype, 'events')),
+                }, _.result(ModalView.prototype, 'events')),
 
                 /**
                  * Render this view
@@ -108,7 +108,7 @@ define(
                  */
                 render: function () {
                     // Render
-                    DialogView.prototype.render.apply(this, arguments);
+                    ModalView.prototype.render.apply(this, arguments);
 
                     // Post Render tasks
                     var $buttonArea = this.$('.modal-alert-buttons');
@@ -139,7 +139,7 @@ define(
                         throw new TypeError('Cannot open Alert: defButton is not an instance of Button');
                     }
                     this.result = null;
-                    return DialogView.prototype.open.apply(this, arguments);
+                    return ModalView.prototype.open.apply(this, arguments);
                 },
 
                 /**
@@ -157,7 +157,7 @@ define(
                         });
 
                         // Call the prototype close method
-                        DialogView.prototype.close.apply(this, arguments);
+                        ModalView.prototype.close.apply(this, arguments);
                     }
                     return this;
                 },
@@ -456,7 +456,7 @@ define(
                     }
                 }
             }
-        ); // End DialogView.extend
+        ); // End ModalView.extend
 
         return AlertView;
     }
