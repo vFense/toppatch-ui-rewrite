@@ -141,8 +141,7 @@ module.exports = function(grunt) {
             gruntfile: ['Gruntfile.js'],
             core: {
                 options: {
-                    jshintrc: '<%= meta.app %>core/js/.jshintrc',
-                    ignores: '<%= meta.app %>core/js/template/**/*.js'
+                    jshintrc: '<%= meta.app %>core/js/.jshintrc'
                 },
                 src: ['<%= meta.app %>core/js/**/*.js']
             },
