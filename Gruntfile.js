@@ -53,7 +53,7 @@ module.exports = function(grunt) {
             dist: [
                 'less:dist',
                 'imagemin:dist',
-                'uglify:dist',
+                'uglify:modernizr',
                 'requirejs:dist',
                 'targethtml:dist'
             ]
@@ -220,7 +220,7 @@ module.exports = function(grunt) {
             }
         },
         uglify: {
-            dist: {
+            modernizr: {
                 files: {
                     '<%= meta.dist %>js/modernizr.min.js': ['<%= meta.app %>vendor/modernizr/modernizr.js']
                 }
