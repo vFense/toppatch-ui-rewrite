@@ -153,9 +153,6 @@ module.exports = function(grunt) {
             }
         },
         less: {
-            options: {
-                report: 'min'
-            },
             application: {
                 files: {
                     '<%= meta.app %>css/application.css': ['<%= meta.app %>less/application.less']
