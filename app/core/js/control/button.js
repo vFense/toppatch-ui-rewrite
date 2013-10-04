@@ -41,10 +41,6 @@ define(function () {
             this.on('change:disabled', this._changeDisabled, this);
             this.on('change:returnValue', this._changeReturnValue, this);
 
-            // Make sure that when _completeAnimatedClick is called
-            // from a timeout, it has the correct `this` value
-            _.bindAll(this, '_completeAnimatedClick');
-
             return this;
         },
 
@@ -233,7 +229,7 @@ define(function () {
             if (!_.isNull(this._animatedClickTimeout)) {
                 clearTimeout(this._animatedClickTimeout);
             }
-            this._animatedClickTimeout = setTimeout(this._completeAnimatedClick, time);
+            this._animatedClickTimeout = setTimeout(_.bind(this._completeAnimatedClick, this), time);
             return this;
         },
 
