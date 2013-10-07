@@ -224,7 +224,10 @@ module.exports = function(grunt) {
                 options: { livereload: true }
             },
             javascript: {
-                files: ['<%= meta.app %>core/js/**/*.js'],
+                files: [
+                    '<%= meta.app %>core/js/**/*.js',
+                    '<%= meta.app %>core/template/*.js'
+                ],
                 options: { livereload: true }
             },
             less: {
