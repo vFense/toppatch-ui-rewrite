@@ -32,7 +32,7 @@ var requirejs = {
         'livestamp'             : 'vendor/livestampjs/livestamp',
         'moment'                : 'vendor/moment/moment',
         'select2'               : 'vendor/select2/select2',
-        'underscore'            : 'vendor/lodash/dist/lodash.underscore',
+        'underscore'            : 'vendor/lodash/dist/lodash',
 
         // Backbone Paths
         'backbone'              : 'vendor/backbone/backbone',
