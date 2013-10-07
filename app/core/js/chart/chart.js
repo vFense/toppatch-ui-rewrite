@@ -4,6 +4,12 @@ define(
         'use strict';
         var backboneViewOptions = ['model', 'collection', 'el', 'id', 'attributes', 'className', 'tagName', 'events'];
         return View.extend({
+            /**
+             * @attribute defaultOptions
+             * @type Object
+             * @default See source code
+             * @protected
+             */
             defaultOptions: {
                 chart:  { style: { width: '100%', height: '100%' } },
                 title:  { text: '' },
