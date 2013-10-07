@@ -31,9 +31,33 @@ define(
              * @chainable
              */
             render: function () {
-                _.result(this.chart, 'destroy');
+                this._destroyChart();
                 this.options.series = _.result(this.collection, 'toJSON');
                 this.chart = new Highcharts.Chart(this.options);
+                return this;
+            },
+            /**
+             * Make sure to destroy the chart before close.
+             * @method close
+             * @returns {*}
+             */
+            close: function () {
+                if (!this.isClosed) {
+                    this._destroyChart();
+                    View.prototype.close.apply(this, arguments);
+                }
+                return this;
+            },
+            /**
+             * Removes this.chart and purges memory.
+             * @method _destroyChart
+             * @chainable
+             * @private
+             */
+            _destroyChart: function () {
+                if (this.chart) {
+                    this.chart.destroy();
+                }
                 return this;
             }
         });
