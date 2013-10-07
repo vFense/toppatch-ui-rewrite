@@ -11,7 +11,7 @@ define(
              * @protected
              */
             defaultOptions: {
-                chart:  { style: { width: '100%', height: '100%' } },
+                chart:  {},
                 title:  { text: '' },
                 credits:{ enabled: false },
                 xAxis:  { showLastLabel: true },
