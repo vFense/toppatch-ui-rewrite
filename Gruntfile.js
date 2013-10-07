@@ -230,9 +230,9 @@ module.exports = function(grunt) {
                 files: ['<%= meta.app %>less/*.less'],
                 tasks: ['less:application']
             },
-            templates: {
+            hbs: {
                 files: ['<%= meta.app %>core/template/hbs/**/*.hbs'],
-                tasks: ['templates']
+                tasks: ['handlebars']
             }
         },
         yuidoc: {
