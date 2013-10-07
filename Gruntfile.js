@@ -39,7 +39,7 @@ module.exports = function(grunt) {
                 'copy:dev',
                 'less:application',
                 'less:bootstrap',
-                'templates'
+                'handlebars'
             ],
             dist: [
                 'copy:dist',
@@ -90,29 +90,25 @@ module.exports = function(grunt) {
         handlebars: {
             options: {
                 amd: true,
-                namespace: false
+                namespace: false,
+                processContent: function (content) {
+                    'use strict';
+                    var options = {
+                        removeComments: true,
+                        collapseWhitespace: true,
+                        collapseBooleanAttributes: true,
+                        removeRedundantAttributes: true,
+                        removeEmptyAttributes: true
+                    };
+                    return require('html-minifier').minify(content, options);
+                }
             },
             dev: {
                 expand: true,
-                cwd: '<%= meta.temp %>/template',
+                cwd: '<%= meta.app %>core/template/hbs/',
                 src: '**/*.hbs',
                 dest:'<%= meta.app %>/core/template/',
                 ext: '.js'
-            }
-        },
-        htmlmin: {
-            templates: {
-                options: {
-                    removeComments: true,
-                    collapseWhitespace: true,
-                    collapseBooleanAttributes: true,
-                    removeRedundantAttributes: true,
-                    removeEmptyAttributes: true
-                },
-                expand: true,
-                cwd: '<%= meta.app %>core/template/hbs/',
-                src: '**/*.hbs',
-                dest:'<%= meta.temp %>/template/'
             }
         },
         imagemin: {
@@ -257,6 +253,5 @@ module.exports = function(grunt) {
     grunt.registerTask('default', ['test', 'clean:dev', 'concurrent:dev', 'clean:dist', 'concurrent:dist', 'uglify:dist']);
     grunt.registerTask('dev', ['clean:dev', 'concurrent:dev', 'connect:server', 'watch']);
     grunt.registerTask('docs', ['yuidoc', 'copy:docs']);
-    grunt.registerTask('templates', ['clean:temp', 'htmlmin:templates', 'handlebars:dev', 'clean:temp']);
     grunt.registerTask('test', ['jshint', 'connect:test', 'qunit']);
 };
