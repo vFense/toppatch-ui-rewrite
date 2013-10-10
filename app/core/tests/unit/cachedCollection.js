@@ -29,7 +29,9 @@ $(document).ready(function () {
             var TestCollection = Collection.extend({
                     url: 'api/test.json'
                 }),
-                collection = new TestCollection();
+                collection = new TestCollection({
+                    expires: 0.01
+                });
 
             ok(collection.fetch({
                 success: function (collection) {
