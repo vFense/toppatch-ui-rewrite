@@ -5,7 +5,7 @@
  * @extends Backbone.View
  */
 define(
-    ['backbone.babysitter'],
+    [],
     function () {
         'use strict';
         return Backbone.View.extend({
