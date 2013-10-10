@@ -154,11 +154,6 @@ module.exports = function(grunt) {
         qunit: {
             options: {
                 timeout: '8100',
-                coverage: {
-                    src: ['/core/js/**/*.js'],
-                    instrumentedFiles: 'report/temp/',
-                    htmlReport: 'report/'
-                }
             },
             all: {
                 options: {
