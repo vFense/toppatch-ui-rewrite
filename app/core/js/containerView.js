@@ -130,11 +130,9 @@ define(
              * @returns {this}
              */
             closeChildViews: function () {
-                if (this.children instanceof Backbone.ChildViewContainer) {
-                    this.children.each(function(child){
-                        this.closeChildView(child);
-                    }, this);
-                }
+                this.children.each(function(child){
+                    this.closeChildView(child);
+                }, this);
                 return this;
             }
         });
