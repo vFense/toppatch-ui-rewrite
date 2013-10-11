@@ -9,6 +9,12 @@ define(
     function (View) {
         'use strict';
         return View.extend({
+            constructor: function () {
+                View.prototype.constructor.apply(this, arguments);
+                this._initChildServices();
+                return this;
+            },
+
             /**
              * Override clean method to close all child views
              * @method clean
