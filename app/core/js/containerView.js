@@ -43,28 +43,20 @@ define(
                 return this;
             },
 
-            //TODO: This method prevents us from using custom babysitting indexes, refactor?
             /**
-             * Register a chile view with the babysitter
+             * Register a single child view
              * @method registerChildView
-             * @param views* {Backbone.View}
-             * @chainable
-             * @returns {this}
+             * @param view {Backbone.View} A backbone.view to track as a child of this view.
+             * @param [name] {String} A name to reference the child by.
+             * @returns {*}
              */
-            registerChildView: function () {
-                var that = this,
-                    args = _.filter(arguments, function(arg) {
-                        // Filter out any instances of "this" view
-                        // Filter out any objects that are not an instance of Backbone.View
-                        return arg !== that && arg instanceof Backbone.View;
-                    });
-                // Continue if there are any unfiltered arguments
-                if (args.length > 0) {
-                    this._initChildServices();
-                    _.each(args, function (child) {
-                        // See backbone.babysitter.js
-                        this.children.add(child);
-                    }, this);
+            registerChildView: function (view, name) {
+                if (view !== this && view instanceof Backbone.View) {
+                    this.children.add(view, name);
+                }
+                return this;
+            },
+             */
                 }
                 return this;
             },
