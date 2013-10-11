@@ -117,6 +117,8 @@ define(
                     }
 
                     this.children.remove(view);
+                } else if (_.isString(view)) {
+                    this.closeChildView(this.children.findByCid(view) || this.children.findByCustom(view));
                 }
                 return this;
             },
