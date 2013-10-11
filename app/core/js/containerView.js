@@ -79,6 +79,26 @@ define(
             },
 
             /**
+             * Get a child view by its CID
+             * @method getChildByCID
+             * @param cid {string}
+             * @returns {Backbone.View}
+             */
+            getChildByCID: function (cid) {
+                return this.children.findByCid(cid);
+            },
+
+            /**
+             * Get a child view by name
+             * @method getChildByName
+             * @param name {string}
+             * @returns {Backbone.View}
+             */
+            getChildByName: function (name) {
+                return this.children.findByCustom(name);
+            },
+
+            /**
              * Close a child view
              * @method closeChildView
              * @param view {Backbone.View}
