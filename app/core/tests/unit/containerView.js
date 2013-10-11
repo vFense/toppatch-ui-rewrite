@@ -1,6 +1,6 @@
 $(document).ready(function () {
     'use strict';
-    module('ParentView', {
+    module('ContainerView', {
         setup: function () {
             this.invalidTypes = function () {
                 return {
@@ -20,17 +20,17 @@ $(document).ready(function () {
         }
     });
     asyncTest('new base_view()', function () {
-        require(['core/js/parentView'], function(ParentView) {
+        require(['core/js/containerView'], function(ContainerView) {
             ok(true, 'Attempt new view()');
-            var view = new ParentView();
+            var view = new ContainerView();
             ok(_.isUndefined(view.children), 'view.children is undefined');
 
             start();
         });
     });
     asyncTest('_initChildServices', function () {
-        require(['core/js/parentView'], function(ParentView) {
-            var view = new ParentView(),
+        require(['core/js/containerView'], function(ContainerView) {
+            var view = new ContainerView(),
                 result;
 
             ok(true, 'Attempt view._initChildServices()');
@@ -42,8 +42,8 @@ $(document).ready(function () {
         });
     });
     asyncTest('registerChildView() [no arguments]', function () {
-        require(['core/js/parentView'], function(ParentView) {
-            var view = new ParentView(),
+        require(['core/js/containerView'], function(ContainerView) {
+            var view = new ContainerView(),
                 result;
 
             // registerChildView with no args
@@ -57,8 +57,8 @@ $(document).ready(function () {
     });
     asyncTest('registerChildView() [invalid type]', function () {
         var that = this;
-        require(['core/js/parentView'], function(ParentView) {
-            var view = new ParentView(),
+        require(['core/js/containerView'], function(ContainerView) {
+            var view = new ContainerView(),
                 invalidTypes = that.invalidTypes();
 
             _.each(invalidTypes, function (value, key) {
@@ -73,8 +73,8 @@ $(document).ready(function () {
     });
     asyncTest('registerChildView() [multiple invalid types at once]', function () {
         var that = this;
-        require(['core/js/parentView'], function(ParentView) {
-            var view = new ParentView(),
+        require(['core/js/containerView'], function(ContainerView) {
+            var view = new ContainerView(),
                 invalidTypes = that.invalidTypes(),
                 result;
 
@@ -87,8 +87,8 @@ $(document).ready(function () {
         });
     });
     asyncTest('registerChildView() [reference to itself]', function () {
-        require(['core/js/parentView'], function(ParentView) {
-            var view = new ParentView(),
+        require(['core/js/containerView'], function(ContainerView) {
+            var view = new ContainerView(),
                 result;
 
             ok(true, 'Attempt view.registerChildView() with view as an argument');
@@ -100,10 +100,10 @@ $(document).ready(function () {
         });
     });
     asyncTest('registerChildView() [new Backbone.View and new base_view]', function () {
-        require(['core/js/parentView'], function(ParentView) {
-            var view = new ParentView(),
+        require(['core/js/containerView'], function(ContainerView) {
+            var view = new ContainerView(),
                 newBackboneView = new Backbone.View(),
-                newParentView = new ParentView(),
+                newContainerView = new ContainerView(),
                 result;
 
             // registerChild test
@@ -115,16 +115,16 @@ $(document).ready(function () {
             strictEqual(view.children.findByCid(newBackboneView.cid), newBackboneView, 'newBackboneView is in view.children');
 
             ok(true, 'Attempt view.registerChildView() with a new base_view');
-            result = view.registerChildView(newParentView);
+            result = view.registerChildView(newContainerView);
             strictEqual(result, view, 'Returned this');
             strictEqual(view.children.length, 2, 'view has 2 children');
-            strictEqual(view.children.findByCid(newParentView.cid), newParentView, 'newParentView is in view.children');
+            strictEqual(view.children.findByCid(newContainerView.cid), newContainerView, 'newContainerView is in view.children');
             start();
         });
     });
     asyncTest('registerChildView() [multiple Backbone.Views at once]', function () {
-        require(['core/js/parentView'], function(ParentView) {
-            var view = new ParentView(),
+        require(['core/js/containerView'], function(ContainerView) {
+            var view = new ContainerView(),
                 result;
 
             ok(true, 'Attempt view.registerChildView() with multiple new Backbone.View');
@@ -137,8 +137,8 @@ $(document).ready(function () {
     });
     asyncTest('closeChildView() [invalid arguments]', function () {
         var that = this;
-        require(['core/js/parentView'], function(ParentView) {
-            var view = new ParentView(),
+        require(['core/js/containerView'], function(ContainerView) {
+            var view = new ContainerView(),
                 invalidTypes = that.invalidTypes();
 
             view.registerChildView(new Backbone.View(), new Backbone.View(), new Backbone.View());
@@ -154,10 +154,10 @@ $(document).ready(function () {
         });
     });
     asyncTest('closeChildView()', function () {
-        require(['core/js/parentView'], function(ParentView) {
-            var view = new ParentView(),
+        require(['core/js/containerView'], function(ContainerView) {
+            var view = new ContainerView(),
                 childView1 = new Backbone.View(),
-                childView2 = new ParentView(),
+                childView2 = new ContainerView(),
                 result;
 
             view.registerChildView(childView1, childView2);
@@ -177,10 +177,10 @@ $(document).ready(function () {
         });
     });
     asyncTest('closeChildViews()', function () {
-        require(['core/js/parentView'], function(ParentView) {
-            var view = new ParentView(),
+        require(['core/js/containerView'], function(ContainerView) {
+            var view = new ContainerView(),
                 childView1 = new Backbone.View(),
-                childView2 = new ParentView(),
+                childView2 = new ContainerView(),
                 result;
 
             view.registerChildView(childView1, childView2);
@@ -195,28 +195,28 @@ $(document).ready(function () {
         });
     });
     asyncTest('clean()', function () {
-        require(['core/js/parentView'], function(ParentView) {
-            var parentView = new ParentView(),
-                childView = new ParentView();
+        require(['core/js/containerView'], function(ContainerView) {
+            var containerView = new ContainerView(),
+                childView = new ContainerView();
 
-            parentView.$el.html('test');
-            parentView.registerChildView(childView);
+            containerView.$el.html('test');
+            containerView.registerChildView(childView);
 
             // All we care about here is that the child views were closed,
             // and that the html was emptied
-            parentView.clean();
+            containerView.clean();
 
-            strictEqual(parentView.children.length, 0, 'view has 0 children');
-            strictEqual(parentView.$el.html(), '', 'clean() emptied its element html');
+            strictEqual(containerView.children.length, 0, 'view has 0 children');
+            strictEqual(containerView.$el.html(), '', 'clean() emptied its element html');
 
             start();
         });
     });
     asyncTest('close() [Many child views]', function () {
-        require(['core/js/parentView'], function(ParentView) {
-            var mainView = new ParentView(),
-                childView1 = new ParentView(),
-                childView2 = new ParentView();
+        require(['core/js/containerView'], function(ContainerView) {
+            var mainView = new ContainerView(),
+                childView1 = new ContainerView(),
+                childView2 = new ContainerView();
 
             mainView.registerChildView(childView1);
             mainView.registerChildView(childView2);
@@ -230,10 +230,10 @@ $(document).ready(function () {
         });
     });
     asyncTest('close() [Child has child]', function () {
-        require(['core/js/parentView'], function(ParentView) {
-            var mainView = new ParentView(),
-                childView1 = new ParentView(),
-                childView2 = new ParentView();
+        require(['core/js/containerView'], function(ContainerView) {
+            var mainView = new ContainerView(),
+                childView1 = new ContainerView(),
+                childView2 = new ContainerView();
 
             mainView.registerChildView(childView1);
             childView1.registerChildView(childView2);
@@ -247,9 +247,9 @@ $(document).ready(function () {
         });
     });
     asyncTest('close() [Circular reference]', function () {
-        require(['core/js/parentView'], function(ParentView) {
-            var mainView = new ParentView(),
-                childView = new ParentView(),
+        require(['core/js/containerView'], function(ContainerView) {
+            var mainView = new ContainerView(),
+                childView = new ContainerView(),
                 callCount = 0;
 
             // mainView.close should be called twice.
