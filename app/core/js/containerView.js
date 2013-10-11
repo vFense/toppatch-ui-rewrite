@@ -56,8 +56,25 @@ define(
                 }
                 return this;
             },
+
+            /**
+             * Register multiple childViews
+             * @method registerChildViews
+             * @param views A group of views to track.
+             *        The group can be passed as an Array, an Object, or multiple arguments
+             * @returns {*}
              */
+            registerChildViews: function (views) {
+                if (views instanceof Backbone.View) {
+                    views = _.toArray(arguments);
                 }
+
+                var isObject = _.isObject(views);
+
+                _.each(views, function (view, key) {
+                    this.registerChildView(view, isObject && key);
+                }, this);
+
                 return this;
             },
 
