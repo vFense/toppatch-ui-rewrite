@@ -28,10 +28,6 @@ define(
                 return this;
             },
 
-            // Child sitting services
-            // Heavily inspired by Backbone.Marionette.collectionView
-            // ------------------------------------------------------------------------
-
             /**
              * Create a new instance of Backbone.ChildViewContainer if it does not already exist
              * @method _initChildServices
