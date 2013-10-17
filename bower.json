@@ -9,7 +9,7 @@
   "dependencies": {
     "almond": "~0.2.6",
     "backbone": "~1.1.0",
-    "backbone-validation": "~0.8.1",
+    "backbone-validation": "~0.8.2",
     "backbone.babysitter": "~0.0.6",
     "backbone-fetch-cache": "~1.1.2",
     "Backbone.ModelBinder": "~1.0.5",
