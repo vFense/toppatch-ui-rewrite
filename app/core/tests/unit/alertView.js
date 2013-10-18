@@ -183,7 +183,7 @@ $(document).ready(function () {
                 var $el = alertView.render().$el,
                     $message = $el.find('.modal-alert-message'),
                     $information = $el.find('.modal-alert-information'),
-                    $buttons = $el.find('.modal-alert-buttons > .btn');
+                    $buttons = $el.find('.modal-footer > .btn');
 
 
                 strictEqual($message.text(), message, 'Message was rendered correctly');

@@ -111,7 +111,7 @@ define(
                     ModalView.prototype.render.apply(this, arguments);
 
                     // Post Render tasks
-                    var $buttonArea = this.$('.modal-alert-buttons');
+                    var $buttonArea = this.$('.modal-footer');
 
                     // The following logic assumes that this.buttons()
                     // always returns the buttons in the correct order:
