@@ -17,6 +17,7 @@
     "font-awesome": "~3.2.1",
     "handlebars.js": "~1.0.12",
     "highcharts-components": "~3.0.6",
+    "highstock-components": "~1.3.6",
     "jquery": "~2.0.3",
     "jquery-ui": "~1.10.3",
     "livestampjs": "~1.1.2",
