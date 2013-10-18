@@ -22,20 +22,19 @@
     .modal-alert-information {
         text-align: center;
     }
-    .modal-alert-buttons {
+    .modal-footer {
         > .btn {
             display: block;
-            width: 100%;
-            padding-left: 0;
-            padding-right: 0;
-            margin-left: 0;
+            min-width: 100%;
+            margin: 0;
 
             + .btn {
+                margin: 5px 0 0 0;
                 margin-top: 5px;
             }
 
             + .btn:last-child {
-                margin-top: 10px;
+                margin: 10px 0 0 0;
             }
         }
     }
@@ -43,12 +42,11 @@
 
 // Tablet width and up
 @media (min-width: @screen-sm) {
-    .modal-alert-buttons {
-        text-align: right;
+    .modal-footer {
         > .btn {
             min-width: 72px;
             + .btn {
-                margin-left: 12px;
+                margin-left: 5px;
             }
         }
     }
