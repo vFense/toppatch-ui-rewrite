@@ -4,11 +4,33 @@ define(
         'use strict';
         return ModalView.extend({
             template: template,
+            templateForm: null,
             events: _.extend({
                 'click .reset': 'reset',
                 'click .submit': 'submit',
                 'keyup': 'keyEventHandler'
             }, _.result(ModalView.prototype, 'events')),
+            render: function () {
+                this.isClosed = false;
+
+                // Render the modal template
+                if (_.isFunction(this.template)) {
+                    this.$el.html(this.template());
+                } else {
+                    var error = new TypeError('Template is not a function');
+                    error.name = 'TemplateNotFunction';
+                    throw error;
+                }
+
+                // render the form template
+                if (_.isFunction(this.templateForm)) {
+                    var data = this.getData(),
+                        html = this.templateForm(data);
+                    this.$('form').html(html);
+                }
+
+                return this;
+            },
             reset: function (event) {
                 if (_.isObject(event)) { event.preventDefault(); }
                 this.$('form')[0].reset();
