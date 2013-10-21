@@ -61,7 +61,7 @@ define(
              * @private
              */
             _destroyChart: function () {
-                if (this.chart) {
+                if (_.isObject(this.chart) && _.isFunction(this.chart.destroy)) {
                     this.chart.destroy();
                 }
                 return this;
