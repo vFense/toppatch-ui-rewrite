@@ -9,6 +9,12 @@ define(
     function (View) {
         'use strict';
         return View.extend({
+            constructor: function () {
+                View.prototype.constructor.apply(this, arguments);
+                this._initChildServices();
+                return this;
+            },
+
             /**
              * Override clean method to close all child views
              * @method clean
@@ -21,10 +27,6 @@ define(
                     .$el.empty();
                 return this;
             },
-
-            // Child sitting services
-            // Heavily inspired by Backbone.Marionette.collectionView
-            // ------------------------------------------------------------------------
 
             /**
              * Create a new instance of Backbone.ChildViewContainer if it does not already exist
@@ -41,30 +43,59 @@ define(
                 return this;
             },
 
-            //TODO: This method prevents us from using custom babysitting indexes, refactor?
             /**
-             * Register a chile view with the babysitter
+             * Register a single child view
              * @method registerChildView
-             * @param views* {Backbone.View}
-             * @chainable
-             * @returns {this}
+             * @param view {Backbone.View} A backbone.view to track as a child of this view.
+             * @param [name] {String} A name to reference the child by.
+             * @returns {*}
              */
-            registerChildView: function () {
-                var that = this,
-                    args = _.filter(arguments, function(arg) {
-                        // Filter out any instances of "this" view
-                        // Filter out any objects that are not an instance of Backbone.View
-                        return arg !== that && arg instanceof Backbone.View;
-                    });
-                // Continue if there are any unfiltered arguments
-                if (args.length > 0) {
-                    this._initChildServices();
-                    _.each(args, function (child) {
-                        // See backbone.babysitter.js
-                        this.children.add(child);
-                    }, this);
+            registerChildView: function (view, name) {
+                if (view !== this && view instanceof Backbone.View) {
+                    this.children.add(view, name);
                 }
                 return this;
+            },
+
+            /**
+             * Register multiple childViews
+             * @method registerChildViews
+             * @param views A group of views to track.
+             *        The group can be passed as an Array, an Object, or multiple arguments
+             * @returns {*}
+             */
+            registerChildViews: function (views) {
+                if (views instanceof Backbone.View) {
+                    views = _.toArray(arguments);
+                }
+
+                var isObject = _.isObject(views);
+
+                _.each(views, function (view, key) {
+                    this.registerChildView(view, isObject && key);
+                }, this);
+
+                return this;
+            },
+
+            /**
+             * Get a child view by its CID
+             * @method getChildByCID
+             * @param cid {string}
+             * @returns {Backbone.View}
+             */
+            getChildByCID: function (cid) {
+                return this.children.findByCid(cid);
+            },
+
+            /**
+             * Get a child view by name
+             * @method getChildByName
+             * @param name {string}
+             * @returns {Backbone.View}
+             */
+            getChildByName: function (name) {
+                return this.children.findByCustom(name);
             },
 
             /**
@@ -86,6 +117,8 @@ define(
                     }
 
                     this.children.remove(view);
+                } else if (_.isString(view)) {
+                    this.closeChildView(this.children.findByCid(view) || this.children.findByCustom(view));
                 }
                 return this;
             },
@@ -97,11 +130,9 @@ define(
              * @returns {this}
              */
             closeChildViews: function () {
-                if (this.children instanceof Backbone.ChildViewContainer) {
-                    this.children.each(function(child){
-                        this.closeChildView(child);
-                    }, this);
-                }
+                this.children.each(function(child){
+                    this.closeChildView(child);
+                }, this);
                 return this;
             }
         });

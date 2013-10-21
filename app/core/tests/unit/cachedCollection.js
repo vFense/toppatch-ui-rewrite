@@ -27,9 +27,11 @@ $(document).ready(function () {
     asyncTest('Fetch and parse', function () {
         require(['core/js/cachedCollection'], function(Collection) {
             var TestCollection = Collection.extend({
-                    url: '/core/tests/api/test.json'
+                    url: 'api/test.json'
                 }),
-                collection = new TestCollection();
+                collection = new TestCollection({
+                    expires: 0.01
+                });
 
             ok(collection.fetch({
                 success: function (collection) {

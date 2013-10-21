@@ -111,7 +111,7 @@ define(
                     ModalView.prototype.render.apply(this, arguments);
 
                     // Post Render tasks
-                    var $buttonArea = this.$('.modal-alert-buttons');
+                    var $buttonArea = this.$('.modal-footer');
 
                     // The following logic assumes that this.buttons()
                     // always returns the buttons in the correct order:
@@ -257,10 +257,14 @@ define(
                  */
                 keyEventHandler: function (event) {
                     // Run each button's performKeyEquivalent
-                    // Funky things will happen if there is more than one matching button
                     _.each(this.buttons(), function (button) {
+                        var keyMatched = false;
                         if (!_.isNull(button)) {
-                            button.performKeyEquivalent(event, this.animate);
+                            keyMatched = button.performKeyEquivalent(event, this.animate);
+                        }
+                        // If the event has been handled, break out of the `each` loop
+                        if (keyMatched === true) {
+                            return false;
                         }
                     }, this);
 

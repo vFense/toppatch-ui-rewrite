@@ -13,21 +13,23 @@
         libs.$ = $;
         libs._ = _.noConflict();
         libs.Backbone = Backbone.noConflict();
-
         // Requirejs currently has a maximum load time of 7 seconds.
         // Give an extra second for padding.
         // No single test should ever take longer than 8 seconds.
         QUnit.config.testTimeout = 8000;
+        QUnit.config.autoStart = false;
     </script>
 
     <!-- load requirejs configuration -->
-    <script src="../../core/js/config.js"></script>
+    <script src="../js/config.js"></script>
     <script>
         requirejs.baseUrl = '../../';
         requirejsPaths = requirejs.paths;
         requirejsShims = requirejs.shim;
     </script>
     <script src="../../vendor/requirejs/require.js"></script>
+    <script src="../../vendor/blanket/dist/qunit/blanket.js" data-cover-only="//core/js/"></script>
+    <script>QUnit.start();</script>
 
     <!-- Configuration Tests -->
     <script src="unit/config.js"></script>
@@ -47,7 +49,7 @@
 
     <!-- Views -->
     <script src="unit/view.js"></script>
-    <script src="unit/parentView.js"></script>
+    <script src="unit/containerView.js"></script>
     <script src="unit/templateView.js"></script>
     <script src="unit/loaderView.js"></script>
     <script src="unit/layoutView.js"></script>

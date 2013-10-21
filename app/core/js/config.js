@@ -25,8 +25,8 @@ var requirejs = {
 
         // Vendor Library Paths
         'handlebars'            : 'vendor/handlebars.js/dist/handlebars.runtime',
-        'highcharts'            : 'vendor/highcharts-components/highcharts.src',
-        'highcharts-more'       : 'vendor/highcharts-components/highcharts-more.src',
+        'highcharts'            : 'vendor/highstock-components/highstock.src',
+        'highcharts-more'       : 'vendor/highstock-components/highcharts-more.src',
         'jquery'                : 'vendor/jquery/jquery',
         'jquery.simulate'       : 'vendor/jquery-simulate/jquery.simulate',
         'livestamp'             : 'vendor/livestampjs/livestamp',
