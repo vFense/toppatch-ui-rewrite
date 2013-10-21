@@ -59,8 +59,13 @@ $(document).ready(function () {
             ok(true, 'Attempt view.registerChildViews() with multiple new Backbone.Views');
             result = view.registerChildViews([new Backbone.View(), new Backbone.View(), new Backbone.View()]);
             strictEqual(result, view, 'Returned this');
+
+            ok(true, 'Attempt view.registerChildViews() to register a view not passed as an array.');
+            result = view.registerChildViews(new Backbone.View());
+            strictEqual(result, view, 'Returned this');
+
             ok(!_.isUndefined(view.children), 'view.children is defined');
-            strictEqual(view.children.length, 3, 'view has 3 children');
+            strictEqual(view.children.length, 4, 'view has 4 children');
             start();
         });
     });
@@ -69,21 +74,28 @@ $(document).ready(function () {
             var view = new ContainerView(),
                 childView1 = new Backbone.View(),
                 childView2 = new ContainerView(),
+                childView3 = new Backbone.View(),
                 result;
 
             view.registerChildViews([childView1, childView2]);
-            strictEqual(view.children.length, 2, 'Start with a view that has 2 children');
+            view.registerChildView(childView3, 'testView');
+            strictEqual(view.children.length, 3, 'Start with a view that has 3 children');
+
 
             ok(true, 'Attempt view.closeChildView() with childView1 reference');
             result = view.closeChildView(childView1);
             strictEqual(result, view, 'Returned this');
-            strictEqual(view.children.length, 1, 'view has 1 children');
+            strictEqual(view.children.length, 2, 'view has 2 children');
 
             ok(true, 'Attempt view.closeChildView() with childView2 reference');
             result = view.closeChildView(childView2);
             strictEqual(result, view, 'Returned this');
-            strictEqual(view.children.length, 0, 'view has 0 child');
+            strictEqual(view.children.length, 1, 'view has 1 child');
 
+            ok(true, 'Attempt view.closeChildView() with childView3 reference');
+            result = view.closeChildView('testView');
+            strictEqual(result, view, 'Returned this');
+            strictEqual(view.children.length, 0, 'view has 0 child');
             start();
         });
     });
@@ -196,4 +208,29 @@ $(document).ready(function () {
     });
     //Note: In the case of a circular reference, calling closeChildViews will close
     //      the parent view, since a chile has a reference to the parent
+    asyncTest('getChildByName()', function () {
+        require(['core/js/containerView'], function (ContainerView) {
+            var view = new ContainerView(),
+                childView = new Backbone.View(),
+                result;
+            view.registerChildView(childView, 'testView');
+            result = view.getChildByName('testView');
+            strictEqual(result, childView, 'getChildByName() returns the right view');
+
+            start();
+        });
+    });
+    asyncTest('getChildByCID()', function () {
+        require(['core/js/containerView'], function (ContainerView) {
+            var view = new ContainerView(),
+                childView = new Backbone.View(),
+                cid = childView.cid,
+                result;
+            view.registerChildView(childView);
+            result = view.getChildByCID(cid);
+            strictEqual(result, childView, 'getChildByCID() returns the right view');
+
+            start();
+        });
+    });
 });
