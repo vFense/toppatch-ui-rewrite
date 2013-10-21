@@ -24,8 +24,8 @@ define(
              * @chainable
              */
             initialize: function (options) {
-                this.options = _.merge({}, this.defaultOptions, _.omit(options, backboneViewOptions));
-                this.options.chart.renderTo = this.el;
+                this.chartOptions = _.merge({}, this.defaultOptions, _.omit(options, backboneViewOptions));
+                this.chartOptions.chart.renderTo = this.el;
                 return this;
             },
             /**
@@ -38,8 +38,8 @@ define(
              */
             render: function () {
                 this._destroyChart();
-                this.options.series = _.result(this.collection, 'toJSON');
-                this.chart = new Highcharts.Chart(this.options);
+                this.chartOptions.series = _.result(this.collection, 'toJSON');
+                this.chart = new Highcharts.Chart(this.chartOptions);
                 return this;
             },
             /**
