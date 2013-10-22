@@ -2,42 +2,113 @@ $(document).ready(function () {
     'use strict';
     module('FormView', {
         setup: function () {
-            this.testTemplate = '<input type="text" name="test"/>';
+            var suite = this;
+            require(['core/template/modalForm'], function (TemplateForm) {
+                suite.testTemplate = TemplateForm;
+                suite.testInput = $('<input>').attr({type: 'text', name: 'test'});
+                suite.testSelect = $('<select></select>')
+                    .attr({name: 'select'})
+                    .append($('<option></option>').val('default'));
+            });
         }
     });
-
-    asyncTest('Constructor', function () {
+    asyncTest('Form Reset', function () {
         var suite = this;
         require(
             ['core/js/modal/formView'],
             function (FormView) {
-                var formView;
-                //default constructor
-                formView = new FormView();
-                ok(formView instanceof FormView, 'Created default instance of FormView');
-                ok(_.isFunction(formView.template), 'FormView template is a function');
-                ok(_.isNull(formView.templateForm), 'FormView templateForm is initialized as null');
+                var testValue = 'test',
+                    formView = new FormView({
+                        template: suite.testTemplate
+                    }),
+                    $el = formView.render().$el,
+                    $form = $el.find('form'),
+                    $input = $form.append(suite.testInput.val(testValue)).find('input');
+                ok(formView instanceof FormView, 'Created instance of FormView');
+                strictEqual($input.val(), testValue, 'Test input contains value test');
+                strictEqual(formView.reset(), formView, 'formView.reset returns formView');
+                ok(_.isEmpty($input.val()), 'Input is reset');
+                start();
+            }
+        )
+    });
 
-                //constructor with options
-                formView = new FormView({
-                    templateForm: _.template(suite.testTemplate)
+    asyncTest('clickEventHandler', function () {
+        var suite = this;
+        require(
+            ['core/js/modal/formView', 'jquery.simulate'],
+            function (FormView) {
+                var formView, calls = 0;
+
+                FormView = FormView.extend({
+                    submit: function (event) {
+                        calls += 1;
+                        this.hide();
+                    }
                 });
-                ok(formView instanceof FormView, 'Created instance of FormView with options');
-                ok(_.isFunction(formView.templateForm), 'FormView templateForm is a function');
+                formView = new FormView({
+                    template: suite.testTemplate
+                });
+
+                formView.open();
+                ok(formView.$el.simulate('keyup', { keyCode: $.simulate.keyCode.ENTER }), 'Simulate enter key event');
+                strictEqual(calls, 1, 'Submit function is called');
+
                 start();
             }
         );
     });
 
-    asyncTest('Render empty form', function () {
+    asyncTest('Submit Form', function () {
+        var suite = this;
         require(
             ['core/js/modal/formView'],
             function (FormView) {
-                var formView = new FormView(),
-                    $el = formView.render().$el;
-                console.log($el[0]);
+                var formView, calls = 0;
+
+                formView = new FormView({
+                    template: suite.testTemplate
+                });
+                formView.on('submit', function () {
+                    calls += 1;
+                });
+                formView.open().submit();
+                strictEqual(calls, 1, 'Submit event is triggered');
+                strictEqual(formView.isShown(), false, 'Modal closed after event');
+
                 start();
             }
-        )
+        );
     });
+
+    asyncTest('Serialize Form', function () {
+        var suite = this;
+        require(
+            ['core/js/modal/formView'],
+            function (FormView) {
+                var testObject = {
+                        test: ['test', 'testTwo', 'testThree'],
+                        select: 'default'
+                    },
+                    formView = new FormView({
+                        template: suite.testTemplate
+                    }),
+                    $el = formView.render().$el,
+                    result;
+                $el.find('form').append(
+                    suite.testInput.val('test'),
+                    suite.testInput.clone().val('testTwo'),
+                    suite.testInput.clone().val('testThree'),
+                    suite.testSelect
+                );
+                formView.on('submit', function (output) {
+                    result = output;
+                });
+                formView.open().submit();
+                deepEqual(result, testObject, 'Form serialized correctly');
+                start();
+            }
+        );
+    });
+
 });
