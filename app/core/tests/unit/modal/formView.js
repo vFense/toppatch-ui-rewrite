@@ -26,18 +26,17 @@ $(document).ready(function () {
                 ok(_.isEmpty($input.val()), 'Input is reset');
                 start();
             }
-        )
+        );
     });
 
     asyncTest('clickEventHandler', function () {
-        var suite = this;
         require(
             ['core/js/modal/formView', 'core/template/modalForm', 'jquery.simulate'],
             function (FormView, FormTemplate) {
                 var formView, calls = 0;
 
                 FormView = FormView.extend({
-                    submit: function (event) {
+                    submit: function () {
                         calls += 1;
                         this.hide();
                     }
@@ -56,7 +55,6 @@ $(document).ready(function () {
     });
 
     asyncTest('Submit Form', function () {
-        var suite = this;
         require(
             ['core/js/modal/formView', 'core/template/modalForm'],
             function (FormView, FormTemplate) {
