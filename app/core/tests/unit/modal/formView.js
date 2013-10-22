@@ -2,24 +2,20 @@ $(document).ready(function () {
     'use strict';
     module('FormView', {
         setup: function () {
-            var suite = this;
-            require(['core/template/modalForm'], function (TemplateForm) {
-                suite.testTemplate = TemplateForm;
-                suite.testInput = $('<input>').attr({type: 'text', name: 'test'});
-                suite.testSelect = $('<select></select>')
-                    .attr({name: 'select'})
-                    .append($('<option></option>').val('default'));
-            });
+            this.testInput = $('<input>').attr({type: 'text', name: 'test'});
+            this.testSelect = $('<select></select>')
+                .attr({name: 'select'})
+                .append($('<option></option>').val('default'));
         }
     });
     asyncTest('Form Reset', function () {
         var suite = this;
         require(
-            ['core/js/modal/formView'],
-            function (FormView) {
+            ['core/js/modal/formView', 'core/template/modalForm'],
+            function (FormView, FormTemplate) {
                 var testValue = 'test',
                     formView = new FormView({
-                        template: suite.testTemplate
+                        template: FormTemplate
                     }),
                     $el = formView.render().$el,
                     $form = $el.find('form'),
@@ -36,8 +32,8 @@ $(document).ready(function () {
     asyncTest('clickEventHandler', function () {
         var suite = this;
         require(
-            ['core/js/modal/formView', 'jquery.simulate'],
-            function (FormView) {
+            ['core/js/modal/formView', 'core/template/modalForm', 'jquery.simulate'],
+            function (FormView, FormTemplate) {
                 var formView, calls = 0;
 
                 FormView = FormView.extend({
@@ -47,7 +43,7 @@ $(document).ready(function () {
                     }
                 });
                 formView = new FormView({
-                    template: suite.testTemplate
+                    template: FormTemplate
                 });
 
                 formView.open();
@@ -62,12 +58,12 @@ $(document).ready(function () {
     asyncTest('Submit Form', function () {
         var suite = this;
         require(
-            ['core/js/modal/formView'],
-            function (FormView) {
+            ['core/js/modal/formView', 'core/template/modalForm'],
+            function (FormView, FormTemplate) {
                 var formView, calls = 0;
 
                 formView = new FormView({
-                    template: suite.testTemplate
+                    template: FormTemplate
                 });
                 formView.on('submit', function () {
                     calls += 1;
@@ -84,14 +80,14 @@ $(document).ready(function () {
     asyncTest('Serialize Form', function () {
         var suite = this;
         require(
-            ['core/js/modal/formView'],
-            function (FormView) {
+            ['core/js/modal/formView', 'core/template/modalForm'],
+            function (FormView, FormTemplate) {
                 var testObject = {
                         test: ['test', 'testTwo', 'testThree'],
                         select: 'default'
                     },
                     formView = new FormView({
-                        template: suite.testTemplate
+                        template: FormTemplate
                     }),
                     $el = formView.render().$el,
                     result;
