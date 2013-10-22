@@ -1,39 +1,8 @@
 define(
-    ['core/js/modal/modalView', 'core/template/modalForm'],
-    function (ModalView, template) {
+    ['core/js/modal/modalView'],
+    function (ModalView) {
         'use strict';
-        var viewOptions = ['templateForm'];
         return ModalView.extend({
-            /**
-             * A ModalView that manages forms
-             * @class FormView
-             * @extends ModalView
-             * @constructor
-             * @param options
-             * @returns {this}
-             */
-            constructor: function (options) {
-                if (_.isObject(options)) {
-                    _.extend(this, _.pick(options, viewOptions));
-                }
-                ModalView.prototype.constructor.apply(this, arguments);
-                return this;
-            },
-
-            /**
-             * @attribute template
-             * @type function
-             * @default Basic Modal Template
-             * @protected
-             */
-            template: template,
-            /**
-             * Form Template to render
-             * @attribute templateForm
-             * @type function
-             * @default null
-             */
-            templateForm: null,
             /**
              * Listens for the form reset, submit, and enter key event
              * Uses a function to inherit events
@@ -47,33 +16,6 @@ define(
                 'click .submit': 'submit',
                 'keyup': 'keyEventHandler'
             }, _.result(ModalView.prototype, 'events')),
-            /**
-             * Render this view
-             * @method render
-             * @chainable
-             * @returns {this}
-             */
-            render: function () {
-                this.isClosed = false;
-
-                // Render the modal template
-                if (_.isFunction(this.template)) {
-                    this.$el.html(this.template());
-                } else {
-                    var error = new TypeError('Template is not a function');
-                    error.name = 'TemplateNotFunction';
-                    throw error;
-                }
-
-                // render the form template
-                if (_.isFunction(this.templateForm)) {
-                    var data = this.getData(),
-                        html = this.templateForm(data);
-                    this.$('form').html(html);
-                }
-
-                return this;
-            },
             /**
              * Resets the form
              * @method reset
