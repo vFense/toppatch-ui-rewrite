@@ -46,32 +46,7 @@ $(document).ready(function () {
         );
     });
 
-    asyncTest('_destroyChart', function () {
-        require(
-            ['core/js/chart/chart'],
-            function (Chart) {
-                var collection, chart;
-                collection = new Backbone.Collection([
-                    {
-                        name: 'Tokyo',
-                        data: [7]
-                    }
-                ]);
-                chart = new Chart({
-                    collection: collection,
-                });
-
-                chart.render();
-                ok(chart._destroyChart(), 'Destroy the chart after render');
-                ok(!_.has(chart.$el.data(), 'highchartsChart'), '$el.data() does not have highcharts-chart attribute');
-                strictEqual(chart.$('*').length, 0, '$el is empty');
-
-                start();
-            }
-        );
-    });
-
-    asyncTest('close', function () {
+    asyncTest('close and _destroyChart', function () {
         require(
             ['core/js/chart/chart'],
             function (Chart) {
@@ -97,6 +72,8 @@ $(document).ready(function () {
                 ok(chart.close(), 'Close the chart after render');
 
                 strictEqual(called, 1, 'close method called _destroyChart');
+                ok(!_.has(chart.$el.data(), 'highchartsChart'), '$el.data() does not have highcharts-chart attribute');
+                strictEqual(chart.$('*').length, 0, '$el is empty');
 
                 start();
             }
