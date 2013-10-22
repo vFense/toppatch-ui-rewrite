@@ -1,14 +1,24 @@
-/**
- * A View that renders its template to $el
- *
- * @class TemplateView
- * @extends View
- */
 define(
     ['core/js/view'],
     function (View) {
         'use strict';
+        var viewOptions = ['template'];
         return View.extend({
+            /**
+             * A View that renders its template to $el
+             * @class TemplateView
+             * @extends View
+             * @constructor
+             * @param options
+             * @returns {this}
+             */
+            constructor: function (options) {
+                if (_.isObject(options)) {
+                    _.extend(this, _.pick(options, viewOptions));
+                }
+                View.prototype.constructor.apply(this, arguments);
+                return this;
+            },
             /**
              * A handlebars, or underscore, template method to render with.
              * If this property is not set when render is executed, render
@@ -16,7 +26,6 @@ define(
              * @attribute template
              * @type Function
              * @default undefined
-             * @protected
              */
             template: undefined,
 
