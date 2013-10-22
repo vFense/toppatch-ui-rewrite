@@ -129,7 +129,7 @@ module.exports = function(grunt) {
                 options: {
                     jshintrc: '<%= meta.app %>core/tests/.jshintrc'
                 },
-                src: ['<%= meta.app %>core/tests/unit/*.js']
+                src: ['<%= meta.app %>core/tests/unit/**/*.js']
             }
         },
         less: {
