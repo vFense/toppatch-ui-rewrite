@@ -64,7 +64,7 @@ module.exports = function(grunt) {
         copy: {
             dev: {
                 files: [
-                    { cwd: '<%= meta.app %>vendor/bootstrap/', src: 'fonts/*', dest: '<%= meta.app %>', expand: true }
+                    { cwd: '<%= meta.app %>vendor/font-awesome/', src: 'fonts/*', dest: '<%= meta.app %>', expand: true }
                 ]
             },
             dist: {
@@ -140,7 +140,7 @@ module.exports = function(grunt) {
             },
             bootstrap: {
                 files: {
-                    '<%= meta.app %>css/bootstrap.css'  : ['<%= meta.app %>vendor/bootstrap/less/bootstrap.less']
+                    '<%= meta.app %>css/bootstrap.css'  : ['<%= meta.app %>less/custom.bootstrap.less']
                 }
             }
         },
