@@ -68,9 +68,9 @@ define(
                         }
                     })
                     .done(
-                        _.bind(function (response) {
+                        _.bind(function () {
                             this.user = new User();
-                            this.user.set(response.data);
+                            this.user.fetch();
                             this.signedIn = true;
                             this.trigger('signInSuccess');
                         }, this)
