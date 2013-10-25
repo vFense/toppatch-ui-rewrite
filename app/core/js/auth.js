@@ -63,7 +63,7 @@ define(
                         url: '/login',
                         type: 'POST',
                         data: {
-                            username: username,
+                            name: username,
                             password: password
                         }
                     })
