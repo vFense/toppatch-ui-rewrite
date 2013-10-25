@@ -26,7 +26,7 @@
     "requirejs": "~2.1.9",
     "requirejs-plugins": "~1.0.2",
     "requirejs-text": "~2.0.10",
-    "select2": "~3.4.3"
+    "select2": "~3.4.4"
   },
   "devDependencies": {
     "jquery-simulate": "latest",
