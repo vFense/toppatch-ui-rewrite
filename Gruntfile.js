@@ -50,14 +50,43 @@ module.exports = function(grunt) {
             ]
         },
         connect: {
+            proxies: [
+                {
+                    context: ['/api', '/login', '/logout'],
+                    host: 'test.toppatch.com',
+                    port: 443,
+                    https: true,
+                    changeOrigin: true
+                }
+            ],
             server: {
                 options: {
                     base: '<%= meta.app %>',
                     hostname: '*',
                     livereload: true,
                     port: '8000',
-                    protocol: 'http',
-                    open: true
+                    protocol: 'https',
+                    open: true,
+                    middleware: function (connect, options) {
+                        'use strict';
+                        var middlewares = [];
+                        var directory = options.directory || options.base[options.base.length - 1];
+                        if (!Array.isArray(options.base)) {
+                            options.base = [options.base];
+                        }
+
+                        options.base.forEach(function(base) {
+                            // Serve static files.
+                            middlewares.push(connect.static(base));
+                        });
+
+                        // Make directory browse-able.
+                        middlewares.push(connect.directory(directory));
+
+                        // Make proxies browse-able
+                        middlewares.push(require('grunt-connect-proxy/lib/utils').proxyRequest);
+                        return middlewares;
+                    }
                 }
             }
         },
@@ -233,7 +262,7 @@ module.exports = function(grunt) {
     });
 
     grunt.registerTask('default', ['test', 'clean:dev', 'concurrent:dev', 'clean:dist', 'concurrent:dist', 'uglify:dist']);
-    grunt.registerTask('dev', ['clean:dev', 'concurrent:dev', 'connect:server', 'watch']);
+    grunt.registerTask('dev', ['clean:dev', 'concurrent:dev', 'configureProxies', 'connect:server', 'watch']);
     grunt.registerTask('docs', ['yuidoc', 'copy:docs']);
     grunt.registerTask('test', ['jshint', 'qunit']);
 };
