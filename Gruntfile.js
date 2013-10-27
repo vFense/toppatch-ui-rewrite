@@ -69,23 +69,14 @@ module.exports = function(grunt) {
                     open: true,
                     middleware: function (connect, options) {
                         'use strict';
-                        var middlewares = [];
-                        var directory = options.directory || options.base[options.base.length - 1];
-                        if (!Array.isArray(options.base)) {
-                            options.base = [options.base];
-                        }
-
-                        options.base.forEach(function(base) {
-                            // Serve static files.
-                            middlewares.push(connect.static(base));
-                        });
-
-                        // Make directory browse-able.
-                        middlewares.push(connect.directory(directory));
-
-                        // Make proxies browse-able
-                        middlewares.push(require('grunt-connect-proxy/lib/utils').proxyRequest);
-                        return middlewares;
+                        var config = [ // Serve static files.
+                            connect.static(options.base),
+                            // Make empty directories browsable.
+                            connect.directory(options.base)
+                        ];
+                        var proxy = require('grunt-connect-proxy/lib/utils').proxyRequest;
+                        config.unshift(proxy);
+                        return config;
                     }
                 }
             }
