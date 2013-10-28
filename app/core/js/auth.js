@@ -52,21 +52,16 @@ define(
             signedIn: false,
             /**
              * Attempt to sign in
-             * @method signIn
-             * @param username
-             * @param password
+             * @method _doSignIn
+             * @private
+             * @param options {object} $.ajax settings, should include data attribute
              * @returns {jqXHR} See: http://api.jquery.com/Types/#jqXHR
              */
-            signIn: function (username, password) {
+            _doSignIn: function (options) {
+                var defaults = { url: '/login', type: 'POST' },
+                    settings = _.merge(defaults, options);
                 return $
-                    .ajax({
-                        url: '/login',
-                        type: 'POST',
-                        data: {
-                            name: username,
-                            password: password
-                        }
-                    })
+                    .ajax(settings)
                     .done(
                         _.bind(function () {
                             this.user = new User();
@@ -86,6 +81,20 @@ define(
                         }, this)
                     )
                 ;
+            },
+            /**
+             * Attempt username/password combination sign in
+             * @param user {string}
+             * @param password {string}
+             * @returns {jqXHR}
+             */
+            signIn: function (user, password) {
+                return this._doSignIn({
+                    data: {
+                        user: user,
+                        password: password
+                    }
+                });
             },
             /**
              * Attempt to log out.
