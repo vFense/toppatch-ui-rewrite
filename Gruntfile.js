@@ -122,6 +122,13 @@ module.exports = function(grunt) {
                 src: '**/*.hbs',
                 dest:'<%= meta.app %>/core/template/',
                 ext: '.js'
+            },
+            rvault: {
+                expand: true,
+                cwd: '<%= meta.app %>rvault/template/hbs/',
+                src: '**/*.hbs',
+                dest:'<%= meta.app %>rvault/template/',
+                ext: '.js'
             }
         },
         imagemin: {
