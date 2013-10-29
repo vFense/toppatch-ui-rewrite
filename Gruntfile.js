@@ -249,9 +249,13 @@ module.exports = function(grunt) {
                 ],
                 tasks: ['less:application']
             },
-            hbs: {
+            hbsCore: {
                 files: ['<%= meta.app %>core/template/hbs/**/*.hbs'],
-                tasks: ['handlebars']
+                tasks: ['handlebars:core']
+            },
+            hbsRVault: {
+                files: ['<%= meta.app %>rvault/template/hbs/**/*.hbs'],
+                tasks: ['handlebars:rvault']
             }
         },
         yuidoc: {
