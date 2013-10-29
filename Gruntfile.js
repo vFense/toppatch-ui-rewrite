@@ -243,7 +243,10 @@ module.exports = function(grunt) {
                 options: { livereload: true }
             },
             less: {
-                files: ['<%= meta.app %>less/*.less'],
+                files: [
+                    '<%= meta.app %>core/less/*.less',
+                    '<%= meta.app %>rvault/less/*.less'
+                ],
                 tasks: ['less:application']
             },
             hbs: {
