@@ -116,7 +116,7 @@ module.exports = function(grunt) {
                     return require('html-minifier').minify(content, options);
                 }
             },
-            dev: {
+            core: {
                 expand: true,
                 cwd: '<%= meta.app %>core/template/hbs/',
                 src: '**/*.hbs',
