@@ -157,7 +157,19 @@ module.exports = function(grunt) {
                     jshintrc: '<%= meta.app %>core/tests/.jshintrc'
                 },
                 src: ['<%= meta.app %>core/tests/unit/**/*.js']
-            }
+            },
+            rvault: {
+                options: {
+                    jshintrc: '<%= meta.app %>rvault/js/.jshintrc'
+                },
+                src: ['<%= meta.app %>rvault/js/**/*.js']
+            },
+            rvaultTests: {
+                options: {
+                    jshintrc: '<%= meta.app %>rvault/tests/.jshintrc'
+                },
+                src: ['<%= meta.app %>rvault/tests/unit/**/*.js']
+            },
         },
         less: {
             bootstrap: {
