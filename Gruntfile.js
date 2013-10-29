@@ -192,7 +192,10 @@ module.exports = function(grunt) {
             options: {
                 timeout: '8100',
             },
-            all: ['<%= meta.app %>core/tests/**/*.html']
+            all: [
+                '<%= meta.app %>core/tests/**/*.html',
+                '<%= meta.app %>rvault/tests/**/*.html'
+            ]
         },
         requirejs: {
             options: {
