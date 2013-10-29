@@ -39,6 +39,7 @@ var requirejs = {
         'backbone.babysitter'   : 'vendor/backbone.babysitter/lib/amd/backbone.babysitter',
         'backbone.fetchCache'   : 'vendor/backbone-fetch-cache/backbone.fetch-cache',
         'backbone.modelBinder'  : 'vendor/backbone.modelbinder/Backbone.ModelBinder',
+        'backbone.subroute'     : 'vendor/backbone.subroute/backbone.subroute',
         'backbone.validation'   : 'vendor/backbone-validation/dist/backbone-validation-amd',
 
         // Bootstrap Paths
