@@ -26,6 +26,7 @@ module.exports = function(grunt) {
             dev: [
                 '<%= meta.app %>css',
                 '<%= meta.app %>core/template/**/*.js',
+                '<%= meta.app %>rvault/template/**/*.js',
                 '<%= meta.app %>fonts'
             ],
             dist        : ['<%= meta.dist %>'],
