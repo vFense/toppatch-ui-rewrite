@@ -26,6 +26,7 @@ module.exports = function(grunt) {
             dev: [
                 '<%= meta.app %>css',
                 '<%= meta.app %>core/template/**/*.js',
+                '<%= meta.app %>rvault/template/**/*.js',
                 '<%= meta.app %>fonts'
             ],
             dist        : ['<%= meta.dist %>'],
@@ -37,7 +38,7 @@ module.exports = function(grunt) {
         concurrent: {
             dev: [
                 'copy:dev',
-                'less:application',
+                'less:rvault',
                 'less:bootstrap',
                 'handlebars'
             ],
@@ -116,11 +117,18 @@ module.exports = function(grunt) {
                     return require('html-minifier').minify(content, options);
                 }
             },
-            dev: {
+            core: {
                 expand: true,
                 cwd: '<%= meta.app %>core/template/hbs/',
                 src: '**/*.hbs',
                 dest:'<%= meta.app %>/core/template/',
+                ext: '.js'
+            },
+            rvault: {
+                expand: true,
+                cwd: '<%= meta.app %>rvault/template/hbs/',
+                src: '**/*.hbs',
+                dest:'<%= meta.app %>rvault/template/',
                 ext: '.js'
             }
         },
@@ -150,25 +158,45 @@ module.exports = function(grunt) {
                     jshintrc: '<%= meta.app %>core/tests/.jshintrc'
                 },
                 src: ['<%= meta.app %>core/tests/unit/**/*.js']
-            }
+            },
+            rvault: {
+                options: {
+                    jshintrc: '<%= meta.app %>rvault/js/.jshintrc'
+                },
+                src: ['<%= meta.app %>rvault/js/**/*.js']
+            },
+            rvaultTests: {
+                options: {
+                    jshintrc: '<%= meta.app %>rvault/tests/.jshintrc'
+                },
+                src: ['<%= meta.app %>rvault/tests/unit/**/*.js']
+            },
         },
         less: {
-            application: {
-                files: {
-                    '<%= meta.app %>css/application.css': ['<%= meta.app %>less/application.less']
-                }
-            },
             bootstrap: {
                 files: {
-                    '<%= meta.app %>css/bootstrap.css'  : ['<%= meta.app %>less/custom.bootstrap.less']
+                    '<%= meta.app %>css/bootstrap.css'  : ['<%= meta.app %>/core/less/custom.bootstrap.less']
                 }
-            }
+            },
+            core: {
+                files: {
+                    '<%= meta.app %>css/core.css': ['<%= meta.app %>/core/less/core.less']
+                }
+            },
+            rvault: {
+                files: {
+                    '<%= meta.app %>css/application.css': ['<%= meta.app %>/rvault/less/application.less']
+                }
+            },
         },
         qunit: {
             options: {
                 timeout: '8100',
             },
-            all: ['<%= meta.app %>core/tests/**/*.html']
+            all: [
+                '<%= meta.app %>core/tests/**/*.html',
+                '<%= meta.app %>rvault/tests/**/*.html'
+            ]
         },
         requirejs: {
             options: {
@@ -181,8 +209,8 @@ module.exports = function(grunt) {
             },
             dist: {
                 options: {
-                    include: ['core/js/main'],
-                    insertRequire: ['core/js/main'],
+                    include: ['rvault/js/main'],
+                    insertRequire: ['rvault/js/main'],
                     name: 'vendor/requirejs/require',
                     optimize: 'none',
                     out: '<%= meta.dist %>js/toppatch-ui.js'
@@ -224,17 +252,26 @@ module.exports = function(grunt) {
             javascript: {
                 files: [
                     '<%= meta.app %>core/js/**/*.js',
-                    '<%= meta.app %>core/template/*.js'
+                    '<%= meta.app %>core/template/*.js',
+                    '<%= meta.app %>rvault/js/**/*.js',
+                    '<%= meta.app %>rvault/template/*.js'
                 ],
                 options: { livereload: true }
             },
             less: {
-                files: ['<%= meta.app %>less/*.less'],
+                files: [
+                    '<%= meta.app %>core/less/*.less',
+                    '<%= meta.app %>rvault/less/*.less'
+                ],
                 tasks: ['less:application']
             },
-            hbs: {
+            hbsCore: {
                 files: ['<%= meta.app %>core/template/hbs/**/*.hbs'],
-                tasks: ['handlebars']
+                tasks: ['handlebars:core']
+            },
+            hbsRVault: {
+                files: ['<%= meta.app %>rvault/template/hbs/**/*.hbs'],
+                tasks: ['handlebars:rvault']
             }
         },
         yuidoc: {

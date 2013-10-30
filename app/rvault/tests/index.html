@@ -1,0 +1,36 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Toppatch UI - Core Test Suite</title>
+    <link rel="stylesheet" href="../../vendor/qunit/qunit/qunit.css" type="text/css" media="screen"/>
+    <script src="../../vendor/jquery/jquery.js"></script>
+    <script src="../../vendor/qunit/qunit/qunit.js"></script>
+    <script>
+        // Requirejs currently has a maximum load time of 7 seconds.
+        // Give an extra second for padding.
+        // No single test should ever take longer than 8 seconds.
+        QUnit.config.testTimeout = 8000;
+        QUnit.config.autoStart = false;
+    </script>
+
+    <!-- load requirejs configuration -->
+    <script src="../../core/js/config.js"></script>
+    <script>
+        requirejs.baseUrl = '../../';
+        requirejsPaths = requirejs.paths;
+        requirejsShims = requirejs.shim;
+    </script>
+    <script src="../../vendor/requirejs/require.js"></script>
+    <script src="../../vendor/blanket/dist/qunit/blanket.js" data-cover-only="//core/js/"></script>
+    <script>QUnit.start();</script>
+
+    <!-- Configuration Tests -->
+    <script src="unit/placeholder.js"></script>
+</head>
+<body>
+<div>
+    <div id="qunit"></div>
+    <div id="qunit-fixture"></div>
+</div>
+</body>
+</html>
