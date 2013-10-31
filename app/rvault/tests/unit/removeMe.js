@@ -2,7 +2,14 @@ $(document).ready(function () {
     'use strict';
     module('Placeholder');
 
-    test('Remove me', function () {
-        ok(true);
+    asyncTest('Remove me', function () {
+        require(
+            ['rvault/js/removeMe'],
+            function (test) {
+                strictEqual(test, 42, 'PLaceholder test has passed');
+
+                start();
+            }
+        );
     });
 });
