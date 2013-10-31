@@ -192,6 +192,15 @@ module.exports = function(grunt) {
         qunit: {
             options: {
                 timeout: '8100',
+                coverage: {
+                    src: [
+                        '<%= meta.app %>core/js/**/*.js',
+                        '<%= meta.app %>rvault/js/**/*.js'
+                    ],
+                    instrumentedFiles: '<%= meta.temp %>',
+                    coberturaReport: 'report/cobertura',
+                    htmlReport: 'report/'
+                }
             },
             all: [
                 '<%= meta.app %>core/tests/**/*.html',
