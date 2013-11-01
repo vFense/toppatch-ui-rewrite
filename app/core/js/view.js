@@ -34,9 +34,11 @@ define(
 
                     this.isClosed = true;
                     // Clean, remove, and unbind this view
-                    this.clean()
+                    this.closeChildViews()
+                        .clean()
                         .remove()
-                        .unbind();
+                        .unbind()
+                    ;
                 }
                 return this;
             },
