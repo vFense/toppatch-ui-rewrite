@@ -1,14 +1,24 @@
-/**
- * A Backbone.View with close and clean methods
- *
- * @class View
- * @extends Backbone.View
- */
 define(
     [],
     function () {
         'use strict';
         return Backbone.View.extend({
+            /**
+             * A Backbone.View with close and clean methods
+             *
+             * @class View
+             * @extends Backbone.View
+             * @constructor
+             * @chainable
+             */
+            constructor: function () {
+                Backbone.View.prototype.constructor.apply(this, arguments);
+                this.$el
+                    .attr('data-backbone-view', this.cid)
+                    .data('view', this)
+                ;
+                return this;
+            },
             /**
              * Call beforeClose, if defined, then
              * Clean, remove, and unbind this View
