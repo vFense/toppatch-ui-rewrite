@@ -42,6 +42,25 @@ define(
             },
 
             /**
+             * Close any child instances of View
+             * @method closeChildViews
+             * @chainable
+             */
+            closeChildViews: function () {
+                this.$('[data-backbone-view]').each(function () {
+                    var view = $(this).data('view');
+                    if (view instanceof Backbone.View) {
+                        if (_.isFunction(view.close)) {
+                            view.close();
+                        } else {
+                            view.remove();
+                        }
+                    }
+                });
+                return this;
+            },
+
+            /**
              * Empty this.$el
              * @method clean
              * @chainable
