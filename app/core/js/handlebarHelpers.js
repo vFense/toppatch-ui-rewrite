@@ -1,3 +1,7 @@
+/**
+ * @class Handlebars.helpers
+ * @static
+ */
 define(
     ['handlebars'],
     function (Handlebars) {
@@ -6,6 +10,7 @@ define(
         /**
          * {{#compare}}...{{/compare}}
          *
+         * @method compare
          * @credit: OOCSS via Assemble's handlebars-helpers
          * @param left value
          * @param operator The operator, must be between quotes ">", "=", "<=", etc...
