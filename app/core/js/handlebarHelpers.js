@@ -11,14 +11,14 @@ define(
          * {{#compare}}...{{/compare}}
          *
          * @method compare
-         * @credit: OOCSS via Assemble's handlebars-helpers
+         * @credit OOCSS via Assemble's handlebars-helpers
          * @param left value
          * @param operator The operator, must be between quotes ">", "=", "<=", etc...
          * @param right value
          * @param options option object sent by handlebars
          * @return {String} formatted html
          *
-         * @example:
+         * @example
          *   {{#compare unicorns "<" ponies}}
          *     I knew it, unicorns are just low-quality ponies!
          *   {{/compare}}
