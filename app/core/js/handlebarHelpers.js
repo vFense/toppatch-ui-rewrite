@@ -67,6 +67,25 @@ define(
             }
         });
 
+        /**
+         * Generate a list of options for use in a `<select>`, or `<datalist>`, tag.
+         * {{#options arrayOfOptions}}{{/options}}
+         *
+         * @method options
+         * @param array Array of objects describing each option's attributes
+         * @return {Handlebars.SafeString} Object containing a string of all generated options
+         *
+         * @example
+         *   {{#options [
+         *     {disabled:true, selected:true, value:'value', label:'label' },
+         *     {value:'value2',label:'label2'}
+         *   ]
+         *
+         *   ```html
+         *   <option disabled label="label" selected value="value"></option>
+         *   <option label="label2" value="value2"></option>
+         *   ```
+         */
         Handlebars.registerHelper('options', function (array, options) {
             var buffer = array.map(function (item) {
                 var value, selected, label, disabled;
