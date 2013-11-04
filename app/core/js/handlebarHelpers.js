@@ -86,7 +86,7 @@ define(
          *   <option label="label2" value="value2"></option>
          *   ```
          */
-        Handlebars.registerHelper('options', function (array, options) {
+        Handlebars.registerHelper('options', function (array) {
             var buffer = array.map(function (item) {
                 var value, selected, label, disabled;
                 disabled = item.disabled ? ' disabled' : '';
