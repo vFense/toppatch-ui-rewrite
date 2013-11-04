@@ -67,8 +67,8 @@ define(
             }
         });
 
-        Handlebars.registerHelper('options', function (context, options) {
-            var buffer = context.map(function (item) {
+        Handlebars.registerHelper('options', function (array, options) {
+            var buffer = array.map(function (item) {
                 var value, selected, label, disabled;
                 disabled = item.disabled ? ' disabled' : '';
                 label = item.label ? ' label="' + item.label + '"' : '';
