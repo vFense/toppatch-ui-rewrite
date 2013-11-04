@@ -5,6 +5,7 @@ define(function () {
      *
      * Inspired by Backbone.Marionette.region
      * @class Region
+     * @deprecated
      * @param {string|object} options String or object to specify the target element
      * @returns {Region}
      * @constructor
