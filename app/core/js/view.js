@@ -49,9 +49,11 @@ define(
              * @chainable
              */
             closeChildViews: function () {
+                var parent = this;
                 this.$('[data-backbone-view]').each(function () {
                     var view = $(this).data('view');
                     if (view instanceof Backbone.View) {
+                        parent.stopListening(view);
                         if (_.isFunction(view.close)) {
                             view.close();
                         } else {
