@@ -6,16 +6,17 @@ module.exports = function(grunt) {
     grunt.initConfig({
         meta: {
             app: 'app/',
-            temp: 'temp/',
+            banner:
+                '/**\n' +
+                    ' * <%= meta.pkg.name %> v<%= meta.pkg.version %>\n' +
+                    ' * www.toppatch.com\n *\n' +
+                    ' * Copyright (c) 2012, <%= grunt.template.today("yyyy") %> <%= meta.pkg.author %>\n' +
+                    ' */\n',
             dist: 'dist/',
             docs: 'docs/',
             pkg: grunt.file.readJSON('package.json'),
-            banner:
-                '/**\n' +
-                ' * <%= meta.pkg.name %> v<%= meta.pkg.version %>\n' +
-                ' * www.toppatch.com\n *\n' +
-                ' * Copyright (c) 2012, <%= grunt.template.today("yyyy") %> <%= meta.pkg.author %>\n' +
-                ' */\n'
+            report: 'report/',
+            temp: 'temp/'
         },
 
         /**********************
@@ -31,7 +32,7 @@ module.exports = function(grunt) {
             ],
             dist        : ['<%= meta.dist %>'],
             nodeModules : ['node_modules/'],
-            report      : ['report/'],
+            report      : ['<%= meta.report %>'],
             temp        : ['<%= meta.temp %>'],
             vendor      : ['<%= meta.app %>vendor']
         },
@@ -192,6 +193,15 @@ module.exports = function(grunt) {
         qunit: {
             options: {
                 timeout: '8100',
+                coverage: {
+                    src: [
+                        '<%= meta.app %>core/js/**/*.js',
+                        '<%= meta.app %>rvault/js/**/*.js'
+                    ],
+                    instrumentedFiles: '<%= meta.temp %>',
+                    coberturaReport: '<%= meta.report %>cobertura',
+                    htmlReport: '<%= meta.report %>'
+                }
             },
             all: [
                 '<%= meta.app %>core/tests/**/*.html',
@@ -292,5 +302,5 @@ module.exports = function(grunt) {
     grunt.registerTask('default', ['test', 'clean:dev', 'concurrent:dev', 'clean:dist', 'concurrent:dist', 'uglify:dist']);
     grunt.registerTask('dev', ['clean:dev', 'concurrent:dev', 'configureProxies', 'connect:server', 'watch']);
     grunt.registerTask('docs', ['yuidoc', 'copy:docs']);
-    grunt.registerTask('test', ['jshint', 'qunit']);
+    grunt.registerTask('test', ['jshint', 'clean:report', 'qunit']);
 };

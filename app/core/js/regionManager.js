@@ -8,6 +8,7 @@ define(
          *
          * Inspired by Backbone.Marionette.regionManager
          * @class RegionManager
+         * @deprecated
          * @requires Region
          * @constructor
          * @returns {this}

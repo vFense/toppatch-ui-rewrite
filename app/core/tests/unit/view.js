@@ -5,6 +5,20 @@ $(document).ready(function () {
         teardown: $.noop
     });
 
+    asyncTest('constructor', function () {
+        require(
+            ['core/js/view'],
+            function (View) {
+                var view = new View();
+
+                strictEqual(view.$el.attr('data-backbone-view'), view.cid, 'data-view-id is correct');
+                strictEqual(view.$el.data('view'), view, 'view\'s data value "view" is correct');
+
+                start();
+            }
+        );
+    });
+
     asyncTest('clean()', function () {
         require(['core/js/view'], function(BaseView) {
             var baseView = new BaseView();
@@ -41,5 +55,27 @@ $(document).ready(function () {
 
             start();
         });
+    });
+
+    asyncTest('closeChildViews', function () {
+        require(
+            ['core/js/view'],
+            function (View) {
+                var view1 = new View(),
+                    view2 = new View(),
+                    view3 = new View(),
+                    view4 = new View();
+
+                view1.$el.append(view2.$el.append(view3.$el), view4.$el);
+
+                view1.closeChildViews();
+
+                ok(view2.isClosed, 'view2 is closed');
+                ok(view3.isClosed, 'view3 is closed');
+                ok(view4.isClosed, 'view4 is closed');
+
+                start();
+            }
+        );
     });
 });

@@ -1,14 +1,16 @@
-/**
- * A View that manages child views
- *
- * @class ParentView
- * @extends View
- */
 define(
     ['core/js/view', 'backbone.babysitter'],
     function (View) {
         'use strict';
         return View.extend({
+            /**
+             * A View that manages child views
+             *
+             * @class ContainerView
+             * @extends View
+             * @deprecated
+             * @constructor
+             */
             constructor: function () {
                 View.prototype.constructor.apply(this, arguments);
                 this._initChildServices();
