@@ -67,6 +67,18 @@ define(
             }
         });
 
+        Handlebars.registerHelper('options', function (context, options) {
+            var buffer = context.map(function (item) {
+                var value, selected, label, disabled;
+                disabled = item.disabled ? ' disabled' : '';
+                label = item.label ? ' label="' + item.label + '"' : '';
+                selected = item.selected ? ' selected' : '';
+                value = item.value ? ' value="' + item.value + '"' : '';
+                return '<option' + disabled + label + selected + value + '></option>';
+            }).join('\n');
+            return new Handlebars.SafeString(buffer);
+        });
+
         return Handlebars;
     }
 );

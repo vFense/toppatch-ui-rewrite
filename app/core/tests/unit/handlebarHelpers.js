@@ -83,4 +83,41 @@ $(document).ready(function () {
             }
         );
     });
+
+    asyncTest('Options', function () {
+        require(
+            ['core/js/handlebarHelpers'],
+            function (Handlebars) {
+                var registered = _.has(Handlebars.helpers, 'options'),
+                    functions = {
+                        fn: function (input) {return input;}
+                    },
+                    optionsHelper;
+                ok(registered, 'Options helper is registered');
+                if(registered) {
+                    optionsHelper = Handlebars.helpers.options;
+
+                    strictEqual(optionsHelper([{disabled:true}], functions).string, '<option disabled></option>', 'Disabled');
+                    strictEqual(optionsHelper([{label:'test'}], functions).string, '<option label="test"></option>', 'Label');
+                    strictEqual(optionsHelper([{selected:true}], functions).string, '<option selected></option>', 'Selected');
+                    strictEqual(optionsHelper([{value:'test'}], functions).string, '<option value="test"></option>', 'Value');
+
+                    strictEqual(optionsHelper([
+                        {
+                            disabled: true,
+                            label: 'label',
+                            selected: true,
+                            value:'value'
+                        }
+                    ], functions).string, '<option disabled label="label" selected value="value"></option>', 'All attributes');
+
+                    strictEqual(optionsHelper([
+                        {label:'1'},
+                        {label:'2'}
+                    ], functions).string, '<option label="1"></option>\n<option label="2"></option>', 'Multiple options');
+                }
+                start();
+            }
+        );
+    });
 });
