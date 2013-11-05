@@ -1,12 +1,12 @@
-<div class="span4">
+<div class="col-md-4">
     <div name="start_date_div"></div>
-<div class="span8">
+<div class="col-md-8">
     <table style="width: 100%; border-bottom: 1px solid black;">
         <tbody><tr>
-            <td class="control-group" style="width: 50%;">
+            <td class="form-group" style="width: 50%;">
                 <input type="text" name="jobname" placeholder="Schedule Name" class="border-box" style="width: 100%; height: 30px;" required>
             </td>
-            <td class="control-group">
+            <td class="form-group">
                 <select name="operation" style="width: 100%">
                     <option value="false">Operation Type</option>
                     <option value="install">Install</option>
@@ -15,7 +15,7 @@
             </td>
         </tr>
         <tr>
-            <td class="control-group">
+            <td class="form-group">
                 <select name="pkg_type" class="disabled" disabled="disabled" style="width: 100%;">
                     <option value="false">Package Type</option>
                     <option value="system_apps">System Apps</option>
@@ -23,7 +23,7 @@
                     <option value="custom_apps">Custom Apps</option>
                 </select>
             </td>
-            <td class="control-group">
+            <td class="form-group">
                 <select name="severity" class="disabled" disabled="disabled" style="width: 100%;">
                     <option value="false">Severity</option>
                     <option value="any">Any</option>
@@ -34,7 +34,7 @@
             </td>
         </tr>
         <tr>
-            <td class="control-group">
+            <td class="form-group">
                 <label class="control-label">Repeat:</label>
             </td>
             <td class="alignRight">
@@ -49,16 +49,16 @@
             </td>
         </tr>
         <tr>
-            <td class="control-group" style="width:50%; max-width:50%;">
+            <td class="form-group" style="width:50%; max-width:50%;">
                 <label class="control-label">Schedule On:</label>
                 Tags&nbsp;<input type="radio" name="schedule_on" value="tags" checked="">
                 Agents&nbsp;<input type="radio" name="schedule_on" value="nodes">
             </td>
-            <td class="control-group" style="width:50%; max-width:50%;">
+            <td class="form-group" style="width:50%; max-width:50%;">
                 <label class="control-label">Tags:</label>
                 <input type="hidden" name="tags" multiple="multiple" data-key="all_tags" data-type="multiple" style="width:50%; max-width:50%;"/>
             </td>
-            <td class="control-group hide" style="width:50%; max-width:50%;">
+            <td class="form-group hide" style="width:50%; max-width:50%;">
                 <label class="control-label">Agents:</label>
                 <input type="hidden" name="nodes" multiple="multiple" data-key="all_agents" data-type="multiple" class="disabled"/>
             </td>
@@ -66,7 +66,7 @@
     </table>
     <table id="customSchedule" class="hide" style="width: 100%; margin-top: 5px;">
         <tbody><tr data-id="frequencyRow">
-            <td class="control-group" style="width: 50%;">
+            <td class="form-group" style="width: 50%;">
                 <label class="control-label">Frequency:</label>
             </td>
             <td class="alignRight" style="width: 50%;">
