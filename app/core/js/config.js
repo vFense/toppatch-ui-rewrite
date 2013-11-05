@@ -24,7 +24,7 @@ var requirejs = {
         'text'          : 'vendor/requirejs-text/text',
 
         // Vendor Library Paths
-        'handlebars'            : 'vendor/handlebars.js/dist/handlebars.runtime',
+        'handlebars'            : 'vendor/handlebars/handlebars.runtime',
         'highcharts'            : 'vendor/highstock-components/highstock.src',
         'highcharts-more'       : 'vendor/highstock-components/highcharts-more.src',
         'jquery'                : 'vendor/jquery/jquery',
