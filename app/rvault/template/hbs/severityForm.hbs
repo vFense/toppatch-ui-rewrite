@@ -1,0 +1,10 @@
+<div class="form-group">
+    <label class="control-label">Severity:</label>
+    <div>
+        <select required="required" name="severity">
+            <option {{#compare severity "===" 'Optional'}} SELECTED {{/compare}}>Optional</option>
+            <option {{#compare severity "===" 'Recommended'}} SELECTED {{/compare}}>Recommended</option>
+            <option {{#compare severity "===" 'Critical'}} SELECTED {{/compare}}>Critical</option>
+        </select>
+    </div>
+</div>
