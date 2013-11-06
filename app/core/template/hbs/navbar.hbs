@@ -17,11 +17,11 @@
         </div>
         <div class="navbar-collapse collapse navbar-responsive-collapse" role="navigation">
             <ul class="nav navbar-nav" id="primaryNav">
-                {{#each primaryNav.links}}
-                    {{#if this.divider}}
-                        <li class="divider"></li>
+                {{#each primaryNav}}
+                    {{#if this.href }}
+                    <li><a href="{{ this.href }}">{{#if this.text }}{{ this.text }}{{else}}Link{{/if}}</a>
                     {{else}}
-                    <li><a href="{{ this.href }}">{{ this.text }}</a>
+                    <li class="nav-divider"></li>
                     {{/if}}
                 {{/each}}
             </ul>
@@ -36,11 +36,11 @@
                         <b class="caret"></b>
                     </a>
                     <ul class="dropdown-menu">
-                        {{#each secondaryNav.links}}
-                            {{#if this.divider}}
-                                <li class="divider"></li>
+                        {{#each secondaryNav}}
+                            {{#if this.href }}
+                            <li><a href="{{ this.href }}">{{#if this.text }}{{ this.text }}{{else}}Link{{/if}}</a>
                             {{else}}
-                            <li><a href="{{ this.href }}">{{ this.text }}</a>
+                            <li class="divider"></li>
                             {{/if}}
                         {{/each}}
                     </ul>
