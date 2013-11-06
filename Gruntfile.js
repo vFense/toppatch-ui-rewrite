@@ -71,7 +71,8 @@ module.exports = function(grunt) {
                     open: true,
                     middleware: function (connect, options) {
                         'use strict';
-                        var config = [ // Serve static files.
+                        var config = [
+                            // Serve static files.
                             connect.static(options.base),
                             // Make empty directories browsable.
                             connect.directory(options.base)
