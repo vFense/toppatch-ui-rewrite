@@ -28,7 +28,11 @@
             <ul class="nav navbar-nav navbar-right" id="secondaryNav">
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                        <span>{{ secondaryNav.username }}</span>
+                        {{#if username}}
+                            <span>{{ username }}</span>
+                        {{else}}
+                            <span>User Name</span>
+                        {{/if}}
                         <b class="caret"></b>
                     </a>
                     <ul class="dropdown-menu">
