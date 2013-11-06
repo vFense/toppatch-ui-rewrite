@@ -91,7 +91,7 @@ define(
             signIn: function (user, password) {
                 return this._doSignIn({
                     data: {
-                        user: user,
+                        name: user,
                         password: password
                     }
                 });
