@@ -1,51 +1,49 @@
-<nav class="navbar navbar-default" role="banner">
-    <div class="container">
-        <div class="navbar-header">
-            {{#unless hideNavbarToggle}}
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-            {{/unless}}
-            {{#if productName}}
-            <span class="navbar-brand">
-                {{ productName }}
-            </span>
-            {{/if}}
-        </div>
-        <div class="navbar-collapse collapse navbar-responsive-collapse" role="navigation">
-            <ul class="nav navbar-nav" id="primaryNav">
-                {{#each primaryNav}}
-                    {{#if this.href }}
-                    <li><a href="{{ this.href }}">{{#if this.text }}{{ this.text }}{{else}}Link{{/if}}</a>
-                    {{else}}
-                    <li class="nav-divider"></li>
-                    {{/if}}
-                {{/each}}
-            </ul>
-            <ul class="nav navbar-nav navbar-right" id="secondaryNav">
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                        {{#if username}}
-                            <span>{{ username }}</span>
-                        {{else}}
-                            <span>User Name</span>
-                        {{/if}}
-                        <b class="caret"></b>
-                    </a>
-                    <ul class="dropdown-menu">
-                        {{#each secondaryNav}}
-                            {{#if this.href }}
-                            <li><a href="{{ this.href }}">{{#if this.text }}{{ this.text }}{{else}}Link{{/if}}</a>
-                            {{else}}
-                            <li class="divider"></li>
-                            {{/if}}
-                        {{/each}}
-                    </ul>
-                </li>
-            </ul>
-        </div>
+<div class="container">
+    <div class="navbar-header">
+        {{#unless hideNavbarToggle}}
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        {{/unless}}
+        {{#if productName}}
+        <span class="navbar-brand">
+            {{ productName }}
+        </span>
+        {{/if}}
     </div>
-</nav>
+    <div class="navbar-collapse collapse navbar-responsive-collapse" role="navigation">
+        <ul class="nav navbar-nav" id="primaryNav">
+            {{#each primaryNav}}
+                {{#if this.href }}
+                <li><a href="{{ this.href }}">{{#if this.text }}{{ this.text }}{{else}}Link{{/if}}</a>
+                {{else}}
+                <li class="nav-divider"></li>
+                {{/if}}
+            {{/each}}
+        </ul>
+        <ul class="nav navbar-nav navbar-right" id="secondaryNav">
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    {{#if username}}
+                        <span>{{ username }}</span>
+                    {{else}}
+                        <span>User Name</span>
+                    {{/if}}
+                    <b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu">
+                    {{#each secondaryNav}}
+                        {{#if this.href }}
+                        <li><a href="{{ this.href }}">{{#if this.text }}{{ this.text }}{{else}}Link{{/if}}</a>
+                        {{else}}
+                        <li class="divider"></li>
+                        {{/if}}
+                    {{/each}}
+                </ul>
+            </li>
+        </ul>
+    </div>
+</div>
