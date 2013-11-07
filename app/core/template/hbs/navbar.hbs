@@ -15,8 +15,8 @@
         {{/if}}
     </div>
     <div class="navbar-collapse collapse navbar-responsive-collapse" role="navigation">
-        <ul class="nav navbar-nav" id="primaryNav">
-            {{#each primaryNav}}
+        <ul class="nav navbar-nav">
+            {{#each primaryLinks}}
                 {{#if this.href }}
                 <li><a href="{{ this.href }}">{{#if this.text }}{{ this.text }}{{else}}Link{{/if}}</a></li>
                 {{else}}
