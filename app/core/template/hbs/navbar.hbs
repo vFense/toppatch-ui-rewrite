@@ -18,7 +18,7 @@
         <ul class="nav navbar-nav" id="primaryNav">
             {{#each primaryNav}}
                 {{#if this.href }}
-                <li><a href="{{ this.href }}">{{#if this.text }}{{ this.text }}{{else}}Link{{/if}}</a>
+                <li><a href="{{ this.href }}">{{#if this.text }}{{ this.text }}{{else}}Link{{/if}}</a></li>
                 {{else}}
                 <li class="nav-divider"></li>
                 {{/if}}
@@ -37,7 +37,7 @@
                 <ul class="dropdown-menu">
                     {{#each secondaryNav}}
                         {{#if this.href }}
-                        <li><a href="{{ this.href }}">{{#if this.text }}{{ this.text }}{{else}}Link{{/if}}</a>
+                        <li><a href="{{ this.href }}">{{#if this.text }}{{ this.text }}{{else}}Link{{/if}}</a></li>
                         {{else}}
                         <li class="divider"></li>
                         {{/if}}
