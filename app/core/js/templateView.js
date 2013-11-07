@@ -1,5 +1,5 @@
 define(
-    ['core/js/view'],
+    ['core/js/view', 'core/js/templateHelpers'],
     function (View) {
         'use strict';
         var viewOptions = ['template'];
