@@ -14,7 +14,7 @@
         </span>
         {{/if}}
     </div>
-    <div class="navbar-collapse collapse navbar-responsive-collapse" role="navigation">
+    <div class="{{#if collapsible}}navbar-collapse collapse{{/if}}" role="navigation" id="{{ cid }}-navbar">
         <ul class="nav navbar-nav">
             {{#each primaryLinks}}
                 {{#if this.href }}
