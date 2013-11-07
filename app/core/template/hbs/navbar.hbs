@@ -24,7 +24,7 @@
                 {{/if}}
             {{/each}}
         </ul>
-        <ul class="nav navbar-nav navbar-right" id="secondaryNav">
+        <ul class="nav navbar-nav navbar-right">
             <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                     {{#if username}}
@@ -35,7 +35,7 @@
                     <b class="caret"></b>
                 </a>
                 <ul class="dropdown-menu">
-                    {{#each secondaryNav}}
+                    {{#each secondaryLinks}}
                         {{#if this.href }}
                         <li><a href="{{ this.href }}">{{#if this.text }}{{ this.text }}{{else}}Link{{/if}}</a></li>
                         {{else}}
