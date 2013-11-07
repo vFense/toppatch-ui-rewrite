@@ -54,11 +54,7 @@ define(
                     var view = $(this).data('view');
                     if (view instanceof Backbone.View) {
                         parent.stopListening(view);
-                        if (_.isFunction(view.close)) {
-                            view.close();
-                        } else {
-                            view.remove();
-                        }
+                        view.close();
                     }
                 });
                 return this;
