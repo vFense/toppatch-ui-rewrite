@@ -109,14 +109,28 @@ module.exports = function(grunt) {
                 namespace: false,
                 processContent: function (content) {
                     'use strict';
-                    var options = {
-                        removeComments: true,
-                        collapseWhitespace: true,
-                        collapseBooleanAttributes: true,
-                        removeRedundantAttributes: true,
-                        removeEmptyAttributes: true
-                    };
-                    return require('html-minifier').minify(content, options);
+                    var minify = require('html-minifier').minify,
+                        options = {
+                            removeComments: true,
+                            collapseWhitespace: true,
+                            collapseBooleanAttributes: true,
+                            removeRedundantAttributes: true,
+                            removeEmptyAttributes: true
+                        },
+                        min;
+
+                    try {
+                        min = minify(content, options);
+                    } catch (err) {
+                        grunt.warn(err);
+                    }
+
+                    if (min.length < 1) {
+                        grunt.log.warn('Minified HTML was empty. Sending raw html to handlebars compiler');
+                        return content;
+                    }
+
+                    return min;
                 }
             },
             core: {
