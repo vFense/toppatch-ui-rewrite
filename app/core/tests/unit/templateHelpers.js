@@ -1,10 +1,10 @@
 $(document).ready(function () {
     'use strict';
-    module('handlebarHelpers');
+    module('templateHelpers');
 
     asyncTest('Compare', function () {
         require(
-            ['core/js/handlebarHelpers'],
+            ['core/js/templateHelpers'],
             function (Handlebars) {
                 var registered = _.has(Handlebars.helpers, 'compare'),
                     options = {
@@ -86,7 +86,7 @@ $(document).ready(function () {
 
     asyncTest('Options', function () {
         require(
-            ['core/js/handlebarHelpers'],
+            ['core/js/templateHelpers'],
             function (Handlebars) {
                 var registered = _.has(Handlebars.helpers, 'options'),
                     functions = {
