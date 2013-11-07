@@ -45,6 +45,7 @@ module.exports = function(grunt) {
             ],
             dist: [
                 'copy:dist',
+                'cssmin',
                 'imagemin:dist',
                 'uglify:modernizr',
                 'requirejs:dist',
@@ -94,13 +95,30 @@ module.exports = function(grunt) {
                 files: [
                     { cwd: '<%= meta.app %>', dest: '<%= meta.dist %>', expand: true, src: 'robots.txt' },
                     { cwd: '<%= meta.app %>', dest: '<%= meta.dist %>', expand: true, src: 'images/*'   },
-                    { cwd: '<%= meta.app %>', dest: '<%= meta.dist %>', expand: true, src: 'css/*'      },
                     { cwd: '<%= meta.app %>', dest: '<%= meta.dist %>', expand: true, src: 'fonts/*'    }
                 ]
             },
             docs: {
                 src: '<%= meta.app %>/images/brand-name.png',
                 dest: '<%= meta.docs %>/assets/css/logo.png'
+            }
+        },
+        cssmin: {
+            options: {
+                report: 'min'
+            },
+            application: {
+                options: {
+                    banner: '<%= meta.banner %>'
+                },
+                files: {
+                    '<%= meta.dist %>/css/application.css': ['<%= meta.app %>/css/application.css']
+                }
+            },
+            bootstrap: {
+                files: {
+                    '<%= meta.dist %>/css/bootstrap.css': ['<%= meta.app %>/css/bootstrap.css']
+                }
             }
         },
         handlebars: {
