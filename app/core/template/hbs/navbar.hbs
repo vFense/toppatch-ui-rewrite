@@ -1,13 +1,13 @@
 <div class="container">
     <div class="navbar-header">
-        {{#unless hideNavbarToggle}}
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+        {{#if collapsible}}
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#{{ cid }}-navbar">
                 <span class="sr-only">Toggle navigation</span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-        {{/unless}}
+        {{/if}}
         {{#if productName}}
         <span class="navbar-brand">
             {{ productName }}
