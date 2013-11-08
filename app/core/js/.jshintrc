@@ -23,7 +23,8 @@
     "browser"   : true,
 
     "predef": {
-        "GLOBALS": false,
+        "TopPatch": false,
+
         "requirejs": true,
         "require": false,
         "define": false,

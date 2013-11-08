@@ -23,7 +23,7 @@
     "browser"   : true,
 
     "predef": [
-        "GLOBALS",
+        "TopPatch",
 
         "QUnit",
         "module",
