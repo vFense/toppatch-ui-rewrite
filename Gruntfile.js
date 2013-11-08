@@ -125,7 +125,7 @@ module.exports = function(grunt) {
             options: {
                 amd: true,
                 namespace: false,
-                processContent: function (content) {
+                processContent: function (content, filepath) {
                     'use strict';
                     var minify = require('html-minifier').minify,
                         options = {
@@ -140,12 +140,12 @@ module.exports = function(grunt) {
                     try {
                         min = minify(content, options);
                     } catch (err) {
-                        grunt.warn(err);
+                        var error = err.split(/(.*?):/)[1];
+                        grunt.warn(error + ': ' + filepath);
                     }
 
                     if (min.length < 1) {
-                        grunt.log.warn('Minified HTML was empty. Sending raw html to handlebars compiler');
-                        return content;
+                        grunt.log.warn(filepath + ' minified to empty string.');
                     }
 
                     return min;
