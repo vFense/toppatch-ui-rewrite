@@ -2,7 +2,7 @@
  * Authentication module that handles login and logout processes,
  * as well as maintaining the user model.
  *
- * @class auth
+ * @class Auth
  * @static
  */
 /**
