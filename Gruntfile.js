@@ -288,6 +288,9 @@ module.exports = function(grunt) {
                 files: ['<%= meta.app %>css/*.css'],
                 options: { livereload: true }
             },
+            gruntfile: {
+                files: ['Gruntfile.js']
+            },
             html: {
                 files: ['<%= meta.app %>*.html'],
                 options: { livereload: true }
