@@ -36,6 +36,6 @@
     "grunt-qunit-istanbul": "~0.3.0"
   },
   "scripts": {
-    "install": "bower install"
+    "install": "npm update && npm prune && bower install && bower prune"
   }
 }
