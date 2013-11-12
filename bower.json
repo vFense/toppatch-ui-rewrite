@@ -21,7 +21,7 @@
     "jquery-ui": "~1.10.3",
     "livestampjs": "~1.1.2",
     "lodash": "~2.3.0",
-    "modernizr": "~2.6.2",
+    "modernizr": "~2.6.3",
     "moment": "2.4.0",
     "requirejs": "~2.1.9",
     "requirejs-plugins": "~1.0.2",
