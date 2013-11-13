@@ -32,10 +32,10 @@
  * @event signOutComplete
  */
 define(
-    ['core/js/user'],
-    function (User) {
+    ['exports'],
+    function (exports) {
         'use strict';
-        return _.extend({}, Backbone.Events, {
+        exports.Auth = _.extend({}, Backbone.Events, {
             /**
              * Reference to the user model.
              * @attribute user
@@ -64,8 +64,6 @@ define(
                     .ajax(settings)
                     .done(
                         _.bind(function () {
-                            this.user = new User();
-                            this.user.fetch();
                             this.signedIn = true;
                             this.trigger('signInSuccess');
                         }, this)
@@ -80,7 +78,7 @@ define(
                             this.trigger('signInComplete');
                         }, this)
                     )
-                ;
+                    ;
             },
             /**
              * Attempt username/password combination sign in
@@ -109,7 +107,6 @@ define(
                     })
                     .done(
                         _.bind(function () {
-                            this.user = null;
                             this.signedIn = false;
                             if (Modernizr.localStorage) {
                                 localStorage.clear();
@@ -130,7 +127,7 @@ define(
                             this.trigger('signOutComplete');
                         }, this)
                     )
-                ;
+                    ;
             }
         });
     }
