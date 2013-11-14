@@ -32,10 +32,10 @@
  * @event signOutComplete
  */
 define(
-    ['exports'],
-    function (exports) {
+    ['backbone', 'exports'],
+    function (Backbone, exports) {
         'use strict';
-        exports.Auth = _.extend({}, Backbone.Events, {
+        exports.Auth = {
             /**
              * Indicates whether this sessions is authenticated or not.
              * @attribute signedIn
@@ -58,17 +58,17 @@ define(
                     .done(
                         _.bind(function () {
                             this.signedIn = true;
-                            this.trigger('signInSuccess');
+                            Backbone.trigger('signInSuccess');
                         }, this)
                     )
                     .fail(
                         _.bind(function (response, status) {
-                            this.trigger('signInError', status);
+                            Backbone.trigger('signInError', status);
                         }, this)
                     )
                     .always(
                         _.bind(function () {
-                            this.trigger('signInComplete');
+                            Backbone.trigger('signInComplete');
                         }, this)
                     )
                 ;
@@ -107,21 +107,21 @@ define(
                             if (Modernizr.sessionStorage) {
                                 sessionStorage.clear();
                             }
-                            this.trigger('signOutSuccess');
+                            Backbone.trigger('signOutSuccess');
                         }, this)
                     )
                     .fail(
                         _.bind(function (response, status) {
-                            this.trigger('signOutError', status);
+                            Backbone.trigger('signOutError', status);
                         }, this)
                     )
                     .always(
                         _.bind(function () {
-                            this.trigger('signOutComplete');
+                            Backbone.trigger('signOutComplete');
                         }, this)
                     )
                 ;
             }
-        });
+        };
     }
 );
