@@ -78,7 +78,7 @@ define(
                             this.trigger('signInComplete');
                         }, this)
                     )
-                    ;
+                ;
             },
             /**
              * Attempt username/password combination sign in
@@ -127,7 +127,7 @@ define(
                             this.trigger('signOutComplete');
                         }, this)
                     )
-                    ;
+                ;
             }
         });
     }
