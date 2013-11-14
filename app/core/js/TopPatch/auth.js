@@ -37,13 +37,6 @@ define(
         'use strict';
         exports.Auth = _.extend({}, Backbone.Events, {
             /**
-             * Reference to the user model.
-             * @attribute user
-             * @default null
-             * @readOnly
-             */
-            user: null,
-            /**
              * Indicates whether this sessions is authenticated or not.
              * @attribute signedIn
              * @default false
