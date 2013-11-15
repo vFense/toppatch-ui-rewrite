@@ -14,14 +14,7 @@ Editor preferences are available in the [editor config](.editorconfig) for easy 
 
 ## What you need to develop/compile this project
 
-In order to develop and/or compile Remediation Vault, you need to have Node.js/npm latest, and git 1.8 or later. (Earlier versions might work OK, but are not tested.)
-
-For Windows you have to download and install [git](http://git-scm.com/downloads) and [Node.js](http://nodejs.org/download/).
-
-Mac OS users should install [Homebrew](http://mxcl.github.com/homebrew/). Once Homebrew is installed, run `brew install git` to install git,
-and `brew install node` to install Node.js.
-
-Linux/BSD users should use their appropriate package managers to install git and Node.js, or build from source.
+In order to develop and/or compile Remediation Vault, you need to have the latest [Node.js](http://nodejs.org/download/), and [git](http://git-scm.com/downloads) 1.8.x or later. (Earlier versions might work OK, but are not tested.)
 
 ## Setting up the project environment
 
