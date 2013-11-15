@@ -24,6 +24,12 @@ First, clone a copy of the main Remediation Vault git repo by running:
 git clone git://github.com/toppatch/toppatch-ui-rewrite.git
 ```
 
+Before continuing you may wish to run the following command so you wont have to run `sudo` when running global npm commands:
+
+```bash
+sudo chown -R $USER /usr/local
+```
+
 Install the [grunt-cli](http://gruntjs.com/getting-started#installing-the-cli) and [bower](http://bower.io/) packages if you haven't before. These should be done as global installs:
 
 ```bash
