@@ -40,11 +40,13 @@ $(document).ready(function () {
             ['core/js/forms/basicFormView'],
             function (BasicForm) {
                 var form = new BasicForm({
-                    template: _.template('<input type="text" name="field1" value="42"/>')
-                });
+                        template: _.template('<input type="text" name="field1" value="42"/>')
+                    }),
+                    timeout;
 
                 form.render();
                 form.once('submit', function (data) {
+                    clearTimeout(timeout);
                     ok(true, 'Submit event captured');
 
                     ok(_.isObject(data), 'event passed data object');
@@ -55,6 +57,14 @@ $(document).ready(function () {
 
                     start();
                 });
+
+                timeout = setTimeout(function () {
+                    form.off();
+
+                    ok(false, 'Submit event NOT captured within specified timeout');
+
+                    start();
+                }, 100);
 
                 form.$el.submit();
             }
