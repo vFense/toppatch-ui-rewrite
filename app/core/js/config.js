@@ -28,6 +28,7 @@ var requirejs = {
         'highcharts'            : 'vendor/highstock-components/highstock.src',
         'highcharts-more'       : 'vendor/highstock-components/highcharts-more.src',
         'jquery'                : 'vendor/jquery/jquery',
+        'jquery.mockjax'        : 'vendor/jquery-mockjax/jquery.mockjax',
         'jquery.simulate'       : 'vendor/jquery-simulate/jquery.simulate',
         'livestamp'             : 'vendor/livestampjs/livestamp',
         'moment'                : 'vendor/moment/moment',
@@ -36,6 +37,7 @@ var requirejs = {
 
         // Backbone Paths
         'backbone'              : 'vendor/backbone/backbone',
+        'backbone.babysitter'   : 'vendor/backbone.babysitter/lib/amd/backbone.babysitter',
         'backbone.fetchCache'   : 'vendor/backbone-fetch-cache/backbone.fetch-cache',
         'backbone.modelBinder'  : 'vendor/backbone.modelbinder/Backbone.ModelBinder',
         'backbone.subroute'     : 'vendor/backbone.subroute/backbone.subroute',
@@ -86,6 +88,7 @@ var requirejs = {
         'handlebars'            : { exports: 'Handlebars' },
         'highcharts'            : { exports: 'Highcharts' },
         'highcharts-more'       : { exports: 'Highcharts.seriesTypes.bubble', deps: ['highcharts'] },
+        'jquery.mockjax'        : { exports: '$.mockjax', deps: ['jquery'] },
         'jquery.simulate'       : { exports: '$.simulate', deps: ['jquery']},
         'livestamp'             : { exports: '$.livestamp', deps: ['jquery', 'moment'] },
         'select2'               : { exports: 'Select2', deps: ['jquery']},
