@@ -8,7 +8,6 @@ define(
     function (TemplateView) {
         'use strict';
 
-        var formOptions = ['accept-charset', 'action', 'autocomplete', 'enctype', 'method', 'name', 'novalidate', 'target'];
         return TemplateView.extend({
             tagName: 'form',
 
@@ -26,7 +25,6 @@ define(
                     {
                         role: 'form'
                     },
-                    _.pick(this.options, formOptions),
                     _.result(TemplateView.prototype, 'attributes')
                 );
             },
