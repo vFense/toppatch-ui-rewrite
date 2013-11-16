@@ -10,7 +10,7 @@ define(
 
         return TemplateView.extend({
             /**
-             * Listen for element events
+             * Listen for DOM element events
              * Uses a function to inherit events
              * @attribute events
              * @type Object|Function
@@ -26,12 +26,24 @@ define(
                 );
             },
 
+            /**
+             * Serialize the form and trigger the submit event at the backbone level
+             * @method submit
+             * @param event {Event}
+             * @returns {this}
+             */
             submit: function (event) {
                 if (_.isObject(event)) { event.preventDefault(); }
                 this.trigger('submit', this.serializeForm());
                 return this;
             },
 
+            /**
+             * Serialize the form into an Object ready for conversion to JSON
+             * @method serializeForm
+             * @returns {Object}
+             * @protected
+             */
             serializeForm: function () {
                 var output = {};
                 var input = this.$('form').serializeArray();
