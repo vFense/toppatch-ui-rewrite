@@ -8,6 +8,7 @@ $(document).ready(function () {
             function (BasicForm) {
                 var form = new BasicForm({
                     template: _.template([
+                        '<form>',
                         '<input type="text" name="field1" value="1"/>',
                         '<input type="text" name="field2" value="2-1"/>',
                         '<input type="text" name="field2" value="2-2"/>',
@@ -15,7 +16,8 @@ $(document).ready(function () {
                         '<select name="field4"><option value="4-1"></option><option value="4-2" selected></option></select>',
                         '<input type="hidden" name="field5" value="5"></hidden>',
                         '<input type="checkbox" name="field6"/>',
-                        '<input type="checkbox" name="field7" checked/>'
+                        '<input type="checkbox" name="field7" checked/>',
+                        '</form>'
                     ].join('\n'))
                 });
 
@@ -40,7 +42,7 @@ $(document).ready(function () {
             ['core/js/forms/basicFormView'],
             function (BasicForm) {
                 var form = new BasicForm({
-                        template: _.template('<input type="text" name="field1" value="42"/>')
+                        template: _.template('<form><input type="text" name="field1" value="42"/></form>')
                     }),
                     timeout;
 
@@ -66,7 +68,7 @@ $(document).ready(function () {
                     start();
                 }, 100);
 
-                form.$el.submit();
+                form.$('form').submit();
             }
         );
     });
