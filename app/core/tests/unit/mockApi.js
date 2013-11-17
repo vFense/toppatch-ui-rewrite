@@ -1,19 +1,57 @@
 $(document).ready(function () {
     'use strict';
-    module('mockApi');
+    module('APIs');
 
-    asyncTest('Test', function () {
+    asyncTest('mockApi (parent class)', function () {
+        require(['core/tests/api/mockApi'], function (mockApi) {
+            ok(mockApi === $.mockjax, 'Returns $.mockjax');
+            start();
+        });
+    });
+    asyncTest('Hello World', function () {
         require(['core/tests/api/helloworld'], function (mockApi) {
-            console.log(mockApi);
             $.ajax({
                 url: '/hello',
                 type: 'GET',
-                contentType: 'application/json',
-                dataType: 'json',
-                complete: function (response) { console.log(response); }
+                complete: function (response) {
+                    ok(_.isNumber(mockApi), 'api module returns a number');
+                    strictEqual(response.responseText, 'Hello World!', 'Correct value returned from API');
+                    strictEqual(response.status, 200, 'Correct status code returned');
+                    start();
+                }
             });
-            ok(true, 'Test');
-            start();
+        });
+    });
+    asyncTest('Successful Login', function () {
+        require(['core/tests/api/login'], function (mockApi) {
+            var data = {user: 'test', password: 'test'};
+            $.ajax({
+                url: '/login',
+                type: 'POST',
+                data: data,
+                complete: function (response) {
+                    ok(_.isNumber(mockApi), 'api module returns a number');
+                    strictEqual(response.statusText, 'OK', 'Correct statusText returned from API');
+                    strictEqual(response.status, 200, 'Correct status 200 code returned');
+                    start();
+                }
+            });
+        });
+    });
+    asyncTest('Invalid Login', function () {
+        require(['core/tests/api/login'], function (mockApi) {
+            var data = {user: 'test', password: ''};
+            $.ajax({
+                url: '/login',
+                type: 'POST',
+                data: data,
+                complete: function (response) {
+                    ok(_.isNumber(mockApi), 'api module returns a number');
+                    strictEqual(response.statusText, 'Unauthorized', 'Correct statusText returned from API');
+                    strictEqual(response.status, 401, 'Correct status 401 code returned');
+                    start();
+                }
+            });
         });
     });
 });
