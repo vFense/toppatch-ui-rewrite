@@ -14,14 +14,7 @@ Editor preferences are available in the [editor config](.editorconfig) for easy 
 
 ## What you need to develop/compile this project
 
-In order to develop and/or compile Remediation Vault, you need to have Node.js/npm latest, and git 1.8 or later. (Earlier versions might work OK, but are not tested.)
-
-For Windows you have to download and install [git](http://git-scm.com/downloads) and [Node.js](http://nodejs.org/download/).
-
-Mac OS users should install [Homebrew](http://mxcl.github.com/homebrew/). Once Homebrew is installed, run `brew install git` to install git,
-and `brew install node` to install Node.js.
-
-Linux/BSD users should use their appropriate package managers to install git and Node.js, or build from source.
+In order to develop and/or compile Remediation Vault, you need to have the latest [Node.js](http://nodejs.org/download/), and [git](http://git-scm.com/downloads) 1.8.x or later. (Earlier versions might work OK, but are not tested.)
 
 ## Setting up the project environment
 
@@ -29,6 +22,12 @@ First, clone a copy of the main Remediation Vault git repo by running:
 
 ```bash
 git clone git://github.com/toppatch/toppatch-ui-rewrite.git
+```
+
+Before continuing you may wish to run the following command so you wont have to run `sudo` when running global npm commands:
+
+```bash
+sudo chown -R $USER /usr/local
 ```
 
 Install the [grunt-cli](http://gruntjs.com/getting-started#installing-the-cli) and [bower](http://bower.io/) packages if you haven't before. These should be done as global installs:
