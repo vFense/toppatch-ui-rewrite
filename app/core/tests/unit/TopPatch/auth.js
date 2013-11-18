@@ -12,6 +12,8 @@ $(document).ready(function () {
                         start();
                     };
 
+                Auth.signedIn = false;
+
                 Backbone.once('signInSuccess', function () {
                     ok(true, '`signInSuccess` event fired on Backbone Object');
                 });
@@ -27,6 +29,7 @@ $(document).ready(function () {
                 Auth.signIn('test', 'test').then(
                     function () {
                         ok(false, 'signIn().then(doneCallback)');
+                        strictEqual(Auth.signedIn, true, 'Auth now indicates that we are signed in');
                         done();
                     },
                     function () {
@@ -84,6 +87,8 @@ $(document).ready(function () {
                         start();
                     };
 
+                Auth.signedIn = true;
+
                 Backbone.once('signOutSuccess', function () {
                     ok(true, '`signOutSuccess` event fired on Backbone Object');
                 });
@@ -99,6 +104,7 @@ $(document).ready(function () {
                 Auth.signOut().then(
                     function () {
                         ok(true, 'signOut().then(doneCallback)');
+                        strictEqual(Auth.signedIn, false, 'Auth now indicates that we are signed out');
                         done();
                     },
                     function () {
