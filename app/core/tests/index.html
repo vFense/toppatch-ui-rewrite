@@ -8,7 +8,6 @@
     <script src="../../vendor/backbone/backbone.js"></script>
     <script src="../../vendor/qunit/qunit/qunit.js"></script>
     <script>
-        GLOBALS = window;
         var libs = window.libs = {};
         libs.$ = $;
         libs._ = _.noConflict();
@@ -37,26 +36,28 @@
     <!-- Basic UI Elements -->
     <script src="unit/button.js"></script>
 
-    <!-- Region and Region Manager -->
-    <script src="unit/region.js"></script>
-    <script src="unit/regionManager.js"></script>
-
     <!-- Routers -->
     <script src="unit/router.js"></script>
 
     <!-- Collections -->
     <script src="unit/cachedCollection.js"></script>
 
+    <!-- Handlebars Helpers -->
+    <script src="unit/templateHelpers.js"></script>
+
     <!-- Views -->
     <script src="unit/view.js"></script>
-    <script src="unit/containerView.js"></script>
     <script src="unit/templateView.js"></script>
     <script src="unit/loaderView.js"></script>
-    <script src="unit/layoutView.js"></script>
-    <script src="unit/modalView.js"></script>
-    <script src="unit/alertView.js"></script>
+    <script src="unit/forms/basicFormView.js"></script>
+    <script src="unit/modal/modalView.js"></script>
+    <script src="unit/modal/alertView.js"></script>
+    <script src="unit/modal/formView.js"></script>
 
     <script src="unit/filterItem.js"></script>
+
+    <!--APIs-->
+    <script src="unit/mockApi.js"></script>
 
     <!-- Charts -->
     <script src="unit/chart/chart.js"></script>

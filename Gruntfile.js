@@ -6,16 +6,17 @@ module.exports = function(grunt) {
     grunt.initConfig({
         meta: {
             app: 'app/',
-            temp: 'temp/',
+            banner:
+                '/**\n' +
+                    ' * <%= meta.pkg.name %> v<%= meta.pkg.version %>\n' +
+                    ' * www.toppatch.com\n *\n' +
+                    ' * Copyright (c) 2012, <%= grunt.template.today("yyyy") %> <%= meta.pkg.author %>\n' +
+                    ' */\n',
             dist: 'dist/',
             docs: 'docs/',
             pkg: grunt.file.readJSON('package.json'),
-            banner:
-                '/**\n' +
-                ' * <%= meta.pkg.name %> v<%= meta.pkg.version %>\n' +
-                ' * www.toppatch.com\n *\n' +
-                ' * Copyright (c) 2012, <%= grunt.template.today("yyyy") %> <%= meta.pkg.author %>\n' +
-                ' */\n'
+            report: 'report/',
+            temp: 'temp/'
         },
 
         /**********************
@@ -26,23 +27,25 @@ module.exports = function(grunt) {
             dev: [
                 '<%= meta.app %>css',
                 '<%= meta.app %>core/template/**/*.js',
+                '<%= meta.app %>rvault/template/**/*.js',
                 '<%= meta.app %>fonts'
             ],
             dist        : ['<%= meta.dist %>'],
             nodeModules : ['node_modules/'],
-            report      : ['report/'],
+            report      : ['<%= meta.report %>'],
             temp        : ['<%= meta.temp %>'],
             vendor      : ['<%= meta.app %>vendor']
         },
         concurrent: {
             dev: [
                 'copy:dev',
-                'less:application',
+                'less:rvault',
                 'less:bootstrap',
                 'handlebars'
             ],
             dist: [
                 'copy:dist',
+                'cssmin',
                 'imagemin:dist',
                 'uglify:modernizr',
                 'requirejs:dist',
@@ -50,28 +53,48 @@ module.exports = function(grunt) {
             ]
         },
         connect: {
+            proxies: [
+                {
+                    context: ['/api', '/login', '/logout'],
+                    host: 'test.toppatch.com',
+                    port: 443,
+                    https: true,
+                    changeOrigin: true
+                }
+            ],
             server: {
                 options: {
                     base: '<%= meta.app %>',
                     hostname: '*',
                     livereload: true,
                     port: '8000',
-                    protocol: 'http',
-                    open: true
+                    protocol: 'https',
+                    open: true,
+                    middleware: function (connect, options) {
+                        'use strict';
+                        var config = [
+                            // Serve static files.
+                            connect.static(options.base),
+                            // Make empty directories browsable.
+                            connect.directory(options.base)
+                        ];
+                        var proxy = require('grunt-connect-proxy/lib/utils').proxyRequest;
+                        config.unshift(proxy);
+                        return config;
+                    }
                 }
             }
         },
         copy: {
             dev: {
                 files: [
-                    { cwd: '<%= meta.app %>vendor/bootstrap/', src: 'fonts/*', dest: '<%= meta.app %>', expand: true }
+                    { cwd: '<%= meta.app %>vendor/font-awesome/', src: 'fonts/*', dest: '<%= meta.app %>', expand: true }
                 ]
             },
             dist: {
                 files: [
                     { cwd: '<%= meta.app %>', dest: '<%= meta.dist %>', expand: true, src: 'robots.txt' },
                     { cwd: '<%= meta.app %>', dest: '<%= meta.dist %>', expand: true, src: 'images/*'   },
-                    { cwd: '<%= meta.app %>', dest: '<%= meta.dist %>', expand: true, src: 'css/*'      },
                     { cwd: '<%= meta.app %>', dest: '<%= meta.dist %>', expand: true, src: 'fonts/*'    }
                 ]
             },
@@ -80,27 +103,66 @@ module.exports = function(grunt) {
                 dest: '<%= meta.docs %>/assets/css/logo.png'
             }
         },
+        cssmin: {
+            options: {
+                report: 'min'
+            },
+            application: {
+                options: {
+                    banner: '<%= meta.banner %>'
+                },
+                files: {
+                    '<%= meta.dist %>/css/application.css': ['<%= meta.app %>/css/application.css']
+                }
+            },
+            bootstrap: {
+                files: {
+                    '<%= meta.dist %>/css/bootstrap.css': ['<%= meta.app %>/css/bootstrap.css']
+                }
+            }
+        },
         handlebars: {
             options: {
                 amd: true,
                 namespace: false,
-                processContent: function (content) {
+                processContent: function (content, filepath) {
                     'use strict';
-                    var options = {
-                        removeComments: true,
-                        collapseWhitespace: true,
-                        collapseBooleanAttributes: true,
-                        removeRedundantAttributes: true,
-                        removeEmptyAttributes: true
-                    };
-                    return require('html-minifier').minify(content, options);
+                    var minify = require('html-minifier').minify,
+                        options = {
+                            removeComments: true,
+                            collapseWhitespace: true,
+                            collapseBooleanAttributes: true,
+                            removeRedundantAttributes: true,
+                            removeEmptyAttributes: true
+                        },
+                        min;
+
+                    try {
+                        min = minify(content, options);
+                    } catch (err) {
+                        var error = err.split(/(.*?):/)[1];
+                        grunt.warn(error + ': ' + filepath);
+                    }
+
+                    if (min.length < 1) {
+                        grunt.log.warn(filepath + ' minified to empty string.');
+                    }
+
+                    return min;
                 }
             },
-            dev: {
+            core: {
                 expand: true,
                 cwd: '<%= meta.app %>core/template/hbs/',
                 src: '**/*.hbs',
                 dest:'<%= meta.app %>/core/template/',
+                ext: '.js'
+            },
+            rvault: {
+                expand: true,
+                cwd: '<%= meta.app %>rvault/template/hbs/',
+                src: '**/*.hbs',
+                dest:'<%= meta.app %>rvault/template/',
                 ext: '.js'
             }
         },
@@ -129,26 +191,55 @@ module.exports = function(grunt) {
                 options: {
                     jshintrc: '<%= meta.app %>core/tests/.jshintrc'
                 },
-                src: ['<%= meta.app %>core/tests/unit/*.js']
-            }
+                src: ['<%= meta.app %>core/tests/unit/**/*.js']
+            },
+            rvault: {
+                options: {
+                    jshintrc: '<%= meta.app %>rvault/js/.jshintrc'
+                },
+                src: ['<%= meta.app %>rvault/js/**/*.js']
+            },
+            rvaultTests: {
+                options: {
+                    jshintrc: '<%= meta.app %>rvault/tests/.jshintrc'
+                },
+                src: ['<%= meta.app %>rvault/tests/unit/**/*.js']
+            },
         },
         less: {
-            application: {
-                files: {
-                    '<%= meta.app %>css/application.css': ['<%= meta.app %>less/application.less']
-                }
-            },
             bootstrap: {
                 files: {
-                    '<%= meta.app %>css/bootstrap.css'  : ['<%= meta.app %>vendor/bootstrap/less/bootstrap.less']
+                    '<%= meta.app %>css/bootstrap.css'  : ['<%= meta.app %>/core/less/custom.bootstrap.less']
                 }
-            }
+            },
+            core: {
+                files: {
+                    '<%= meta.app %>css/core.css': ['<%= meta.app %>/core/less/core.less']
+                }
+            },
+            rvault: {
+                files: {
+                    '<%= meta.app %>css/application.css': ['<%= meta.app %>/rvault/less/application.less']
+                }
+            },
         },
         qunit: {
             options: {
                 timeout: '8100',
+                coverage: {
+                    src: [
+                        '<%= meta.app %>core/js/**/*.js',
+                        '<%= meta.app %>rvault/js/**/*.js'
+                    ],
+                    instrumentedFiles: '<%= meta.temp %>',
+                    coberturaReport: '<%= meta.report %>cobertura',
+                    htmlReport: '<%= meta.report %>'
+                }
             },
-            all: ['<%= meta.app %>core/tests/**/*.html']
+            all: [
+                '<%= meta.app %>core/tests/**/*.html',
+                '<%= meta.app %>rvault/tests/**/*.html'
+            ]
         },
         requirejs: {
             options: {
@@ -161,8 +252,8 @@ module.exports = function(grunt) {
             },
             dist: {
                 options: {
-                    include: ['core/js/main'],
-                    insertRequire: ['core/js/main'],
+                    include: ['rvault/js/main'],
+                    insertRequire: ['rvault/js/main'],
                     name: 'vendor/requirejs/require',
                     optimize: 'none',
                     out: '<%= meta.dist %>js/toppatch-ui.js'
@@ -197,6 +288,9 @@ module.exports = function(grunt) {
                 files: ['<%= meta.app %>css/*.css'],
                 options: { livereload: true }
             },
+            gruntfile: {
+                files: ['Gruntfile.js']
+            },
             html: {
                 files: ['<%= meta.app %>*.html'],
                 options: { livereload: true }
@@ -204,17 +298,26 @@ module.exports = function(grunt) {
             javascript: {
                 files: [
                     '<%= meta.app %>core/js/**/*.js',
-                    '<%= meta.app %>core/template/*.js'
+                    '<%= meta.app %>core/template/*.js',
+                    '<%= meta.app %>rvault/js/**/*.js',
+                    '<%= meta.app %>rvault/template/*.js'
                 ],
                 options: { livereload: true }
             },
             less: {
-                files: ['<%= meta.app %>less/*.less'],
+                files: [
+                    '<%= meta.app %>core/less/*.less',
+                    '<%= meta.app %>rvault/less/*.less'
+                ],
                 tasks: ['less:application']
             },
-            hbs: {
+            hbsCore: {
                 files: ['<%= meta.app %>core/template/hbs/**/*.hbs'],
-                tasks: ['handlebars']
+                tasks: ['handlebars:core']
+            },
+            hbsRVault: {
+                files: ['<%= meta.app %>rvault/template/hbs/**/*.hbs'],
+                tasks: ['handlebars:rvault']
             }
         },
         yuidoc: {
@@ -233,7 +336,7 @@ module.exports = function(grunt) {
     });
 
     grunt.registerTask('default', ['test', 'clean:dev', 'concurrent:dev', 'clean:dist', 'concurrent:dist', 'uglify:dist']);
-    grunt.registerTask('dev', ['clean:dev', 'concurrent:dev', 'connect:server', 'watch']);
+    grunt.registerTask('dev', ['clean:dev', 'concurrent:dev', 'configureProxies', 'connect:server', 'watch']);
     grunt.registerTask('docs', ['yuidoc', 'copy:docs']);
-    grunt.registerTask('test', ['jshint', 'qunit']);
+    grunt.registerTask('test', ['jshint', 'clean:report', 'qunit']);
 };

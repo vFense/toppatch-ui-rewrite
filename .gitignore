@@ -1,7 +1,6 @@
 # Project paths
 /app/api
 /app/css
-/app/core/template/*.js
 /app/fonts
 /app/vendor
 /dist

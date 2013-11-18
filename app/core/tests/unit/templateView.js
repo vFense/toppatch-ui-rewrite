@@ -1,6 +1,20 @@
 $(document).ready(function () {
     'use strict';
     module('TemplateView');
+
+    asyncTest('Constructor with options', function () {
+        require(
+            ['core/js/templateView'],
+            function (TemplateView) {
+                var templateView = new TemplateView({
+                    template: 42
+                });
+                strictEqual(templateView.template, 42, 'Changed template correctly');
+                start();
+            }
+        );
+    });
+
     asyncTest('getData', function () {
         require(
             ['core/js/templateView'],

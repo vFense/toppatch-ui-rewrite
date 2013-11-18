@@ -7,7 +7,9 @@
  *
  * @class Button
  */
-define(function () {
+define(
+    ['backbone'],
+    function () {
     'use strict';
 
     /**

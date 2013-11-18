@@ -8,7 +8,7 @@ define(
         return TemplateView.extend({
             /**
              * A TemplateView that manages a Bootstrap Modal
-             * @class DialogView
+             * @class ModalView
              * @extends TemplateView
              * @constructor
              * @param options
