@@ -3,6 +3,7 @@ define(
     function (mockjax) {
         'use strict';
         _.extend($.mockjaxSettings,  {
+            logging:       false,
             status:        200,
             statusText:     'OK',
             responseTime:  0,
