@@ -74,7 +74,7 @@ $(document).ready(function () {
         );
     });
 
-    asyncTest('SignIn Failure', function () {
+    asyncTest('SignOut Success', function () {
         require(
             ['core/js/TopPatch/auth', 'core/tests/api/logout'],
             function (TopPatch) {
