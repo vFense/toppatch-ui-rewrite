@@ -11,13 +11,13 @@ define(
                     this.statusText = 'OK';
                     this.responseText = JSON.stringify({
                         message: 'valid'
-                    })
+                    });
                 } else {
                     this.status = 401;
                     this.statusText = 'Unauthorized';
                     this.responseText = JSON.stringify({
                         message: 'invalid'
-                    })
+                    });
                 }
             }
         });
