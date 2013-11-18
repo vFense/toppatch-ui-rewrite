@@ -28,7 +28,7 @@ $(document).ready(function () {
 
                 Auth.signIn('test', 'test').then(
                     function () {
-                        ok(false, 'signIn().then(doneCallback)');
+                        ok(true, 'signIn().then(doneCallback)');
                         strictEqual(Auth.signedIn, true, 'Auth now indicates that we are signed in');
                         done();
                     },
