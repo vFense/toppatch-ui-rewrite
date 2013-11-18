@@ -6,7 +6,7 @@ define(
             url:  '/login',
             type: 'POST',
             response: function (settings) {
-                if (settings.data.user === 'test' && settings.data.password === 'test') {
+                if (settings.data.name === 'test' && settings.data.password === 'test') {
                     this.status = 200;
                     this.statusText = 'OK';
                     this.responseText = JSON.stringify({
