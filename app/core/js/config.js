@@ -37,7 +37,6 @@ var requirejs = {
 
         // Backbone Paths
         'backbone'              : 'vendor/backbone/backbone',
-        'backbone.babysitter'   : 'vendor/backbone.babysitter/lib/amd/backbone.babysitter',
         'backbone.fetchCache'   : 'vendor/backbone-fetch-cache/backbone.fetch-cache',
         'backbone.modelBinder'  : 'vendor/backbone.modelbinder/Backbone.ModelBinder',
         'backbone.subroute'     : 'vendor/backbone.subroute/backbone.subroute',
