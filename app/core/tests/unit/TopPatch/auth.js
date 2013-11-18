@@ -109,4 +109,42 @@ $(document).ready(function () {
             }
         );
     });
+
+    asyncTest('SignOut Failure', function () {
+        require(
+            ['core/js/TopPatch/auth', 'core/tests/api/logout'],
+            function (TopPatch, logoutAPI) {
+                var Auth = TopPatch.Auth,
+                    done = function () {
+                        Backbone.off();
+                        start();
+                    };
+
+                $.mockjax.handler(logoutAPI).status = 500;
+
+                Backbone.once('signOutSuccess', function () {
+                    ok(false, 'Unexpected `signOutSuccess` event fired on Backbone Object');
+                });
+
+                Backbone.once('signOutError', function () {
+                    ok(true, '`signOutError` event fired on Backbone Object');
+                });
+
+                Backbone.once('signOutComplete', function () {
+                    ok(true, '`signOutComplete` event fired on Backbone Object');
+                });
+
+                Auth.signOut().then(
+                    function () {
+                        ok(false, 'signOut().then success path taken');
+                        done();
+                    },
+                    function () {
+                        ok(true, 'signOut().then fail path taken');
+                        done();
+                    }
+                );
+            }
+        );
+    });
 });
