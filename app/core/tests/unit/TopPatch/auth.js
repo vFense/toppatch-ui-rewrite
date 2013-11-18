@@ -62,11 +62,11 @@ $(document).ready(function () {
 
                 Auth.signIn('test', 'wrong').then(
                     function () {
-                        ok(true, 'signIn().then success path taken');
+                        ok(false, 'signIn().then success path taken');
                         done();
                     },
                     function () {
-                        ok(false, 'signIn().then fail path taken');
+                        ok(true, 'signIn().then fail path taken');
                         done();
                     }
                 );
