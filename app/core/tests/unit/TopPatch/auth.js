@@ -26,11 +26,11 @@ $(document).ready(function () {
 
                 Auth.signIn('test', 'test').then(
                     function () {
-                        ok(true);
+                        ok(false, 'signIn().then(doneCallback)');
                         done();
                     },
                     function () {
-                        ok(false);
+                        ok(false, 'signIn().then(failCallback)');
                         done();
                     }
                 );
@@ -62,11 +62,11 @@ $(document).ready(function () {
 
                 Auth.signIn('test', 'wrong').then(
                     function () {
-                        ok(false, 'signIn().then success path taken');
+                        ok(false, 'signIn().then(doneCallback)');
                         done();
                     },
                     function () {
-                        ok(true, 'signIn().then fail path taken');
+                        ok(true, 'signIn().then(failCallback)');
                         done();
                     }
                 );
@@ -98,11 +98,11 @@ $(document).ready(function () {
 
                 Auth.signOut().then(
                     function () {
-                        ok(true, 'signOut().then success path taken');
+                        ok(true, 'signOut().then(doneCallback)');
                         done();
                     },
                     function () {
-                        ok(false, 'signOut().then fail path taken');
+                        ok(false, 'signOut().then(failCallback)');
                         done();
                     }
                 );
@@ -136,11 +136,11 @@ $(document).ready(function () {
 
                 Auth.signOut().then(
                     function () {
-                        ok(false, 'signOut().then success path taken');
+                        ok(false, 'signOut().then(doneCallback)');
                         done();
                     },
                     function () {
-                        ok(true, 'signOut().then fail path taken');
+                        ok(true, 'signOut().then(failCallback)');
                         done();
                     }
                 );
