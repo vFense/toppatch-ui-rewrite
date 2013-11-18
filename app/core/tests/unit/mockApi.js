@@ -54,4 +54,19 @@ $(document).ready(function () {
             });
         });
     });
+    asyncTest('User', function () {
+        require(['core/tests/api/user'], function (mockApi) {
+            $.ajax({
+                url: '/user',
+                type: 'GET',
+                complete: function (response) {
+                    ok(_.isNumber(mockApi), 'api module returns a number');
+                    ok(_.isString(response.responseText), 'responseText is a string');
+                    strictEqual(response.statusText, 'OK', 'Correct statusText returned from API');
+                    strictEqual(response.status, 200, 'Correct status 401 code returned');
+                    start();
+                }
+            });
+        });
+    });
 });
