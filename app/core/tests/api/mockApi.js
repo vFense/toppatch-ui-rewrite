@@ -1,6 +1,6 @@
 define(
     ['jquery.mockjax'],
-    function (mockjax) {
+    function () {
         'use strict';
         _.extend($.mockjaxSettings,  {
             logging:       false,
