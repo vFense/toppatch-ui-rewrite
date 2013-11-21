@@ -6,6 +6,7 @@ define(
 
         TopPatch.extend(
             require('./constants'),
+            require('./utils'),
             require('./auth')
         );
 
