@@ -101,10 +101,10 @@ define(
                     .done(
                         _.bind(function () {
                             this.signedIn = false;
-                            if (Modernizr.localStorage) {
+                            if (_.isObject(localStorage) && _.isFunction(localStorage.clear)) {
                                 localStorage.clear();
                             }
-                            if (Modernizr.sessionStorage) {
+                            if (_.isObject(sessionStorage) && _.isFunction(sessionStorage.clear)) {
                                 sessionStorage.clear();
                             }
                             Backbone.trigger('signOutSuccess');
