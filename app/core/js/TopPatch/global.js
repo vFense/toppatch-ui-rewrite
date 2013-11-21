@@ -16,6 +16,12 @@ define(
             return TopPatch;
         };
 
+        TopPatch.extend = function () {
+            var args = _.toArray(arguments);
+            args.unshift(TopPatch);
+            return _.extend.apply(_, args);
+        };
+
         return TopPatch;
     }
 );
