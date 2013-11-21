@@ -1,5 +1,5 @@
 define(
-    function (require) {
+    function () {
         'use strict';
         var _TopPatch = window.TopPatch,
             TopPatch = window.TopPatch = {};
