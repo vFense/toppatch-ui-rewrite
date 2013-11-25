@@ -57,9 +57,6 @@ The following command will start a local server, watch all the files and compile
 grunt
 ```
 
-
-
-
 ## Compiling this project for deployment
 
 Make sure you have followed the instructions in [Setting up the project environment](#setting-up-the-project-environment)
