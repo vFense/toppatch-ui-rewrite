@@ -25,7 +25,7 @@ define(
                  * [criticalAlertWithMessage](#method_criticalAlertWithMessage)
                  *
                  * @class AlertView
-                 * @extends DialogView
+                 * @extends ModalView
                  * @requires Button
                  * @constructor
                  * @param options {Object} Properties to init this AlertView with
