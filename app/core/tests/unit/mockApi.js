@@ -24,7 +24,7 @@ $(document).ready(function () {
     });
     asyncTest('Successful Login', function () {
         require(['core/tests/api/login'], function (mockApi) {
-            var data = {user: 'test', password: 'test'};
+            var data = {name: 'test', password: 'test'};
             $.ajax({
                 url: '/login',
                 type: 'POST',
@@ -40,7 +40,7 @@ $(document).ready(function () {
     });
     asyncTest('Invalid Login', function () {
         require(['core/tests/api/login'], function (mockApi) {
-            var data = {user: 'test', password: ''};
+            var data = {name: 'test', password: ''};
             $.ajax({
                 url: '/login',
                 type: 'POST',
