@@ -29,6 +29,7 @@
     "matchdep": "~0.3.0"
   },
   "devDependencies": {
+    "grunt-bower-task": "~0.3.4",
     "grunt-contrib-connect": "~0.5.0",
     "grunt-connect-proxy": "~0.1.6",
     "grunt-contrib-watch": "~0.5.3",

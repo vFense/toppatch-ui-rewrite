@@ -23,6 +23,13 @@ module.exports = function(grunt) {
          * Task Configuration *
          **********************/
 
+        bower: {
+            install: {
+                options: {
+                    copy: false
+                }
+            }
+        },
         clean: {
             dev: [
                 '<%= meta.app %>css',
@@ -340,5 +347,5 @@ module.exports = function(grunt) {
     grunt.registerTask('docs', ['yuidoc', 'copy:docs']);
     grunt.registerTask('test', ['jshint', 'clean:report', 'qunit']);
 
-    grunt.registerTask('_devBuild', ['clean:dev', 'concurrent:dev']);
+    grunt.registerTask('_devBuild', ['clean:dev', 'bower:install', 'concurrent:dev']);
 };
