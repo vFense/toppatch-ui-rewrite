@@ -41,5 +41,6 @@
     "grunt-qunit-istanbul": "~0.3.0"
   },
   "scripts": {
+    "build": "npm install && grunt build"
   }
 }
