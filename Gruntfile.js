@@ -335,8 +335,8 @@ module.exports = function(grunt) {
         }
     });
 
-    grunt.registerTask('default', ['test', 'clean:dev', 'concurrent:dev', 'clean:dist', 'concurrent:dist', 'uglify:dist']);
-    grunt.registerTask('dev', ['clean:dev', 'concurrent:dev', 'configureProxies', 'connect:server', 'watch']);
+    grunt.registerTask('default', ['clean:dev', 'concurrent:dev', 'configureProxies', 'connect:server', 'watch']);
+    grunt.registerTask('build', ['test', 'clean:dev', 'concurrent:dev', 'clean:dist', 'concurrent:dist', 'uglify:dist']);
     grunt.registerTask('docs', ['yuidoc', 'copy:docs']);
     grunt.registerTask('test', ['jshint', 'clean:report', 'qunit']);
 };
