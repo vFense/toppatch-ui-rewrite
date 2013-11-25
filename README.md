@@ -49,6 +49,17 @@ Enter the Remediation Vault directory and install the Node and Bower dependencie
 cd toppatch-ui-rewrite && npm install
 ```
 
+## Development
+
+The following command will start a local server, watch all the files and compile them if there is a change. 
+
+```bash
+grunt
+```
+
+
+
+
 ## Compiling this project for deployment
 
 Make sure you have followed the instructions in [Setting up the project environment](#setting-up-the-project-environment)
@@ -56,7 +67,7 @@ Make sure you have followed the instructions in [Setting up the project environm
 Then, to get a complete, minified, and linted version of Remediation Vault's Web UI, type the following:
 
 ```bash
-grunt
+grunt build
 ```
 
 The built version of Remediation Vault's Web UI will be put in the `/dist` subdirectory.
@@ -65,11 +76,11 @@ The built version of Remediation Vault's Web UI will be put in the `/dist` subdi
 
 Command | Description
 :---|:---
-`grunt` | Run JSHint and QUnit tests and then compile CSS and JavaScript into the `/dist` directory.
+`grunt` | A convenience method that will **watch** LESS, JS, and HTML files in the `/app` directory, and host them at `localhost:8000`.
+`grunt build` | Run JSHint and QUnit tests and then compile CSS and JavaScript into the `/dist` directory.
 `grunt test` | Run JSHint and QUnit tests in [phantomjs](https://github.com/ariya/phantomjs/).
-`grunt dev` | A convenience method that will **watch** LESS, JS, and HTML files in the `/app` directory, and host them at `localhost:8000`.
 
-*Note: While running `grunt dev` LESS files will be compiled to `/app/css`, a git ignored directory.*
+*Note: While running `grunt` LESS files will be compiled to `/app/css`, a git ignored directory.*
 
 ## Versioning
 
