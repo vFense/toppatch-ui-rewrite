@@ -14,70 +14,87 @@ Editor preferences are available in the [editor config](.editorconfig) for easy 
 
 ## What you need to develop/compile this project
 
-In order to develop and/or compile Remediation Vault, you need to have the latest [Node.js](http://nodejs.org/download/), and [git](http://git-scm.com/downloads) 1.8.x or later. (Earlier versions might work OK, but are not tested.)
+In order to develop and/or compile Remediation Vault, you need to Node.js/npm latest and git 1.7 or later.
+(Earlier versions might work OK, but are not tested.)
 
-## Setting up the project environment
+For Windows you have to download and install [git](http://git-scm.com/downloads) and [Node.js](http://nodejs.org/download/).
 
-First, clone a copy of the main Remediation Vault git repo by running:
+Mac OS users should install [Homebrew](http://mxcl.github.com/homebrew/). Once Homebrew is installed, run `brew install git` to install git,
+and `brew install node` to install Node.js.
+
+Linux/BSD users should use their appropriate package managers to install git and [Node.js](https://github.com/joyent/node/wiki/Installing-Node.js-via-package-manager).
+
+## Developing locally
+
+Clone a copy of the main project repo by running:
 
 ```bash
 git clone git://github.com/toppatch/toppatch-ui-rewrite.git
 ```
 
-Before continuing you may wish to run the following command so you wont have to run `sudo` when running global npm commands:
+Install [grunt-cli](https://github.com/gruntjs/grunt-cli) as a global package:
 
 ```bash
-sudo chown -R $USER /usr/local
+npm install -g grunt-cli
 ```
 
-Install the [grunt-cli](http://gruntjs.com/getting-started#installing-the-cli) and [bower](http://bower.io/) packages if you haven't before. These should be done as global installs:
-
-```bash
-npm install -g grunt-cli bower
-```
-
-Make sure you have `grunt` and `bower` installed by testing:
-
-```bash
-grunt -version
-bower -version
-```
-
-Enter the Remediation Vault directory and install the Node and Bower dependencies, this time *without* specifying a global(-g) install:
+Enter the Remediation Vault directory and install the project dependencies:
 
 ```bash
 cd toppatch-ui-rewrite && npm install
 ```
 
-## Development
+Make sure `grunt` is installed, and working, by running:
 
-The following command will start a local server, watch all the files and compile them if there is a change. 
+```bash
+grunt -version
+```
+
+### Running the development environment
+
+At this point you are ready to start the development environment:
 
 ```bash
 grunt
 ```
 
-## Compiling this project for deployment
+The environment is running and ready when you see `waiting...` in the command line.
 
-Make sure you have followed the instructions in [Setting up the project environment](#setting-up-the-project-environment)
+The `grunt` task will do several sub-tasks for you:
 
-Then, to get a complete, minified, and linted version of Remediation Vault's Web UI, type the following:
+- Compile the handlebars templates
+- Compile the less files into usable css files
+- Copy font and image files
+- Run a local server to host all the relavent files
+- Open a browser window to the server's index page (Only on start)
+- Watch all source files, recompile source files, and refresh the server accordingly
+
+**Note:** It is a good idea to leave the grunt task running while developing.
+
+**WARNING:** Stop the grunt task when pulling from github. You have been warned.
+
+Useful links:
+
+- To view in a browser - [http://localhost:8000/](http://localhost:8000/)
+- To run `core` unit tests in browser - [http://localhost:8000/core/tests/index.html](http://localhost:8000/core/tests/index.html)
+- To run `rvault` unit tests in browser - [http://localhost:8000/rvault/tests/index.html](http://localhost:8000/rvault/tests/index.html)
+
+
+## Deployment Build
+
+If you have not already done so, clone a copy of the main project repo by running:
 
 ```bash
-grunt build
+git clone git://github.com/toppatch/toppatch-ui-rewrite.git
+```
+
+Enter the project directory and run the build script:
+
+```bash
+cd toppatch-ui-rewrite && npm run-script build
 ```
 
 The built version of Remediation Vault's Web UI will be put in the `/dist` subdirectory.
-
-## Available Grunt commands
-
-Command | Description
-:---|:---
-`grunt` | A convenience method that will **watch** LESS, JS, and HTML files in the `/app` directory, and host them at `localhost:8000`.
-`grunt build` | Run JSHint and QUnit tests and then compile CSS and JavaScript into the `/dist` directory.
-`grunt test` | Run JSHint and QUnit tests in [phantomjs](https://github.com/ariya/phantomjs/).
-
-*Note: While running `grunt` LESS files will be compiled to `/app/css`, a git ignored directory.*
 
 ## Versioning
 
