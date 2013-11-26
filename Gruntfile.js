@@ -23,6 +23,13 @@ module.exports = function(grunt) {
          * Task Configuration *
          **********************/
 
+        bower: {
+            install: {
+                options: {
+                    copy: false
+                }
+            }
+        },
         clean: {
             dev: [
                 '<%= meta.app %>css',
@@ -191,7 +198,7 @@ module.exports = function(grunt) {
                 options: {
                     jshintrc: '<%= meta.app %>core/tests/.jshintrc'
                 },
-                src: ['<%= meta.app %>core/tests/unit/**/*.js']
+                src: ['<%= meta.app %>core/tests/**/*.js']
             },
             rvault: {
                 options: {
@@ -203,7 +210,7 @@ module.exports = function(grunt) {
                 options: {
                     jshintrc: '<%= meta.app %>rvault/tests/.jshintrc'
                 },
-                src: ['<%= meta.app %>rvault/tests/unit/**/*.js']
+                src: ['<%= meta.app %>rvault/tests/**/*.js']
             },
         },
         less: {
@@ -335,8 +342,10 @@ module.exports = function(grunt) {
         }
     });
 
-    grunt.registerTask('default', ['test', 'clean:dev', 'concurrent:dev', 'clean:dist', 'concurrent:dist', 'uglify:dist']);
-    grunt.registerTask('dev', ['clean:dev', 'concurrent:dev', 'configureProxies', 'connect:server', 'watch']);
+    grunt.registerTask('default', ['_devBuild', 'configureProxies', 'connect:server', 'watch']);
+    grunt.registerTask('build', ['clean:dist', '_devBuild', 'test', 'concurrent:dist', 'uglify:dist']);
     grunt.registerTask('docs', ['yuidoc', 'copy:docs']);
     grunt.registerTask('test', ['jshint', 'clean:report', 'qunit']);
+
+    grunt.registerTask('_devBuild', ['clean:dev', 'bower:install', 'concurrent:dev']);
 };

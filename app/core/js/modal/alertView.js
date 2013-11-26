@@ -1,10 +1,10 @@
 define(
-    ['core/js/modal/modalView', 'core/template/modalAlert', 'core/js/control/button'],
-    function (ModalView, alertTemplate, Button) {
+    ['core/js/modal/modalView', 'core/template/modalAlert', 'core/js/control/button', 'core/js/TopPatch/constants'],
+    function (ModalView, alertTemplate, Button, constants) {
         'use strict';
 
-        var ENTER = 13,
-            ESCAPE = 27,
+        var ENTER = constants.KEYS.ENTER,
+            ESCAPE = constants.KEYS.ESCAPE,
             AlertView;
 
         AlertView = ModalView.extend(
@@ -25,7 +25,7 @@ define(
                  * [criticalAlertWithMessage](#method_criticalAlertWithMessage)
                  *
                  * @class AlertView
-                 * @extends DialogView
+                 * @extends ModalView
                  * @requires Button
                  * @constructor
                  * @param options {Object} Properties to init this AlertView with

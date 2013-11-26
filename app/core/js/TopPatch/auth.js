@@ -32,17 +32,10 @@
  * @event signOutComplete
  */
 define(
-    ['core/js/user'],
-    function (User) {
+    ['backbone', 'exports'],
+    function (Backbone, exports) {
         'use strict';
-        return _.extend({}, Backbone.Events, {
-            /**
-             * Reference to the user model.
-             * @attribute user
-             * @default null
-             * @readOnly
-             */
-            user: null,
+        exports.Auth = {
             /**
              * Indicates whether this sessions is authenticated or not.
              * @attribute signedIn
@@ -64,20 +57,18 @@ define(
                     .ajax(settings)
                     .done(
                         _.bind(function () {
-                            this.user = new User();
-                            this.user.fetch();
                             this.signedIn = true;
-                            this.trigger('signInSuccess');
+                            Backbone.trigger('signInSuccess');
                         }, this)
                     )
                     .fail(
                         _.bind(function (response, status) {
-                            this.trigger('signInError', status);
+                            Backbone.trigger('signInError', status);
                         }, this)
                     )
                     .always(
                         _.bind(function () {
-                            this.trigger('signInComplete');
+                            Backbone.trigger('signInComplete');
                         }, this)
                     )
                 ;
@@ -109,29 +100,28 @@ define(
                     })
                     .done(
                         _.bind(function () {
-                            this.user = null;
                             this.signedIn = false;
-                            if (Modernizr.localStorage) {
+                            if (_.isObject(localStorage) && _.isFunction(localStorage.clear)) {
                                 localStorage.clear();
                             }
-                            if (Modernizr.sessionStorage) {
+                            if (_.isObject(sessionStorage) && _.isFunction(sessionStorage.clear)) {
                                 sessionStorage.clear();
                             }
-                            this.trigger('signOutSuccess');
+                            Backbone.trigger('signOutSuccess');
                         }, this)
                     )
                     .fail(
                         _.bind(function (response, status) {
-                            this.trigger('signOutError', status);
+                            Backbone.trigger('signOutError', status);
                         }, this)
                     )
                     .always(
                         _.bind(function () {
-                            this.trigger('signOutComplete');
+                            Backbone.trigger('signOutComplete');
                         }, this)
                     )
                 ;
             }
-        });
+        };
     }
 );
