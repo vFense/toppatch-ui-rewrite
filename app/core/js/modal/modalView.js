@@ -117,7 +117,7 @@ define(
                     }
 
                     this.delegateEvents();
-                    
+
                     // Set bootstrap modal options
                     $el.modal({
                         keyboard: this.keyboard,
@@ -135,12 +135,10 @@ define(
              * @returns {this}
              */
             toggleAnimate: function (state) {
-                if (_.isBoolean(state)) {
-                    this.animate = state;
-                } else {
-                    this.animate = !this.animate;
-                }
-                this.$el.toggleClass('fade', this.animate);
+                this.animate = this.$el
+                    .toggleClass('fade', state)
+                    .hasClass('fade')
+                ;
                 return this;
             },
 
