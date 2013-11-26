@@ -73,9 +73,9 @@ The `grunt` task will do several sub-tasks for you:
 
 Useful links:
 
-- To view in a browser - [http://localhost:8000/](http://localhost:8000/)
-- To run `core` unit tests in browser - [http://localhost:8000/core/tests/index.html](http://localhost:8000/core/tests/index.html)
-- To run `rvault` unit tests in browser - [http://localhost:8000/rvault/tests/index.html](http://localhost:8000/rvault/tests/index.html)
+- To view in a browser - [https://localhost:8443/](https://localhost:8443/)
+- To run `core` unit tests in browser - [https://localhost:8443/core/tests/index.html](https://localhost:8443/core/tests/index.html)
+- To run `rvault` unit tests in browser - [https://localhost:8443/rvault/tests/index.html](https://localhost:8443/rvault/tests/index.html)
 
 
 ## Deployment Build
