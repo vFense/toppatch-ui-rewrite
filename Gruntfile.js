@@ -74,7 +74,7 @@ module.exports = function(grunt) {
                     base: '<%= meta.app %>',
                     hostname: '*',
                     livereload: true,
-                    port: '8000',
+                    port: '8443',
                     protocol: 'https',
                     open: true,
                     middleware: function (connect, options) {
