@@ -50,8 +50,6 @@ Make sure `grunt` is installed, and working, by running:
 grunt -version
 ```
 
-### Running the development environment
-
 At this point you are ready to start the development environment:
 
 ```bash
@@ -63,7 +61,7 @@ The environment is running and ready when you see `waiting...` in the command li
 The `grunt` task will do several sub-tasks for you:
 
 - Compile the handlebars templates
-- Compile the less files into usable css files
+- Compile the LESS files into usable CSS files
 - Copy font and image files
 - Run a local server to host all the relavent files
 - Open a browser window to the server's index page (Only on start)
