@@ -11,11 +11,10 @@
     "url": "https://github.com/toppatch/toppatch-ui-rewrite/issues"
   },
   "engines": {
-    "node": ">= 0.8.0"
+    "node": ">= 0.8.19"
   },
   "dependencies": {
     "grunt": "~0.4.1",
-    "grunt-cli": "~0.1.11",
     "grunt-concurrent": "~0.4.1",
     "grunt-contrib-clean": "~0.5.0",
     "grunt-contrib-copy": "~0.4.1",
@@ -39,6 +38,9 @@
     "grunt-contrib-watch": "~0.5.3",
     "grunt-contrib-yuidoc": "~0.5.0",
     "grunt-qunit-istanbul": "~0.3.0"
+  },
+  "peerDependenceis": {
+    "grunt-cli": "0.1.x"
   },
   "scripts": {
     "build": "npm install && grunt build"
