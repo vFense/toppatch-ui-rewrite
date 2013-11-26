@@ -24,7 +24,7 @@ and `brew install node` to install Node.js.
 
 Linux/BSD users should use their appropriate package managers to install git and [Node.js](https://github.com/joyent/node/wiki/Installing-Node.js-via-package-manager).
 
-## Developing locally
+## Developing Locally
 
 Clone a copy of the main project repo by running:
 
