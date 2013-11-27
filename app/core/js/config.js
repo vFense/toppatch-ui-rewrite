@@ -14,14 +14,14 @@ var requirejs = {
     // See: http://requirejs.org/docs/api.html#config-paths
     paths: {
         // RequireJS Plugins
-        'async'         : 'vendor/requirejs-plugins/src/async',
-        'font'          : 'vendor/requirejs-plugins/src/font',
-        'goog'          : 'vendor/requirejs-plugins/src/goog',
-        'image'         : 'vendor/requirejs-plugins/src/image',
-        'json'          : 'vendor/requirejs-plugins/src/json',
-        'noext'         : 'vendor/requirejs-plugins/src/noext',
-        'propertyParser': 'vendor/requirejs-plugins/src/propertyParser',
-        'text'          : 'vendor/requirejs-text/text',
+        'async'                 : 'vendor/requirejs-plugins/src/async',
+        'font'                  : 'vendor/requirejs-plugins/src/font',
+        'goog'                  : 'vendor/requirejs-plugins/src/goog',
+        'image'                 : 'vendor/requirejs-plugins/src/image',
+        'json'                  : 'vendor/requirejs-plugins/src/json',
+        'noext'                 : 'vendor/requirejs-plugins/src/noext',
+        'propertyParser'        : 'vendor/requirejs-plugins/src/propertyParser',
+        'text'                  : 'vendor/requirejs-text/text',
 
         // Vendor Library Paths
         'handlebars'            : 'vendor/handlebars/handlebars.runtime',
