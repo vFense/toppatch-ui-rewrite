@@ -4,7 +4,7 @@
  * @extends TemplateView
  */
 define(
-    ['../templateView'],
+    ['core/js/templateView'],
     function (TemplateView) {
         'use strict';
 
