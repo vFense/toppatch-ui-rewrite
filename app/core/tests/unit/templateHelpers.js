@@ -38,10 +38,10 @@ $(document).ready(function () {
                     strictEqual(compare(1, '==', 0, options), false, '1 == 0 is false');
 
                     // Operation !=
-                    strictEqual(compare(1, '!=', 1, options), false, '1 == 1 is false');
-                    strictEqual(compare(1, '!=', '1', options), false, '1 == "1" is false');
-                    strictEqual(compare(1, '!=', true, options), false, '1 == true is false');
-                    strictEqual(compare(1, '!=', 0, options), true, '1 == 0 is true');
+                    strictEqual(compare(1, '!=', 1, options), false, '1 != 1 is false');
+                    strictEqual(compare(1, '!=', '1', options), false, '1 != "1" is false');
+                    strictEqual(compare(1, '!=', true, options), false, '1 != true is false');
+                    strictEqual(compare(1, '!=', 0, options), true, '1 != 0 is true');
 
                     // Operation ===
                     strictEqual(compare(1, '===', 1, options), true, '1 === 1 is true');
@@ -50,10 +50,10 @@ $(document).ready(function () {
                     strictEqual(compare(1, '===', 0, options), false, '1 === 0 is false');
 
                     // Operation !==
-                    strictEqual(compare(1, '!==', 1, options), false, '1 == 1 is false');
-                    strictEqual(compare(1, '!==', '1', options), true, '1 == "1" is true');
-                    strictEqual(compare(1, '!==', true, options), true, '1 == true is true');
-                    strictEqual(compare(1, '!==', 0, options), true, '1 == 0 is true');
+                    strictEqual(compare(1, '!==', 1, options), false, '1 !== 1 is false');
+                    strictEqual(compare(1, '!==', '1', options), true, '1 !== "1" is true');
+                    strictEqual(compare(1, '!==', true, options), true, '1 !== true is true');
+                    strictEqual(compare(1, '!==', 0, options), true, '1 !== 0 is true');
 
                     // Operation <
                     strictEqual(compare(1, '<', 1, options), false, '1 < 1 is false');
@@ -71,9 +71,9 @@ $(document).ready(function () {
                     strictEqual(compare(2, '>', 1, options), true, '2 > 1 is true');
 
                     // Operation >=
-                    strictEqual(compare(1, '>=', 1, options), true, '1 > 1 is true');
-                    strictEqual(compare(1, '>=', 2, options), false, '1 > 2 is false');
-                    strictEqual(compare(2, '>=', 1, options), true, '2 > 1 is true');
+                    strictEqual(compare(1, '>=', 1, options), true, '1 >= 1 is true');
+                    strictEqual(compare(1, '>=', 2, options), false, '1 >= 2 is false');
+                    strictEqual(compare(2, '>=', 1, options), true, '2 >= 1 is true');
 
                     strictEqual(compare(1, 'typeof', 'number', options), true, 'typeof 1 is number');
                     strictEqual(compare(1, 'typeof', 'string', options), false, 'typeof 1 is not string');
