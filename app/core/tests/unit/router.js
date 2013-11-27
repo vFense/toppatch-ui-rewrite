@@ -69,14 +69,14 @@ $(document).ready(function () {
             strictEqual(router.lastFragment, '', 'Last fragment is ""');
 
             // Navigate to #test1 again
-            router.navigate('test1');
+            router.navigate('test1', {trigger: true, replace: true});
             strictEqual(router.currentFragment, 'test1', 'Current fragment is "test1"');
             strictEqual(router.lastFragment, '', 'Last fragment is ""');
 
             // Navigate to #test2
-            router.navigate('test2');
-            strictEqual(router.currentFragment, 'test1', 'Current fragment is "test2"');
-            strictEqual(router.lastFragment, '', 'Last fragment is "test1"');
+            router.navigate('test2', {trigger: true, replace: true});
+            strictEqual(router.currentFragment, 'test2', 'Current fragment is "test2"');
+            strictEqual(router.lastFragment, 'test1', 'Last fragment is "test1"');
 
             start();
         });
