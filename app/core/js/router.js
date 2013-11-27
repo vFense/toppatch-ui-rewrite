@@ -75,6 +75,7 @@ define(
                 Backbone.history.route(route, function(fragment) {
                     var args = router._extractParameters(route, fragment);
                     if (Auth.signedIn === true) {
+                        router.attemptedRoute = null;
                         if (callback) {
                             callback.apply(router, args);
                         }
