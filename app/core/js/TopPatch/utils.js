@@ -1,7 +1,3 @@
-/**
- * @module TopPatch
- * @submodule Utils
- */
 define(
     ['exports'],
     function (exports) {

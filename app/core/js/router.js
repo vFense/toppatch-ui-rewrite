@@ -44,7 +44,6 @@ define(
              * Track the current and last fragment
              * @method updateFragments
              * @chainable
-             * @returns {this}
              */
             updateFragments: function () {
                 this.lastFragment = this.currentFragment;
