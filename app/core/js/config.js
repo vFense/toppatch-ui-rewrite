@@ -38,7 +38,6 @@ var requirejs = {
         // Backbone Paths
         'backbone'              : 'vendor/backbone/backbone',
         'backbone.modelBinder'  : 'vendor/backbone.modelbinder/Backbone.ModelBinder',
-        'backbone.subroute'     : 'vendor/backbone.subroute/backbone.subroute',
         'backbone.validation'   : 'vendor/backbone-validation/dist/backbone-validation-amd',
 
         // Bootstrap Paths
