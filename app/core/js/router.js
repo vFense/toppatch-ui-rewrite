@@ -7,9 +7,8 @@
  */
 define(
     ['core/js/TopPatch/Auth', 'backbone'],
-    function (TopPatch) {
+    function (Auth) {
         'use strict';
-        var Auth = TopPatch.Auth;
         return Backbone.Router.extend({
             /**
              * Create an instance of Router.

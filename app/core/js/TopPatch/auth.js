@@ -32,10 +32,10 @@
  * @event signOutComplete
  */
 define(
-    ['backbone', 'exports'],
-    function (Backbone, exports) {
+    ['backbone'],
+    function (Backbone) {
         'use strict';
-        exports.Auth = {
+        return {
             /**
              * Indicates whether this sessions is authenticated or not.
              * @attribute signedIn

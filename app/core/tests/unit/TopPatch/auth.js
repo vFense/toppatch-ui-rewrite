@@ -5,9 +5,8 @@ $(document).ready(function () {
     asyncTest('SignIn Success', function () {
         require(
             ['core/js/TopPatch/auth', 'core/tests/api/login'],
-            function (TopPatch) {
-                var Auth = TopPatch.Auth,
-                    done = function () {
+            function (Auth) {
+                var done = function () {
                         Backbone.off();
                         start();
                     };
@@ -44,9 +43,8 @@ $(document).ready(function () {
     asyncTest('SignIn Failure', function () {
         require(
             ['core/js/TopPatch/auth', 'core/tests/api/login'],
-            function (TopPatch) {
-                var Auth = TopPatch.Auth,
-                    done = function () {
+            function (Auth) {
+                var done = function () {
                         Backbone.off();
                         start();
                     };
@@ -80,9 +78,8 @@ $(document).ready(function () {
     asyncTest('SignOut Success', function () {
         require(
             ['core/js/TopPatch/auth', 'core/tests/api/logout'],
-            function (TopPatch) {
-                var Auth = TopPatch.Auth,
-                    done = function () {
+            function (Auth) {
+                var done = function () {
                         Backbone.off();
                         start();
                     };
@@ -119,9 +116,8 @@ $(document).ready(function () {
     asyncTest('SignOut Failure', function () {
         require(
             ['core/js/TopPatch/auth', 'core/tests/api/logout'],
-            function (TopPatch, logoutAPI) {
-                var Auth = TopPatch.Auth,
-                    done = function () {
+            function (Auth, logoutAPI) {
+                var done = function () {
                         Backbone.off();
                         start();
                     };

@@ -84,11 +84,10 @@ $(document).ready(function () {
 
     asyncTest('authRoute argument parsing', function () {
         var testSuite = this;
-        require(['core/js/router', 'core/js/TopPatch/Auth'], function(Router, TopPatch) {
+        require(['core/js/router', 'core/js/TopPatch/Auth'], function(Router, Auth) {
             testSuite.initHistory();
 
-            var Auth = TopPatch.Auth,
-                test3Called = false,
+            var test3Called = false,
                 test4Called = false,
                 test5Called = false,
                 AuthRouter = Router.extend({
@@ -138,11 +137,10 @@ $(document).ready(function () {
 
     asyncTest('authRoute', function ()  {
         var testSuite = this;
-        require(['core/js/router', 'core/js/TopPatch/Auth'], function(Router, TopPatch) {
+        require(['core/js/router', 'core/js/TopPatch/Auth'], function(Router, Auth) {
             testSuite.initHistory();
 
-            var Auth = TopPatch.Auth,
-                AuthRouter = Router.extend({
+            var AuthRouter = Router.extend({
                     routes: {
                         'login': $.noop
                     }
