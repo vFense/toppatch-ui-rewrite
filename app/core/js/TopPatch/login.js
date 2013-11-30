@@ -10,6 +10,7 @@ define(
             initialize: function () {
                 this.on('invalid', this.renderError);
                 this.on('submit', this.signIn);
+                return this;
             },
             renderError: $.noop,
             signIn: function (input) {
