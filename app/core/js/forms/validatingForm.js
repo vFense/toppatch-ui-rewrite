@@ -99,11 +99,11 @@ define(
                 return this._validate();
             },
 
-            _validate: function (attrs, options) {
-                if (!options.validate || !this.validate) { return true; }
-                var error = this.validationError = this.validate(options) || null;
+            _validate: function () {
+                if (!this.validate) { return true; }
+                var error = this.validationError = this.validate() || null;
                 if (!error) { return true; }
-                this.trigger('invalid', this, error, _.extend(options, { validationError: error }));
+                this.trigger('invalid', this, error, { validationError: error });
                 return false;
             },
 
