@@ -77,7 +77,9 @@ define(
                         var name = this.getAttribute('name'),
                             error = this.validity;
                         errors[name] = error;
-                    });
+                    }).closest('.form-group')
+                        .toggleClass('has-error', true)
+                    ;
                     return errors;
                 }
                 return;
