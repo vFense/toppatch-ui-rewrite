@@ -93,19 +93,19 @@ define(
                     validity = element.validity,
                     out = [label || name];
                 if (validity.valueMissing) {
-                    out.push('is required.');
+                    out.push('is required');
                 } else if (validity.patternMismatch) {
-                    out.push('does not match the specified pattern.');
+                    out.push('does not match the specified pattern');
                 } else if (validity.typeMismatch) {
-                    out.push('is not a valid', element.getAttribute('type'), '.');
+                    out.push('is not a valid', element.getAttribute('type'));
                 } else if (validity.rangeOverflow) {
-                    out.push('is greater than', element.getAttribute('max'), '.');
+                    out.push('is greater than', element.getAttribute('max'));
                 } else if (validity.rangeUnderflow) {
-                    out.push('is less than', element.getAttribute('min'), '.');
+                    out.push('is less than', element.getAttribute('min'));
                 } else if (validity.stepMismatch) {
-                    out.push('is not a multiple of', element.getAttribute('step'), '.');
+                    out.push('is not a multiple of', element.getAttribute('step'));
                 } else if (validity.tooLong) {
-                    out.push('is too long.');
+                    out.push('is too long');
                 } else {
                     out.push(element.validationMessage);
                 }
