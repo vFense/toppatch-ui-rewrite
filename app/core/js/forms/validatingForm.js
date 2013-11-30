@@ -81,6 +81,7 @@ define(
                     $invalid.closest('.form-group')
                         .toggleClass('has-error', true)
                     ;
+                    $invalid.first().focus();
                     error = this.parseValidity($invalid[0]);
                 }
                 return error;
