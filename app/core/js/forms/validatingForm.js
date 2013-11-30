@@ -7,8 +7,8 @@ define(
         return FormView.extend({
             /**
              * A TemplateView that manages a Bootstrap Modal
-             * @class ModalView
-             * @extends TemplateView
+             * @class ValidatingForm
+             * @extends BasicFormView
              * @constructor
              * @param options
              * @returns {this}
@@ -21,6 +21,14 @@ define(
                 return this;
             },
 
+            /**
+             * Listen for DOM element events
+             * Uses a function to inherit events
+             * @attribute events
+             * @type Object|Function
+             * @default Function
+             * @protected
+             */
             events: function () {
                 return _.extend(
                     {
@@ -30,8 +38,21 @@ define(
                 );
             },
 
+            /**
+             * Enable/disable input validity check on each input event
+             * @attribute live
+             * @type boolean
+             * @default true
+             * @protected
+             */
             live: false,
 
+            /**
+             * Method to test an individual input event target for validity
+             * @method liveValidate
+             * @param event
+             * @chainable
+             */
             liveValidate: function (event) {
                 if (this.live) {
                     var target = event.target,
@@ -43,6 +64,11 @@ define(
                 return this;
             },
 
+            /**
+             * Validate the entire form in one go
+             * @method validate
+             * @returns {*} Returns a "truthy" value if there is an error
+             */
             validate: function () {
                 var $form = this.$('form');
                 if (!$form[0].checkValidity()) {
@@ -57,10 +83,20 @@ define(
                 return;
             },
 
+            /**
+             * The value returned during the last failed validation
+             * @attribute {*} validationError
+             * @default null
+             */
             validationError: null,
 
             isValid: function (options) {
                 return this._validate({}, _.extend(options || {}, { validate: true }));
+            /**
+             * Check if the form is currently in a valid state.
+             * @method isValid
+             * @returns {boolean}
+             */
             },
 
             _validate: function (attrs, options) {
