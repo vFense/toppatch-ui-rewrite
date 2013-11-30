@@ -24,7 +24,7 @@ define(
             events: function () {
                 return _.extend(
                     {
-                        'input': 'liveValidate'
+                        'input form': 'liveValidate'
                     },
                     _.result(FormView.prototype, 'events')
                 );
