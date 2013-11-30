@@ -71,12 +71,11 @@ define(
                 if (!callback) { callback = this[name]; }
                 Backbone.Router.prototype.route.call(this, route, name, function () {
                     if(Auth.signedIn === true) {
-                        this.attemptedRoute = null;
                         if (callback) {
                             callback.apply(this, arguments);
                         }
                     } else {
-                        this.attemptedRoute = Backbone.history.getFragment();
+                        Auth.attemptedRoute = Backbone.history.getFragment();
                         this.navigate('login', {trigger:true, replace: true});
                     }
                 });
