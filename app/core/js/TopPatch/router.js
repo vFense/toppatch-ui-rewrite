@@ -29,7 +29,6 @@ define(
              ***************/
             root: $.noop,
             login: function () {
-                window.console.log('route:login');
                 var router = this;
                 // No need to show login page if already logged in
                 if (Auth.signedIn === true) {
@@ -40,7 +39,6 @@ define(
                 });
             },
             logout: function () {
-                window.console.log('route:logout', arguments);
                 Auth.signOut().then(
                     _.bind(function () {
                         return this.navigate('login', {trigger:true, replace: true});
