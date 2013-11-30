@@ -17,11 +17,12 @@ define(
                 return this;
             },
             signIn: function (input) {
+                var router = this,
+                    $button = this.$('button[type="submit"]').attr('disabled', true);
                 this.$('.alert').text('').toggleClass('hide', true);
                 TopPatch.Auth.signIn(input.name, input.password).then(
                     function () {
                         this.loginError = false;
-
                         var attemptedRoute = TopPatch.Auth.attemptedRoute;
                         if (attemptedRoute) {
                             TopPatch.router.navigate(attemptedRoute, {trigger: true});
@@ -31,14 +32,14 @@ define(
                         }
                     },
                     function (jqxhr, status, message) {
-                        this.loginError = true;
-
+                        router.loginError = true;
                         if (jqxhr.status === 401) {
-                            this.loginResponse = 'Invalid username and/or password.';
+                            router.loginResponse = 'Invalid username and/or password.';
                         } else {
-                            this.loginResponse = message;
+                            router.loginResponse = message;
                         }
-
+                        router.renderError(router, router.loginResponse);
+                        $button.attr('disabled', false);
                         return this;
                     }
                 );
