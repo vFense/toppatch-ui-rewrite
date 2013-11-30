@@ -109,7 +109,7 @@ define(
                 if (!this.validate) { return true; }
                 var error = this.validationError = this.validate() || null;
                 if (!error) { return true; }
-                this.trigger('invalid', this, error, { validationError: error });
+                this.trigger('invalid', this, error);
                 return false;
             },
 
