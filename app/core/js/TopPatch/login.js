@@ -17,6 +17,7 @@ define(
                 return this;
             },
             signIn: function (input) {
+                this.$('.alert').text('').toggleClass('hide', true);
                 TopPatch.Auth.signIn(input.name, input.password).then(
                     function () {
                         this.loginError = false;
