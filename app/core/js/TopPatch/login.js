@@ -1,6 +1,6 @@
 define(
-    ['core/js/TopPatch/auth', 'core/js/forms/validatingForm', 'core/template/login'],
-    function (Auth, FormView, template) {
+    ['core/js/forms/validatingForm', 'core/template/login'],
+    function (FormView, template) {
         'use strict';
         return FormView.extend({
             template: template,
