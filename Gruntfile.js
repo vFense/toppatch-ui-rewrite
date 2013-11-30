@@ -259,8 +259,8 @@ module.exports = function(grunt) {
             },
             dist: {
                 options: {
-                    include: ['rvault/js/main'],
-                    insertRequire: ['rvault/js/main'],
+                    include: ['core/js/main'],
+                    insertRequire: ['core/js/main'],
                     name: 'vendor/requirejs/require',
                     optimize: 'none',
                     out: '<%= meta.dist %>js/toppatch-ui.js'
