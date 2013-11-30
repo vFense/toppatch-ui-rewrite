@@ -70,23 +70,45 @@ define(
              * @returns {*} Returns a "truthy" value if there is an error
              */
             validate: function () {
-                var $form = this.$('form');
+                var $form = this.$('form'),
+                    error = null;
                 $form.find(':valid')
                     .closest('.form-group')
                     .toggleClass('has-error', false)
                 ;
                 if (!$form[0].checkValidity()) {
-                    var errors = {};
-                    $form.find(':invalid').each(function () {
-                        var name = this.getAttribute('name'),
-                            error = this.validity;
-                        errors[name] = error;
-                    }).closest('.form-group')
+                    var $invalid = $form.find(':invalid');
+                    $invalid.closest('.form-group')
                         .toggleClass('has-error', true)
                     ;
-                    return errors;
+                    error = this.parseValidity($invalid[0]);
                 }
-                return;
+                return error;
+            },
+
+            parseValidity: function (element) {
+                var name = element.getAttribute('name'),
+                    label = $('label[for="' + element.getAttribute('id') + '"]').text(),
+                    validity = element.validity,
+                    out = [label || name];
+                if (validity.valueMissing) {
+                    out.push('is required.');
+                } else if (validity.patternMismatch) {
+                    out.push('does not match the specified pattern.');
+                } else if (validity.typeMismatch) {
+                    out.push('is not a valid', element.getAttribute('type'), '.');
+                } else if (validity.rangeOverflow) {
+                    out.push('is greater than', element.getAttribute('max'), '.');
+                } else if (validity.rangeUnderflow) {
+                    out.push('is less than', element.getAttribute('min'), '.');
+                } else if (validity.stepMismatch) {
+                    out.push('is not a multiple of', element.getAttribute('step'), '.');
+                } else if (validity.tooLong) {
+                    out.push('is too long.');
+                } else {
+                    out.push(element.validationMessage);
+                }
+                return out.join(' ');
             },
 
             /**
