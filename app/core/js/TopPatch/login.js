@@ -1,5 +1,5 @@
 define(
-    ['core/js/forms/validatingForm', 'core/template/login'],
+    ['core/js/forms/validated', 'core/template/login'],
     function (FormView, template) {
         'use strict';
         return FormView.extend({
