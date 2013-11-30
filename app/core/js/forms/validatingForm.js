@@ -90,13 +90,13 @@ define(
              */
             validationError: null,
 
-            isValid: function (options) {
-                return this._validate({}, _.extend(options || {}, { validate: true }));
             /**
              * Check if the form is currently in a valid state.
              * @method isValid
              * @returns {boolean}
              */
+            isValid: function () {
+                return this._validate();
             },
 
             _validate: function (attrs, options) {
