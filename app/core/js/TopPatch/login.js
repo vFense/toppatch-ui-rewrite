@@ -5,6 +5,8 @@ define(
         return FormView.extend({
             template: template,
             live: true,
+            loginError: false,
+            loginResponse: '',
             initialize: function () {
                 this.on('invalid', this.renderError);
                 this.on('submit', this.signIn);
