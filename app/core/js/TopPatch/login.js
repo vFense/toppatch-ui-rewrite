@@ -12,7 +12,10 @@ define(
                 this.on('submit', this.signIn);
                 return this;
             },
-            renderError: $.noop,
+            renderError: function (view, error) {
+                this.$('.alert').text(error).toggleClass('hide', false);
+                return this;
+            },
             signIn: function (input) {
                 TopPatch.Auth.signIn(input.name, input.password).then(
                     function () {
