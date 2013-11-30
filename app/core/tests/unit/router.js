@@ -154,13 +154,12 @@ $(document).ready(function () {
             Auth.signedIn = false;
             ok(router.navigate('restricted/area', {trigger:true, replace:true}), 'navigate to "restricted" while NOT signed in');
             strictEqual(Backbone.history.fragment, 'login', 'Access denied. Redirected to login');
-            strictEqual(router.attemptedRoute, 'restricted/area');
+            strictEqual(Auth.attemptedRoute, 'restricted/area');
 
             // Simulate user signed in
             Auth.signedIn = true;
             ok(router.navigate('restricted', {trigger:true, replace:true}), 'navigate to "restricted" while signed in');
             strictEqual(Backbone.history.fragment, 'restricted', 'Access granted to restricted route');
-            strictEqual(router.attemptedRoute, null);
 
             // Test clean up
             Auth.signedIn = false;
