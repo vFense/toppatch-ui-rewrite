@@ -27,7 +27,14 @@ define(
             /***************
              * Core Routes *
              ***************/
-            root: $.noop,
+            root: function () {
+                if (this.currentView) {
+                    this.currentView.close();
+                }
+                this.currentView = null;
+                $(this.selector).html('logged in');
+                return this;
+            },
             login: function () {
                 var router = this;
                 // No need to show login page if already logged in
