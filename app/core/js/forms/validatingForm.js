@@ -71,6 +71,10 @@ define(
              */
             validate: function () {
                 var $form = this.$('form');
+                $form.find(':valid')
+                    .closest('.form-group')
+                    .toggleClass('has-error', false)
+                ;
                 if (!$form[0].checkValidity()) {
                     var errors = {};
                     $form.find(':invalid').each(function () {
