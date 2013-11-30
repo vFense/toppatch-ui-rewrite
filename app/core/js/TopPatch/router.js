@@ -10,9 +10,6 @@ define(
                 'logout': 'logout',
                 'forgotPassword': 'forgotPassword',
 
-                // Module Loaders
-                'rvault(/*subroute)': 'loadRVault',
-
                 // Invalid Route
                 '*path': 'invalidPath'
             },
@@ -56,22 +53,6 @@ define(
                 window.console.log('route:forgotPassword', arguments);
             },
 
-            /******************
-             * Module loaders *
-             ******************/
-            loadRVault: function () {
-                var router = this;
-                require(
-                    'rvault/js/routes',
-                    function () {
-                        window.console.log('rvault loaded');
-                    },
-                    function () {
-                        router.invalidPath(Backbone.history.getFragment());
-                    }
-                );
-                this.loadRVault = $.noop;
-            },
 
             /*****************
              * Invalid Route *
