@@ -2,7 +2,7 @@ define(
     ['require', 'core/js/TopPatch/auth', 'core/js/router'],
     function (require, Auth, Router) {
         'use strict';
-        var PrimaryRouter = Router.extend({
+        return Router.extend({
             routes: {
                 // Core Routes
                 '': 'root',
@@ -80,6 +80,5 @@ define(
                 window.console.log('route:invalid', arguments);
             }
         });
-        return new PrimaryRouter();
     }
 );
