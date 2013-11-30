@@ -37,6 +37,7 @@ define(
                 require(['core/js/TopPatch/login'], function (View) {
                     router.show(new View());
                 });
+                return this;
             },
             logout: function () {
                 Auth.signOut().then(
@@ -44,6 +45,7 @@ define(
                         return this.navigate('login', {trigger:true, replace: true});
                     }, this)
                 );
+                return this;
             },
             forgotPassword: $.noop,
 
