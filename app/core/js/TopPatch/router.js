@@ -27,9 +27,7 @@ define(
             /***************
              * Core Routes *
              ***************/
-            root: function () {
-                window.console.log('route:root');
-            },
+            root: $.noop,
             login: function () {
                 window.console.log('route:login');
                 var router = this;
@@ -49,10 +47,7 @@ define(
                     }, this)
                 );
             },
-            forgotPassword: function () {
-                window.console.log('route:forgotPassword', arguments);
-            },
-
+            forgotPassword: $.noop,
 
             /*****************
              * Invalid Route *
