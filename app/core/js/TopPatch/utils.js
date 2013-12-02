@@ -1,6 +1,6 @@
 define(
-    ['exports'],
-    function (exports) {
+    ['underscore', 'exports'],
+    function (_, exports) {
         'use strict';
         var Utils = exports.Utils = {};
         _.extend(Utils, {
