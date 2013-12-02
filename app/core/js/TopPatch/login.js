@@ -40,22 +40,17 @@ define(
                 if (!$form[0].checkValidity()) {
                     var $invalid = $form.find(':invalid'),
                         $first = $invalid.first(),
-                        validity = $first[0].validity;
-                    out = {
-                        error: _.findKey(validity, function (value) { return value === true; }),
-                        element: $first[0]
-                    };
+                        validity = $first[0].validity,
+                        error = _.findKey(validity, function (value) { return value === true; });
+                    out = i18n.form[error](_.extend({}, {element: $first[0]}, formHelpers));
                 }
                 return out;
             },
-            renderError: function (options) {
+            renderError: function (error) {
                 this.$('.alert')
-                    .toggleClass('hide', !options)
-                    .html(
-                        i18n.form[options.error](
-                            _.extend({}, options, formHelpers)
-                        )
-                    );
+                    .toggleClass('hide', !error)
+                    .html(error)
+                ;
                 this.$(':valid')
                     .closest('.form-group')
                         .toggleClass('has-error', false)
