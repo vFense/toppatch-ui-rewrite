@@ -22,7 +22,7 @@ define(
                 this.$('.alert').text('').toggleClass('hide', true);
                 TopPatch.Auth.signIn(input.name, input.password).then(
                     function () {
-                        this.loginError = false;
+                        view.loginError = false;
                         var attemptedRoute = TopPatch.Auth.attemptedRoute;
                         if (attemptedRoute) {
                             TopPatch.router.navigate(attemptedRoute, {trigger: true});
