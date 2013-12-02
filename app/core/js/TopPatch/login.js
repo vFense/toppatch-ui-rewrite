@@ -1,8 +1,8 @@
 define(
-    ['core/js/forms/validated', 'core/template/login'],
-    function (FormView, template) {
+    ['core/js/forms/form', 'core/template/login'],
+    function (Form, template) {
         'use strict';
-        return FormView.extend({
+        return Form.extend({
             template: template,
             live: true,
             loginError: false,
