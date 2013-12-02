@@ -107,7 +107,7 @@ define(
                 if (!this.validate) { return true; }
                 var error = this.validationError = this.validate() || null;
                 if (!error) { return true; }
-                this.trigger('invalid', this, error);
+                this.trigger('invalid', error);
                 return false;
             }
         });
