@@ -17,7 +17,7 @@ define(
                 return this;
             },
             signIn: function (input) {
-                var router = this,
+                var view = this,
                     $button = this.$('button[type="submit"]').attr('disabled', true);
                 this.$('.alert').text('').toggleClass('hide', true);
                 TopPatch.Auth.signIn(input.name, input.password).then(
@@ -32,13 +32,13 @@ define(
                         }
                     },
                     function (jqxhr, status, message) {
-                        router.loginError = true;
+                        view.loginError = true;
                         if (jqxhr.status === 401) {
-                            router.loginResponse = 'Invalid username and/or password.';
+                            view.loginResponse = 'Invalid username and/or password.';
                         } else {
-                            router.loginResponse = message;
+                            view.loginResponse = message;
                         }
-                        router.renderError(router, router.loginResponse);
+                        view.renderError(view, view.loginResponse);
                         $button.attr('disabled', false);
                         return this;
                     }
