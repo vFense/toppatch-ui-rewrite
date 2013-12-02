@@ -3,7 +3,7 @@ define(
     function (FormView) {
         'use strict';
         // List of view options to be merged as properties
-        var viewOptions = ['validate', 'live', 'liveValidate'];
+        var viewOptions = ['validate'];
         return FormView.extend({
             /**
              * A TemplateView that manages a Bootstrap Modal
@@ -22,95 +22,11 @@ define(
             },
 
             /**
-             * Listen for DOM element events
-             * Uses a function to inherit events
-             * @attribute events
-             * @type Object|Function
-             * @default Function
-             * @protected
+             * @attribute validate
+             * @type {null|function}
+             * @default null
              */
-            events: function () {
-                return _.extend(
-                    {
-                        'input form': 'liveValidate'
-                    },
-                    _.result(FormView.prototype, 'events')
-                );
-            },
-
-            /**
-             * Enable/disable input validity check on each input event
-             * @attribute live
-             * @type boolean
-             * @default true
-             * @protected
-             */
-            live: false,
-
-            /**
-             * Method to test an individual input event target for validity
-             * @method liveValidate
-             * @param event
-             * @chainable
-             */
-            liveValidate: function (event) {
-                if (this.live) {
-                    var target = event.target,
-                        $target = $(target),
-                        $parent = $target.closest('.form-group'),
-                        invalid = !target.validity.valid;
-                    $parent.toggleClass('has-error', invalid);
-                }
-                return this;
-            },
-
-            /**
-             * Validate the entire form in one go
-             * @method validate
-             * @returns {*} Returns a "truthy" value if there is an error
-             */
-            validate: function () {
-                var $form = this.$('form'),
-                    error = null;
-                $form.find(':valid')
-                    .closest('.form-group')
-                    .toggleClass('has-error', false)
-                ;
-                if (!$form[0].checkValidity()) {
-                    var $invalid = $form.find(':invalid');
-                    $invalid.closest('.form-group')
-                        .toggleClass('has-error', true)
-                    ;
-                    $invalid.first().focus();
-                    error = this.parseValidity($invalid[0]);
-                }
-                return error;
-            },
-
-            parseValidity: function (element) {
-                var name = element.getAttribute('name'),
-                    label = $('label[for="' + element.getAttribute('id') + '"]').text(),
-                    validity = element.validity,
-                    out = [label || name];
-                if (validity.valueMissing) {
-                    out.push('is required');
-                } else if (validity.patternMismatch) {
-                    out.push('does not match the specified pattern');
-                } else if (validity.typeMismatch) {
-                    out.push('is not a valid', element.getAttribute('type'));
-                } else if (validity.rangeOverflow) {
-                    out.push('is greater than', element.getAttribute('max'));
-                } else if (validity.rangeUnderflow) {
-                    out.push('is less than', element.getAttribute('min'));
-                } else if (validity.stepMismatch) {
-                    out.push('is not a multiple of', element.getAttribute('step'));
-                } else if (validity.tooLong) {
-                    out.push('is too long');
-                } else {
-                    out.push(element.validationMessage);
-                }
-                return out.join(' ');
-            },
+            validate: null,
 
             /**
              * The value returned during the last failed validation
