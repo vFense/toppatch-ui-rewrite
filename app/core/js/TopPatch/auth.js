@@ -43,6 +43,7 @@ define(
              * @readOnly
              */
             signedIn: false,
+
             /**
              * Attempt to sign in
              * @method _doSignIn
@@ -73,6 +74,7 @@ define(
                     )
                 ;
             },
+
             /**
              * Attempt username/password combination sign in
              * @param username {string}
@@ -87,6 +89,7 @@ define(
                     }
                 });
             },
+
             /**
              * Attempt to log out.
              * @method signOut
