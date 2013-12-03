@@ -23,11 +23,7 @@ define(
         }
 
         // The following deferred should be moved to Auth
-        deferred.userRequest = $.ajax('api/user')
-            .done(function () {
-                TopPatch.Auth.signedIn = true;
-            })
-        ;
+        deferred.userRequest = TopPatch.Auth.rememberMeSignIn();
 
         $.when.apply(null, _.values(deferred)).always(function () {
             Backbone.history.start();
