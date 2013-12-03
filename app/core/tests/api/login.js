@@ -2,30 +2,40 @@ define(
     ['core/tests/api/mockApi'],
     function (mockApi) {
         'use strict';
-        function authenticate (user, pass) {
-            return user === 'test' && pass === 'test';
-        };
+        var authorized = {
+                status: 200,
+                statusText: 'OK',
+                responseText: JSON.stringify({
+                    user: {}
+                })
+            },
+            unauthorized = {
+                status: 401,
+                statusText: 'Unauthorized',
+                responseText: JSON.stringify({
+                    error: 'Unauthorized'
+                })
+            };
         return mockApi({
             url:  '/login',
             type: 'POST',
             response: function (settings) {
                 var username = settings.data.username,
-                    password = settings.data.password;
-                if (username && password) {
-                    var authenticated = authenticate(username, password);
+                    password = settings.data.password,
+                    uri      = settings.data.uri;
+                if (uri) {
+                    if (uri === 'test') {
+                        $.extend(this, authorized);
+                    } else {
+                        $.extend(this, unauthorized);
+                    }
+                } else if (username && password) {
+                    var authenticated = (username === 'test' && password === 'test');
 
                     if (authenticated) {
-                        this.status = 200;
-                        this.statusText = 'OK';
-                        this.responseText = JSON.stringify({
-                            user: {}
-                        });
+                        $.extend(this, authorized);
                     } else {
-                        this.status = 401;
-                        this.statusText = 'Unauthorized';
-                        this.responseText = JSON.stringify({
-                            error: 'Unauthorized'
-                        });
+                        $.extend(this, unauthorized);
                     }
                 } else {
                     var result = {};
