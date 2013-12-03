@@ -2,7 +2,7 @@ define(
     ['core/js/TopPatch/TopPatch', 'require'],
     function (TopPatch, require) {
         'use strict';
-        var plugins = {
+        var deferred = {
             RVault: true
         };
 
@@ -10,19 +10,19 @@ define(
         TopPatch.router = new TopPatch.Router();
         TopPatch.modules = {};
 
-        if (plugins.RVault) {
-            plugins.RVault = $.Deferred();
+        if (deferred.RVault) {
+            deferred.RVault = $.Deferred();
             require(
                 ['rvault/js/main'],
-                plugins.RVault.resolve,
+                deferred.RVault.resolve,
                 function (error) {
-                    plugins.RVault.reject();
+                    deferred.RVault.reject();
                     throw error;
                 }
             );
         }
 
-        $.when.apply(null, _.values(plugins)).always(function () {
+        $.when.apply(null, _.values(deferred)).always(function () {
             Backbone.history.start();
         });
     }
