@@ -32,7 +32,7 @@
  * @event signOutComplete
  */
 define(
-    ['backbone'],
+    ['backbone', 'jquery.cookie'],
     function (Backbone) {
         'use strict';
         return {
@@ -88,6 +88,17 @@ define(
                         password: password
                     }
                 });
+            },
+
+            rememberMeSignIn: function () {
+                if ($.cookie('user')) {
+                    return this._doSignIn({
+                        data: {
+                            uri: 42 // Preparing for future use case
+                        }
+                    });
+                }
+                return false;
             },
 
             /**
