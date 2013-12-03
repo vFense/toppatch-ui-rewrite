@@ -97,6 +97,7 @@ define(
 
                 // Restricted Route bindings
                 this.restrictedRoutes = _.result(this, 'restrictedRoutes');
+                route = undefined;
                 routes = _.keys(this.restrictedRoutes);
                 while (!_.isUndefined(route = routes.pop())) {
                     this.authRoute(route, this.restrictedRoutes[route]);
