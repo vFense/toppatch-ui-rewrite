@@ -7,9 +7,9 @@ $(document).ready(function () {
             ['core/js/TopPatch/auth', 'core/tests/api/login'],
             function (Auth) {
                 var done = function () {
-                        Backbone.off();
-                        start();
-                    };
+                    Backbone.off();
+                    start();
+                };
 
                 Auth.signedIn = false;
 
