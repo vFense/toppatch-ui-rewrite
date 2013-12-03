@@ -75,14 +75,14 @@ define(
             },
             /**
              * Attempt username/password combination sign in
-             * @param user {string}
+             * @param username {string}
              * @param password {string}
              * @returns {jqXHR}
              */
-            signIn: function (user, password) {
+            signIn: function (username, password) {
                 return this._doSignIn({
                     data: {
-                        name: user,
+                        username: username,
                         password: password
                     }
                 });
