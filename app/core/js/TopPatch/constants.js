@@ -3,6 +3,9 @@ define(
     function (_, exports) {
         'use strict';
         _.extend(exports, {
+            COOKIE: {
+                AUTH: 'user'
+            },
             KEYS: {
                 ENTER: 13,
                 ESCAPE: 27
