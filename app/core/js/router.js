@@ -81,6 +81,27 @@ define(
                 });
                 return this;
             },
+
+            /**
+             * Bind all defined routes, and restricted routes, to Backbone.history.
+             * @method _bindRoutes
+             * @private
+             */
+            _bindRoutes: function () {
+                if (!this.routes && !this.restrictedRoutes) { return; }
+                this.routes = _.result(this, 'routes');
+                var route, routes = _.keys(this.routes);
+                while (!_.isUndefined(route = routes.pop())) {
+                    this.route(route, this.routes[route]);
+                }
+
+                // Restricted Route bindings
+                this.restrictedRoutes = _.result(this, 'restrictedRoutes');
+                routes = _.keys(this.restrictedRoutes);
+                while (!_.isUndefined(route = routes.pop())) {
+                    this.authRoute(route, this.restrictedRoutes[route]);
+                }
+            }
         });
     }
 );
