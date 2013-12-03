@@ -32,8 +32,8 @@
  * @event signOutComplete
  */
 define(
-    ['backbone', 'jquery.cookie'],
-    function (Backbone) {
+    ['backbone', 'core/js/TopPatch/constants', 'jquery.cookie'],
+    function (Backbone, CONST) {
         'use strict';
         return {
             /**
@@ -91,7 +91,7 @@ define(
             },
 
             rememberMeSignIn: function () {
-                if ($.cookie('user')) {
+                if ($.cookie(CONST.COOKIE.AUTH)) {
                     return this._doSignIn({
                         data: {
                             uri: 42 // Preparing for future use case
