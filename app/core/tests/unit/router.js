@@ -84,7 +84,7 @@ $(document).ready(function () {
 
     asyncTest('authRoute argument parsing', function () {
         var testSuite = this;
-        require(['core/js/router', 'core/js/TopPatch/Auth'], function(Router, Auth) {
+        require(['core/js/router', 'core/js/TopPatch/auth'], function(Router, Auth) {
             testSuite.initHistory();
 
             var test3Called = false,
@@ -137,7 +137,7 @@ $(document).ready(function () {
 
     asyncTest('authRoute', function ()  {
         var testSuite = this;
-        require(['core/js/router', 'core/js/TopPatch/Auth'], function(Router, Auth) {
+        require(['core/js/router', 'core/js/TopPatch/auth'], function(Router, Auth) {
             testSuite.initHistory();
 
             var AuthRouter = Router.extend({
