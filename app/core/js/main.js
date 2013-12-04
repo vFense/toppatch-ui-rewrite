@@ -22,7 +22,6 @@ define(
             );
         }
 
-        // The following deferred should be moved to Auth
         deferred.userRequest = TopPatch.Auth.rememberMeSignIn();
 
         $.when.apply(null, _.values(deferred)).always(function () {
