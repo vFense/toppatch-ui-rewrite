@@ -56,6 +56,39 @@ $(document).ready(function () {
         );
     });
 
+    asyncTest('_validate and isValid', function () {
+        require(
+            ['core/js/forms/form'],
+            function (Form) {
+                var form = new Form({
+                        template: _.template('<form><input type="number" name="field1" required /></form>')
+                    }),
+                    $form = form.render().$('form');
+
+                strictEqual(form._validate(), true, '_validate while validate is undefined, returns true');
+                strictEqual(form.isValid(), true, 'isValid while validate is undefined, returns true');
+
+                form.validate = function () {
+                    var valid = $form[0].checkValidity();
+                    if (!valid) {
+                        return 'invalid';
+                    }
+                    return;
+                };
+
+                strictEqual(form._validate(), false, '_validate returns false');
+                strictEqual(form.isValid(), false, 'isValid returns false');
+
+                $form.find('[name="field1"]').val(42);
+
+                strictEqual(form._validate(), true, '_validate returns true');
+                strictEqual(form.isValid(), true, 'isValid returns true');
+
+                start();
+            }
+        );
+    });
+
     asyncTest('submit', function () {
         require(
             ['core/js/forms/form'],
