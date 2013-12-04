@@ -6,7 +6,7 @@ define(
             RVault: true
         };
 
-        TopPatch.loading = true;
+        TopPatch.defaultRoute = 'rvault';
         TopPatch.router = new TopPatch.Router();
         TopPatch.modules = {};
 
