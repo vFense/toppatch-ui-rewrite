@@ -114,13 +114,7 @@ define(
                     })
                     .done(
                         _.bind(function () {
-                            this.signedIn = false;
-                            if (_.isObject(localStorage) && _.isFunction(localStorage.clear)) {
-                                localStorage.clear();
-                            }
-                            if (_.isObject(sessionStorage) && _.isFunction(sessionStorage.clear)) {
-                                sessionStorage.clear();
-                            }
+                            this.forgetLogin();
                             Backbone.trigger('signOutSuccess');
                         }, this)
                     )
@@ -135,6 +129,25 @@ define(
                         }, this)
                     )
                 ;
+            },
+
+            forgetLogin: function () {
+                // Server removes cookie for us
+
+                /*
+                // Not using localStorage yet
+                if (_.isObject(localStorage) && _.isFunction(localStorage.clear)) {
+                    localStorage.clear();
+                }
+
+                // Not using sessionStorage yet
+                if (_.isObject(sessionStorage) && _.isFunction(sessionStorage.clear)) {
+                    sessionStorage.clear();
+                }
+                */
+
+                this.signedIn = false;
+                return this;
             }
         };
     }
