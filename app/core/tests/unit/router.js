@@ -166,4 +166,35 @@ $(document).ready(function () {
             start();
         });
     });
+
+    asyncTest('authRoutes', function ()  {
+        var testSuite = this;
+        require(['core/js/router', 'core/js/TopPatch/auth'], function(Router, Auth) {
+            testSuite.initHistory();
+
+            var AuthRouter = Router.extend({
+                    authRoutes: {
+                        'restricted/area': $.noop
+                    }
+                }),
+                router = new AuthRouter();
+
+            Backbone.history.start({pushState: false});
+
+            // Simulate user NOT signed in
+            Auth.signedIn = false;
+            ok(router.navigate('restricted/area', {trigger:true, replace:true}), 'navigate to "restricted" while NOT signed in');
+            strictEqual(Backbone.history.fragment, 'login', 'Access denied. Redirected to login');
+            strictEqual(Auth.attemptedRoute, 'restricted/area', 'Auth.attemptedRoute set correctly');
+
+            // Simulate user signed in
+            Auth.signedIn = true;
+            ok(router.navigate('restricted', {trigger:true, replace:true}), 'navigate to "restricted" while signed in');
+            strictEqual(Backbone.history.fragment, 'restricted', 'Access granted to restricted route');
+
+            // Test clean up
+            Auth.signedIn = false;
+            start();
+        });
+    });
 });
