@@ -2,6 +2,25 @@ $(document).ready(function () {
     'use strict';
     module('forms/formView');
 
+    asyncTest('constructor', function () {
+        require(
+            ['core/js/forms/form'],
+            function (Form) {
+                ok(new Form(), 'New form, no options; Init without error');
+
+                var validate = function () {
+                        return 'Never valid';
+                    },
+                    form;
+
+                ok(form = new Form({validate: validate}), 'New form, validate option passed; Init without error');
+                strictEqual(form.validate, validate, 'Form.validate is correct');
+
+                start();
+            }
+        );
+    });
+
     asyncTest('serializeForm', function () {
         require(
             ['core/js/forms/form'],
