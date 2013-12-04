@@ -6,8 +6,8 @@ define(
             outlet: null,
             show: function (view) {
                 this.outlet.show(view);
-                if (TopPatch.currentView !== this.outlet) {
-                    TopPatch.show(this.outlet);
+                if (TopPatch.App.currentView !== this.outlet) {
+                    TopPatch.App.show(this.outlet);
                 }
                 return this;
             },

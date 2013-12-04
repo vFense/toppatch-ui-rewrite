@@ -2,7 +2,8 @@ define(
     ['underscore', 'exports'],
     function (_, exports) {
         'use strict';
-        _.extend(exports, {
+        var App = exports.App = {}
+        _.extend(App, {
             rootElement: '#dashboard',
             show: function (view) {
                 this.close();

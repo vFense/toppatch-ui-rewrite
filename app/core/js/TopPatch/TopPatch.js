@@ -6,7 +6,7 @@ define(
 
         TopPatch.extend(
             require('core/js/TopPatch/constants'),
-            require('core/js/TopPatch/functions'),
+            require('core/js/TopPatch/app'),
             require('core/js/TopPatch/utils'),
             {
                 Auth: require('core/js/TopPatch/auth'),
