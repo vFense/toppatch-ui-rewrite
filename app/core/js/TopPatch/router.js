@@ -1,6 +1,6 @@
 define(
     [
-        'core/js/router',
+        'core/js/outletRouter',
         'core/js/outletView',
         'require'
     ],
@@ -20,13 +20,6 @@ define(
             },
 
             outlet: outletView,
-            show: function (view) {
-                this.outlet.show(view);
-                if (TopPatch.currentView !== this.outlet) {
-                    TopPatch.show(this.outlet);
-                }
-                return this;
-            },
 
             /***************
              * Core Routes *
