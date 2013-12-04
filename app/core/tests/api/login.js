@@ -24,11 +24,7 @@ define(
                     password = settings.data.password,
                     uri      = settings.data.uri;
                 if (uri) {
-                    if (uri === 'test') {
-                        $.extend(this, authorized);
-                    } else {
-                        $.extend(this, unauthorized);
-                    }
+                    $.extend(this, authorized);
                 } else if (username && password) {
                     var authenticated = (username === 'test' && password === 'test');
 
