@@ -32,10 +32,10 @@
  * @event signOutComplete
  */
 define(
-    ['backbone', 'exports'],
-    function (Backbone, exports) {
+    ['backbone', 'core/js/TopPatch/constants', 'jquery.cookie'],
+    function (Backbone, CONST) {
         'use strict';
-        exports.Auth = {
+        return {
             /**
              * Indicates whether this sessions is authenticated or not.
              * @attribute signedIn
@@ -43,6 +43,7 @@ define(
              * @readOnly
              */
             signedIn: false,
+
             /**
              * Attempt to sign in
              * @method _doSignIn
@@ -73,20 +74,33 @@ define(
                     )
                 ;
             },
+
             /**
              * Attempt username/password combination sign in
-             * @param user {string}
+             * @param username {string}
              * @param password {string}
              * @returns {jqXHR}
              */
-            signIn: function (user, password) {
+            signIn: function (username, password) {
                 return this._doSignIn({
                     data: {
-                        name: user,
+                        username: username,
                         password: password
                     }
                 });
             },
+
+            rememberMeSignIn: function () {
+                if ($.cookie(CONST.COOKIE.AUTH)) {
+                    return this._doSignIn({
+                        data: {
+                            uri: 42 // Preparing for future use case
+                        }
+                    });
+                }
+                return false;
+            },
+
             /**
              * Attempt to log out.
              * @method signOut
@@ -100,13 +114,7 @@ define(
                     })
                     .done(
                         _.bind(function () {
-                            this.signedIn = false;
-                            if (_.isObject(localStorage) && _.isFunction(localStorage.clear)) {
-                                localStorage.clear();
-                            }
-                            if (_.isObject(sessionStorage) && _.isFunction(sessionStorage.clear)) {
-                                sessionStorage.clear();
-                            }
+                            this.forgetLogin();
                             Backbone.trigger('signOutSuccess');
                         }, this)
                     )
@@ -121,6 +129,25 @@ define(
                         }, this)
                     )
                 ;
+            },
+
+            forgetLogin: function () {
+                // Server removes cookie for us
+
+                /*
+                // Not using localStorage yet
+                if (_.isObject(localStorage) && _.isFunction(localStorage.clear)) {
+                    localStorage.clear();
+                }
+
+                // Not using sessionStorage yet
+                if (_.isObject(sessionStorage) && _.isFunction(sessionStorage.clear)) {
+                    sessionStorage.clear();
+                }
+                */
+
+                this.signedIn = false;
+                return this;
             }
         };
     }

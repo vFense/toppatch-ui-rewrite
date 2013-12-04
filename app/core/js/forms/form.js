@@ -4,11 +4,43 @@
  * @extends TemplateView
  */
 define(
-    ['../templateView'],
+    ['core/js/templateView'],
     function (TemplateView) {
         'use strict';
+        var viewOptions = ['validate'];
 
         return TemplateView.extend({
+            /**
+             * A TemplateView that manages a form's submission
+             * @class ValidatingForm
+             * @extends BasicFormView
+             * @constructor
+             * @param options
+             * @returns {this}
+             */
+            constructor: function (options) {
+                if (_.isObject(options)) {
+                    _.extend(this, _.pick(options, viewOptions));
+                }
+                TemplateView.prototype.constructor.apply(this, arguments);
+                return this;
+            },
+
+            /**
+             * Function to validate the form with
+             * @attribute validate
+             * @type {function}
+             * @default null
+             */
+            validate: null,
+
+            /**
+             * The value returned during the last failed validation
+             * @attribute {*} validationError
+             * @default null
+             */
+            validationError: null,
+
             /**
              * Listen for DOM element events
              * Uses a function to inherit events
@@ -34,7 +66,9 @@ define(
              */
             submit: function (event) {
                 if (_.isObject(event)) { event.preventDefault(); }
-                this.trigger('submit', this.serializeForm());
+                if (this.isValid()) {
+                    this.trigger('submit', this.serializeForm());
+                }
                 return this;
             },
 
@@ -59,6 +93,23 @@ define(
                 });
                 return output;
             },
+
+            /**
+             * Check if the form is currently in a valid state.
+             * @method isValid
+             * @returns {boolean}
+             */
+            isValid: function () {
+                return this._validate();
+            },
+
+            _validate: function () {
+                if (!this.validate) { return true; }
+                var error = this.validationError = this.validate() || null;
+                if (!error) { return true; }
+                this.trigger('invalid', error);
+                return false;
+            }
         });
     }
 );

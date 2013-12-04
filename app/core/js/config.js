@@ -28,6 +28,7 @@ var requirejs = {
         'highcharts'            : 'vendor/highstock-components/highstock.src',
         'highcharts-more'       : 'vendor/highstock-components/highcharts-more.src',
         'jquery'                : 'vendor/jquery/jquery',
+        'jquery.cookie'         : 'vendor/jquery.cookie/jquery.cookie',
         'jquery.mockjax'        : 'vendor/jquery-mockjax/jquery.mockjax',
         'jquery.simulate'       : 'vendor/jquery-simulate/jquery.simulate',
         'livestamp'             : 'vendor/livestampjs/livestamp',
@@ -38,7 +39,6 @@ var requirejs = {
         // Backbone Paths
         'backbone'              : 'vendor/backbone/backbone',
         'backbone.modelBinder'  : 'vendor/backbone.modelbinder/Backbone.ModelBinder',
-        'backbone.subroute'     : 'vendor/backbone.subroute/backbone.subroute',
         'backbone.validation'   : 'vendor/backbone-validation/dist/backbone-validation-amd',
 
         // Bootstrap Paths

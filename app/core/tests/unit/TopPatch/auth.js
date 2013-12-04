@@ -5,12 +5,11 @@ $(document).ready(function () {
     asyncTest('SignIn Success', function () {
         require(
             ['core/js/TopPatch/auth', 'core/tests/api/login'],
-            function (TopPatch) {
-                var Auth = TopPatch.Auth,
-                    done = function () {
-                        Backbone.off();
-                        start();
-                    };
+            function (Auth) {
+                var done = function () {
+                    Backbone.off();
+                    start();
+                };
 
                 Auth.signedIn = false;
 
@@ -44,9 +43,8 @@ $(document).ready(function () {
     asyncTest('SignIn Failure', function () {
         require(
             ['core/js/TopPatch/auth', 'core/tests/api/login'],
-            function (TopPatch) {
-                var Auth = TopPatch.Auth,
-                    done = function () {
+            function (Auth) {
+                var done = function () {
                         Backbone.off();
                         start();
                     };
@@ -77,12 +75,53 @@ $(document).ready(function () {
         );
     });
 
+    asyncTest('rememberMeSignIn', function () {
+        require(
+            ['core/js/TopPatch/auth', 'core/js/TopPatch/constants', 'core/tests/api/login'],
+            function (Auth, CONST) {
+                var done = function () {
+                    Backbone.off();
+                    start();
+                };
+
+                Auth.signedIn = false;
+
+                var oldCookie = CONST.COOKIE.AUTH;
+                CONST.COOKIE.AUTH = 'testAuthCookie';
+
+                strictEqual(Auth.rememberMeSignIn(), false, 'Returns false when user cookie not present');
+
+                Backbone.once('signInSuccess', function () {
+                    ok(true, '`signInSuccess` event fired on Backbone Object');
+                    strictEqual(Auth.signedIn, true, 'Auth now indicates that we are signed in');
+                });
+
+                Backbone.once('signInError', function () {
+                    ok(false, 'Unexpected `signInError` event fired on Backbone Object');
+                });
+
+                Backbone.once('signInComplete', function () {
+                    ok(true, '`signInComplete` event fired on Backbone Object');
+
+                    $.removeCookie(CONST.COOKIE.AUTH);
+                    CONST.COOKIE.AUTH = oldCookie;
+
+                    done();
+                });
+
+                $.cookie(CONST.COOKIE.AUTH, 'testing');
+                ok(Auth.rememberMeSignIn(), 'Attempt with test cookie in place');
+            }
+        );
+    });
+
+
+
     asyncTest('SignOut Success', function () {
         require(
             ['core/js/TopPatch/auth', 'core/tests/api/logout'],
-            function (TopPatch) {
-                var Auth = TopPatch.Auth,
-                    done = function () {
+            function (Auth) {
+                var done = function () {
                         Backbone.off();
                         start();
                     };
@@ -119,9 +158,8 @@ $(document).ready(function () {
     asyncTest('SignOut Failure', function () {
         require(
             ['core/js/TopPatch/auth', 'core/tests/api/logout'],
-            function (TopPatch, logoutAPI) {
-                var Auth = TopPatch.Auth,
-                    done = function () {
+            function (Auth, logoutAPI) {
+                var done = function () {
                         Backbone.off();
                         start();
                     };

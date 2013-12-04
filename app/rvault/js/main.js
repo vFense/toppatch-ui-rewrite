@@ -1,7 +1,9 @@
-define(function() {
-    'use strict';
-    require(['rvault/js/dashboard'], function (dashboard) {
-        var dashboardView = new dashboard.View();
-        return dashboardView.render();
-    });
-});
+define(
+    ['core/js/TopPatch/TopPatch', 'rvault/js/router'],
+    function (TopPatch, Router) {
+        'use strict';
+        var RVault = TopPatch.modules.RVault = {};
+        _.extend(RVault, Router);
+        return RVault;
+    }
+);

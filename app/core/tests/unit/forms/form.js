@@ -1,12 +1,12 @@
 $(document).ready(function () {
     'use strict';
-    module('forms/basicFormView');
+    module('forms/formView');
 
     asyncTest('serializeForm', function () {
         require(
-            ['core/js/forms/basicFormView'],
-            function (BasicForm) {
-                var form = new BasicForm({
+            ['core/js/forms/form'],
+            function (Form) {
+                var form = new Form({
                     template: _.template([
                         '<form>',
                         '<input type="text" name="field1" value="1"/>',
@@ -39,9 +39,9 @@ $(document).ready(function () {
 
     asyncTest('submit', function () {
         require(
-            ['core/js/forms/basicFormView'],
-            function (BasicForm) {
-                var form = new BasicForm({
+            ['core/js/forms/form'],
+            function (Form) {
+                var form = new Form({
                         template: _.template('<form><input type="text" name="field1" value="42"/></form>')
                     }),
                     timeout;
