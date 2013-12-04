@@ -1,12 +1,10 @@
 define(
     [
         'core/js/router',
-        'core/js/TopPatch/auth',
-        'core/js/TopPatch/functions',
         'core/js/outletView',
         'require'
     ],
-    function (Router, Auth, fn, View, require) {
+    function (Router, View, require) {
         'use strict';
         var outletView = new View();
         return Router.extend({
@@ -23,10 +21,10 @@ define(
 
             outlet: outletView,
             show: function (view) {
-                if (fn.currentView !== this.outlet) {
-                    fn.show(this.outlet);
-                }
                 this.outlet.show(view);
+                if (TopPatch.currentView !== this.outlet) {
+                    TopPatch.show(this.outlet);
+                }
                 return this;
             },
 
@@ -34,17 +32,12 @@ define(
              * Core Routes *
              ***************/
             root: function () {
-                if (this.currentView) {
-                    this.currentView.close();
-                }
-                this.currentView = null;
-                $(this.$selector).html('logged in');
-                return this;
+                return this.navigate(TopPatch.defaultRoute, {trigger: true, replace: true});
             },
             login: function () {
                 var router = this;
                 // No need to show login page if already logged in
-                if (Auth.signedIn === true) {
+                if (TopPatch.Auth.signedIn === true) {
                     return this.navigate('', {trigger:true, replace: true});
                 }
                 require(['core/js/TopPatch/login'], function (View) {
@@ -54,7 +47,7 @@ define(
                 return this;
             },
             logout: function () {
-                Auth.signOut().then(
+                TopPatch.Auth.signOut().then(
                     _.bind(function () {
                         return this.navigate('login', {trigger:true, replace: true});
                     }, this)
