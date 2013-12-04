@@ -88,7 +88,7 @@ define(
              * @private
              */
             _bindRoutes: function () {
-                if (!this.routes && !this.restrictedRoutes) { return; }
+                if (!this.routes && !this.authRoutes) { return; }
                 this.routes = _.result(this, 'routes');
                 var route, routes = _.keys(this.routes);
                 while (!_.isUndefined(route = routes.pop())) {
@@ -96,11 +96,11 @@ define(
                 }
 
                 // Restricted Route bindings
-                this.restrictedRoutes = _.result(this, 'restrictedRoutes');
+                this.authRoutes = _.result(this, 'authRoutes');
                 route = undefined;
-                routes = _.keys(this.restrictedRoutes);
+                routes = _.keys(this.authRoutes);
                 while (!_.isUndefined(route = routes.pop())) {
-                    this.authRoute(route, this.restrictedRoutes[route]);
+                    this.authRoute(route, this.authRoutes[route]);
                 }
             }
         });

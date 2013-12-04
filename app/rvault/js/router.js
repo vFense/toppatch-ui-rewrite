@@ -3,7 +3,7 @@ define(
     function (Router, exports) {
         'use strict';
         exports.Router = Router.extend({
-            restrictedRoutes: {
+            authRoutes: {
                 'rvault(/)': 'root'
             },
             root: function () {
