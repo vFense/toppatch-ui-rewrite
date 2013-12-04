@@ -75,6 +75,52 @@ $(document).ready(function () {
         );
     });
 
+    asyncTest('rememberMeSignIn', function () {
+        require(
+            ['core/js/TopPatch/auth', 'core/js/TopPatch/constants', 'core/tests/api/login'],
+            function (Auth, CONST) {
+                var done = function () {
+                    Backbone.off();
+                    start();
+                };
+
+                Auth.signedIn = false;
+
+                var oldCookie = $.cookie(CONST.COOKIE.AUTH);
+
+                $.removeCookie(CONST.COOKIE.AUTH);
+                strictEqual(Auth.rememberMeSignIn(), false, 'Returns false when user cookie not present');
+
+                Backbone.once('signInSuccess', function () {
+                    ok(true, '`signInSuccess` event fired on Backbone Object');
+                    strictEqual(Auth.signedIn, true, 'Auth now indicates that we are signed in');
+                });
+
+                Backbone.once('signInError', function () {
+                    ok(false, 'Unexpected `signInError` event fired on Backbone Object');
+                });
+
+                Backbone.once('signInComplete', function () {
+                    ok(true, '`signInComplete` event fired on Backbone Object');
+
+                    // Restore the old cookie if it was present
+                    if (oldCookie && oldCookie !== 'testing') {
+                        $.cookie(CONST.COOKIE.AUTH, oldCookie);
+                    } else {
+                        $.removeCookie(CONST.COOKIE.AUTH);
+                    }
+
+                    done();
+                });
+
+                $.cookie(CONST.COOKIE.AUTH, 'testing');
+                ok(Auth.rememberMeSignIn(), 'Attempt with test cookie in place');
+            }
+        );
+    });
+
+
+
     asyncTest('SignOut Success', function () {
         require(
             ['core/js/TopPatch/auth', 'core/tests/api/logout'],
