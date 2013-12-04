@@ -1,7 +1,14 @@
 define(
-    ['require', 'core/js/TopPatch/auth', 'core/js/router'],
-    function (require, Auth, Router) {
+    [
+        'core/js/router',
+        'core/js/TopPatch/auth',
+        'core/js/TopPatch/functions',
+        'core/js/outletView',
+        'require'
+    ],
+    function (Router, Auth, fn, View, require) {
         'use strict';
+        var outletView = new View();
         return Router.extend({
             routes: {
                 // Core Routes
@@ -14,14 +21,13 @@ define(
                 '*path': 'invalidPath'
             },
 
-            $selector: '#dashboard',
+            outlet: outletView,
             show: function (view) {
-                if (this.currentView) {
-                    this.currentView.close();
+                if (fn.currentView !== this.outlet) {
+                    fn.show(this.outlet);
                 }
-                $(this.$selector).html(view.render().$el);
-                this.currentView = view;
-                return view;
+                this.outlet.show(view);
+                return this;
             },
 
             /***************
@@ -32,7 +38,7 @@ define(
                     this.currentView.close();
                 }
                 this.currentView = null;
-                $(this.selector).html('logged in');
+                $(this.$selector).html('logged in');
                 return this;
             },
             login: function () {
@@ -42,7 +48,8 @@ define(
                     return this.navigate('', {trigger:true, replace: true});
                 }
                 require(['core/js/TopPatch/login'], function (View) {
-                    router.show(new View());
+                    var view = new View();
+                    router.show(view.render());
                 });
                 return this;
             },
