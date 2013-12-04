@@ -31,6 +31,7 @@ $(document).ready(function () {
                         '<input type="text" name="field1" value="1"/>',
                         '<input type="text" name="field2" value="2-1"/>',
                         '<input type="text" name="field2" value="2-2"/>',
+                        '<input type="text" name="field2" value="2-3"/>',
                         '<input type="text" name="field3" value="3" disabled/>',
                         '<select name="field4"><option value="4-1"></option><option value="4-2" selected></option></select>',
                         '<input type="hidden" name="field5" value="5"></hidden>',
@@ -43,7 +44,7 @@ $(document).ready(function () {
                 var data = form.render().serializeForm();
                 deepEqual(data, {
                     field1: '1',
-                    field2: ['2-1','2-2'],
+                    field2: ['2-1','2-2', '2-3'],
                     field4: '4-2',
                     field5: '5',
                     field7: 'on'
