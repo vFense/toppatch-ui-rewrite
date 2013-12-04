@@ -86,9 +86,9 @@ $(document).ready(function () {
 
                 Auth.signedIn = false;
 
-                var oldCookie = $.cookie(CONST.COOKIE.AUTH);
+                var oldCookie = CONST.COOKIE.AUTH;
+                CONST.COOKIE.AUTH = 'testAuthCookie';
 
-                $.removeCookie(CONST.COOKIE.AUTH);
                 strictEqual(Auth.rememberMeSignIn(), false, 'Returns false when user cookie not present');
 
                 Backbone.once('signInSuccess', function () {
@@ -103,12 +103,8 @@ $(document).ready(function () {
                 Backbone.once('signInComplete', function () {
                     ok(true, '`signInComplete` event fired on Backbone Object');
 
-                    // Restore the old cookie if it was present
-                    if (oldCookie && oldCookie !== 'testing') {
-                        $.cookie(CONST.COOKIE.AUTH, oldCookie);
-                    } else {
-                        $.removeCookie(CONST.COOKIE.AUTH);
-                    }
+                    $.removeCookie(CONST.COOKIE.AUTH);
+                    CONST.COOKIE.AUTH = oldCookie;
 
                     done();
                 });
