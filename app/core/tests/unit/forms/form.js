@@ -37,6 +37,8 @@ $(document).ready(function () {
                         '<input type="hidden" name="field5" value="5"></hidden>',
                         '<input type="checkbox" name="field6"/>',
                         '<input type="checkbox" name="field7" checked/>',
+                        '<input type="hidden" name="field8"/>',
+                        '<input type="hidden" name="field8"/>',
                         '</form>'
                     ].join('\n'))
                 });
@@ -47,7 +49,8 @@ $(document).ready(function () {
                     field2: ['2-1','2-2', '2-3'],
                     field4: '4-2',
                     field5: '5',
-                    field7: 'on'
+                    field7: 'on',
+                    field8: ['', '']
                 }, 'Form serialized correctly');
 
                 ok(_.isUndefined(data.field3), 'Field 3 is undefined because the input is disabled');
