@@ -6,6 +6,14 @@ define(
         var viewOptions = ['validate'],
             mixin = _.pick(Form.prototype, ['submit', 'serializeForm', 'isValid', '_validate']);
 
+        /**
+         * A ModalView that manages a Form
+         * @class modal/FormView
+         * @extends ModalView
+         * @constructor
+         * @param options
+         * @returns {this}
+         */
         mixin.constructor = function (options) {
             if (_.isObject(options)) {
                 _.extend(this, _.pick(options, viewOptions));
@@ -15,11 +23,22 @@ define(
             return this;
         };
 
+        /**
+         * Combine modal and form events
+         * @attribute events
+         * @type {Object}
+         */
         mixin.events = _.extend(
             _.result(ModalView.prototype, 'events'),
             _.result(Form.prototype, 'events')
         );
 
+        /**
+         * Render the modal form
+         * @method render
+         * @protected
+         * @chainable
+         */
         mixin.render = function () {
             if(this.isClosed !== false) {
                 this.once('submit', this.close);
