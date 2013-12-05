@@ -14,6 +14,28 @@ $(document).ready(function () {
         );
     });
 
+    asyncTest('render', function () {
+        require(
+            ['core/js/modal/formView'],
+            function (Form) {
+                var form = new Form({
+                    animate: false,
+                    template: _.template('<form><input type="text" name="field1" value="42"/></form>')
+                });
+
+                ok(form.render(), 'render executed without error');
+                ok(_.has(form._events, 'submit'), 'Form has "submit" event registered');
+                strictEqual(form._events.submit.length, 1, 'Submit event has one listener');
+
+                ok(form.render(), 'execute render again');
+                strictEqual(form._events.submit.length, 1, 'Submit event still has one listener');
+
+                form.close();
+                start();
+            }
+        );
+    });
+
     asyncTest('hide on submit', function () {
         require(
             ['core/js/modal/formView'],
@@ -26,11 +48,6 @@ $(document).ready(function () {
                 form.render();
                 ok(form.submit(), 'Submit form');
                 ok(form.isClosed, 'modal is closed after submit');
-
-                form.render();
-                ok(!form.isClosed, 'modal is NOT closed after re-render');
-                ok(form.submit(), 'Submit form again');
-                ok(form.isClosed, 'modal is closed after second submit');
 
                 start();
             }
