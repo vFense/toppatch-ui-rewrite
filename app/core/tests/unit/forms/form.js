@@ -128,4 +128,40 @@ $(document).ready(function () {
             }
         );
     });
+
+    asyncTest('submit invalid', function () {
+        require(
+            ['core/js/forms/form'],
+            function (Form) {
+                var message = 'form invalid',
+                    form = new Form({
+                        template: _.template('<form><input type="text" name="field1" required/></form>'),
+                        validate: function () {
+                            if (!this.$('form')[0].checkValidity()) {
+                                return message;
+                            }
+                        }
+                    }),
+                    timeout;
+
+                form.render();
+                form.once('invalid', function (error) {
+                    clearTimeout(timeout);
+                    ok(true, 'Invalid event captured');
+                    strictEqual(error, message, 'Error message is correct');
+                    start();
+                });
+
+                timeout = setTimeout(function () {
+                    form.off();
+
+                    ok(false, 'Invalid event NOT captured within specified timeout');
+
+                    start();
+                }, 100);
+
+                form.$('form').submit();
+            }
+        );
+    });
 });
