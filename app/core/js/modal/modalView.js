@@ -112,7 +112,7 @@ define(
             open: function () {
                 var $el = this.$el;
                 if (!this.isShown()) {
-                    if(this.isClosed === true || _.isUndefined(this.isClosed)) {
+                    if(this.isClosed !== false) {
                         this.render();
                     }
 
