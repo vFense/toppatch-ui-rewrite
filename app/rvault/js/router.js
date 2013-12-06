@@ -1,6 +1,6 @@
 define(
     [
-        'core/js/outletRouter',
+        'core/js/routes/_outletRouter',
         'core/js/views/outlet',
         'exports'
     ],
