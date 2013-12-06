@@ -1,10 +1,9 @@
 define(
     [
         'core/js/routes/_outletRouter',
-        'core/js/views/outlet',
-        'exports'
+        'core/js/views/outlet'
     ],
-    function (Router, View, exports) {
+    function (Router, View) {
         'use strict';
         var outletView = new View({
             className: 'container',
@@ -12,7 +11,7 @@ define(
             // Sample template
             template: _.template('<header>Header</header><section id="main"></section><footer>Footer</footer>')
         });
-        exports.Router = Router.extend({
+        return Router.extend({
             authRoutes: {
                 'rvault(/)': 'root'
             },
@@ -23,6 +22,5 @@ define(
                 this.show({$el: 'RVault'});
             }
         });
-        exports.router = new exports.Router();
     }
 );
