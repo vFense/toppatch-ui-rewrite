@@ -1,5 +1,5 @@
 define(
-    ['core/js/router'],
+    ['core/js/routes/_router'],
     function (Router) {
         'use strict';
         return Router.extend({
