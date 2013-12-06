@@ -1,5 +1,4 @@
 define(
-    //[],
     function (require) {
         'use strict';
         var Router = require('core/js/routes/_outletRouter').extend({
