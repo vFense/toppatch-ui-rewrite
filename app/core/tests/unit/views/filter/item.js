@@ -4,7 +4,7 @@ $(document).ready(function () {
 
     asyncTest('constructor', function () {
         require(
-            ['core/js/filter/item'],
+            ['core/js/views/filter/item'],
             function (FilterItem) {
                 var item;
 
@@ -33,7 +33,7 @@ $(document).ready(function () {
 
     asyncTest('enabled and toggleEnabled', function () {
         require(
-            ['core/js/filter/item'],
+            ['core/js/views/filter/item'],
             function (FilterItem) {
                 var item = new FilterItem({
                     name: 'test',
