@@ -1,0 +1,37 @@
+<header id="page-header">
+    <nav class="navbar navbar-default" role="banner">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <span class="navbar-brand">
+                    RemediationVault
+                </span>
+            </div>
+            <div class="navbar-collapse collapse navbar-responsive-collapse" role="navigation">
+                <ul class="nav navbar-nav" id="primaryNav">
+                    <li><a href="#">Dashboard</a></li>
+                    <li><a href="#">Agents</a></li>
+                    <li><a href="#">Patches</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right" id="secondaryNav">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <span>{{#if username}}{{ username }}{{else}}John Doe{{/if}}</span>
+                            <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#account">Account Settings</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#logout">Logout</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
