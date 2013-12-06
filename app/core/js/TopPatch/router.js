@@ -33,7 +33,7 @@ define(
                 if (TopPatch.Auth.signedIn === true) {
                     return this.navigate('', {trigger:true, replace: true});
                 }
-                require(['core/js/TopPatch/login'], function (View) {
+                require(['core/js/views/login'], function (View) {
                     var view = new View();
                     router.show(view.render());
                 });
