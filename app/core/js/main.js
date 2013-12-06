@@ -27,8 +27,13 @@ define(
         if (deferred.RVault) {
             deferred.RVault = $.Deferred();
             require(
-                ['rvault/js/main'],
-                deferred.RVault.resolve,
+                ['rvault/js/routes/router'],
+                function (Router) {
+                    deferred.core.then(function () {
+                        TopPatch.Routers.RVault = new Router();
+                        deferred.RVault.resolve();
+                    });
+                },
                 function (error) {
                     deferred.RVault.reject();
                     throw error;
