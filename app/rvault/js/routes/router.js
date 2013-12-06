@@ -1,17 +1,13 @@
 define(
-    [
-        'core/js/routes/_outletRouter',
-        'core/js/views/outlet'
-    ],
-    function (Router, View) {
+    function (require) {
         'use strict';
-        var outletView = new View({
+        var outletView = new (require('core/js/views/outlet'))({
             className: 'container',
 
             // Sample template
             template: _.template('<header>Header</header><section id="main"></section><footer>Footer</footer>')
         });
-        return Router.extend({
+        return require('core/js/routes/_outletRouter').extend({
             authRoutes: {
                 'rvault(/)': 'root'
             },
