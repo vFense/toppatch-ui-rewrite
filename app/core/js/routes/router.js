@@ -2,10 +2,8 @@ define(
     //[],
     function (require) {
         'use strict';
-        var Outlet = require('core/js/views/outlet');
         var Router = require('core/js/routes/_outletRouter').extend({
             routes: {
-                // Core Routes
                 '':                 require('./index'),
                 'login':            require('./login'),
                 'logout':           require('./logout'),
@@ -13,7 +11,7 @@ define(
                 '*path':            require('./invalid')
             },
 
-            outlet: new Outlet()
+            outlet: new (require('core/js/views/outlet'))()
         });
 
         return Router;
