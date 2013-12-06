@@ -9,8 +9,7 @@ define(
             require('core/js/TopPatch/app'),
             require('core/js/TopPatch/utils'),
             {
-                Auth: require('core/js/TopPatch/auth'),
-                Router: require('core/js/TopPatch/router')
+                Auth: require('core/js/TopPatch/auth')
             }
         );
 

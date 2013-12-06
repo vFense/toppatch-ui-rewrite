@@ -49,7 +49,7 @@ $(document).ready(function () {
     // Start custom test logic
     asyncTest('Test fragmentHistory', function () {
         var testSuite = this;
-        require(['core/js/router'], function(Router) {
+        require(['core/js/routes/_router'], function(Router) {
             testSuite.initHistory();
             var router = new (Router.extend({
                     routes: {
@@ -84,7 +84,7 @@ $(document).ready(function () {
 
     asyncTest('authRoute argument parsing', function () {
         var testSuite = this;
-        require(['core/js/router', 'core/js/TopPatch/auth'], function(Router, Auth) {
+        require(['core/js/routes/_router', 'core/js/TopPatch/auth'], function(Router, Auth) {
             testSuite.initHistory();
 
             var test3Called = false,
@@ -137,7 +137,7 @@ $(document).ready(function () {
 
     asyncTest('authRoute', function ()  {
         var testSuite = this;
-        require(['core/js/router', 'core/js/TopPatch/auth'], function(Router, Auth) {
+        require(['core/js/routes/_router', 'core/js/TopPatch/auth'], function(Router, Auth) {
             testSuite.initHistory();
 
             var AuthRouter = Router.extend({
@@ -169,7 +169,7 @@ $(document).ready(function () {
 
     asyncTest('authRoutes', function ()  {
         var testSuite = this;
-        require(['core/js/router', 'core/js/TopPatch/auth'], function(Router, Auth) {
+        require(['core/js/routes/_router', 'core/js/TopPatch/auth'], function(Router, Auth) {
             testSuite.initHistory();
 
             var AuthRouter = Router.extend({
