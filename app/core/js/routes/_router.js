@@ -6,7 +6,7 @@
  * @extends Backbone.Router
  */
 define(
-    ['core/js/TopPatch/auth', '../../.'],
+    ['core/js/TopPatch/auth', 'backbone'],
     function (Auth) {
         'use strict';
         return Backbone.Router.extend({
