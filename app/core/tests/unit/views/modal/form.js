@@ -3,7 +3,7 @@ $(document).ready(function () {
     module('modal/form');
     asyncTest('constructor', function () {
         require(
-            ['core/js/modal/formView'],
+            ['core/js/views/modal/form'],
             function (FormView) {
                 var modalForm;
                 ok(modalForm = new FormView(), 'create new modal form');
@@ -16,7 +16,7 @@ $(document).ready(function () {
 
     asyncTest('render', function () {
         require(
-            ['core/js/modal/formView'],
+            ['core/js/views/modal/form'],
             function (Form) {
                 var form = new Form({
                     animate: false,
@@ -38,7 +38,7 @@ $(document).ready(function () {
 
     asyncTest('hide on submit', function () {
         require(
-            ['core/js/modal/formView'],
+            ['core/js/views/modal/form'],
             function (Form) {
                 var form = new Form({
                         animate: false,
