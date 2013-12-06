@@ -1,6 +1,6 @@
 $(document).ready(function () {
     'use strict';
-    module('Filter Item');
+    module('views/filter/Item');
 
     asyncTest('constructor', function () {
         require(

@@ -1,6 +1,6 @@
 $(document).ready(function () {
     'use strict';
-    module('Loader');
+    module('views/Loading');
 
     asyncTest('render', function () {
         require(

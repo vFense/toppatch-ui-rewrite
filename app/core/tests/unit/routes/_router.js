@@ -28,7 +28,7 @@ $(document).ready(function () {
         }
     });
 
-    module('Router', {
+    module('routes/_Router', {
         setup: function () {
             location = new Location('http://example.com');
             this.initHistory = function () {

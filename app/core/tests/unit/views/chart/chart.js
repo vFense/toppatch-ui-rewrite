@@ -1,6 +1,6 @@
 $(document).ready(function () {
     'use strict';
-    module('Chart');
+    module('views/chart/Chart');
 
     asyncTest('Initialize', function () {
         require(

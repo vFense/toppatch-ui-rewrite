@@ -1,6 +1,6 @@
 $(document).ready(function () {
     'use strict';
-    module('TemplateView');
+    module('views/TemplateView');
 
     asyncTest('Constructor with options', function () {
         require(

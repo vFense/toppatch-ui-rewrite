@@ -1,6 +1,6 @@
 $(document).ready(function () {
     'use strict';
-    module('View', {
+    module('views/View', {
         setup: $.noop,
         teardown: $.noop
     });

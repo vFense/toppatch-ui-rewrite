@@ -1,6 +1,6 @@
 $(document).ready(function () {
     'use strict';
-    module('AlertView');
+    module('views/modal/Alert');
 
     asyncTest('Constructor', function () {
         require(

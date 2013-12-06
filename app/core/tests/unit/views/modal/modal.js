@@ -1,6 +1,6 @@
 $(document).ready(function () {
     'use strict';
-    module('ModalView');
+    module('views/modal/Modal');
 
     asyncTest('Constructor', function () {
         require(

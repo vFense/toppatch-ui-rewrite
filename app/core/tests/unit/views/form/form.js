@@ -1,6 +1,6 @@
 $(document).ready(function () {
     'use strict';
-    module('forms/formView');
+    module('views/form/Form');
 
     asyncTest('constructor', function () {
         require(

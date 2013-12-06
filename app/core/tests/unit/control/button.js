@@ -1,6 +1,6 @@
 $(document).ready(function () {
     'use strict';
-    module('Button');
+    module('control/Button');
 
     asyncTest('Events', function () {
         require(['core/js/control/button'], function(Button) {

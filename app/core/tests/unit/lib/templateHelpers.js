@@ -1,6 +1,6 @@
 $(document).ready(function () {
     'use strict';
-    module('templateHelpers');
+    module('lib/templateHelpers');
 
     asyncTest('Compare', function () {
         require(

@@ -1,6 +1,6 @@
 $(document).ready(function () {
     'use strict';
-    module('modal/form');
+    module('views/modal/form');
     asyncTest('constructor', function () {
         require(
             ['core/js/views/modal/form'],
