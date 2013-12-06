@@ -8,7 +8,7 @@
  * @extends TemplateView
  */
 define(
-    ['core/js/templateView', 'core/template/outlet'],
+    ['core/js/views/template', 'core/template/outlet'],
     function (TemplateView, template) {
         'use strict';
         return TemplateView.extend({
