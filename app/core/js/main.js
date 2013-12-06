@@ -9,6 +9,7 @@ define(
         TopPatch.defaultRoute = 'rvault';
         TopPatch.router = new TopPatch.Router();
         TopPatch.modules = {};
+        TopPatch.Routers = {};
 
         if (deferred.RVault) {
             deferred.RVault = $.Deferred();
