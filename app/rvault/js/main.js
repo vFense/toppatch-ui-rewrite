@@ -1,5 +1,5 @@
 define(
-    ['core/js/TopPatch/TopPatch', 'rvault/js/router'],
+    ['core/js/TopPatch/TopPatch', 'rvault/js/routes/router'],
     function (TopPatch, Router) {
         'use strict';
         var RVault = TopPatch.modules.RVault = {};
