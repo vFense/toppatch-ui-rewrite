@@ -72,10 +72,10 @@ define(
                     function () {
                         var attemptedRoute = TopPatch.Auth.attemptedRoute;
                         if (attemptedRoute) {
-                            TopPatch.router.navigate(attemptedRoute, {trigger: true});
+                            Backbone.history.navigate(attemptedRoute, {trigger: true});
                             TopPatch.Auth.attemptedRoute = null;
                         } else {
-                            TopPatch.router.navigate('', {trigger: true});
+                            Backbone.history.navigate('', {trigger: true});
                         }
                     },
                     function (jqxhr, status, message) {
