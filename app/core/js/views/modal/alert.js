@@ -1,5 +1,10 @@
 define(
-    ['core/js/modal/modalView', 'core/template/modalAlert', 'core/js/control/button', 'core/js/TopPatch/constants'],
+    [
+        'core/js/views/modal/modal',
+        'core/template/modalAlert',
+        'core/js/control/button',
+        'core/js/TopPatch/constants'
+    ],
     function (ModalView, alertTemplate, Button, constants) {
         'use strict';
 
