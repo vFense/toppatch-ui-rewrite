@@ -1,5 +1,5 @@
 define(
-    ['core/js/view', 'highcharts'],
+    ['core/js/views/view', 'highcharts'],
     function (View, Highcharts) {
         'use strict';
         var backboneViewOptions = ['model', 'collection', 'el', 'id', 'attributes', 'className', 'tagName', 'events'];

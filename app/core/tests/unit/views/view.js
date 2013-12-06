@@ -7,7 +7,7 @@ $(document).ready(function () {
 
     asyncTest('constructor', function () {
         require(
-            ['core/js/view'],
+            ['core/js/views/view'],
             function (View) {
                 var view = new View();
 
@@ -20,7 +20,7 @@ $(document).ready(function () {
     });
 
     asyncTest('clean()', function () {
-        require(['core/js/view'], function(BaseView) {
+        require(['core/js/views/view'], function(BaseView) {
             var baseView = new BaseView();
             baseView.$el.html('Hello World!');
             strictEqual(baseView.$el.html(), 'Hello World!', 'view html = "Hello World!"');
@@ -31,7 +31,7 @@ $(document).ready(function () {
     });
 
     asyncTest('close()', function () {
-        require(['core/js/view'], function(BaseView) {
+        require(['core/js/views/view'], function(BaseView) {
             var beforeCloseCalled = false,
                 $body = $('body'),
                 View = BaseView.extend({
@@ -59,7 +59,7 @@ $(document).ready(function () {
 
     asyncTest('closeChildViews', function () {
         require(
-            ['core/js/view'],
+            ['core/js/views/view'],
             function (View) {
                 var view1 = new View(),
                     view2 = new View(),
