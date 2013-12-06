@@ -7,10 +7,23 @@ define(
         };
 
         TopPatch.defaultRoute = 'rvault';
-        TopPatch.router = new TopPatch.Router();
         TopPatch.modules = {};
         TopPatch.Routers = {};
 
+        deferred.core = $.Deferred();
+        require(
+            ['core/js/routes/router'],
+            function (Router) {
+                TopPatch.Routers.core = new Router();
+                deferred.core.resolve();
+            },
+            function (error) {
+                deferred.core.reject();
+                throw error;
+            }
+        );
+
+        // Load plugin routers
         if (deferred.RVault) {
             deferred.RVault = $.Deferred();
             require(
