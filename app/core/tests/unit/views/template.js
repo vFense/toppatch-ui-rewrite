@@ -54,7 +54,7 @@ $(document).ready(function () {
 
     asyncTest('render [Handlebars Template]', function () {
         require(
-            ['handlebars', 'core/js/templateView'],
+            ['../../../../.', 'core/js/templateView'],
             function (Handlebars, TemplateView) {
                 var Model = Backbone.Model.extend({
                     defaults: {
@@ -100,7 +100,7 @@ $(document).ready(function () {
 
     asyncTest('render [Lo-Dash Template]', function () {
         require(
-            ['handlebars', 'core/js/templateView'],
+            ['../../../../.', 'core/js/templateView'],
             function (Handlebars, TemplateView) {
                 var Model = Backbone.Model.extend({
                     defaults: {
