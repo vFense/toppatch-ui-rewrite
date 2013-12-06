@@ -4,7 +4,7 @@ $(document).ready(function () {
 
     asyncTest('Compare', function () {
         require(
-            ['core/js/templateHelpers'],
+            ['core/js/lib/templateHelpers'],
             function (Handlebars) {
                 var registered = _.has(Handlebars.helpers, 'compare'),
                     options = {
@@ -86,7 +86,7 @@ $(document).ready(function () {
 
     asyncTest('Options', function () {
         require(
-            ['core/js/templateHelpers'],
+            ['core/js/lib/templateHelpers'],
             function (Handlebars) {
                 var registered = _.has(Handlebars.helpers, 'options'),
                     functions = {
