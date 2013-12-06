@@ -9,6 +9,7 @@ define(
         TopPatch.defaultRoute = 'rvault';
         TopPatch.Routers = {};
 
+        // Load Core router
         deferred.core = $.Deferred();
         require(
             ['core/js/routes/router'],
