@@ -46,7 +46,7 @@ module.exports = function(grunt) {
         concurrent: {
             dev: [
                 'copy:dev',
-                'less:rvault',
+                'less:application',
                 'less:bootstrap',
                 'handlebars'
             ],
@@ -219,16 +219,11 @@ module.exports = function(grunt) {
                     '<%= meta.app %>css/bootstrap.css'  : ['<%= meta.app %>/core/less/custom.bootstrap.less']
                 }
             },
-            core: {
+            application: {
                 files: {
-                    '<%= meta.app %>css/core.css': ['<%= meta.app %>/core/less/core.less']
+                    '<%= meta.app %>css/application.css': ['<%= meta.app %>/core/less/core.less']
                 }
-            },
-            rvault: {
-                files: {
-                    '<%= meta.app %>css/application.css': ['<%= meta.app %>/rvault/less/application.less']
-                }
-            },
+            }
         },
         qunit: {
             options: {
