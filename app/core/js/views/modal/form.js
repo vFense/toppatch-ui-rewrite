@@ -1,5 +1,8 @@
 define(
-    ['core/js/modal/modalView', 'core/js/forms/form'],
+    [
+        'core/js/views/modal/modal',
+        'core/js/views/form/form'
+    ],
     function (ModalView, Form) {
         'use strict';
         // Borrow viewOptions, and methods from forms/form.js

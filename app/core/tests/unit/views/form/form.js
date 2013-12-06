@@ -4,7 +4,7 @@ $(document).ready(function () {
 
     asyncTest('constructor', function () {
         require(
-            ['core/js/forms/form'],
+            ['core/js/views/form/form'],
             function (Form) {
                 ok(new Form(), 'New form, no options; Init without error');
 
@@ -23,7 +23,7 @@ $(document).ready(function () {
 
     asyncTest('serializeForm', function () {
         require(
-            ['core/js/forms/form'],
+            ['core/js/views/form/form'],
             function (Form) {
                 var form = new Form({
                     template: _.template([
@@ -62,7 +62,7 @@ $(document).ready(function () {
 
     asyncTest('_validate and isValid', function () {
         require(
-            ['core/js/forms/form'],
+            ['core/js/views/form/form'],
             function (Form) {
                 var form = new Form({
                         template: _.template('<form><input type="number" name="field1" required /></form>')
@@ -95,7 +95,7 @@ $(document).ready(function () {
 
     asyncTest('submit', function () {
         require(
-            ['core/js/forms/form'],
+            ['core/js/views/form/form'],
             function (Form) {
                 var form = new Form({
                         template: _.template('<form><input type="text" name="field1" value="42"/></form>')
@@ -131,7 +131,7 @@ $(document).ready(function () {
 
     asyncTest('submit invalid', function () {
         require(
-            ['core/js/forms/form'],
+            ['core/js/views/form/form'],
             function (Form) {
                 var message = 'form invalid',
                     form = new Form({

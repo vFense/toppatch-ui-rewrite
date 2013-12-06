@@ -4,7 +4,7 @@ $(document).ready(function () {
 
     asyncTest('Initialize', function () {
         require(
-            ['core/js/chart/chart'],
+            ['core/js/views/chart/chart'],
             function (Chart) {
                 var chart;
 
@@ -24,7 +24,7 @@ $(document).ready(function () {
 
     asyncTest('Render', function () {
         require(
-            ['core/js/chart/chart'],
+            ['core/js/views/chart/chart'],
             function (Chart) {
                 var collection, chart;
                 collection = new Backbone.Collection([
@@ -48,7 +48,7 @@ $(document).ready(function () {
 
     asyncTest('close and _destroyChart', function () {
         require(
-            ['core/js/chart/chart'],
+            ['core/js/views/chart/chart'],
             function (Chart) {
                 var collection, chart, called;
                 collection = new Backbone.Collection([

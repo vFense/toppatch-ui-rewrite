@@ -4,7 +4,7 @@ $(document).ready(function () {
 
     asyncTest('Constructor with options', function () {
         require(
-            ['core/js/templateView'],
+            ['core/js/views/template'],
             function (TemplateView) {
                 var templateView = new TemplateView({
                     template: 42
@@ -17,7 +17,7 @@ $(document).ready(function () {
 
     asyncTest('getData', function () {
         require(
-            ['core/js/templateView'],
+            ['core/js/views/template'],
             function (TemplateView) {
                 var Model, Collection;
                 Model = Backbone.Model.extend({
@@ -54,7 +54,7 @@ $(document).ready(function () {
 
     asyncTest('render [Handlebars Template]', function () {
         require(
-            ['handlebars', 'core/js/templateView'],
+            ['handlebars', 'core/js/views/template'],
             function (Handlebars, TemplateView) {
                 var Model = Backbone.Model.extend({
                     defaults: {
@@ -100,8 +100,8 @@ $(document).ready(function () {
 
     asyncTest('render [Lo-Dash Template]', function () {
         require(
-            ['handlebars', 'core/js/templateView'],
-            function (Handlebars, TemplateView) {
+            ['core/js/views/template'],
+            function (TemplateView) {
                 var Model = Backbone.Model.extend({
                     defaults: {
                         name: 'World'

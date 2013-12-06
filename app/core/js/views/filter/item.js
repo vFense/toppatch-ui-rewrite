@@ -1,5 +1,5 @@
 define(
-    ['core/js/templateView', 'backbone.validation'],
+    ['core/js/views/template', 'backbone.validation'],
     function (TemplateView) {
         'use strict';
 

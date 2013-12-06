@@ -1,7 +1,7 @@
 define(
     [
         'core/js/outletRouter',
-        'core/js/outletView',
+        'core/js/views/outlet',
         'exports'
     ],
     function (Router, View, exports) {

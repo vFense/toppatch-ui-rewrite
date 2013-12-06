@@ -4,7 +4,7 @@
  * @extends TemplateView
  */
 define(
-    ['core/js/templateView'],
+    ['core/js/views/template'],
     function (TemplateView) {
         'use strict';
         var viewOptions = ['validate'];

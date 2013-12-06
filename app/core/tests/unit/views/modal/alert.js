@@ -4,7 +4,7 @@ $(document).ready(function () {
 
     asyncTest('Constructor', function () {
         require(
-            ['core/js/modal/alertView'],
+            ['core/js/views/modal/alert'],
             function (AlertView) {
                 var alertView = new AlertView();
 
@@ -24,7 +24,7 @@ $(document).ready(function () {
 
     asyncTest('Constructor [with options]', function () {
         require(
-            ['core/js/modal/alertView', 'core/js/control/button'],
+            ['core/js/views/modal/alert', 'core/js/control/button'],
             function (AlertView, Button) {
                 var alertView = new AlertView({
                     message: 'M',
@@ -47,7 +47,7 @@ $(document).ready(function () {
 
     asyncTest('setButton', function () {
         require(
-            ['core/js/modal/alertView', 'core/js/control/button'],
+            ['core/js/views/modal/alert', 'core/js/control/button'],
             function (AlertView, Button) {
                 var alertView = new AlertView({
                         animate: false
@@ -82,7 +82,7 @@ $(document).ready(function () {
 
     asyncTest('setButtons', function () {
         require(
-            ['core/js/modal/alertView', 'core/js/control/button'],
+            ['core/js/views/modal/alert', 'core/js/control/button'],
             function (AlertView, Button) {
                 var alertView;
                 alertView = new AlertView({
@@ -131,7 +131,7 @@ $(document).ready(function () {
 
     asyncTest('setMessage and setInformation', function () {
         require(
-            ['core/js/modal/alertView'],
+            ['core/js/views/modal/alert'],
             function (AlertView) {
                 var alertView = new AlertView({
                         animate: false
@@ -158,7 +158,7 @@ $(document).ready(function () {
 
     asyncTest('Rendering', function () {
         require(
-            ['core/js/modal/alertView', 'core/js/control/button'],
+            ['core/js/views/modal/alert', 'core/js/control/button'],
             function (AlertView, Button) {
                 var alertView = new AlertView({
                         animate: false
@@ -204,7 +204,7 @@ $(document).ready(function () {
 
     asyncTest('Open', function () {
         require(
-            ['core/js/modal/alertView', 'core/js/control/button'],
+            ['core/js/views/modal/alert', 'core/js/control/button'],
             function (AlertView, Button) {
                 var alertView = new AlertView({
                     animate: false
@@ -232,7 +232,7 @@ $(document).ready(function () {
 
     asyncTest('clickEventHandler', function () {
         require(
-            ['core/js/modal/alertView', 'core/js/control/button', 'jquery.simulate'],
+            ['core/js/views/modal/alert', 'core/js/control/button', 'jquery.simulate'],
             function (AlertView, Button) {
                 var alertView, $button;
 
@@ -269,7 +269,7 @@ $(document).ready(function () {
 
     asyncTest('keyEventHandler', function () {
         require(
-            ['core/js/modal/alertView', 'core/js/control/button', 'jquery.simulate'],
+            ['core/js/views/modal/alert', 'core/js/control/button', 'jquery.simulate'],
             function (AlertView, Button) {
                 var alertView = new AlertView({
                     animate: false,
@@ -289,7 +289,7 @@ $(document).ready(function () {
 
     asyncTest('close', function () {
         require(
-            ['core/js/modal/alertView', 'core/js/control/button'],
+            ['core/js/views/modal/alert', 'core/js/control/button'],
             function (AlertView, Button) {
                 var alertView = new AlertView({
                     animate: false,
@@ -320,7 +320,7 @@ $(document).ready(function () {
 
     asyncTest('_setKeyEquivalent', function () {
         require(
-            ['core/js/modal/alertView', 'core/js/control/button'],
+            ['core/js/views/modal/alert', 'core/js/control/button'],
             function (Alert, Button) {
                 var button = new Button();
                 button.set('title', 'Cancel');
@@ -340,7 +340,7 @@ $(document).ready(function () {
 
     asyncTest('alertWithMessage', function () {
         require(
-            ['core/js/modal/alertView', 'core/js/control/button'],
+            ['core/js/views/modal/alert', 'core/js/control/button'],
             function (AlertView, Button) {
                 var alert;
 
@@ -393,7 +393,7 @@ $(document).ready(function () {
 
     asyncTest('criticalAlertWithMessage', function () {
         require(
-            ['core/js/modal/alertView'],
+            ['core/js/views/modal/alert'],
             function (AlertView) {
                 var alert;
 

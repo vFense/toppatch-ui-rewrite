@@ -1,5 +1,5 @@
 define(
-    ['core/js/forms/form', 'core/template/login'],
+    ['core/js/views/form/form', 'core/template/login'],
     function (Form, template) {
         'use strict';
 

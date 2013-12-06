@@ -1,5 +1,5 @@
 define(
-    ['core/js/templateView', 'core/template/modalView', 'bootstrap.modal'],
+    ['core/js/views/template', 'core/template/modalView', 'bootstrap.modal'],
     function (TemplateView, template) {
         'use strict';
         // List of view options to be merged as properties
