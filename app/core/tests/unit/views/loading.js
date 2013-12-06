@@ -4,7 +4,7 @@ $(document).ready(function () {
 
     asyncTest('render', function () {
         require(
-            ['core/js/loaderView'],
+            ['core/js/views/loading'],
             function (BaseLoaderView) {
                 var loader = new BaseLoaderView();
 
@@ -22,7 +22,7 @@ $(document).ready(function () {
 
     asyncTest('setLoadingText', function () {
         require(
-            ['core/js/loaderView'],
+            ['core/js/views/loading'],
             function (BaseLoaderView) {
                 var loader = new BaseLoaderView();
                 loader.render()
@@ -35,7 +35,7 @@ $(document).ready(function () {
 
     asyncTest('getLoadingText', function () {
         require(
-            ['core/js/loaderView'],
+            ['core/js/views/loading'],
             function (BaseLoaderView) {
                 var loader = new BaseLoaderView();
                 loader.render()
