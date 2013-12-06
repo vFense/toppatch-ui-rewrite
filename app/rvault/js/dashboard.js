@@ -1,7 +1,7 @@
 define(
     [
         'core/template/dashboard_layout',
-        'core/js/view',
+        'core/js/views/view',
         'bootstrap.collapse',
         'bootstrap.dropdown'
     ],
