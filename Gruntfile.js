@@ -132,6 +132,11 @@ module.exports = function(grunt) {
             options: {
                 amd: true,
                 namespace: false,
+                processPartialName: function(filePath) {
+                    var pattern = 'app\\/(.*?)\\/.*?hbs\\/(?:(.*?)\\..*?)$',
+                        regex = new RegExp(pattern, 'g');
+                    return filePath.replace(regex, '$1/template/$2');
+                },
                 processContent: function (content, filepath) {
                     'use strict';
                     var minify = require('html-minifier').minify,
