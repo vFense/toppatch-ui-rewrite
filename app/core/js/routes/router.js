@@ -1,60 +1,21 @@
 define(
-    [
-        'core/js/routes/_outletRouter',
-        'core/js/views/outlet',
-        'require'
-    ],
-    function (Router, View, require) {
+    //[],
+    function (require) {
         'use strict';
-        var outletView = new View();
-        return Router.extend({
+        var Outlet = require('core/js/views/outlet');
+        var Router = require('core/js/routes/_outletRouter').extend({
             routes: {
                 // Core Routes
-                '': 'root',
-                'login': 'login',
-                'logout': 'logout',
-                'forgotPassword': 'forgotPassword',
-
-                // Invalid Route
-                '*path': 'invalidPath'
+                '':                 require('./index'),
+                'login':            require('./login'),
+                'logout':           require('./logout'),
+                'forgotPassword':   $.noop,
+                '*path':            require('./invalid')
             },
 
-            outlet: outletView,
-
-            /***************
-             * Core Routes *
-             ***************/
-            root: function () {
-                return this.navigate(TopPatch.defaultRoute, {trigger: true, replace: true});
-            },
-            login: function () {
-                var router = this;
-                // No need to show login page if already logged in
-                if (TopPatch.Auth.signedIn === true) {
-                    return this.navigate('', {trigger:true, replace: true});
-                }
-                require(['core/js/views/login'], function (View) {
-                    var view = new View();
-                    router.show(view.render());
-                });
-                return this;
-            },
-            logout: function () {
-                TopPatch.Auth.signOut().then(
-                    _.bind(function () {
-                        return this.navigate('login', {trigger:true, replace: true});
-                    }, this)
-                );
-                return this;
-            },
-            forgotPassword: $.noop,
-
-            /*****************
-             * Invalid Route *
-             *****************/
-            'invalidPath': function () {
-                window.console.log('route:invalid', arguments);
-            }
+            outlet: new Outlet()
         });
+
+        return Router;
     }
 );
