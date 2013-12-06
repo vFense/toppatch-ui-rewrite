@@ -1,5 +1,5 @@
 define(
-    ['../../.'],
+    ['backbone'],
     function () {
         'use strict';
         return Backbone.View.extend({
