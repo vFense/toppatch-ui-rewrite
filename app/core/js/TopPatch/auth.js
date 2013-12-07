@@ -135,20 +135,7 @@ define(
             },
 
             forgetLogin: function () {
-                // Server removes cookie for us
-
-                /*
-                // Not using localStorage yet
-                if (_.isObject(localStorage) && _.isFunction(localStorage.clear)) {
-                    localStorage.clear();
-                }
-
-                // Not using sessionStorage yet
-                if (_.isObject(sessionStorage) && _.isFunction(sessionStorage.clear)) {
-                    sessionStorage.clear();
-                }
-                */
-
+                $.removeCookie(CONST.COOKIE.AUTH);
                 this.signedIn = false;
                 this.user = null;
                 return this;
