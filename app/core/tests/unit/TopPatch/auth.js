@@ -103,19 +103,57 @@ $(document).ready(function () {
                 Backbone.once('signInComplete', function () {
                     ok(true, '`signInComplete` event fired on Backbone Object');
 
+                    // Clean up
                     $.removeCookie(CONST.COOKIE.AUTH);
                     CONST.COOKIE.AUTH = oldCookie;
 
                     done();
                 });
 
-                $.cookie(CONST.COOKIE.AUTH, 'testing');
+                $.cookie(CONST.COOKIE.AUTH, 'pass');
                 ok(Auth.rememberMeSignIn(), 'Attempt with test cookie in place');
             }
         );
     });
 
+    asyncTest('rememberMeSignIn Failure', function () {
+        require(
+            ['core/js/TopPatch/auth', 'core/js/TopPatch/constants', 'core/tests/api/login'],
+            function (Auth, CONST) {
+                var done = function () {
+                    Backbone.off();
+                    start();
+                };
 
+                Auth.signedIn = false;
+
+                var oldCookie = CONST.COOKIE.AUTH;
+                CONST.COOKIE.AUTH = 'testAuthCookie';
+
+                Backbone.once('signInSuccess', function () {
+                    ok(false, 'Unexpected `signInSuccess` event fired on Backbone Object');
+                });
+
+                Backbone.once('signInError', function () {
+                    ok(true, '`signInError` event fired on Backbone Object');
+                    strictEqual($.cookie(CONST.COOKIE.AUTH), undefined, 'cookie was removed on failed login');
+                });
+
+                Backbone.once('signInComplete', function () {
+                    ok(true, '`signInComplete` event fired on Backbone Object');
+
+                    // Clean up
+                    $.removeCookie(CONST.COOKIE.AUTH);
+                    CONST.COOKIE.AUTH = oldCookie;
+
+                    done();
+                });
+
+                $.cookie(CONST.COOKIE.AUTH, 'fail');
+                ok(Auth.rememberMeSignIn(), 'Attempt with bad test cookie in place');
+            }
+        );
+    });
 
     asyncTest('SignOut Success', function () {
         require(

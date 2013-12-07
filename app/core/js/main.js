@@ -41,21 +41,11 @@ define(
             );
         }
 
-        deferred.userRequest = $.Deferred();
-
-        try {
-            TopPatch.Auth.rememberMeSignIn().then(
-                deferred.userRequest.resolve,
-                function (jqxhr) {
-                    var status = jqxhr.status;
-                    if (status === 401 || status === 403) {
-                        TopPatch.Auth.forgetLogin();
-                    }
-                    deferred.userRequest.resolve();
-                }
-            );
-        } catch (e) {
-            deferred.userRequest.resolve();
+        // Attempt login with cookie
+        var signInAttempt = TopPatch.Auth.rememberMeSignIn();
+        if (signInAttempt !== false) {
+            deferred.userRequest = $.Deferred();
+            signInAttempt.always(deferred.userRequest.resolve);
         }
 
         $.when.apply(null, _.values(deferred)).always(function () {

@@ -58,20 +58,20 @@ define(
                 return $
                     .ajax(settings)
                     .done(
-                        function (response) {
+                        function (response, status, xhr) {
                             _this.signedIn = true;
                             _this.user = new User(response.data);
-                            Backbone.trigger('signInSuccess');
+                            Backbone.trigger('signInSuccess', response, status, xhr);
                         }
                     )
                     .fail(
-                        function () {
-                            Backbone.trigger('signInError', status);
+                        function (xhr, status, error) {
+                            Backbone.trigger('signInError', xhr, status, error);
                         }
                     )
                     .always(
-                        function () {
-                            Backbone.trigger('signInComplete');
+                        function (xhr, status) {
+                            Backbone.trigger('signInComplete', xhr, status);
                         }
                     )
                 ;
@@ -94,11 +94,18 @@ define(
 
             rememberMeSignIn: function () {
                 if ($.cookie(CONST.COOKIE.AUTH)) {
+                    var _this = this;
                     return this._doSignIn({
                         data: {
-                            uri: 42 // Preparing for future use case
+                            uri: $.cookie(CONST.COOKIE.AUTH) // Preparing for future use case
+                        },
+                        error: function (jqxhr) {
+                            var status = jqxhr.status;
+                            if (status === 401 || status === 403) {
+                                _this.forgetLogin();
+                            }
                         }
-                    });
+                    })
                 }
                 return false;
             },
