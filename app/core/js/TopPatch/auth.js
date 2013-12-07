@@ -135,6 +135,7 @@ define(
             },
 
             forgetLogin: function () {
+                $.removeCookie(CONST.COOKIE.AUTH);
                 this.signedIn = false;
                 this.user = null;
                 return this;
