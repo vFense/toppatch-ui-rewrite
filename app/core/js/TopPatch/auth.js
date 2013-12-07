@@ -32,8 +32,8 @@
  * @event signOutComplete
  */
 define(
-    ['backbone', 'core/js/TopPatch/constants', 'jquery.cookie'],
-    function (Backbone, CONST) {
+    ['backbone', 'core/js/TopPatch/constants', 'core/js/models/user', 'jquery.cookie'],
+    function (Backbone, CONST, User) {
         'use strict';
         return {
             /**
@@ -52,25 +52,27 @@ define(
              * @returns {jqXHR} See: http://api.jquery.com/Types/#jqXHR
              */
             _doSignIn: function (options) {
-                var defaults = { url: '/login', type: 'POST' },
+                var _this = this,
+                    defaults = { url: '/login', type: 'POST' },
                     settings = _.merge(defaults, options);
                 return $
                     .ajax(settings)
                     .done(
-                        _.bind(function () {
-                            this.signedIn = true;
+                        function (response) {
+                            _this.signedIn = true;
+                            _this.user = new User(response.data);
                             Backbone.trigger('signInSuccess');
-                        }, this)
+                        }
                     )
                     .fail(
-                        _.bind(function (response, status) {
+                        function () {
                             Backbone.trigger('signInError', status);
-                        }, this)
+                        }
                     )
                     .always(
-                        _.bind(function () {
+                        function () {
                             Backbone.trigger('signInComplete');
-                        }, this)
+                        }
                     )
                 ;
             },
@@ -107,26 +109,27 @@ define(
              * @returns {jqXHR} See: http://api.jquery.com/Types/#jqXHR
              */
             signOut: function () {
+                var _this = this;
                 return $
                     .ajax({
                         url: '/logout',
                         type: 'get'
                     })
                     .done(
-                        _.bind(function () {
-                            this.forgetLogin();
+                        function () {
+                            _this.forgetLogin();
                             Backbone.trigger('signOutSuccess');
-                        }, this)
+                        }
                     )
                     .fail(
-                        _.bind(function (response, status) {
+                        function (response, status) {
                             Backbone.trigger('signOutError', status);
-                        }, this)
+                        }
                     )
                     .always(
-                        _.bind(function () {
+                        function () {
                             Backbone.trigger('signOutComplete');
-                        }, this)
+                        }
                     )
                 ;
             },
@@ -147,6 +150,7 @@ define(
                 */
 
                 this.signedIn = false;
+                this.user = null;
                 return this;
             }
         };
