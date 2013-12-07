@@ -68,7 +68,7 @@ define(
                 var view = this,
                     $button = this.$('button[type="submit"]').attr('disabled', true);
                 this.renderError();
-                TopPatch.Auth.signIn(input.name, input.password).then(
+                TopPatch.Auth.forgetLogin().signIn(input.name, input.password).then(
                     function () {
                         var attemptedRoute = TopPatch.Auth.attemptedRoute;
                         if (attemptedRoute) {
