@@ -216,7 +216,7 @@ module.exports = function(grunt) {
                     jshintrc: '<%= meta.app %>rvault/tests/.jshintrc'
                 },
                 src: ['<%= meta.app %>rvault/tests/**/*.js']
-            },
+            }
         },
         less: {
             bootstrap: {
