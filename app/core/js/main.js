@@ -29,7 +29,7 @@ define(
             require(
                 ['rvault/js/routes/router'],
                 function (Router) {
-                    deferred.core.then(function () {
+                    deferred.core.done(function () {
                         TopPatch.Routers.RVault = new Router();
                         deferred.RVault.resolve();
                     });
