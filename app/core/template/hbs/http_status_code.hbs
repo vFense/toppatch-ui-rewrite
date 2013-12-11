@@ -3,22 +3,22 @@
     <h2 id="status-message">{{ status-message }}</h2>
     <br>
 
-    <h4>What could have caused this?</h4>
+    <h4>{{ what-cause }}</h4>
     <ul>
         {{#each cause}}
         <li>{{ this }}</li>
         {{/each}}
     </ul>
 
-    <h4>What can you do?</h4>
+    <h4>{{ what-action }}</h4>
     <ul>
-        {{#each resolution}}
-        <li>{{ this }}</li>
+        {{#each action}}
+        <li>{{{ this }}}</li>
         {{/each}}
     </ul>
 
-    <h4>Still having trouble?</h4>
+    <h4>{{ trouble }}</h4>
     <ul>
-        <li>Please contact us, and <a href="http://toppatch.com/top-patch-contact-us/" target="_blank">let us know what went wrong.</a></li>
+        <li>{{{ contact }}}</li>
     </ul>
 </article>

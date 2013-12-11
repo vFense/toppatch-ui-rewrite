@@ -1,8 +1,11 @@
 define(
-    function () {
+    function (require) {
         'use strict';
+        var View = require('core/js/views/invalid');
         return function () {
-            this.show({$el: '<h3>Something went wrong</h3>'});
+            console.log(arguments);
+            var view = new View();
+            this.show(view.render());
             return this;
         };
     }
