@@ -49,7 +49,7 @@ define(
              * @method _doSignIn
              * @private
              * @param options {object} $.ajax settings, should include data attribute
-             * @returns {jqXHR} See: http://api.jquery.com/Types/#jqXHR
+             * @returns {JQueryDeferred} See: http://api.jquery.com/Types/#jqXHR
              */
             _doSignIn: function (options) {
                 var _this = this,
@@ -81,7 +81,7 @@ define(
              * Attempt username/password combination sign in
              * @param username {string}
              * @param password {string}
-             * @returns {jqXHR}
+             * @returns {JQueryDeferred}
              */
             signIn: function (username, password) {
                 return this._doSignIn({
@@ -113,7 +113,7 @@ define(
             /**
              * Attempt to log out.
              * @method signOut
-             * @returns {jqXHR} See: http://api.jquery.com/Types/#jqXHR
+             * @returns {JQueryDeferred} See: http://api.jquery.com/Types/#jqXHR
              */
             signOut: function () {
                 var _this = this;
