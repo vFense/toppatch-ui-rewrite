@@ -9,7 +9,10 @@ define(
         'use strict';
         return TemplateView.extend({
             constructor: function () {
-                this.model = new Backbone.Model();
+                TemplateView.prototype.constructor.apply(this, arguments);
+                if (_.isUndefined(this.model)) {
+                    this.model = new Backbone.Model();
+                }
                 this.listenTo(this.model, 'change', this.render);
             },
             render: function (model) {
