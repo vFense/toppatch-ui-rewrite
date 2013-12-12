@@ -94,17 +94,11 @@ define(
 
             rememberMeSignIn: function () {
                 if ($.cookie(CONST.COOKIE.AUTH)) {
-                    var _this = this;
                     return this._doSignIn({
                         data: {
                             uri: 42 // Preparing for future use case
                         },
-                        error: function (jqxhr) {
-                            var status = jqxhr.status;
-                            if (status === 401 || status === 403) {
-                                _this.forgetLogin();
-                            }
-                        }
+                        error: this.forgetLogin
                     });
                 }
                 return false;
