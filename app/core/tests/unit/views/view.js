@@ -78,4 +78,26 @@ $(document).ready(function () {
             }
         );
     });
+
+    asyncTest('closeChildViews with selector', function () {
+        require(
+            ['core/js/views/view'],
+            function (View) {
+                var view1 = new View(),
+                    view2 = new View(),
+                    view3 = new View(),
+                    view4 = new View();
+
+                view1.$el.append(view2.$el, $('<div>').attr('id', 'test').append(view3.$el), view4.$el);
+
+                view1.closeChildViews('#test');
+
+                ok(!view2.isClosed, 'view2 is NOT closed');
+                ok(view3.isClosed, 'view3 is closed');
+                ok(!view4.isClosed, 'view4 is NOT closed');
+
+                start();
+            }
+        );
+    });
 });

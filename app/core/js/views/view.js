@@ -46,11 +46,16 @@ define(
             /**
              * Close any child instances of View
              * @method closeChildViews
+             * @param selector {string} Only close child views of this selector
              * @chainable
              */
-            closeChildViews: function () {
-                var parent = this;
-                this.$('[data-backbone-view]').each(function () {
+            closeChildViews: function (selector) {
+                var parent = this,
+                    $selector = this.$el;
+                if (selector) {
+                    $selector = this.$(selector);
+                }
+                $selector.find('[data-backbone-view]').each(function () {
                     var view = $(this).data('view');
                     if (view instanceof Backbone.View) {
                         parent.stopListening(view);
