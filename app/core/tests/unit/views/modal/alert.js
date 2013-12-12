@@ -274,13 +274,23 @@ $(document).ready(function () {
                 var alertView = new AlertView({
                     animate: false,
                     message: 'Alert',
-                    defButton: new Button({title: 'Save', keyEquivalent: $.simulate.keyCode.ENTER, returnValue: 1000})
+                    defButton: new Button({title: 'Save', keyEquivalent: $.simulate.keyCode.ENTER, returnValue: 1000}),
+                    altButton: new Button({title: 'Alt', keyEquivalent: $.simulate.keyCode.SPACE, returnValue: 1001})
                 });
 
                 alertView.open();
                 var $el = alertView.$el;
-                ok($el.simulate('keyup', { keyCode: $.simulate.keyCode.ENTER }), 'Simulate keyup event');
+                ok($el.simulate('keyup', { keyCode: $.simulate.keyCode.ENTER }), 'Simulate ENTER keyup event');
                 strictEqual(alertView.result, 1000, 'Result code is correct');
+                strictEqual(alertView.isShown(), false, 'Modal closed after event');
+
+                alertView.open();
+                ok($el.simulate('keyup', { keyCode: $.simulate.keyCode.TAB }), 'Simulate TAB keyup event');
+                strictEqual(alertView.result, null, 'Result code is null');
+                strictEqual(alertView.isShown(), true, 'Modal NOT closed after event');
+
+                ok($el.simulate('keyup', { keyCode: $.simulate.keyCode.SPACE }), 'Simulate SPACE keyup event');
+                strictEqual(alertView.result, 1001, 'Result code is correct');
                 strictEqual(alertView.isShown(), false, 'Modal closed after event');
                 start();
             }

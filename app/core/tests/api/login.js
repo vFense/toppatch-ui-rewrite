@@ -1,5 +1,5 @@
 define(
-    ['core/tests/api/mockApi'],
+    ['core/tests/api/mockApi', 'jquery.cookie'],
     function (mockApi) {
         'use strict';
         var authorized = {
@@ -24,7 +24,7 @@ define(
                     password = settings.data.password,
                     uri      = settings.data.uri;
                 if (uri) {
-                    if (uri === 'pass') {
+                    if ($.cookie('testAuthCookie') === 'pass') {
                         $.extend(this, authorized);
                     } else {
                         $.extend(this, unauthorized);
