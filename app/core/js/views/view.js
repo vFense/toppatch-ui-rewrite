@@ -46,7 +46,7 @@ define(
             /**
              * Close any child instances of View
              * @method closeChildViews
-             * @param selector {string} Only close child views of this selector
+             * @param [selector] {string} Only close child views of this selector
              * @chainable
              */
             closeChildViews: function (selector) {
