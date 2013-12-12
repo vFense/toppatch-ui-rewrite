@@ -105,7 +105,7 @@ define(
                                 _this.forgetLogin();
                             }
                         }
-                    })
+                    });
                 }
                 return false;
             },
