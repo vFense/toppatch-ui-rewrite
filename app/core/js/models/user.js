@@ -26,9 +26,7 @@ define(
              * @returns Object
              */
             parse: function (response) {
-                this.apiMessage = response.message;
-                this.apiPass = response.pass;
-                return response.data;
+                return _.result(response, 'data');
             },
             /**
              * Check user permissions
