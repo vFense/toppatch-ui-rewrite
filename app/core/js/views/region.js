@@ -24,10 +24,9 @@ define(
              * @chainable
              */
             render: function (regions) {
-                var that = this;
                 TemplateView.prototype.render.apply(this, arguments);
-                _.each(regions.attributes, function (view, region) {
-                    that.$(region).html(view.$el || view);
+                _.each(regions.attributes, function (view, region, thisArg) {
+                    thisArg.$(region).html(view.$el || view);
                 });
                 return this;
             },
