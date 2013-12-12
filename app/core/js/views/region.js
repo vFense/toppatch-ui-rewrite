@@ -25,9 +25,9 @@ define(
              */
             render: function (regions) {
                 TemplateView.prototype.render.apply(this, arguments);
-                _.each(regions.attributes, function (view, region, thisArg) {
-                    thisArg.$(region).html(view.$el || view);
-                });
+                _.each(regions.attributes, function (view, region) {
+                    this.$(region).html(view.$el || view);
+                }, this);
                 return this;
             },
             /**
