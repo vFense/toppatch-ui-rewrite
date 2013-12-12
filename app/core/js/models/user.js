@@ -3,7 +3,6 @@
  * @extends Backbone.Model
  */
 define(
-    [],
     function () {
         'use strict';
         return Backbone.Model.extend({
