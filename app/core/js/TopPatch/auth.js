@@ -97,7 +97,7 @@ define(
                     var _this = this;
                     return this._doSignIn({
                         data: {
-                            uri: $.cookie(CONST.COOKIE.AUTH) // Preparing for future use case
+                            uri: 42 // Preparing for future use case
                         },
                         error: function (jqxhr) {
                             var status = jqxhr.status;
