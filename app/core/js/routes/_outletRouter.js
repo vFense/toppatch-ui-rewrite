@@ -10,7 +10,7 @@ define(
                     TopPatch.App.show(this.outlet);
                 }
                 return this;
-            },
+            }
         });
     }
 );
