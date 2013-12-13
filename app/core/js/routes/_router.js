@@ -11,47 +11,6 @@ define(
         'use strict';
         return Backbone.Router.extend({
             /**
-             * Create an instance of Router.
-             * Also creates an event to call this.updateFragments
-             * on the route event.
-             * @method constructor
-             * @chainable
-             * @returns {this}
-             */
-            constructor: function(){
-                Backbone.Router.prototype.constructor.apply(this, arguments);
-                this.on('route', this.updateFragments);
-                return this;
-            },
-
-            /**
-             * Track the last visited route
-             * @attribute lastFragment
-             * @type String
-             * @default null
-             */
-            lastFragment: null,
-
-            /**
-             * Track the current route
-             * @attribute currentFragment
-             * @type String
-             * @default null
-             */
-            currentFragment: null,
-
-            /**
-             * Track the current and last fragment
-             * @method updateFragments
-             * @chainable
-             */
-            updateFragments: function () {
-                this.lastFragment = this.currentFragment;
-                this.currentFragment = Backbone.history.getFragment();
-                return this;
-            },
-
-            /**
              * Manually create an authorized route for the router.
              *
              * It is mostly equivalent to the route method, only it checks if the user is signed in before continuing
