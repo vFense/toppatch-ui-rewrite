@@ -1,6 +1,7 @@
 define(
     function (require) {
         'use strict';
+        var Outlet = require('core/js/views/outlet');
         return require('core/js/routes/_outletRouter').extend({
             routes: {
                 '':                 require('./index'),
@@ -10,7 +11,7 @@ define(
                 '*path':            require('./invalid')
             },
 
-            outlet: new (require('core/js/views/outlet'))()
+            outlet: new Outlet()
         });
     }
 );
