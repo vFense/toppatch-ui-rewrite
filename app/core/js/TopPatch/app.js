@@ -4,7 +4,7 @@ define(
         'use strict';
         var App = exports.App = {};
         _.extend(App, {
-            rootElement: '#dashboard',
+            rootElement: '#toppatch-app',
             show: function (view) {
                 this.close();
                 $(this.rootElement).html(view.$el);
