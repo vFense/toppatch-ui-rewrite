@@ -48,7 +48,8 @@ module.exports = function(grunt) {
                 'copy:dev',
                 'less:application',
                 'less:bootstrap',
-                'handlebars'
+                'newer:handlebars:core',
+                'newer:handlebars:rvault'
             ],
             dist: [
                 'copy:dist',
@@ -320,11 +321,11 @@ module.exports = function(grunt) {
             },
             hbsCore: {
                 files: ['<%= meta.app %>core/template/hbs/**/*.hbs'],
-                tasks: ['handlebars:core']
+                tasks: ['newer:handlebars:core']
             },
             hbsRVault: {
                 files: ['<%= meta.app %>rvault/template/hbs/**/*.hbs'],
-                tasks: ['handlebars:rvault']
+                tasks: ['newer:handlebars:rvault']
             }
         },
         yuidoc: {
