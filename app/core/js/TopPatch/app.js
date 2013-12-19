@@ -5,16 +5,16 @@ define(
         var App = exports.App = {};
         _.extend(App, {
             rootElement: '#toppatch-app',
+
             show: function (view) {
-                this.close();
-                $(this.rootElement).html(view.$el);
-                this.currentView = view;
-                return this;
-            },
-            close: function () {
                 if (this.currentView) {
                     this.currentView.close();
                 }
+                if (!this.$rootElement) {
+                    this.$rootElement = $(this.rootElement);
+                }
+                this.$rootElement.html(view.$el);
+                this.currentView = view;
                 return this;
             },
 
