@@ -1,20 +1,15 @@
 define(
-    ['underscore', 'exports'],
-    function (_, exports) {
+    ['core/js/views/view'],
+    function (View) {
         'use strict';
-        var App = exports.App = {};
-        _.extend(App, {
-            rootElement: '#toppatch-app',
+        return View.extend({
+            el: '#toppatch-app',
 
             show: function (view) {
-                if (this.currentView) {
-                    this.currentView.close();
+                if (this.$el.children().first()[0] !== view.$el[0]) {
+                    this.closeChildViews()
+                        .$el.html(view.$el);
                 }
-                if (!this.$rootElement) {
-                    this.$rootElement = $(this.rootElement);
-                }
-                this.$rootElement.html(view.$el);
-                this.currentView = view;
                 return this;
             },
 
