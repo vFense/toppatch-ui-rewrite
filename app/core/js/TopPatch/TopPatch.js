@@ -2,11 +2,13 @@ define(
     function (require) {
         'use strict';
 
-        var TopPatch = require('core/js/TopPatch/global');
+        var _ = require('underscore'),
+            Application = require('core/js/TopPatch/app'),
+            TopPatch = window.TopPatch = new Application();
 
-        TopPatch.extend(
+        _.extend(
+            TopPatch,
             require('core/js/TopPatch/constants'),
-            require('core/js/TopPatch/app'),
             {
                 Auth: require('core/js/TopPatch/auth')
             }
