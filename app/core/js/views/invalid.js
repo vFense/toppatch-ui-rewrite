@@ -18,7 +18,7 @@ define(
                     'Go to the RemediationVault <a href="/">homepage</a>.'
                 ],
                 'trouble': 'Still having trouble?',
-                'contact': 'Please contact us, and <a href="http://toppatch.com/top-patch-contact-us/" target="_blank">let us know what went wrong.</a>'
+                'contact': 'Please contact us, and <a href="http://toppatch.com/contact/" target="_blank">let us know what went wrong.</a>'
             }
         };
         return templateView.extend({
