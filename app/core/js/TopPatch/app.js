@@ -25,6 +25,7 @@ define(
             _docTitleSeparator: ' | ',
 
             /**
+             * Append a string to the document title
              * @method setDocumentTitle
              * @param [title] {string} Title to append
              * @returns {string} The final document title
