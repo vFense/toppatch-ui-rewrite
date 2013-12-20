@@ -5,10 +5,9 @@ define(
         return Router.extend({
             outlet: null,
             show: function (view) {
-                this.outlet.show(view);
-                if (TopPatch.App.currentView !== this.outlet) {
-                    TopPatch.App.show(this.outlet);
-                }
+                TopPatch.show(
+                    this.outlet.show(view)
+                );
                 return this;
             }
         });
