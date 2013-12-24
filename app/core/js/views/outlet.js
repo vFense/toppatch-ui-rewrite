@@ -38,7 +38,7 @@ define(
                     this.render().delegateEvents();
                 }
                 this.closeChildViews();
-                this.$('#main').html(view.$el);
+                this.$(this._selector).html(view.$el);
                 this.currentView = view;
                 return this;
             }
