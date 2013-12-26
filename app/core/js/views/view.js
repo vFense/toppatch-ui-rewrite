@@ -52,8 +52,11 @@ define(
             closeChildViews: function (selector) {
                 var parent = this,
                     $selector = this.$el;
-                if (selector) {
+                if (_.isString(selector)) {
                     $selector = this.$(selector);
+                } else if (selector) {
+                    // Selector is defined, but is not a string
+                    throw new TypeError('Expected `selector` to be a string');
                 }
                 $selector.find('[data-backbone-view]').each(function () {
                     var view = $(this).data('view');

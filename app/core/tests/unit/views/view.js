@@ -96,6 +96,10 @@ $(document).ready(function () {
                 ok(view3.isClosed, 'view3 is closed');
                 ok(!view4.isClosed, 'view4 is NOT closed');
 
+                throws(function () {
+                    view1.closeChildViews({});
+                }, TypeError, 'Throws a TypeError when selector is defined but not a string');
+
                 start();
             }
         );
