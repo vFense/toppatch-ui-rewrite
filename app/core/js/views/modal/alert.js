@@ -267,10 +267,8 @@ define(
                         if (!_.isNull(button)) {
                             keyMatched = button.performKeyEquivalent(event, this.animate);
                         }
-                        // If the event has been handled, break out of the `each` loop
-                        if (keyMatched === true) {
-                            return false;
-                        }
+                        // Continue the `each` loop if key has not been matched yet
+                        return !keyMatched;
                     }, this);
 
                     return this;
