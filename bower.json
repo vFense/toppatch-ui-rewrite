@@ -23,7 +23,7 @@
     "lodash": "~2.4.1",
     "modernizr": "~2.7.1",
     "moment": "2.5.0",
-    "numeral": "~1.5.2",
+    "numeral": "~1.5.3",
     "requirejs": "~2.1.9",
     "requirejs-plugins": "~1.0.2",
     "requirejs-text": "~2.0.10",
