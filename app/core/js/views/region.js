@@ -17,15 +17,28 @@ define(
                 return TemplateView.prototype.constructor.apply(this, arguments);
             },
 
+            /**
+             * A list of regions currently being tracked
+             * @attribute regions
+             * @default {Object}
+             * @protected
+             */
+            regions: null,
+
+            /**
+             * Get a region from the regions attribute
+             * @param attr
+             * @returns {*}
+             */
             get: function (attr) { return this.regions[attr]; },
 
             /**
-             * Set a hash of regions (one or many) on the regions property
+             * Set a hash of regions (one or many) on the regions attribute
              *
              * Based on [Backbone.Model.set](http://backbonejs.org/#Model-set)
              * @method set
              * @param key {string|object}
-             * @param [value] {*}
+             * @param [value] {string|$|function}
              * @param [options] {object}
              * @chainable
              */
@@ -79,6 +92,7 @@ define(
             },
 
             /**
+             * Remove a region from the regions attribute
              * @method unset
              * @param attr
              * @param [options]
@@ -89,6 +103,7 @@ define(
             },
 
             /**
+             * Remove all regions from the regions attribute
              * @method clear
              * @param [options]
              * @chainable
@@ -99,9 +114,10 @@ define(
             },
 
             /**
+             * Render the specified region
              * @method _renderRegion
-             * @param content
-             * @param selector
+             * @param content {string|$}
+             * @param selector {string}
              * @chainable
              * @private
              */
@@ -115,8 +131,9 @@ define(
             },
 
             /**
+             * Render only the regions that are passed
              * @method _partialRender
-             * @param changed
+             * @param changed {object} Key pair list of regions that changed
              * @chainable
              * @private
              */
@@ -126,7 +143,9 @@ define(
             },
 
             /**
+             * Render the template and then render all regions
              * @method render
+             * @override
              * @chainable
              */
             render: function () {
