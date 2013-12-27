@@ -166,7 +166,7 @@ $(document).ready(function () {
                     template: _.template('<div id="foo"></div><div id="view"></div>'),
                     regions: {
                         '#foo': 'bar',
-                        '#view': { $el: 'test' }
+                        '#view': { $el: 'test', isClosed: false }
                     }
                 });
 
