@@ -10,7 +10,12 @@ define(
     function (Outlet, template) {
         'use strict';
         return Outlet.extend({
-            template: template
+            template: template,
+            getData: function () {
+                return {
+                    username: TopPatch.Auth.user.get('username')
+                };
+            }
         });
     }
 );
