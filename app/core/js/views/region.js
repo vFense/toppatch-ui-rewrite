@@ -5,6 +5,8 @@ define(
         return TemplateView.extend({
             /**
              * A TemplateView that manages regions
+             *
+             * Methods based on [Backbone.Model](http://backbonejs.org/#Model)
              * @class Region
              * @extends TemplateView
              * @constructor
@@ -34,8 +36,6 @@ define(
 
             /**
              * Set a hash of regions (one or many) on the regions attribute
-             *
-             * Based on [Backbone.Model.set](http://backbonejs.org/#Model-set)
              * @method set
              * @param key {string|object}
              * @param [value] {string|$|function}
