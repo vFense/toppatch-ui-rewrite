@@ -152,6 +152,14 @@ define(
                 TemplateView.prototype.render.apply(this, arguments);
                 _.forIn(this.regions, this._renderRegion, this);
                 return this;
+            },
+
+            /**
+             * Get this.regions
+             * @returns {Object}
+             */
+            getData: function () {
+                return this.regions;
             }
         });
     }
