@@ -8,7 +8,7 @@
  * @extends TemplateView
  */
 define(
-    ['core/js/views/template', 'core/template/outlet'],
+    ['core/js/views/region', 'core/template/outlet'],
     function (TemplateView, template) {
         'use strict';
         return TemplateView.extend({
@@ -28,18 +28,15 @@ define(
             _selector: '#main',
 
             /**
-             * Show a view at template's $('#main')
+             * Shortcut method for
+             *
+             * this.set(this._selector, view, {render:true});
              * @method show
              * @param view {View}
              * @chainable
              */
             show: function (view) {
-                if(this.isClosed !== false) {
-                    this.render().delegateEvents();
-                }
-                this.closeChildViews();
-                this.$(this._selector).html(view.$el);
-                this.currentView = view;
+                this.set(this._selector, view, {render: true});
                 return this;
             }
         });
