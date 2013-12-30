@@ -53,7 +53,7 @@ define(
              */
             _doSignIn: function (options) {
                 var _this = this,
-                    defaults = { url: '/login', type: 'POST' },
+                    defaults = { url: '/login', type: 'POST', contentType: 'application/json', processData: false },
                     settings = _.merge(defaults, options);
                 return $
                     .ajax(settings)
@@ -85,19 +85,19 @@ define(
              */
             signIn: function (username, password) {
                 return this._doSignIn({
-                    data: {
+                    data: JSON.stringify({
                         username: username,
                         password: password
-                    }
+                    })
                 });
             },
 
             rememberMeSignIn: function () {
                 if ($.cookie(CONST.COOKIE.AUTH)) {
                     return this._doSignIn({
-                        data: {
+                        data: JSON.stringify({
                             uri: 42 // Preparing for future use case
-                        },
+                        }),
                         error: this.forgetLogin
                     });
                 }
